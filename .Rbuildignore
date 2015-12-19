@@ -1,0 +1,8 @@
+makefile
+CHANGES
+TODO
+oChangeLog
+build-prep.sh
+build-release.sh
+src/sp.h.in
+.travis.yml
