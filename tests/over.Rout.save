@@ -1,0 +1,205 @@
+
+R version 3.2.2 (2015-08-14) -- "Fire Safety"
+Copyright (C) 2015 The R Foundation for Statistical Computing
+Platform: x86_64-pc-linux-gnu (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> library(sp)
+> x = c(0.5, 0.5, 1.2, 1.5)
+> y = c(1.5, 0.5, 0.5, 0.5)
+> xy = cbind(x,y)
+> dimnames(xy)[[1]] = c("a", "b", "c", "d")
+> pts = SpatialPoints(xy)
+> 
+> xpol = c(0,1,1,0,0)
+> ypol = c(0,0,1,1,0)
+> pol = SpatialPolygons(list(
++  	Polygons(list(Polygon(cbind(xpol-1.05,ypol))), ID="x1"),
++  	Polygons(list(Polygon(cbind(xpol,ypol))), ID="x2"),
++  	Polygons(list(Polygon(cbind(xpol,ypol-1.05))), ID="x3"),
++  	Polygons(list(Polygon(cbind(xpol+1.05,ypol))), ID="x4"),
++  	Polygons(list(Polygon(cbind(xpol+.4, ypol+.1))), ID="x5")
++ ))
+> 
+> zdf = data.frame(z1 = 1:4, z2=4:1, f = c("a", "a", "b", "b"),
++  	row.names = c("a", "b", "c", "d"))
+> zdf
+  z1 z2 f
+a  1  4 a
+b  2  3 a
+c  3  2 b
+d  4  1 b
+> ptsdf = SpatialPointsDataFrame(pts, zdf)
+> 
+> zpl = data.frame(z = c(10, 15, 25, 3, 0), zz=1:5, 
++  	f = c("z", "q", "r", "z", "q"), row.names = c("x1", "x2", "x3", "x4", "x5"))
+> zpl
+    z zz f
+x1 10  1 z
+x2 15  2 q
+x3 25  3 r
+x4  3  4 z
+x5  0  5 q
+> poldf = SpatialPolygonsDataFrame(pol, zpl)
+> 
+> gt = GridTopology(c(.5,.5), c(1,1), c(3,2))
+> sg = SpatialGrid(gt)
+> df6 = data.frame(z = 6:1, f = c("a", "a", "b", "b", "c", "c"))
+> sgdf = SpatialGridDataFrame(gt, df6)
+> over(sg, pol)
+ 1  2  3  4  5  6 
+NA NA NA  5  4 NA 
+> over(sg, poldf)
+   z zz    f
+1 NA NA <NA>
+2 NA NA <NA>
+3 NA NA <NA>
+4 15  2    q
+5  3  4    z
+6 NA NA <NA>
+> over(sg, poldf[1:2])
+   z zz
+1 NA NA
+2 NA NA
+3 NA NA
+4 15  2
+5  3  4
+6 NA NA
+> 
+> spix = as(sg, "SpatialPixels")
+> spixdf = as(sgdf, "SpatialPixelsDataFrame")
+> over(spix, pol)
+ 1  2  3  4  5  6 
+NA NA NA  5  4 NA 
+> over(spix, poldf)
+   z zz    f
+1 NA NA <NA>
+2 NA NA <NA>
+3 NA NA <NA>
+4 15  2    q
+5  3  4    z
+6 NA NA <NA>
+> over(spix, poldf[1:2])
+   z zz
+1 NA NA
+2 NA NA
+3 NA NA
+4 15  2
+5  3  4
+6 NA NA
+> 
+> over(pol, sg)
+x1 x2 x3 x4 x5 
+NA  4 NA  5  4 
+> over(pol, sgdf)
+    z    f
+x1 NA <NA>
+x2  3    b
+x3 NA <NA>
+x4  2    c
+x5  3    b
+> over(pol, sgdf[1], fn = mean)
+    z
+x1 NA
+x2  3
+x3 NA
+x4  2
+x5  3
+> 
+> over(pol, spix)
+x1 x2 x3 x4 x5 
+NA  4 NA  5  4 
+> over(pol, spixdf)
+    z    f
+x1 NA <NA>
+x2  3    b
+x3 NA <NA>
+x4  2    c
+x5  3    b
+> over(pol, spixdf[1], fn = mean)
+    z
+x1 NA
+x2  3
+x3 NA
+x4  2
+x5  3
+> 
+> over(pts, sg)
+a b c d 
+1 4 5 5 
+> over(pts, spix)
+a b c d 
+1 4 5 5 
+> over(pts, sgdf)
+  z f
+a 6 a
+b 3 b
+c 2 c
+d 2 c
+> over(pts, spixdf)
+  z f
+a 6 a
+b 3 b
+c 2 c
+d 2 c
+> 
+> over(sg, sg)
+1 2 3 4 5 6 
+1 2 3 4 5 6 
+> over(sg, spix)
+1 2 3 4 5 6 
+1 2 3 4 5 6 
+> over(sg, sgdf)
+  z f
+1 6 a
+2 5 a
+3 4 b
+4 3 b
+5 2 c
+6 1 c
+> over(sg, spixdf)
+  z f
+1 6 a
+2 5 a
+3 4 b
+4 3 b
+5 2 c
+6 1 c
+> 
+> over(spix, sg)
+1 2 3 4 5 6 
+1 2 3 4 5 6 
+> over(spix, spix)
+1 2 3 4 5 6 
+1 2 3 4 5 6 
+> over(spix, sgdf)
+  z f
+1 6 a
+2 5 a
+3 4 b
+4 3 b
+5 2 c
+6 1 c
+> over(spix, spixdf)
+  z f
+1 6 a
+2 5 a
+3 4 b
+4 3 b
+5 2 c
+6 1 c
+> 
+> proc.time()
+   user  system elapsed 
+  0.536   0.281   0.506 

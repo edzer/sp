@@ -1,0 +1,6 @@
+gallery		scripts to generate graph gallery on http://r-spatial.sourceforge.net/
+fib			demo script for Fibonacci sampling on the sphere
+depend		script that runs check on all R packages depending on sp
+meuse		script that loads the meuse data set and converts the objects into sp classes
+mp			demonstrate use of SpatialMultiPoints and SpatialMultiPointsDataFrame
+webmap		OpenStreetMap or google map backgrounds in sp::plot and sp::spplot, using ggmap or RgoogleMaps maps

@@ -1,0 +1,203 @@
+
+R version 3.1.1 (2014-07-10) -- "Sock it to Me"
+Copyright (C) 2014 The R Foundation for Statistical Computing
+Platform: x86_64-pc-linux-gnu (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> library(sp)
+> x = c(0.5, 1.5, 0.5, 1.5, 1.6)
+> y = c(1.5, 1.5, 0.5, 0.5, 0.5)
+> xy = cbind(x,y)
+> dimnames(xy)[[1]] = c("a", "b", "c", "d", "e")
+> pts = SpatialPoints(xy)
+> z = data.frame(z1 = 1:5, z2=5:1, f = c("a", "a", "b", "b", "b"))
+> row.names(z) = c("a", "b", "c", "d", "e")
+> ptsdf = SpatialPointsDataFrame(pts, z)
+> 
+> xpol = c(0,1,1,0,0)
+> ypol = c(0,0,1,1,0)
+> pol = SpatialPolygons(list(
++ 	Polygons(list(Polygon(cbind(xpol-1,ypol))), ID="x9"),
++ 	Polygons(list(Polygon(cbind(xpol,ypol))), ID="x2"),
++ 	Polygons(list(Polygon(cbind(xpol,ypol-1))), ID="x3"),
++ 	Polygons(list(Polygon(cbind(xpol+1,ypol))), ID="x4")
++ 	))
+> z = data.frame(z = c(10, 15, 25, 3), zz = 1:4, f = c("z", "q", "r", "z"), 
++ 	row.names = c("x9", "x2", "x3", "x4"))
+> poldf = SpatialPolygonsDataFrame(pol, z)
+> plot(pol, xlim = c(-1.5, 2))
+> points(pts, col='red')
+> 
+> over(pts, pol)
+ a  b  c  d  e 
+NA NA  2  4  4 
+> over(pts, poldf)
+   z zz    f
+a NA NA <NA>
+b NA NA <NA>
+c 15  2    q
+d  3  4    z
+e  3  4    z
+> over(pts, poldf[1:2], fn = mean)
+   z zz
+a NA NA
+b NA NA
+c 15  2
+d  3  4
+e  3  4
+> 
+> #rbind(poldf, over(pts, poldf[1:2], fn = mean))
+> 
+> over(pol, pts)
+x9 x2 x3 x4 
+NA  3 NA  4 
+> over(pol, ptsdf)
+   z1 z2    f
+x9 NA NA <NA>
+x2  3  3    b
+x3 NA NA <NA>
+x4  4  2    b
+> over(pol, ptsdf[1:2], fn = mean)
+    z1  z2
+x9  NA  NA
+x2 3.0 3.0
+x3  NA  NA
+x4 4.5 1.5
+> 
+> pts[pol]
+SpatialPoints:
+    x   y
+c 0.5 0.5
+d 1.5 0.5
+e 1.6 0.5
+Coordinate Reference System (CRS) arguments: NA 
+> 
+> points(pts[pol], col='green', pch=16, cex=.8)
+> summary(pol[pts])
+Object of class SpatialPolygons
+Coordinates:
+  min max
+x   0   2
+y   0   1
+Is projected: NA 
+proj4string : [NA]
+> plot(pol[pts], border='blue', add=TRUE)
+> 
+> gt = GridTopology(c(.5,.5), c(1,1), c(3,2))
+> sg = SpatialGrid(gt)
+> df6 = data.frame(z = 6:1, f = c("a", "a", "b", "b", "c", "c"))
+> sgdf = SpatialGridDataFrame(gt, df6)
+> over(sg, pol)
+ 1  2  3  4  5  6 
+NA NA NA  2  4 NA 
+> over(sg, poldf)
+   z zz    f
+1 NA NA <NA>
+2 NA NA <NA>
+3 NA NA <NA>
+4 15  2    q
+5  3  4    z
+6 NA NA <NA>
+> over(sg, poldf[1:2])
+   z zz
+1 NA NA
+2 NA NA
+3 NA NA
+4 15  2
+5  3  4
+6 NA NA
+> 
+> spix = as(sg, "SpatialPixels")
+> spixdf = as(sgdf, "SpatialPixelsDataFrame")
+> over(spix, pol)
+ 1  2  3  4  5  6 
+NA NA NA  2  4 NA 
+> over(spix, poldf)
+   z zz    f
+1 NA NA <NA>
+2 NA NA <NA>
+3 NA NA <NA>
+4 15  2    q
+5  3  4    z
+6 NA NA <NA>
+> over(spix, poldf[1:2])
+   z zz
+1 NA NA
+2 NA NA
+3 NA NA
+4 15  2
+5  3  4
+6 NA NA
+> 
+> over(pol, sg)
+x9 x2 x3 x4 
+NA  4 NA  5 
+> over(pol, sgdf)
+    z    f
+x9 NA <NA>
+x2  3    b
+x3 NA <NA>
+x4  2    c
+> over(pol, sgdf[1], fn = mean)
+    z
+x9 NA
+x2  3
+x3 NA
+x4  2
+> 
+> over(pol, spix)
+x9 x2 x3 x4 
+NA  4 NA  5 
+> over(pol, spixdf)
+    z    f
+x9 NA <NA>
+x2  3    b
+x3 NA <NA>
+x4  2    c
+> over(pol, spixdf[1], fn = mean)
+    z
+x9 NA
+x2  3
+x3 NA
+x4  2
+> 
+> over(pts, sg)
+a b c d e 
+1 2 4 5 5 
+> over(pts, spix)
+a b c d e 
+1 2 4 5 5 
+> over(pts, sgdf)
+  z f
+a 6 a
+b 5 a
+c 3 b
+d 2 c
+e 2 c
+> over(pts, spixdf)
+  z f
+a 6 a
+b 5 a
+c 3 b
+d 2 c
+e 2 c
+> 
+> #over(pts, sg, returnList=TRUE)
+> #over(pts, spix, returnList=TRUE)
+> #over(pts, sgdf, returnList=TRUE)
+> #over(pts, spixdf, returnList=TRUE)
+> 
+> proc.time()
+   user  system elapsed 
+  0.554   0.030   0.569 

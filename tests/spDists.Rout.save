@@ -1,0 +1,41 @@
+
+R version 2.10.0 (2009-10-26)
+Copyright (C) 2009 The R Foundation for Statistical Computing
+ISBN 3-900051-07-0
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> library(sp)
+> data(meuse)
+> data(meuse.grid)
+> coordinates(meuse) = ~x+y
+> coordinates(meuse.grid) = ~x+y
+> x = coordinates(meuse)
+> y = coordinates(meuse.grid)
+> out = spDists(meuse,meuse.grid)
+> out2 = as.matrix(dist(rbind(coordinates(meuse),coordinates(meuse.grid))))
+> out2 = out2[1:155,155+1:nrow(y)]
+> # should be equal:
+> sum(out2 - out)
+[1] 0
+> summary(as.vector(out2 - out))
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+      0       0       0       0       0       0 
+> 
+> out = spDists(meuse.grid,meuse)
+> sum(out2 - t(out))
+[1] 0
+> summary(as.vector(out2 - t(out)))
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+      0       0       0       0       0       0 
+> 
