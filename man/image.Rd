@@ -75,8 +75,8 @@ if we take the image.default manual page as the reference. }
 
 \seealso{ \link{image.default}, \link{SpatialGridDataFrame-class},
 \link{levelplot} in package \code{lattice}. Function
-\link[fields]{image.plot} can be used to make a legend for an image, see an example in
-\url{https://stat.ethz.ch/pipermail/r-sig-geo/2007-June/002143.html}
+\code{image.plot} in package \code{fields} can be used to make a legend for an 
+image, see an example in \url{https://stat.ethz.ch/pipermail/r-sig-geo/2007-June/002143.html}
 }
 
 \examples{

@@ -1,6 +1,6 @@
 Package: sp
 Version: 1.2-2
-Date: 2015-10-18
+Date: 2015-12-19
 Title: Classes and Methods for Spatial Data
 Authors@R: c(person("Edzer", "Pebesma", role = c("aut", "cre"),
 				email = "edzer.pebesma@uni-muenster.de"),
@@ -15,7 +15,7 @@ Authors@R: c(person("Edzer", "Pebesma", role = c("aut", "cre"),
 			person("Josh", "O'Brien", role = "ctb"))
 Depends: R (>= 3.0.0)
 Imports: utils, stats, graphics, grDevices, methods, lattice, grid
-Suggests: RColorBrewer, rgdal (>= 0.8-7), rgeos (>= 0.3-13), gstat
+Suggests: RColorBrewer, rgdal (>= 0.8-7), rgeos (>= 0.3-13), gstat, maptools
 Description: Classes and methods for spatial
   data; the classes document where the spatial location information
   resides, for 2D or 3D data. Utility functions are provided, e.g. for
