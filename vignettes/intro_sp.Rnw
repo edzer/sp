@@ -23,7 +23,7 @@
 \title{ Classes and Methods for Spatial Data:\\
 the \pkg{sp} Package }
 \author{Edzer Pebesma\footnote{Institute for Geoinformatics,
-University of Muenster, Weseler Strasse 253, 48151 M\"{u}nster, Germany.
+University of Muenster, Heisenbergstra{\ss}e 2, 48149 M\"{u}nster, Germany.
 \code{edzer.pebesma@uni-muenster.de}}
 \and 
 Roger S.\ Bivand\footnote{Economic Geography Section, Department of Economics, %
