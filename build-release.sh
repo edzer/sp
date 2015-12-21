@@ -1,6 +1,6 @@
 sh ./build-prep.sh
-svn up
-svn2cl
-cp ChangeLog inst
-svn commit -m tidy inst/ChangeLog
-svn up
+git2cl > xx
+cat xx ChangeLog > inst/ChangeLog
+rm xx
+git commit -m 'update ChangeLog' inst/ChangeLog
+git push inst/ChangeLog

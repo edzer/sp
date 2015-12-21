@@ -1,3 +1,57 @@
+2015-12-18 23:07  edzer
+
+	* R/SpatialLinesDataFrame-methods.R,
+	  R/SpatialPolygonsDataFrame-methods.R: correct [ subsetting when i
+	  is all FALSE; report by Francois Rousseau.
+
+2015-12-14 22:00  edzer
+
+	* man/geometry-methods.Rd: add examples
+
+2015-12-14 21:50  edzer
+
+	* NAMESPACE, R/Spatial-methods.R, R/over.R,
+	  man/geometry-methods.Rd: add geometry<- method, with Spatial
+	  value; add docs
+
+2015-12-05 23:07  edzer
+
+	* NAMESPACE, R/rbind.R, man/SpatialMultiPoints.Rd,
+	  man/SpatialMultiPointsDataFrame-class.Rd: addressing rbind and
+	  docs issues raised by Kent Johnson on r-sig-geo, 5 Dec 2015
+
+2015-11-19 14:09  edzer
+
+	* R/SpatialPointsDataFrame-methods.R: get row.names of coords
+	  correctly if it is a SpatialPoints object.
+
+2015-10-30 19:01  rsbivand
+
+	* R/SpatialPolygonsDataFrame-methods.R,
+	  man/SpatialPolygonsDataFrame-class.Rd: non-default coercion
+	  SPolDF -> SPol
+
+2015-10-26 08:09  rsbivand
+
+	* R/GridTopology-methods.R, R/SpatialGrid-methods.R,
+	  inst/include/sp.h, src/sp.h: add comment to SGr and SPix coercion
+	  to SPol
+
+2015-10-19 15:44  edzer
+
+	* R/SpatialLines-methods.R, R/projected.R,
+	  man/SpatialLines-class.Rd: coordinates method for SpatiaLines now
+	  retains rownames.
+
+2015-10-18 09:36  edzer
+
+	* ChangeLog, DESCRIPTION, inst/NEWS.Rd, man/sp-deprecated.Rd:
+	  version bump; remove \alias{overlay} in help
+
+2015-10-17 15:51  edzer
+
+	* inst/ChangeLog: tidy
+
 2015-10-17 15:51  edzer
 
 	* inst/NEWS.Rd: tidy
