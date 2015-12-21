@@ -39,15 +39,7 @@ Breiviksveien 40, N-5045 Bergen, Norway; \code{Roger.Bivand@nhh.no}}}
 \section{Introduction}
 
 The \pkg{sp} package provides classes and methods for dealing
-with spatial data in \proglang{R}. The spatial data structures implemented
-include points, lines, polygons and grids; each of them with or
-without attribute data.  We have chosen to use S4 classes and
-methods style (Chambers, 1998) to allow validation of objects
-created. Although we mainly aim at using spatial data in the
-geographical (two-dimensional) domain, the data structures that
-have a straightforward implementation in higher dimensions (points,
-grids) do allow this.
-
+with spatial data in \proglang{R}\footnote{
 The motivation to write this package was born on a
 \href{http://spatial.nhh.no/meetings/vienna/index.html}{pre-conference
 spatial data workshop} during
@@ -58,17 +50,25 @@ handling spatial data. Each package had its own conventions on how
 spatial data were stored and returned. With this package, and packages
 supporting the classes provided here, we hope that \proglang{R} with its extension
 packages becomes more coherent for analyzing different types of spatial data.
+}. The spatial data structures implemented
+include points, lines, polygons and grids; each of them with or
+without attribute data.  We have chosen to use S4 classes and
+methods style (Chambers, 1998) to allow validation of objects
+created. Although we mainly aim at using spatial data in the
+geographical (two-dimensional) domain, the data structures that
+have a straightforward implementation in higher dimensions (points,
+grids) do allow this.
 
 From the package home page on CRAN,
 \url{https://cran.r-project.org/package=sp}, links to a graph
-gallery with R code, and the development source tree are found
+gallery with R code, and the development source tree are found.
 
 This vignette describes the classes, methods and functions provided
 by \pkg{sp}. Instead of manipulating the class slots (components)
 directly\footnote{which is possible, but not recommended because
 validity of resulting objects is no longer verified}, we provide
 methods and functions to create or modify the classes from elementary
-types such as matrices, data.frames or lists and convert them back
+types such as matrices, {\tt data.frame}s or lists and convert them back
 to any of these types. Also, coercion (type casting) from one class
 to the other is provided, where relevant.
 
@@ -115,14 +115,12 @@ polygons  & \code{SpatialPolygonsDataFrame} & \code{data.frame} &\code{SpatialPo
 \end{tabular}
 \end{center}
 
-The class \code{Spatial} is not meant to ever hold actual data\footnote{it should be, and maybe one day will be, a virtual class},
-it only provides the information common to all derived classes:
-the spatial coordinates bounding box and information about the
-coordinate reference system (geographic projection information).
-
-In the following sections we will show how we can create objects of
-these classes from scratch or from other objects, and which methods and
-functions are available for them.
+The class \code{Spatial} only holds metadata common to all derived
+classes (bounding box, coordinate reference system), and is of
+convenient for defining methods that are common to all derived
+classes.  In the following sections we will show how we can create
+objects of these classes from scratch or from other objects, and
+which methods and functions are available to them.
 
 \section{Manipulating spatial objects}
 
