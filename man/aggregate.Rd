@@ -56,6 +56,9 @@ if (require(rgeos)) {
 	ab = gUnaryUnion(as(meuse.grid, "SpatialPolygons"), meuse.grid$part.a)
 	x = aggregate(meuse["zinc"], ab, mean)
 	spplot(x)
+	# aggregation of multiple variables
+	x = aggregate(meuse[c("zinc", "copper")], ab, mean)
+	spplot(x)
 	# aggregation by attribute, then dissolve to polygon:
 	x = aggregate(meuse.grid["dist"], list(i=i))
 	spplot(x["i"])
