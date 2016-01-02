@@ -7,5 +7,5 @@ See:
 
 * Pebesma, E.J., R.S. Bivand, 2005. Classes and methods for spatial data in R. 
 [R News 5 (2)](http://cran.r-project.org/doc/Rnews/Rnews_2005-2.pdf).
-* Roger S. Bivand, Edzer Pebesma, Virgilio Gomez-Rubio, 2013. Applied spatial data 
-analysis with R, [Second edition](http://www.asdar-book.org/). Springer, NY.  
+* Roger S. Bivand, Edzer Pebesma, Virgilio Gómez-Rubio, 2013. Applied Spatial Data 
+Analysis with R, [Second edition](http://www.asdar-book.org/). Springer, NY.  
