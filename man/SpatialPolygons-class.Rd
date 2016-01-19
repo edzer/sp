@@ -10,6 +10,7 @@
 \alias{rbind.SpatialPolygons}
 \alias{coerce,Polygons,Lines-method}
 \alias{coerce,SpatialPolygons,SpatialLines-method}
+\alias{coerce,deldir,SpatialPolygons-method}
 \alias{row.names.SpatialPolygons}
 \alias{get_Polypath}
 \alias{set_Polypath}

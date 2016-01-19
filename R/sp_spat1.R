@@ -11,6 +11,9 @@ if (!isClass("owin"))
 if (!isClass("im"))
     setOldClass("im")
 
+if (!isClass("deldir"))
+    setOldClass("deldir")
+
 as.SpatialPoints.ppp =  function(from) {
     mult <- 1
     if (!is.null(from$window$units) && !is.null(from$window$units$multiplier))
@@ -68,3 +71,19 @@ setAs("im", "SpatialGridDataFrame", as.SpatialGridDataFrame.im)
 #    im(t(xi$z), xcol=xi$x, yrow=xi$y)
 #}
 #setAs("SpatialGridDataFrame", "im", as.im.SpatialGridDataFrame)
+
+setAs("deldir", "SpatialPolygons", function(from) {
+    cc = cbind(from$summary$x, from$summary$y)
+	if (!requireNamespace("deldir", quietly = TRUE))
+		stop("package deldir required")
+    tm = deldir::triMat(from)
+    fn = function(i) Polygons(list(Polygon(rbind(cc[tm[c(i, i[1]),], ]))), i)
+    SpatialPolygons(lapply(1:nrow(tm), fn), proj4string = from@proj4string)
+})
+
+setAs("deldir", "SpatialLines", function(from) {
+    cc = cbind(from$summary$x, from$summary$y)
+    segs = from$delsgs
+    fn = function(i) Lines(list(Line(cc[c(segs[i, 5], segs[i, 6]), ])), i)
+    SpatialLines(lapply(1:nrow(segs), fn), proj4string = from@proj4string)
+})
