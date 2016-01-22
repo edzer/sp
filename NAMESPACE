@@ -178,6 +178,8 @@ export(
 	Polygon,
 	Polygons,
 
+	cbind.Spatial,
+
 	rbind.SpatialPoints,
 	rbind.SpatialPointsDataFrame, 
 	rbind.SpatialMultiPoints,

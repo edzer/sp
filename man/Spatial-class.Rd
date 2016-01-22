@@ -4,6 +4,7 @@
 \alias{Spatial}
 \alias{print.summary.Spatial}
 \alias{subset.Spatial}
+\alias{cbind.Spatial}
 \alias{head.Spatial}
 \alias{tail.Spatial}
 \alias{summary,Spatial-method}

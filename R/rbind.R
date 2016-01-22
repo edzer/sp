@@ -98,3 +98,12 @@ rbind.SpatialLinesDataFrame <- function(...) {
 	df = do.call(rbind, lapply(dots, function(x) x@data))
 	SpatialLinesDataFrame(ll, df)
 }
+
+cbind.Spatial <- function(...) {
+	dots = list(...)
+	names(dots) <- NULL
+	stopifnot(identicalCRS(dots[ which(sapply(dots, function(x) is(x, "Spatial"))) ]))
+	dfs = lapply(dots, function(x) if(is(x, "Spatial")) x@data else x)
+	d = do.call(cbind, dfs)
+	addAttrToGeom(geometry(dots[[1]]), data.frame(d), FALSE)
+}
