@@ -80,8 +80,9 @@ setAs("SpatialPoints", "data.frame", function(from) as.data.frame(from))
 row.names.SpatialPoints <- function(x) {
     ret = dimnames(slot(x, "coords"))[[1]]
 	if (is.null(ret))
-		ret = seq_len(nrow(slot(x, "coords")))
-	ret
+		seq_len(nrow(slot(x, "coords")))
+	else 
+		ret
 }
 
 "row.names<-.SpatialPoints" <- function(x, value) {
