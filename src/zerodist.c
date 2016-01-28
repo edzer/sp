@@ -1,13 +1,7 @@
-#include <string.h>
+#include <string.h> /* memcmp */
 
-#define USING_R 1
-#include "S.h" 
-
-#ifdef USING_R
-# include <R.h>
-# include <Rinternals.h>
-# define S_EVALUATOR
-#endif
+#include <R.h>
+#include <Rinternals.h>
 
 #include "sp.h"
 
@@ -36,7 +30,6 @@ SEXP sp_zerodist(SEXP pp, SEXP pncol, SEXP zero, SEXP lonlat, SEXP mcmp) {
 	double **x, zerodist2;
 	SEXP ret = NULL;
 
-	S_EVALUATOR
 	ncol = INTEGER_POINTER(pncol)[0];
 	ll = INTEGER_POINTER(lonlat)[0];
 	cmp = INTEGER_POINTER(mcmp)[0];
@@ -80,7 +73,6 @@ SEXP sp_duplicates(SEXP pp, SEXP pncol, SEXP zero, SEXP lonlat, SEXP mcmp) {
 	double **x, zerodist2;
 	SEXP ret = NULL;
 
-	S_EVALUATOR
 	ncol = INTEGER_POINTER(pncol)[0];
 	ll = INTEGER_POINTER(lonlat)[0];
 	cmp = INTEGER_POINTER(mcmp)[0];

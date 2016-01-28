@@ -1,16 +1,5 @@
-#define USING_R 1
-#include "S.h" 
-
-#ifdef USING_R
 # include <R.h>
 # include <Rinternals.h>
-/* # include <Rinternals.h> */
-# define R_UNIFORM unif_rand()
-# define R_NORMAL  norm_rand()
-# define RANDIN seed_in((long *) NULL)
-# define RANDOUT seed_out((long *) NULL)
-# define S_EVALUATOR
-#endif
 
 #include "sp.h"
 
@@ -21,12 +10,11 @@ SEXP R_point_in_polygon_sp(const SEXP px, const SEXP py, const SEXP polx,
 	POLYGON pol;
 	SEXP ret, px1, py1, polx1, poly1;
 
-        PROTECT(px1 = duplicate(px)); pc++;
-        PROTECT(py1 = duplicate(py)); pc++;
-        PROTECT(polx1 = duplicate(polx)); pc++;
-        PROTECT(poly1 = duplicate(poly)); pc++;
+	PROTECT(px1 = duplicate(px)); pc++;
+	PROTECT(py1 = duplicate(py)); pc++;
+	PROTECT(polx1 = duplicate(polx)); pc++;
+	PROTECT(poly1 = duplicate(poly)); pc++;
 
-	S_EVALUATOR
 	pol.lines = LENGTH(polx); /* check later that first == last */
 	pol.p = (PLOT_POINT *) R_alloc((size_t) pol.lines, sizeof(PLOT_POINT)); 
 	/* transient; will be freed by R; freed by R on user interrupt */
