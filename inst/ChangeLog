@@ -1,3 +1,80 @@
+2016-01-28  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* .travis.yml: add oldrel back
+
+2016-01-28  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* src/pip.c, src/zerodist.c: remove old S-Plus compatibility code
+	(e.g., S.h)
+
+2016-01-26  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* .travis.yml: remove oldrel
+
+2016-01-26  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* R/SpatialPoints-methods.R: tidy
+
+2016-01-22  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* NAMESPACE, R/rbind.R, man/Spatial-class.Rd: add cbind.Spatial
+	method
+
+2016-01-20  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* .travis.yml: change back to earlier attempt
+
+2016-01-20  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* .travis.yml: use modified script for vignette creation
+
+2016-01-20  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* .travis.yml: try travis prefix
+
+2016-01-20  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* .travis.yml: try new travis config
+
+2016-01-19  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* .travis.yml: update gdal and proj versions
+
+2016-01-19  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* .travis.yml: update gdal and proj versions
+
+2016-01-19  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* DESCRIPTION, R/sp_spat1.R, man/SpatialLines-class.Rd,
+	man/SpatialPolygons-class.Rd: add coercion from deldir to
+	SpatialLines and SpatialPolygons
+
+2016-01-02  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* README.md: typo
+
+2015-12-22  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* DESCRIPTION: update URL
+
+2015-12-22  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* : Merge pull request #1 from Robinlovelace/master Add e.g. with multiple variables to aggregate.Rd
+
+2015-12-21  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* README.md: cosmetic
+
+2015-12-21  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* ChangeLog, build-release.sh: update ChangeLog from svn on r-forge,
+	build script
+
+2015-12-21  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* inst/ChangeLog: update ChangeLog
+
 2015-12-21  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
 
 	* vignettes/intro_sp.Rnw: update
