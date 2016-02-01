@@ -2,6 +2,7 @@
 \title{News for Package 'sp'}
 \section{Changes in version 1.2-2 (2016-01-29)}{
   \itemize{
+	\item add a \code{labels} method for \code{gridlines}, drawing labels under varying angle (see \code{gridlines} example)
   	\item add coercion (``as'' methods) from \code{deldir} to \code{SpatialLines} and \code{SpatialPolygons}
 	\item move code base to github
 	\item correct \code{[} subsetting when \code{i} is all \code{FALSE}; report by Francois Rousseau.

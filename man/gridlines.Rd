@@ -82,9 +82,10 @@ text(labels(grd, CRS("+init=epsg:28992")))
 sp = SpatialPoints(rbind(c(-101,9), c(-101,55), c(-19,9), c(-19,55)), CRS("+init=epsg:4326"))
 laea = CRS("+proj=laea +lat_0=30 +lon_0=-40")
 sp.l = spTransform(sp, laea)
-plot(spTransform(sp, laea), xlim = c(bbox(sp.l)[1,1] - 0.1 * diff(bbox(sp.l)[1,]) , bbox(sp.l)[1,2]))
-plot(spTransform(gridlines(sp), laea), add = TRUE)
-text(labels(gridlines(sp), laea))
+plot(sp.l, xlim = c(bbox(sp.l)[1,1] - 0.1 * diff(bbox(sp.l)[1,]) , bbox(sp.l)[1,2]))
+lines.l = spTransform(gridlines(sp), laea)
+plot(lines.l, add = TRUE)
+text(labels(lines.l))
 title("curved text label demo")
 }
 
