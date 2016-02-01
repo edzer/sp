@@ -314,6 +314,8 @@ S3method(image, SpatialPixelsDataFrame)
 S3method(image, SpatialPixels)
 S3method(image, SpatialGridDataFrame)
 
+S3method(labels, SpatialLines)
+
 S3method(length, SpatialGrid)
 S3method(length, SpatialLines)
 S3method(length, SpatialPixels)

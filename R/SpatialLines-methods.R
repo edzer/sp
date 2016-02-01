@@ -312,3 +312,29 @@ length.SpatialLines = function(x) { length(x@lines) }
 names.SpatialLines = function(x) { 
 	unlist(lapply(x@lines, function(X) X@ID)) 
 }
+
+labels.SpatialLines = function(object, newCRS, ...) {
+	if (! identical(names(object), c("NS", "EW")))
+		warning("this function is meant to operate on SpatialLines created with sp::gridlines")
+	if (is.projected(object)) {
+		newCRS = object@proj4string
+        gl = spTransform(object, CRS("+init=epsg:4326")) # WGS84
+	} else
+		gl = object
+
+	cc = coordinates(gl)
+	pts = lapply(cc, function(x) do.call(rbind, lapply(x, function(y) y[1,])))
+	lat = pts[[1]][,2]
+	long = pts[[2]][,1]
+
+	object = spTransform(object, newCRS) # may be obsolete
+	cc = coordinates(object)
+	pts = lapply(cc, function(x) do.call(rbind, lapply(x, function(y) y[1,])))
+	ang = lapply(cc, function(x) apply(do.call(rbind, lapply(x, function(y) y[2,] - y[1,])), 1,
+		function(x) atan2(x[2], x[1])*180/pi))
+	d = SpatialPoints(do.call(rbind, pts))
+	d$srt = c(ang[[1]], ang[[2]] - 90)
+	d$pos = rep(2:1, times = sapply(cc, length))
+	d$labels = c(degreeLabelsNS(lat), degreeLabelsEW(long))
+	d
+}
