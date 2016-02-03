@@ -140,7 +140,7 @@ text.SpatialPointsDataFrame = function(x, ...) {
 			lst$srt = x$srt[1]
 		else { # print each label individually:
 			lapply(seq_len(length(x)), function(i) text(x[i,], ...))
-			return(invisible(NULL))
+			return(invisible())
 		}
 	}
     lst$x = coordinates(x)
@@ -150,6 +150,8 @@ text.SpatialPointsDataFrame = function(x, ...) {
         lst$offset = x$offset
     if (!is.null(x$labels) && is.null(lst$labels))
         lst$labels = parse(text = x$labels)
+    if (!is.null(x$adjx) && !is.null(x$adjy))
+        lst$adj = c(x$adjx, x$adjy)
     do.call(text, lst)
 }
 
