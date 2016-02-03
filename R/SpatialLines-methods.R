@@ -313,8 +313,9 @@ names.SpatialLines = function(x) {
 	unlist(lapply(x@lines, function(X) X@ID)) 
 }
 
-labels.SpatialLines = function(object, newCRS, ...) {
-	if (! identical(names(object), c("NS", "EW")))
+labels.SpatialLines = function(object, newCRS, side = 1:2, ...) {
+	# 1=below, 2=left, 3=above and 4=right.
+	if (! identical(names(object), c("EW", "NS")))
 		warning("this function is meant to operate on SpatialLines created with sp::gridlines")
 	if (is.projected(object)) {
 		newCRS = object@proj4string
@@ -329,12 +330,21 @@ labels.SpatialLines = function(object, newCRS, ...) {
 
 	object = spTransform(object, newCRS) # may be obsolete
 	cc = coordinates(object)
-	pts = lapply(cc, function(x) do.call(rbind, lapply(x, function(y) y[1,])))
-	ang = lapply(cc, function(x) apply(do.call(rbind, lapply(x, function(y) y[2,] - y[1,])), 1,
-		function(x) atan2(x[2], x[1])*180/pi))
-	d = SpatialPoints(do.call(rbind, pts))
-	d$srt = c(ang[[1]], ang[[2]] - 90)
-	d$pos = rep(2:1, times = sapply(cc, length))
-	d$labels = c(degreeLabelsNS(lat), degreeLabelsEW(long))
-	d
+	pts = append(
+			lapply(cc, function(x) do.call(rbind, lapply(x, function(y) head(y, 1)))),
+			lapply(cc, function(x) do.call(rbind, lapply(x, function(y) tail(y, 1))))
+		)
+	ang = append(
+		#lapply(cc, function(x) apply(do.call(rbind, lapply(x, function(y) y[2,] - y[1,])), 1,
+		#	function(x) atan2(x[2], x[1])*180/pi))
+		lapply(cc, function(x) apply(do.call(rbind, lapply(x, function(y) apply(head(y, 2), 2, diff))), 1,
+			function(x) atan2(x[2], x[1])*180/pi)),
+		lapply(cc, function(x) apply(do.call(rbind, lapply(x, function(y) apply(tail(y, 2), 2, diff))), 1,
+			function(x) atan2(x[2], x[1])*180/pi))
+		)
+	d = SpatialPoints(do.call(rbind, lapply(pts, function(x) { row.names(x) = NULL; x})))
+	d$srt = c(ang[[1]], ang[[2]] - 90, ang[[3]], ang[[4]] - 90)
+	d$pos = rep(c(2,1,4,3), times = rep(sapply(cc, length),2))
+	d$labels = rep(c(degreeLabelsNS(lat), degreeLabelsEW(long)), 2)
+	d[d$pos %in% side,]
 }
