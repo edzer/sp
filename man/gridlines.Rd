@@ -10,7 +10,7 @@
 \description{ Create N-S and E-W grid lines over a geographic region; create and plot corresponding labels }
 \usage{
 gridlines(x, easts = pretty(bbox(x)[1,]), norths = pretty(bbox(x)[2,]),
- ndiscr = 20) 
+ ndiscr = 100) 
 gridat(x, easts = pretty(bbox(x)[1,]), norths = pretty(bbox(x)[2,]),
  offset = 0.5, side = "WS")
 \method{labels}{SpatialLines}(object, newCRS, side = 1:2, ...)

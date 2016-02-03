@@ -15,7 +15,7 @@ degreeLabelsEW = function(x) {
 }
 
 gridlines = function(x, easts = pretty(bbox(x)[1,]),
-	norths = pretty(bbox(x)[2,]), ndiscr = 20)
+	norths = pretty(bbox(x)[2,]), ndiscr = 100)
 {
 	if (missing(x)) {
 		easts = seq(-180,180,20)
