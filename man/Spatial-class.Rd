@@ -85,6 +85,10 @@ The plot method for \dQuote{Spatial} objects takes the following arguments:
 \item{yaxs}{ The style of axis interval calculation to be used for the y-axis}
 \item{lab}{A numerical vector of the form \code{c(x, y, len)} which modifies the default way that axes are annotated}
 \item{setParUsrBB}{default FALSE; set the \code{par} \dQuote{usr} bounding box; see below}
+\item{bgMap}{object of class \code{ggmap}, or returned by function \code{RgoogleMaps::GetMap}}
+\item{expandBB}{ numeric; factor to expand the plotting region default: \code{bbox(x)} with on
+each side (1=below, 2=left, 3=above and 4=right); defaults to \code{c(0,0,0,0)}; 
+setting \code{xlim} or \code{ylim} overrides this. }
 \item{...}{passed through}
 }
 }
