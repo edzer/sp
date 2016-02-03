@@ -1,3 +1,23 @@
+2016-02-01  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* inst/NEWS.Rd, man/gridlines.Rd: improve readability example
+
+2016-02-01  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* NAMESPACE, R/SpatialLines-methods.R,
+	R/SpatialPointsDataFrame-methods.R, man/gridlines.Rd: add
+	labels.SpatialLines method, improve text.SpatialPointsDataFrame; add
+	example
+
+2016-01-31  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* DESCRIPTION, R/rbind.R, inst/include/sp.h, src/sp.h, src/sp.h.in: 
+	rbind method for SpatialPoints now strips all row.names.
+
+2016-01-29  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* inst/ChangeLog: update ChangeLog
+
 2016-01-29  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
 
 	* inst/ChangeLog: update ChangeLog
