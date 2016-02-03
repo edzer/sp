@@ -210,13 +210,15 @@ bb2merc = function(x, cls = "ggmap") { # return bbox in the appropriate "web mer
 
 plot.Spatial <- function(x, xlim = NULL, ylim = NULL, 
 	asp = NA, axes = FALSE, bg = par("bg"), ..., 
-	xaxs, yaxs, lab, setParUsrBB = FALSE, bgMap = NULL) {
+	xaxs, yaxs, lab, setParUsrBB = FALSE, bgMap = NULL, expandBB = c(0,0,0,0)) {
 
+	# expandBB: 1=below, 2=left, 3=above and 4=right.
 	bbox <- bbox(x)
+	expBB = function(lim, expand) c(lim[1] - expand[1] * diff(lim), lim[2] + expand[2] * diff(lim))
 	if (is.null(xlim)) 
-		xlim <- bbox[1,]
+		xlim <- expBB(bbox[1,], expandBB[c(2,4)])
 	if (is.null(ylim)) 
-		ylim <- bbox[2,]
+		ylim <- expBB(bbox[2,], expandBB[c(1,3)])
 	if (is.na(asp)) 
 		asp <- ifelse(is.na(proj4string(x)) || is.projected(x), 1.0, 
 			1/cos((mean(ylim) * pi)/180))
