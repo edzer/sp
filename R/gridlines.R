@@ -1,7 +1,7 @@
 degreeLabelsNS = function(x) {
 	pos = sign(x) + 2
 	dir = c("*S", "", "*N")
-	paste(abs(x), "*degree", dir[pos])
+	paste0(abs(x), "*degree", dir[pos])
 }
 degreeLabelsEW = function(x) {
 	x <- ifelse(x > 180, x - 360, x)
@@ -11,25 +11,34 @@ degreeLabelsEW = function(x) {
 	if (any(x == 180))
 		pos[x == 180] = 2
 	dir = c("*W", "", "*E")
-	paste(abs(x), "*degree", dir[pos])
+	paste0(abs(x), "*degree", dir[pos])
 }
 
 gridlines = function(x, easts = pretty(bbox(x)[1,]),
 	norths = pretty(bbox(x)[2,]), ndiscr = 20)
 {
-	bb = bbox(x)
-	easts <- easts[easts > bb[1,1] & easts < bb[1,2]]
+	if (missing(x)) {
+		easts = seq(-180,180,20)
+		norths = seq(-80,80,20)
+		bb = matrix(c(-180,180,-90,90),2,2,byrow = TRUE)
+		crs = CRS("+init=epsg:4326")
+	} else {
+		bb = bbox(x)
+		crs = CRS(proj4string(x))
+	}
+	#easts <- easts[easts > bb[1,1] & easts < bb[1,2]]
+	easts <- easts[easts >= bb[1,1] & easts <= bb[1,2]]
 	eastlist <- vector(mode="list", length=length(easts))
 	for (i in 1:length(easts))
 		eastlist[[i]] <- Line(cbind(rep(easts[i], ndiscr),
 			seq(bb[2,1], bb[2,2], length.out=ndiscr)))
-	norths <- norths[norths > bb[2,1] & norths < bb[2,2]]
+	#norths <- norths[norths > bb[2,1] & norths < bb[2,2]]
+	norths <- norths[norths >= bb[2,1] & norths <= bb[2,2]]
 	northlist <- vector(mode="list", length=length(norths))
 	for (i in 1:length(norths))
 		northlist[[i]] <- Line(cbind(seq(bb[1,1], bb[1,2], length.out=ndiscr),
 			rep(norths[i], ndiscr)))
-	SpatialLines(list(Lines(northlist, "NS"), Lines(eastlist, "EW")),
-		CRS(proj4string(x)))
+	SpatialLines(list(Lines(northlist, "EW"), Lines(eastlist, "NS")), crs)
 }
 
 gridat <- function(x, easts = pretty(bbox(x)[1,]),
