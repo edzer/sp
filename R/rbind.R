@@ -12,13 +12,17 @@ rbind.SpatialPoints <- function(...) {
 	dots = list(...)
 	names(dots) <- NULL
 	stopifnot(identicalCRS(dots))
+	dropRowNames = is.null(dimnames(dots[[1]]@coords)[[1]]) # or check each of them?
 	coordinates.strip = function(x) {
 		x = coordinates(x)
 		row.names(x) = NULL
 		x
 	}
-	SpatialPoints(do.call(rbind, lapply(dots, coordinates.strip)),
+	ret = SpatialPoints(do.call(rbind, lapply(dots, coordinates.strip)),
 		CRS(proj4string(dots[[1]])))
+	if (!dropRowNames)
+		row.names(ret) = make.unique(do.call(c, lapply(dots, row.names)))
+	ret
 }
 
 rbind.SpatialPointsDataFrame <- function(...) {
