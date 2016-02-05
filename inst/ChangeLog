@@ -1,3 +1,46 @@
+2016-02-05  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* R/rbind.R: keep row.names but make them unique, in case first
+	object has them.
+
+2016-02-03  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* R/gridlines.R, demo/polar.R, man/gridlines.Rd: change default
+	ndiscr; tidy docs & demo
+
+2016-02-03  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* demo/00Index, man/Spatial-class.Rd, man/gridlines.Rd: tidy,
+	complete, extend docs
+
+2016-02-03  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* R/SpatialPointsDataFrame-methods.R: support adjx and adjy fields
+	in text method
+
+2016-02-03  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* R/gridlines.R: add default for gridlines()
+
+2016-02-03  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* demo/polar.R: add polar projection plot, showing antarctic and
+	labels
+
+2016-02-03  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* R/SpatialLines-methods.R: improve labels method, add support for
+	all plot sides
+
+2016-02-03  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* R/Spatial-methods.R: add expandBB argument, to expand the bbox of
+	object plotted
+
+2016-02-03  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* inst/ChangeLog: update ChangeLog
+
 2016-02-01  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
 
 	* inst/NEWS.Rd, man/gridlines.Rd: improve readability example
