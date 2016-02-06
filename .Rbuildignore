@@ -1,5 +1,6 @@
 makefile
 CHANGES
+ChangeLog
 TODO
 oChangeLog
 build-prep.sh

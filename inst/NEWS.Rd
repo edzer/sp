@@ -1,14 +1,15 @@
 \name{NEWS} 
 \title{News for Package 'sp'}
-\section{Changes in version 1.2-2 (2016-01-29)}{
+\section{Changes in version 1.2-2 (2016-02-05)}{
   \itemize{
+	\item method `row.names` for `SpatialPoints` makes unique row names, or drops them.
 	\item add a \code{labels} method for \code{gridlines}, drawing labels under varying angle (see \code{gridlines} example)
   	\item add coercion (``as'' methods) from \code{deldir} to \code{SpatialLines} and \code{SpatialPolygons}
-	\item move code base to github
+	\item migrate sp code base to github
 	\item correct \code{[} subsetting when \code{i} is all \code{FALSE}; report by Francois Rousseau.
 	\item add \code{geometry<-} method for \code{Spatial}, wrapping \code{addAttrToGeom}
 	\item  addressing \code{rbind} and docs issues raised by Kent Johnson on r-sig-geo, 5 Dec 2015
-	\item get row.names of coords correctly if object is a \code{SpatialPoints}
+	\item get `row.names` of coords correctly if object is a \code{SpatialPoints}
     \item add non-default coercion \code{SpatialPolygonsDataFrame} to \code{SpatialPolygons}
     \item add comment to \code{SpatialPolygons} coerced from \code{SpatialGrid} or \code{SpatialPixels}
 	\item \code{coordinates} method for \code{SpatiaLines} now retains rownames
