@@ -313,38 +313,43 @@ names.SpatialLines = function(x) {
 	unlist(lapply(x@lines, function(X) X@ID)) 
 }
 
-labels.SpatialLines = function(object, newCRS, side = 1:2, ...) {
+labels.SpatialLines = function(object, labelCRS, side = 1:2, ...) {
 	# 1=below, 2=left, 3=above and 4=right.
 	if (! identical(names(object), c("EW", "NS")))
-		warning("this function is meant to operate on SpatialLines created with sp::gridlines")
-	if (is.projected(object)) {
-		newCRS = object@proj4string
-        gl = spTransform(object, CRS("+init=epsg:4326")) # WGS84
-	} else
-		gl = object
+		warning("this labels method is meant to operate on SpatialLines created with sp::gridlines")
+	if (missing(labelCRS) && !is.na(proj4string(object)))
+		labelCRS = object@proj4string
 
-	cc = coordinates(gl)
-	pts = lapply(cc, function(x) do.call(rbind, lapply(x, function(y) y[1,])))
-	lat = pts[[1]][,2]
-	long = pts[[2]][,1]
-
-	object = spTransform(object, newCRS) # may be obsolete
 	cc = coordinates(object)
 	pts = append(
-			lapply(cc, function(x) do.call(rbind, lapply(x, function(y) head(y, 1)))),
-			lapply(cc, function(x) do.call(rbind, lapply(x, function(y) tail(y, 1))))
-		)
+		lapply(cc, function(x) do.call(rbind, lapply(x, function(y) head(y, 1)))),
+		lapply(cc, function(x) do.call(rbind, lapply(x, function(y) tail(y, 1))))
+	)
+	d = SpatialPoints(do.call(rbind, lapply(pts, function(x) { row.names(x) = NULL; x})))
+	d$pos = rep(c(2,1,4,3), times = rep(sapply(cc, length), 2))
 	ang = append(
-		#lapply(cc, function(x) apply(do.call(rbind, lapply(x, function(y) y[2,] - y[1,])), 1,
-		#	function(x) atan2(x[2], x[1])*180/pi))
 		lapply(cc, function(x) apply(do.call(rbind, lapply(x, function(y) apply(head(y, 2), 2, diff))), 1,
 			function(x) atan2(x[2], x[1])*180/pi)),
 		lapply(cc, function(x) apply(do.call(rbind, lapply(x, function(y) apply(tail(y, 2), 2, diff))), 1,
 			function(x) atan2(x[2], x[1])*180/pi))
-		)
-	d = SpatialPoints(do.call(rbind, lapply(pts, function(x) { row.names(x) = NULL; x})))
+	)
 	d$srt = c(ang[[1]], ang[[2]] - 90, ang[[3]], ang[[4]] - 90)
-	d$pos = rep(c(2,1,4,3), times = rep(sapply(cc, length),2))
-	d$labels = rep(c(degreeLabelsNS(lat), degreeLabelsEW(long)), 2)
-	d[d$pos %in% side,]
+
+	# get the labels:
+	if (! missing(labelCRS))
+		object = spTransform(object, labelCRS) # may do nothing
+	if (is.na(proj4string(object)))
+		is.p = TRUE
+	else 
+		is.p = is.projected(object)
+
+	pts = lapply(coordinates(object), function(x) do.call(rbind, lapply(x, function(y) y[1,])))
+	lat = pts[[1]][,2]
+	long = pts[[2]][,1]
+	if (is.p)
+		d$labels = as.character(rep(c(lat, long), 2))
+	else
+		d$labels = rep(c(degreeLabelsNS(lat), degreeLabelsEW(long)), 2)
+
+	d[d$pos %in% side, ]
 }
