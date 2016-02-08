@@ -12,23 +12,28 @@ output:
 
 # Plotting maps with `sp`
 
-This  document shows example images created with objects represented
-by one of the classes for spatial data in packages sp. The
-[sp_gallery.Rmd](sp_gallery.Rmd) and [sp_gallery.R](sp_gallery.R)
-files are available here. This html file is generated from an R markdown
-file (.Rmd) by
+This  document shows example images created with objects
+represented by one of the classes for spatial data in
+packages sp. The [sp_gallery.Rmd](sp_gallery.Rmd) and
+[sp_gallery.R](sp_gallery.R) files are available here, or on
+[github](https://github.com/edzer/sp/tree/gh-pages). This html file
+was generated from the R markdown file (sp_gallery.Rmd) by
 
 ```
 library(knitr)
 knit2html("sp_gallery.Rmd", options="toc")
 ```
 
-The corresponding .R file by
+and the corresponding .R file by
 
 ```
 purl("sp_gallery.Rmd")
 ```
 
+In case you load the .Rmd file in rstudio and press `Knit HTML`,
+or alternatively load the .R file and run `Source with Echo`
+(ctrl-shift-enter), you may see slightly different plots, which is
+due to the different defaults for plotting device and dimension.
 
 ## Loading data and packages
 
@@ -189,15 +194,15 @@ title("grid line labels on polar projection, epsg 3031")
 
 ## Other spatial objects in base plot
 
-The following plot reads a shapefile (from package `maptools`),
-and plots polygons with county name as labels at their center point:
+The following plot shows polygons with county name as labels at
+their center point:
 
 ```{r}
 plot(nc)
 invisible(text(coordinates(nc), labels=as.character(nc$NAME), cex=0.4))
 ```
 
-Plot a SpatialPolygonsDataFrame, using grey shades
+This plot of a `SpatialPolygonsDataFrame` uses grey shades:
 
 ```{r}
 names(nc)
@@ -208,7 +213,7 @@ dens <- (2:length(brks))*3
 plot(nc, col=cols[findInterval(rrt, brks, all.inside=TRUE)])
 ```
 
-plot of SpatialPolygonsDataFrame, using line densities
+The following plot shows a `SpatialPolygonsDataFrame`, using line densities
 
 ```{r}
 rrt <- nc$SID74/nc$BIR74
@@ -303,10 +308,10 @@ spplot(meuse, "zinc", panel = function(x, y, ...) {
 	main = "Top soil zinc concentration (ppm)")
 ```
 
-multi-panel plot, scales + north arrow only in last plot:
-using the "which" argument in a layout component
-(if which=4 was set as list component of sp.layout, the river
-would as well be drawn only in that (last) panel)
+A multi-panel plot, scales + north arrow only in last plot: using
+the `which` argument in a layout component (if `which=4` was set
+as list component of sp.layout, the river would as well be drawn
+only in that (last) panel)
 
 ```{r}
 rv = list("sp.polygons", meuse.riv, fill = "lightblue")
@@ -503,15 +508,15 @@ ff = merge(f, nc@data, by.x = "id", by.y = "CNTY_ID") # this replicates a lot of
 ```
 
 next, we can plot the data, but if we want one distance unit north
-to approximately match one unit east, we additionally need to fix
-the aspect `ratio`, since `ff` no longer contains information about
-its coordinate reference system:
+to approximately match one unit east, we additionally need to set
+`coord_map()` to instruct `ggplot` this concerns longitude/latitude
+coordinates:
 
 ```{r}
 ggplot(ff) + 
 	aes(long, lat, group = group, fill = SID74) + 
 	geom_polygon() + 
-	coord_fixed(ratio = 1/cos((mean(bbox(nc)[2,]) * pi)/180)) 
+	coord_map()
 ```
 
 Bubble plots can be generated e.g. by
@@ -522,3 +527,11 @@ ggplot(as.data.frame(meuse)) +
 	geom_point() +
 	coord_equal()
 ```
+
+## Other packages for making maps
+
+The [spatial task
+view](https://cran.r-project.org/web/views/Spatial.html) contains
+pointers to other CRAN packages that have functionality for creating
+general or custom maps, in addition to pointers to packages that
+can be used for analyzing spatial data.

@@ -190,6 +190,9 @@ hr {
 <li>
 <a href="#toc_7">maps using ggplot2</a>
 </li>
+<li>
+<a href="#toc_8">Other packages for making maps</a>
+</li>
 </ul>
 </li>
 </ul>
@@ -203,20 +206,26 @@ hr {
 
 <h1 id="toc_0">Plotting maps with <code>sp</code></h1>
 
-<p>This  document shows example images created with objects represented
-by one of the classes for spatial data in packages sp. The
-<a href="sp_gallery.Rmd">sp_gallery.Rmd</a> and <a href="sp_gallery.R">sp_gallery.R</a>
-files are available here. This html file is generated from an R markdown
-file (.Rmd) by</p>
+<p>This  document shows example images created with objects
+represented by one of the classes for spatial data in
+packages sp. The <a href="sp_gallery.Rmd">sp_gallery.Rmd</a> and
+<a href="sp_gallery.R">sp_gallery.R</a> files are available here, or on
+<a href="https://github.com/edzer/sp/tree/gh-pages">github</a>. This html file
+was generated from the R markdown file (sp_gallery.Rmd) by</p>
 
 <pre><code>library(knitr)
 knit2html(&quot;sp_gallery.Rmd&quot;, options=&quot;toc&quot;)
 </code></pre>
 
-<p>The corresponding .R file by</p>
+<p>and the corresponding .R file by</p>
 
 <pre><code>purl(&quot;sp_gallery.Rmd&quot;)
 </code></pre>
+
+<p>In case you load the .Rmd file in rstudio and press <code>Knit HTML</code>,
+or alternatively load the .R file and run <code>Source with Echo</code>
+(ctrl-shift-enter), you may see slightly different plots, which is
+due to the different defaults for plotting device and dimension.</p>
 
 <h2 id="toc_1">Loading data and packages</h2>
 
@@ -436,8 +445,8 @@ title(&quot;grid line labels on polar projection, epsg 3031&quot;)
 
 <h2 id="toc_4">Other spatial objects in base plot</h2>
 
-<p>The following plot reads a shapefile (from package <code>maptools</code>),
-and plots polygons with county name as labels at their center point:</p>
+<p>The following plot shows polygons with county name as labels at
+their center point:</p>
 
 <pre><code class="r">plot(nc)
 invisible(text(coordinates(nc), labels=as.character(nc$NAME), cex=0.4))
@@ -445,7 +454,7 @@ invisible(text(coordinates(nc), labels=as.character(nc$NAME), cex=0.4))
 
 <p><img src="figure/unnamed-chunk-11-1.png" alt="plot of chunk unnamed-chunk-11"> </p>
 
-<p>Plot a SpatialPolygonsDataFrame, using grey shades</p>
+<p>This plot of a <code>SpatialPolygonsDataFrame</code> uses grey shades:</p>
 
 <pre><code class="r">names(nc)
 </code></pre>
@@ -464,7 +473,7 @@ plot(nc, col=cols[findInterval(rrt, brks, all.inside=TRUE)])
 
 <p><img src="figure/unnamed-chunk-12-1.png" alt="plot of chunk unnamed-chunk-12"> </p>
 
-<p>plot of SpatialPolygonsDataFrame, using line densities</p>
+<p>The following plot shows a <code>SpatialPolygonsDataFrame</code>, using line densities</p>
 
 <pre><code class="r">rrt &lt;- nc$SID74/nc$BIR74
 brks &lt;- quantile(rrt, seq(0,1,1/7))
@@ -569,10 +578,10 @@ spplot(meuse[&quot;zinc&quot;], do.log = TRUE,
 
 <p><img src="figure/unnamed-chunk-21-1.png" alt="plot of chunk unnamed-chunk-21"> </p>
 
-<p>multi-panel plot, scales + north arrow only in last plot:
-using the &quot;which&quot; argument in a layout component
-(if which=4 was set as list component of sp.layout, the river
-would as well be drawn only in that (last) panel)</p>
+<p>A multi-panel plot, scales + north arrow only in last plot: using
+the <code>which</code> argument in a layout component (if <code>which=4</code> was set
+as list component of sp.layout, the river would as well be drawn
+only in that (last) panel)</p>
 
 <pre><code class="r">rv = list(&quot;sp.polygons&quot;, meuse.riv, fill = &quot;lightblue&quot;)
 scale = list(&quot;SpatialPolygonsRescale&quot;, layout.scale.bar(), 
@@ -826,14 +835,14 @@ ff = merge(f, nc@data, by.x = &quot;id&quot;, by.y = &quot;CNTY_ID&quot;) # this
 </code></pre>
 
 <p>next, we can plot the data, but if we want one distance unit north
-to approximately match one unit east, we additionally need to fix
-the aspect <code>ratio</code>, since <code>ff</code> no longer contains information about
-its coordinate reference system:</p>
+to approximately match one unit east, we additionally need to set
+<code>coord_map()</code> to instruct <code>ggplot</code> this concerns longitude/latitude
+coordinates:</p>
 
 <pre><code class="r">ggplot(ff) + 
     aes(long, lat, group = group, fill = SID74) + 
     geom_polygon() + 
-    coord_fixed(ratio = 1/cos((mean(bbox(nc)[2,]) * pi)/180)) 
+    coord_map()
 </code></pre>
 
 <p><img src="figure/unnamed-chunk-36-1.png" alt="plot of chunk unnamed-chunk-36"> </p>
@@ -847,6 +856,14 @@ its coordinate reference system:</p>
 </code></pre>
 
 <p><img src="figure/unnamed-chunk-37-1.png" alt="plot of chunk unnamed-chunk-37"> </p>
+
+<h2 id="toc_8">Other packages for making maps</h2>
+
+<p>The <a href="https://cran.r-project.org/web/views/Spatial.html">spatial task
+view</a> contains
+pointers to other CRAN packages that have functionality for creating
+general or custom maps, in addition to pointers to packages that
+can be used for analyzing spatial data.</p>
 
 </body>
 

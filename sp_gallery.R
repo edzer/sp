@@ -344,7 +344,7 @@ ff = merge(f, nc@data, by.x = "id", by.y = "CNTY_ID") # this replicates a lot of
 ggplot(ff) + 
 	aes(long, lat, group = group, fill = SID74) + 
 	geom_polygon() + 
-	coord_fixed(ratio = 1/cos((mean(bbox(nc)[2,]) * pi)/180)) 
+	coord_map()
 
 ## ------------------------------------------------------------------------
 ggplot(as.data.frame(meuse)) + 

@@ -15,3 +15,6 @@ push:
 	git add figure/*
 	make commit
 	git push origin gh-pages
+
+view:
+	google-chrome sp_gallery.html
