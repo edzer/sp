@@ -1,123 +1,48 @@
----
-title: "Sample Document"
-output:
-  html_document:
-    toc: true
-    theme: united
----
-<!--
-%\VignetteEngine{knitr::knitr}
-%\VignetteIndexEntry{sp map gallery}
--->
-
-# Plotting maps with `sp`
-
-This  document shows example images created with objects represented
-by one of the classes for spatial data in packages sp. The
-[sp_gallery.Rmd](sp_gallery.Rmd) and [sp_gallery.R](sp_gallery.R)
-files are available here. This html file is generated from an R markdown
-file (.Rmd) by
-
-```
-library(knitr)
-knit2html("sp_gallery.Rmd", options="toc")
-```
-
-The corresponding .R file by
-
-```
-purl("sp_gallery.Rmd")
-```
-
-
-## Loading data and packages
-
-The Meuse data set is loaded using a demo script in package `sp`,
-```{r}
+## ------------------------------------------------------------------------
 library(sp)
 demo(meuse, ask = FALSE, echo = FALSE) # loads the meuse data sets
 class(meuse)
-```
 
-The North Carolina SIDS (sudden infant death syndrome) data set
-is available from package `maptools`, and is loaded by
-
-```{r}
+## ------------------------------------------------------------------------
 library(maptools)
 library(rgdal) # for readOGR
 nc <- readOGR(system.file("shapes/", package="maptools"), "sids")
 proj4string(nc) <- CRS("+proj=longlat +datum=NAD27")
-```
 
-## Using base plot
-
-The basic `plot` command on a `Spatial` object gives just the geometry, without axes:
-
-```{r}
+## ------------------------------------------------------------------------
 plot(meuse)
-```
 
-axes can be added when `axes=TRUE` is given; plot elements can be added incrementally:
-
-```{r}
+## ------------------------------------------------------------------------
 plot(meuse, pch = 1, cex = sqrt(meuse$zinc)/12, axes = TRUE)
 v = c(100,200,400,800,1600)
 legend("topleft", legend = v, pch = 1, pt.cex = sqrt(v)/12)
 plot(meuse.riv, add = TRUE, col = grey(.9, alpha = .5))
-```
 
-For local projection systems, such as in this case
-
-```{r}
+## ------------------------------------------------------------------------
 proj4string(meuse)
-```
 
-the aspect ratio is set to 1, to make sure that one unit north
-equals one unit east.  Even if the data are in long/lat degrees,
-an aspect ratio is chosen such that in the middle of the plot one
-unit north approximates one unit east. For small regions, this works
-pretty well; also note the degree symbols in the axes tic marks:
-
-```{r}
+## ------------------------------------------------------------------------
 crs.longlat = CRS("+init=epsg:4326")
 meuse.longlat = spTransform(meuse, crs.longlat)
 plot(meuse.longlat, axes = TRUE)
-```
 
-which looks different from the plot where one degree north (latitude) equals one
-degree east (longitude):
-
-```{r}
+## ------------------------------------------------------------------------
 plot(meuse.longlat, asp = 1)
-```
 
-## Graticules 
-
-Instead of axes with ticks and tick marks, maps often have
-graticules, a grid with constant longitude and latitude lines.
-`sp` provides several helper functions to add graticules, either
-in the local reference system, or in long/lat. Here is an
-example of the local reference system:
-
-```{r}
+## ------------------------------------------------------------------------
 plot(meuse)
 plot(gridlines(meuse), add = TRUE)
 text(labels(gridlines(meuse)))
 title("default gridlines within Meuse bounding box")
-```
 
-```{r}
+## ------------------------------------------------------------------------
 grd <- gridlines(meuse.longlat)
 grd_x <- spTransform(grd, CRS(proj4string(meuse)))
 plot(meuse)
 plot(grd_x, add=TRUE, col = grey(.8))
 text(labels(grd_x, crs.longlat))
-```
 
-These lines look pretty straight, because it concerns a small area.
-For 
-
-```{r}
+## ------------------------------------------------------------------------
 # demonstrate axis labels with angle, both sides:
 
 
@@ -185,77 +110,49 @@ l$srt = 0 # otherwise they are upside-down
 text(l, cex = .85)
 title("grid line labels on polar projection, epsg 3031")
 
-```
 
-## Other spatial objects in base plot
-
-The following plot reads a shapefile (from package `maptools`),
-and plots polygons with county name as labels at their center point:
-
-```{r}
+## ------------------------------------------------------------------------
 plot(nc)
 invisible(text(coordinates(nc), labels=as.character(nc$NAME), cex=0.4))
-```
 
-Plot a SpatialPolygonsDataFrame, using grey shades
-
-```{r}
+## ------------------------------------------------------------------------
 names(nc)
 rrt <- nc$SID74/nc$BIR74
 brks <- quantile(rrt, seq(0,1,1/7))
 cols <- grey((length(brks):2)/length(brks))
 dens <- (2:length(brks))*3
 plot(nc, col=cols[findInterval(rrt, brks, all.inside=TRUE)])
-```
 
-plot of SpatialPolygonsDataFrame, using line densities
-
-```{r}
+## ------------------------------------------------------------------------
 rrt <- nc$SID74/nc$BIR74
 brks <- quantile(rrt, seq(0,1,1/7))
 cols <- grey((length(brks):2)/length(brks))
 dens <- (2:length(brks))*3
 plot(nc, density=dens[findInterval(rrt, brks, all.inside=TRUE)])
-```
 
-Plot a grid file, using base plot:
-
-```{r}
+## ------------------------------------------------------------------------
 plot(meuse.grid)
-```
 
-```{r}
+## ------------------------------------------------------------------------
 image(meuse.grid["dist"])
 points(meuse)
-```
 
-```{r}
+## ------------------------------------------------------------------------
 image(meuse.grid["dist"])
 plot(meuse.grid, add = TRUE)
-```
 
-## using lattice plot (spplot)
-
-The following plot colours points with a legend in the plotting area and adds scales:
-
-```{r}
+## ------------------------------------------------------------------------
 spplot(meuse, "zinc", do.log = TRUE,
 	key.space=list(x=0.2,y=0.9,corner=c(0,1)),
 	scales=list(draw=T))
-```
 
-The following plot has coloured points plot with legend in plotting area and scales;
-it has a non-default number of cuts with user-supplied legend entries:
-```{r}
+## ------------------------------------------------------------------------
 spplot(meuse, "zinc", do.log = TRUE,
 	key.space=list(x=0.2,y=0.9,corner=c(0,1)),
 	scales=list(draw=T), cuts = 3,
 	legendEntries = c("low", "intermediate", "high"))
-```
 
-The following plot adds a scale bar and north arrow:
-
-```{r}
+## ------------------------------------------------------------------------
 scale = list("SpatialPolygonsRescale", layout.scale.bar(), 
 	offset = c(178600,332490), scale = 500, fill=c("transparent","black"))
 text1 = list("sp.text", c(178600,332590), "0")
@@ -266,11 +163,8 @@ spplot(meuse, "zinc", do.log=T,
 	key.space=list(x=0.1,y=0.93,corner=c(0,1)),
 	sp.layout=list(scale,text1,text2,arrow),
 	main = "Zinc (top soil)")
-```
 
-The following plot has north arrow and text outside panels
-
-```{r}
+## ------------------------------------------------------------------------
 rv = list("sp.polygons", meuse.riv, fill = "lightblue")
 scale = list("SpatialPolygonsRescale", layout.scale.bar(), 
 	offset = c(180500,329800), scale = 500, fill=c("transparent","black"), which = 1)
@@ -283,11 +177,8 @@ spplot(meuse["zinc"], do.log = TRUE,
 	sp.layout = list(rv, scale, text1, text2),
 	main = "Zinc (top soil)",
 	legend = list(right = list(fun = mapLegendGrob(layout.north.arrow()))))
-```
 
-The same plot; north arrow now inside panel, with custom panel function instead of sp.layout
-
-```{r}
+## ------------------------------------------------------------------------
 spplot(meuse, "zinc", panel = function(x, y, ...) {
 		sp.polygons(meuse.riv, fill = "lightblue")
 		SpatialPolygonsRescale(layout.scale.bar(), offset = c(179900,329600), 
@@ -301,14 +192,8 @@ spplot(meuse, "zinc", panel = function(x, y, ...) {
 	do.log = TRUE, cuts = 7,
 	key.space = list(x = 0.1, y = 0.93, corner = c(0,1)),
 	main = "Top soil zinc concentration (ppm)")
-```
 
-multi-panel plot, scales + north arrow only in last plot:
-using the "which" argument in a layout component
-(if which=4 was set as list component of sp.layout, the river
-would as well be drawn only in that (last) panel)
-
-```{r}
+## ------------------------------------------------------------------------
 rv = list("sp.polygons", meuse.riv, fill = "lightblue")
 scale = list("SpatialPolygonsRescale", layout.scale.bar(), 
 	offset = c(180500,329800), scale = 500, fill=c("transparent","black"), which = 4)
@@ -322,11 +207,8 @@ spplot(meuse, c("cadmium", "copper", "lead", "zinc"), do.log = TRUE,
 	key.space = "right", as.table = TRUE,
 	sp.layout=list(rv, scale, text1, text2, arrow), # note that rv is up front!
 	main = "Heavy metals (top soil), ppm", cex = .7, cuts = cuts)
-```
 
-Comparing four kriging varieties in a multi-panel plot with shared scale:
-
-```{r}
+## ------------------------------------------------------------------------
 rv = list("sp.polygons", meuse.riv, fill = "blue", alpha = 0.1)
 pts = list("sp.points", meuse, pch = 3, col = "grey", alpha = .5)
 text1 = list("sp.text", c(180500,329900), "0", cex = .5, which = 4)
@@ -361,12 +243,8 @@ spplot(zn, c("a", "b", "c", "d"),
 	as.table = TRUE, main = "log-zinc interpolation",
 	sp.layout = list(rv, scale, text1, text2)
 )
-```
 
-Reuse these results; universal kriging standard errors; grid plot
-with point locations and polygon (river):
-
-```{r}
+## ------------------------------------------------------------------------
 rv = list("sp.polygons", meuse.riv, fill = "blue", alpha = 0.1)
 pts = list("sp.points", meuse, pch = 3, col = "grey", alpha = .7)
 spplot(zn.uk, "var1.pred",
@@ -375,18 +253,16 @@ spplot(zn.uk, "var1.pred",
 zn.uk[["se"]] = sqrt(zn.uk[["var1.var"]])
 spplot(zn.uk, "se", sp.layout = list(rv, pts),
 	main = "log(zinc); universal kriging standard errors")
-```
 
-```{r}
+## ------------------------------------------------------------------------
 arrow = list("SpatialPolygonsRescale", layout.north.arrow(),
     offset = c(-76,34), scale = 0.5, which = 2)
 spplot(nc, c("SID74", "SID79"), names.attr = c("1974","1979"),
     colorkey=list(space="bottom"), scales = list(draw = TRUE),
     main = "SIDS (sudden infant death syndrome) in North Carolina",
     sp.layout = list(arrow), as.table = TRUE)
-```
 
-```{r}
+## ------------------------------------------------------------------------
 arrow = list("SpatialPolygonsRescale", layout.north.arrow(), 
 	offset = c(-76,34), scale = 0.5, which = 2)
 #scale = list("SpatialPolygonsRescale", layout.scale.bar(), 
@@ -399,22 +275,16 @@ spplot(nc, c("SID74","SID79"), names.attr = c("1974","1979"),
     colorkey=list(space="bottom"),
     main = "SIDS (sudden infant death syndrome) in North Carolina",
     sp.layout = arrow, as.table = TRUE)
-```
 
-Bubble plots for cadmium and zinc:
-
-```{r}
+## ------------------------------------------------------------------------
 b1 = bubble(meuse, "cadmium", maxsize = 1.5, main = "cadmium concentrations (ppm)",
 	key.entries = 2^(-1:4))
 b2 = bubble(meuse, "zinc", maxsize = 1.5, main = "zinc concentrations (ppm)",
 	key.entries =  100 * 2^(0:4))
 print(b1, split = c(1,1,2,1), more = TRUE)
 print(b2, split = c(2,1,2,1), more = FALSE)
-```
 
-Factor variables using `spplot`:
-
-```{r}
+## ------------------------------------------------------------------------
 # create two dummy factor variables, with equal labels:
 set.seed(31)
 nc$f = factor(sample(1:5,100,replace=T),labels=letters[1:5])
@@ -423,17 +293,8 @@ library(RColorBrewer)
 ## Two (dummy) factor variables shown with qualitative colour ramp; degrees in axes
 spplot(nc, c("f","g"), col.regions=brewer.pal(5, "Set3"), scales=list(draw = TRUE))
 
-```
 
-## Adding web map backgrounds
-
-Both base plots and `spplot` can add web map backgrounds to plots,
-to help referencing. Special care needs to be taken to project the
-data into the web mercator (epsg 3857) projection.
-
-Using regular plot and `ggmap` background maps
-
-```{r}
+## ------------------------------------------------------------------------
 library(ggmap)
 merc = CRS("+init=epsg:3857")
 WGS84 = CRS("+init=epsg:4326")
@@ -443,44 +304,29 @@ bgMap = get_map(as.vector(bbox(meuse)), source = "google", zoom = 13) # useless 
 
 # plot with ggmap-google bg:
 plot(spTransform(meuse, merc), bgMap = bgMap, pch = 16, cex = .5)
-```
 
-Using spplot with ggmap-google bg:
-
-```{r}
+## ------------------------------------------------------------------------
 spplot(spTransform(meuse, merc), c("zinc",  "lead"), colorkey = TRUE,
 	sp.layout = list(panel.ggmap, bgMap, first = TRUE))
-```
 
-Using open streetmap background from `ggmap`:
-
-```{r}
+## ------------------------------------------------------------------------
 bb = t(apply(bbox(meuse), 1, bbexpand, .04))
 bgMap = get_map(as.vector(bb), source = "osm") # WGS84 for background map
 plot(spTransform(meuse, merc), bgMap = bgMap, pch = 16, cex = .5)
-```
 
-Using `RgoogleMaps`:
-
-```{r}
+## ------------------------------------------------------------------------
 center = apply(coordinates(meuse), 2, mean)[2:1]
 library(RgoogleMaps)
 g = GetMap(center=center, zoom=13) # google
 par(mar = rep(0,4)) # fill full device
 plot(spTransform(meuse, merc), bgMap = g, pch = 16, cex = .5)
-```
 
-Using `RgoogleMaps` and `spplot`:
-
-```{r}
+## ------------------------------------------------------------------------
 spplot(spTransform(meuse, merc), c("zinc",  "lead"), colorkey = TRUE,
 	sp.layout = list(panel.RgoogleMaps, g, first = TRUE),
 	scales = list(draw = TRUE))
-```
 
-Here is a Norway boundary example:
-
-```{r}
+## ------------------------------------------------------------------------
 # Norway boundary example:
 library(cshapes)
 cshp = cshp(as.Date("2000-01-1"))
@@ -488,37 +334,21 @@ norway = cshp[cshp$ISO1AL2 == "NO",]
 
 bgMap = get_map(as.vector(bbox(norway))) # no is already in WGS84
 plot(spTransform(norway, merc), bgMap = bgMap, border = 'red')
-```
 
-## maps using ggplot2 
-
-In order to plot polygon data with `ggplot` we need to prepare
-(`fortify`) the data to a `data.frame`, and merge to each polygon
-vertex (row) all corresponding attributes:
-
-```{r}
+## ------------------------------------------------------------------------
 library(ggplot2)
 f = fortify(nc, region = "CNTY_ID") 
 ff = merge(f, nc@data, by.x = "id", by.y = "CNTY_ID") # this replicates a lot of info
-```
 
-next, we can plot the data, but if we want one distance unit north
-to approximately match one unit east, we additionally need to fix
-the aspect `ratio`, since `ff` no longer contains information about
-its coordinate reference system:
-
-```{r}
+## ------------------------------------------------------------------------
 ggplot(ff) + 
 	aes(long, lat, group = group, fill = SID74) + 
 	geom_polygon() + 
 	coord_fixed(ratio = 1/cos((mean(bbox(nc)[2,]) * pi)/180)) 
-```
 
-Bubble plots can be generated e.g. by
-
-```{r}
+## ------------------------------------------------------------------------
 ggplot(as.data.frame(meuse)) + 
 	aes(x, y, size = zinc) + 
 	geom_point() +
 	coord_equal()
-```
+
