@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+<title>Plotting maps with <code>sp</code></title>
+
+<script type="text/javascript">
+window.onload = function() {
+  var imgs = document.getElementsByTagName('img'), i, img;
+  for (i = 0; i < imgs.length; i++) {
+    img = imgs[i];
+    // center an image if it is the only element of its parent
+    if (img.parentElement.childElementCount === 1)
+      img.parentElement.style.textAlign = 'center';
+  }
+};
+</script>
+
+
+
+
+
+<style type="text/css">
+body, td {
+   font-family: sans-serif;
+   background-color: white;
+   font-size: 13px;
+}
+
+body {
+  max-width: 800px;
+  margin: auto;
+  padding: 1em;
+  line-height: 20px;
+}
+
+tt, code, pre {
+   font-family: 'DejaVu Sans Mono', 'Droid Sans Mono', 'Lucida Console', Consolas, Monaco, monospace;
+}
+
+h1 {
+   font-size:2.2em;
+}
+
+h2 {
+   font-size:1.8em;
+}
+
+h3 {
+   font-size:1.4em;
+}
+
+h4 {
+   font-size:1.0em;
+}
+
+h5 {
+   font-size:0.9em;
+}
+
+h6 {
+   font-size:0.8em;
+}
+
+a:visited {
+   color: rgb(50%, 0%, 50%);
+}
+
+pre, img {
+  max-width: 100%;
+}
+pre {
+  overflow-x: auto;
+}
+pre code {
+   display: block; padding: 0.5em;
+}
+
+code {
+  font-size: 92%;
+  border: 1px solid #ccc;
+}
+
+code[class] {
+  background-color: #F8F8F8;
+}
+
+table, td, th {
+  border: none;
+}
+
+blockquote {
+   color:#666666;
+   margin:0;
+   padding-left: 1em;
+   border-left: 0.5em #EEE solid;
+}
+
+hr {
+   height: 0px;
+   border-bottom: none;
+   border-top-width: thin;
+   border-top-style: dotted;
+   border-top-color: #999999;
+}
+
+@media print {
+   * {
+      background: transparent !important;
+      color: black !important;
+      filter:none !important;
+      -ms-filter: none !important;
+   }
+
+   body {
+      font-size:12pt;
+      max-width:100%;
+   }
+
+   a, a:visited {
+      text-decoration: underline;
+   }
+
+   hr {
+      visibility: hidden;
+      page-break-before: always;
+   }
+
+   pre, blockquote {
+      padding-right: 1em;
+      page-break-inside: avoid;
+   }
+
+   tr, img {
+      page-break-inside: avoid;
+   }
+
+   img {
+      max-width: 100% !important;
+   }
+
+   @page :left {
+      margin: 15mm 20mm 15mm 10mm;
+   }
+
+   @page :right {
+      margin: 15mm 10mm 15mm 20mm;
+   }
+
+   p, h2, h3 {
+      orphans: 3; widows: 3;
+   }
+
+   h2, h3 {
+      page-break-after: avoid;
+   }
+}
+</style>
+
+
+
+</head>
+
+<body>
+<div id="toc">
+<div id="toc_header">Table of Contents</div>
+<ul>
+<li>
+<a href="#toc_0">Plotting maps with &lt;code&gt;sp&lt;/code&gt;</a>
+<ul>
+<li>
+<a href="#toc_1">Loading data and packages</a>
+</li>
+<li>
+<a href="#toc_2">Using base plot</a>
+</li>
+<li>
+<a href="#toc_3">Graticules</a>
+</li>
+<li>
+<a href="#toc_4">Other spatial objects in base plot</a>
+</li>
+<li>
+<a href="#toc_5">using lattice plot (spplot)</a>
+</li>
+<li>
+<a href="#toc_6">Adding web map backgrounds</a>
+</li>
+<li>
+<a href="#toc_7">maps using ggplot2</a>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+
+
+<!--
+%\VignetteEngine{knitr::knitr}
+%\VignetteIndexEntry{sp map gallery}
+-->
+
+<h1 id="toc_0">Plotting maps with <code>sp</code></h1>
+
+<h2 id="toc_1">Loading data and packages</h2>
+
+<p>The Meuse data set is loaded using a demo script in package <code>sp</code>,</p>
+
+<pre><code class="r">library(sp)
+demo(meuse, ask = FALSE, echo = FALSE) # loads the meuse data sets
+class(meuse)
+</code></pre>
+
+<pre><code>## [1] &quot;SpatialPointsDataFrame&quot;
+## attr(,&quot;package&quot;)
+## [1] &quot;sp&quot;
+</code></pre>
+
+<p>The North Carolina SIDS (sudden infant death syndrome) data set
+is available from package <code>maptools</code>, and is loaded by</p>
+
+<pre><code class="r">library(maptools)
+</code></pre>
+
+<pre><code>## Checking rgeos availability: TRUE
+</code></pre>
+
+<pre><code class="r">library(rgdal) # for readOGR
+</code></pre>
+
+<pre><code>## Loading required package: methods
+## rgdal: version: 1.1-3, (SVN revision 594)
+##  Geospatial Data Abstraction Library extensions to R successfully loaded
+##  Loaded GDAL runtime: GDAL 2.0.1, released 2015/09/15
+##  Path to GDAL shared files: /usr/local/share/gdal
+##  Loaded PROJ.4 runtime: Rel. 4.9.2, 08 September 2015, [PJ_VERSION: 492]
+##  Path to PROJ.4 shared files: (autodetected)
+##  Linking to sp version: 1.2-2
+</code></pre>
+
+<pre><code class="r">nc &lt;- readOGR(system.file(&quot;shapes/&quot;, package=&quot;maptools&quot;), &quot;sids&quot;)
+</code></pre>
+
+<pre><code>## OGR data source with driver: ESRI Shapefile 
+## Source: &quot;/home/edzer/R/x86_64-pc-linux-gnu-library/3.2/maptools/shapes/&quot;, layer: &quot;sids&quot;
+## with 100 features
+## It has 14 fields
+</code></pre>
+
+<pre><code class="r">proj4string(nc) &lt;- CRS(&quot;+proj=longlat +datum=NAD27&quot;)
+</code></pre>
+
+<h2 id="toc_2">Using base plot</h2>
+
+<p>The basic <code>plot</code> command on a <code>Spatial</code> object gives just the geometry, without axes:</p>
+
+<pre><code class="r">plot(meuse)
+</code></pre>
+
+<p><img src="figure/unnamed-chunk-3-1.png" alt="plot of chunk unnamed-chunk-3"> </p>
+
+<p>axes can be added when <code>axes=TRUE</code> is given; plot elements can be added incrementally:</p>
+
+<pre><code class="r">plot(meuse, pch = 1, cex = sqrt(meuse$zinc)/12, axes = TRUE)
+v = c(100,200,400,800,1600)
+legend(&quot;topleft&quot;, legend = v, pch = 1, pt.cex = sqrt(v)/12)
+plot(meuse.riv, add = TRUE, col = grey(.9, alpha = .5))
+</code></pre>
+
+<p><img src="figure/unnamed-chunk-4-1.png" alt="plot of chunk unnamed-chunk-4"> </p>
+
+<p>For local projection systems, such as in this case</p>
+
+<pre><code class="r">proj4string(meuse)
+</code></pre>
+
+<pre><code>## [1] &quot;+init=epsg:28992 +proj=sterea +lat_0=52.15616055555555 +lon_0=5.38763888888889 +k=0.9999079 +x_0=155000 +y_0=463000 +ellps=bessel +towgs84=565.4171,50.3319,465.5524,-0.398957388243134,0.343987817378283,-1.87740163998045,4.0725 +units=m +no_defs&quot;
+</code></pre>
+
+<p>the aspect ratio is set to 1, to make sure that one unit north
+equals one unit east.  Even if the data are in long/lat degrees,
+an aspect ratio is chosen such that in the middle of the plot one
+unit north approximates one unit east. For small regions, this works
+pretty well; also note the degree symbols in the axes tic marks:</p>
+
+<pre><code class="r">crs.longlat = CRS(&quot;+init=epsg:4326&quot;)
+meuse.longlat = spTransform(meuse, crs.longlat)
+plot(meuse.longlat, axes = TRUE)
+</code></pre>
+
+<p><img src="figure/unnamed-chunk-6-1.png" alt="plot of chunk unnamed-chunk-6"> </p>
+
+<p>which looks different from the plot where one degree north (latitude) equals one
+degree east (longitude):</p>
+
+<pre><code class="r">plot(meuse.longlat, asp = 1)
+</code></pre>
+
+<p><img src="figure/unnamed-chunk-7-1.png" alt="plot of chunk unnamed-chunk-7"> </p>
+
+<h2 id="toc_3">Graticules</h2>
+
+<p>Instead of axes with ticks and tick marks, maps often have
+graticules, a grid with constant longitude and latitude lines.
+<code>sp</code> provides several helper functions to add graticules, either
+in the local reference system, or in long/lat. Here is an
+example of the local reference system:</p>
+
+<pre><code class="r">plot(meuse)
+plot(gridlines(meuse), add = TRUE)
+text(labels(gridlines(meuse)))
+title(&quot;default gridlines within Meuse bounding box&quot;)
+</code></pre>
+
+<p><img src="figure/unnamed-chunk-8-1.png" alt="plot of chunk unnamed-chunk-8"> </p>
+
+<pre><code class="r">grd &lt;- gridlines(meuse.longlat)
+grd_x &lt;- spTransform(grd, CRS(proj4string(meuse)))
+plot(meuse)
+plot(grd_x, add=TRUE, col = grey(.8))
+text(labels(grd_x, crs.longlat))
+</code></pre>
+
+<p><img src="figure/unnamed-chunk-9-1.png" alt="plot of chunk unnamed-chunk-9"> </p>
+
+<p>These lines look pretty straight, because it concerns a small area.
+For </p>
+
+<pre><code class="r"># demonstrate axis labels with angle, both sides:
+
+
+maps2sp = function(xlim, ylim, l.out = 100, clip = TRUE) {
+    stopifnot(require(maps))
+    m = map(xlim = xlim, ylim = ylim, plot = FALSE, fill = TRUE)
+    p = rbind(cbind(xlim[1], seq(ylim[1],ylim[2],length.out = l.out)),
+          cbind(seq(xlim[1],xlim[2],length.out = l.out),ylim[2]),
+          cbind(xlim[2],seq(ylim[2],ylim[1],length.out = l.out)),
+          cbind(seq(xlim[2],xlim[1],length.out = l.out),ylim[1]))
+    LL = CRS(&quot;+init=epsg:4326&quot;)
+    bb = SpatialPolygons(list(Polygons(list(Polygon(list(p))),&quot;bb&quot;)), proj4string = LL)
+    IDs &lt;- sapply(strsplit(m$names, &quot;:&quot;), function(x) x[1])
+    stopifnot(require(maptools))
+    m &lt;- map2SpatialPolygons(m, IDs=IDs, proj4string = LL)
+    if (!clip)
+        m
+    else {
+        stopifnot(require(rgeos))
+        gIntersection(m, bb) # cut map slice in WGS84
+    }
+}
+m = maps2sp(c(-100,-20), c(10,55))
+</code></pre>
+
+<pre><code>## Loading required package: maps
+## 
+##  # ATTENTION: maps v3.0 has an updated &#39;world&#39; map.        #
+##  # Many country borders and names have changed since 1990. #
+##  # Type &#39;?world&#39; or &#39;news(package=&quot;maps&quot;)&#39;. See README_v3. #
+## 
+## 
+## Loading required package: rgeos
+## rgeos version: 0.3-16, (SVN revision (unknown))
+##  GEOS runtime version: 3.5.0-CAPI-1.9.0 r4084 
+##  Linking to sp version: 1.2-2 
+##  Polygon checking: TRUE
+</code></pre>
+
+<pre><code class="r">sp = SpatialPoints(rbind(c(-101,9), c(-101,55), c(-19,9), c(-19,55)), CRS(&quot;+init=epsg:4326&quot;))
+laea = CRS(&quot;+proj=laea +lat_0=30 +lon_0=-40&quot;)
+m.laea = spTransform(m, laea)
+sp.laea = spTransform(sp, laea)
+library(methods) # as
+plot(as(m.laea, &quot;Spatial&quot;), expandBB = c(0.05, 0.05, 0, .1))
+plot(m.laea, col = grey(.8), add = TRUE)
+gl = gridlines(sp, easts = c(-100,-80,-60,-40,-20), norths = c(20,30,40,50))
+gl.laea = spTransform(gl, laea)
+plot(gl.laea, add = TRUE)
+text(labels(gl.laea, crs.longlat))
+text(labels(gl.laea, crs.longlat, side = 3:4), col = &#39;red&#39;)
+title(&quot;curved text label demo&quot;)
+</code></pre>
+
+<p><img src="figure/unnamed-chunk-10-1.png" alt="plot of chunk unnamed-chunk-10"> </p>
+
+<pre><code class="r"># polar:
+pts=SpatialPoints(rbind(c(-180,-70),c(0,-70),c(180,-89),c(180,-70)), CRS(&quot;+init=epsg:4326&quot;))
+gl = gridlines(pts, easts = seq(-180,180,20), ndiscr = 100)
+polar = CRS(&quot;+init=epsg:3031&quot;)
+plot(spTransform(pts, polar), expandBB = c(.05,0,.05,0))
+gl.polar = spTransform(gl, polar)
+lines(gl.polar)
+l = labels(gl.polar, crs.longlat, side = 3)
+l$pos = NULL # pos is too simple, use adj:
+text(l, adj = c(0.5, -0.5)) 
+l = labels(gl.polar, crs.longlat, side = 4)
+l$srt = 0 # otherwise they end up upside-down
+text(l)
+title(&quot;grid line labels on polar projection, epsg 3031&quot;)
+</code></pre>
+
+<p><img src="figure/unnamed-chunk-10-2.png" alt="plot of chunk unnamed-chunk-10"> </p>
+
+<pre><code class="r">m = maps2sp(xlim = c(-180,180), ylim = c(-90,-70), clip = FALSE)
+gl = gridlines(m, easts = seq(-180,180,20))
+polar = CRS(&quot;+init=epsg:3031&quot;)
+gl.polar = spTransform(gl, polar)
+plot(gl.polar)
+plot(spTransform(m, polar), add = TRUE, col = grey(0.8, 0.8))
+l = labels(gl.polar, crs.longlat, side = 3)
+# pos is too simple here, use adj:
+l$pos = NULL 
+text(l, adj = c(0.5, -0.3), cex = .85)
+l = labels(gl.polar, crs.longlat, side = 2)
+l$srt = 0 # otherwise they are upside-down
+text(l, cex = .85)
+title(&quot;grid line labels on polar projection, epsg 3031&quot;)
+</code></pre>
+
+<p><img src="figure/unnamed-chunk-10-3.png" alt="plot of chunk unnamed-chunk-10"> </p>
+
+<h2 id="toc_4">Other spatial objects in base plot</h2>
+
+<p>The following plot reads a shapefile (from package <code>maptools</code>),
+and plots polygons with county name as labels at their center point:</p>
+
+<pre><code class="r">plot(nc)
+invisible(text(coordinates(nc), labels=as.character(nc$NAME), cex=0.4))
+</code></pre>
+
+<p><img src="figure/unnamed-chunk-11-1.png" alt="plot of chunk unnamed-chunk-11"> </p>
+
+<p>Plot a SpatialPolygonsDataFrame, using grey shades</p>
+
+<pre><code class="r">names(nc)
+</code></pre>
+
+<pre><code>##  [1] &quot;AREA&quot;      &quot;PERIMETER&quot; &quot;CNTY_&quot;     &quot;CNTY_ID&quot;   &quot;NAME&quot;     
+##  [6] &quot;FIPS&quot;      &quot;FIPSNO&quot;    &quot;CRESS_ID&quot;  &quot;BIR74&quot;     &quot;SID74&quot;    
+## [11] &quot;NWBIR74&quot;   &quot;BIR79&quot;     &quot;SID79&quot;     &quot;NWBIR79&quot;
+</code></pre>
+
+<pre><code class="r">rrt &lt;- nc$SID74/nc$BIR74
+brks &lt;- quantile(rrt, seq(0,1,1/7))
+cols &lt;- grey((length(brks):2)/length(brks))
+dens &lt;- (2:length(brks))*3
+plot(nc, col=cols[findInterval(rrt, brks, all.inside=TRUE)])
+</code></pre>
+
+<p><img src="figure/unnamed-chunk-12-1.png" alt="plot of chunk unnamed-chunk-12"> </p>
+
+<p>plot of SpatialPolygonsDataFrame, using line densities</p>
+
+<pre><code class="r">rrt &lt;- nc$SID74/nc$BIR74
+brks &lt;- quantile(rrt, seq(0,1,1/7))
+cols &lt;- grey((length(brks):2)/length(brks))
+dens &lt;- (2:length(brks))*3
+plot(nc, density=dens[findInterval(rrt, brks, all.inside=TRUE)])
+</code></pre>
+
+<p><img src="figure/unnamed-chunk-13-1.png" alt="plot of chunk unnamed-chunk-13"> </p>
+
+<p>Plot a grid file, using base plot:</p>
+
+<pre><code class="r">plot(meuse.grid)
+</code></pre>
+
+<p><img src="figure/unnamed-chunk-14-1.png" alt="plot of chunk unnamed-chunk-14"> </p>
+
+<pre><code class="r">image(meuse.grid[&quot;dist&quot;])
+points(meuse)
+</code></pre>
+
+<p><img src="figure/unnamed-chunk-15-1.png" alt="plot of chunk unnamed-chunk-15"> </p>
+
+<pre><code class="r">image(meuse.grid[&quot;dist&quot;])
+plot(meuse.grid, add = TRUE)
+</code></pre>
+
+<p><img src="figure/unnamed-chunk-16-1.png" alt="plot of chunk unnamed-chunk-16"> </p>
+
+<h2 id="toc_5">using lattice plot (spplot)</h2>
+
+<p>The following plot colours points with a legend in the plotting area and adds scales:</p>
+
+<pre><code class="r">spplot(meuse, &quot;zinc&quot;, do.log = TRUE,
+    key.space=list(x=0.2,y=0.9,corner=c(0,1)),
+    scales=list(draw=T))
+</code></pre>
+
+<p><img src="figure/unnamed-chunk-17-1.png" alt="plot of chunk unnamed-chunk-17"> </p>
+
+<p>The following plot has coloured points plot with legend in plotting area and scales;
+it has a non-default number of cuts with user-supplied legend entries:</p>
+
+<pre><code class="r">spplot(meuse, &quot;zinc&quot;, do.log = TRUE,
+    key.space=list(x=0.2,y=0.9,corner=c(0,1)),
+    scales=list(draw=T), cuts = 3,
+    legendEntries = c(&quot;low&quot;, &quot;intermediate&quot;, &quot;high&quot;))
+</code></pre>
+
+<p><img src="figure/unnamed-chunk-18-1.png" alt="plot of chunk unnamed-chunk-18"> </p>
+
+<p>The following plot adds a scale bar and north arrow:</p>
+
+<pre><code class="r">scale = list(&quot;SpatialPolygonsRescale&quot;, layout.scale.bar(), 
+    offset = c(178600,332490), scale = 500, fill=c(&quot;transparent&quot;,&quot;black&quot;))
+text1 = list(&quot;sp.text&quot;, c(178600,332590), &quot;0&quot;)
+text2 = list(&quot;sp.text&quot;, c(179100,332590), &quot;500 m&quot;)
+arrow = list(&quot;SpatialPolygonsRescale&quot;, layout.north.arrow(), 
+    offset = c(178750,332000), scale = 400)
+spplot(meuse, &quot;zinc&quot;, do.log=T,
+    key.space=list(x=0.1,y=0.93,corner=c(0,1)),
+    sp.layout=list(scale,text1,text2,arrow),
+    main = &quot;Zinc (top soil)&quot;)
+</code></pre>
+
+<p><img src="figure/unnamed-chunk-19-1.png" alt="plot of chunk unnamed-chunk-19"> </p>
+
+<p>The following plot has north arrow and text outside panels</p>
+
+<pre><code class="r">rv = list(&quot;sp.polygons&quot;, meuse.riv, fill = &quot;lightblue&quot;)
+scale = list(&quot;SpatialPolygonsRescale&quot;, layout.scale.bar(), 
+    offset = c(180500,329800), scale = 500, fill=c(&quot;transparent&quot;,&quot;black&quot;), which = 1)
+text1 = list(&quot;sp.text&quot;, c(180500,329900), &quot;0&quot;, which = 1)
+text2 = list(&quot;sp.text&quot;, c(181000,329900), &quot;500 m&quot;, which = 1)
+arrow = list(&quot;SpatialPolygonsRescale&quot;, layout.north.arrow(), 
+    offset = c(178750,332500), scale = 400)
+spplot(meuse[&quot;zinc&quot;], do.log = TRUE,
+    key.space = &quot;bottom&quot;, 
+    sp.layout = list(rv, scale, text1, text2),
+    main = &quot;Zinc (top soil)&quot;,
+    legend = list(right = list(fun = mapLegendGrob(layout.north.arrow()))))
+</code></pre>
+
+<p><img src="figure/unnamed-chunk-20-1.png" alt="plot of chunk unnamed-chunk-20"> </p>
+
+<p>The same plot; north arrow now inside panel, with custom panel function instead of sp.layout</p>
+
+<pre><code class="r">spplot(meuse, &quot;zinc&quot;, panel = function(x, y, ...) {
+        sp.polygons(meuse.riv, fill = &quot;lightblue&quot;)
+        SpatialPolygonsRescale(layout.scale.bar(), offset = c(179900,329600), 
+            scale = 500, fill=c(&quot;transparent&quot;,&quot;black&quot;))
+        sp.text(c(179900,329700), &quot;0&quot;)
+        sp.text(c(180400,329700), &quot;500 m&quot;)
+        SpatialPolygonsRescale(layout.north.arrow(), 
+            offset = c(178750,332500), scale = 400)
+        panel.pointsplot(x, y, ...)
+    },
+    do.log = TRUE, cuts = 7,
+    key.space = list(x = 0.1, y = 0.93, corner = c(0,1)),
+    main = &quot;Top soil zinc concentration (ppm)&quot;)
+</code></pre>
+
+<p><img src="figure/unnamed-chunk-21-1.png" alt="plot of chunk unnamed-chunk-21"> </p>
+
+<p>multi-panel plot, scales + north arrow only in last plot:
+using the &quot;which&quot; argument in a layout component
+(if which=4 was set as list component of sp.layout, the river
+would as well be drawn only in that (last) panel)</p>
+
+<pre><code class="r">rv = list(&quot;sp.polygons&quot;, meuse.riv, fill = &quot;lightblue&quot;)
+scale = list(&quot;SpatialPolygonsRescale&quot;, layout.scale.bar(), 
+    offset = c(180500,329800), scale = 500, fill=c(&quot;transparent&quot;,&quot;black&quot;), which = 4)
+text1 = list(&quot;sp.text&quot;, c(180500,329900), &quot;0&quot;, cex = .5, which = 4)
+text2 = list(&quot;sp.text&quot;, c(181000,329900), &quot;500 m&quot;, cex = .5, which = 4)
+arrow = list(&quot;SpatialPolygonsRescale&quot;, layout.north.arrow(), 
+    offset = c(181300,329800), 
+    scale = 400, which = 4)
+cuts = c(.2,.5,1,2,5,10,20,50,100,200,500,1000,2000)
+spplot(meuse, c(&quot;cadmium&quot;, &quot;copper&quot;, &quot;lead&quot;, &quot;zinc&quot;), do.log = TRUE,
+    key.space = &quot;right&quot;, as.table = TRUE,
+    sp.layout=list(rv, scale, text1, text2, arrow), # note that rv is up front!
+    main = &quot;Heavy metals (top soil), ppm&quot;, cex = .7, cuts = cuts)
+</code></pre>
+
+<p><img src="figure/unnamed-chunk-22-1.png" alt="plot of chunk unnamed-chunk-22"> </p>
+
+<p>Comparing four kriging varieties in a multi-panel plot with shared scale:</p>
+
+<pre><code class="r">rv = list(&quot;sp.polygons&quot;, meuse.riv, fill = &quot;blue&quot;, alpha = 0.1)
+pts = list(&quot;sp.points&quot;, meuse, pch = 3, col = &quot;grey&quot;, alpha = .5)
+text1 = list(&quot;sp.text&quot;, c(180500,329900), &quot;0&quot;, cex = .5, which = 4)
+text2 = list(&quot;sp.text&quot;, c(181000,329900), &quot;500 m&quot;, cex = .5, which = 4)
+scale = list(&quot;SpatialPolygonsRescale&quot;, layout.scale.bar(), 
+    offset = c(180500,329800), scale = 500, fill=c(&quot;transparent&quot;,&quot;black&quot;), which = 4)
+library(gstat)
+v.ok = variogram(log(zinc)~1, meuse)
+ok.model = fit.variogram(v.ok, vgm(1, &quot;Exp&quot;, 500, 1))
+# plot(v.ok, ok.model, main = &quot;ordinary kriging&quot;)
+v.uk = variogram(log(zinc)~sqrt(dist), meuse)
+uk.model = fit.variogram(v.uk, vgm(1, &quot;Exp&quot;, 300, 1))
+# plot(v.uk, uk.model, main = &quot;universal kriging&quot;)
+meuse[[&quot;ff&quot;]] = factor(meuse[[&quot;ffreq&quot;]])
+meuse.grid[[&quot;ff&quot;]] = factor(meuse.grid[[&quot;ffreq&quot;]])
+v.sk = variogram(log(zinc)~ff, meuse)
+sk.model = fit.variogram(v.sk, vgm(1, &quot;Exp&quot;, 300, 1))
+# plot(v.sk, sk.model, main = &quot;stratified kriging&quot;)
+zn.ok = krige(log(zinc)~1,          meuse, meuse.grid, model = ok.model, debug.level = 0)
+zn.uk = krige(log(zinc)~sqrt(dist), meuse, meuse.grid, model = uk.model, debug.level = 0)
+zn.sk = krige(log(zinc)~ff,         meuse, meuse.grid, model = sk.model, debug.level = 0)
+zn.id = krige(log(zinc)~1,          meuse, meuse.grid, debug.level = 0)
+
+zn = zn.ok
+zn[[&quot;a&quot;]] = zn.ok[[&quot;var1.pred&quot;]]
+zn[[&quot;b&quot;]] = zn.uk[[&quot;var1.pred&quot;]]
+zn[[&quot;c&quot;]] = zn.sk[[&quot;var1.pred&quot;]]
+zn[[&quot;d&quot;]] = zn.id[[&quot;var1.pred&quot;]]
+spplot(zn, c(&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;), 
+    names.attr = c(&quot;ordinary kriging&quot;, &quot;universal kriging with dist to river&quot;, 
+        &quot;stratified kriging with flood freq&quot;, &quot;inverse distance&quot;), 
+    as.table = TRUE, main = &quot;log-zinc interpolation&quot;,
+    sp.layout = list(rv, scale, text1, text2)
+)
+</code></pre>
+
+<p><img src="figure/unnamed-chunk-23-1.png" alt="plot of chunk unnamed-chunk-23"> </p>
+
+<p>Reuse these results; universal kriging standard errors; grid plot
+with point locations and polygon (river):</p>
+
+<pre><code class="r">rv = list(&quot;sp.polygons&quot;, meuse.riv, fill = &quot;blue&quot;, alpha = 0.1)
+pts = list(&quot;sp.points&quot;, meuse, pch = 3, col = &quot;grey&quot;, alpha = .7)
+spplot(zn.uk, &quot;var1.pred&quot;,
+    sp.layout = list(rv, scale, text1, text2, pts),
+    main = &quot;log(zinc); universal kriging using sqrt(dist to Meuse)&quot;)
+</code></pre>
+
+<p><img src="figure/unnamed-chunk-24-1.png" alt="plot of chunk unnamed-chunk-24"> </p>
+
+<pre><code class="r">zn.uk[[&quot;se&quot;]] = sqrt(zn.uk[[&quot;var1.var&quot;]])
+spplot(zn.uk, &quot;se&quot;, sp.layout = list(rv, pts),
+    main = &quot;log(zinc); universal kriging standard errors&quot;)
+</code></pre>
+
+<p><img src="figure/unnamed-chunk-24-2.png" alt="plot of chunk unnamed-chunk-24"> </p>
+
+<pre><code class="r">arrow = list(&quot;SpatialPolygonsRescale&quot;, layout.north.arrow(),
+    offset = c(-76,34), scale = 0.5, which = 2)
+spplot(nc, c(&quot;SID74&quot;, &quot;SID79&quot;), names.attr = c(&quot;1974&quot;,&quot;1979&quot;),
+    colorkey=list(space=&quot;bottom&quot;), scales = list(draw = TRUE),
+    main = &quot;SIDS (sudden infant death syndrome) in North Carolina&quot;,
+    sp.layout = list(arrow), as.table = TRUE)
+</code></pre>
+
+<p><img src="figure/unnamed-chunk-25-1.png" alt="plot of chunk unnamed-chunk-25"> </p>
+
+<pre><code class="r">arrow = list(&quot;SpatialPolygonsRescale&quot;, layout.north.arrow(), 
+    offset = c(-76,34), scale = 0.5, which = 2)
+#scale = list(&quot;SpatialPolygonsRescale&quot;, layout.scale.bar(), 
+#   offset = c(-77.5,34), scale = 1, fill=c(&quot;transparent&quot;,&quot;black&quot;), which = 2)
+#text1 = list(&quot;sp.text&quot;, c(-77.5,34.15), &quot;0&quot;, which = 2)
+#text2 = list(&quot;sp.text&quot;, c(-76.5,34.15), &quot;1 degree&quot;, which = 2)
+# create a fake lines data set:
+## multi-panel plot with coloured lines: North Carolina SIDS
+spplot(nc, c(&quot;SID74&quot;,&quot;SID79&quot;), names.attr = c(&quot;1974&quot;,&quot;1979&quot;),
+    colorkey=list(space=&quot;bottom&quot;),
+    main = &quot;SIDS (sudden infant death syndrome) in North Carolina&quot;,
+    sp.layout = arrow, as.table = TRUE)
+</code></pre>
+
+<p><img src="figure/unnamed-chunk-26-1.png" alt="plot of chunk unnamed-chunk-26"> </p>
+
+<p>Bubble plots for cadmium and zinc:</p>
+
+<pre><code class="r">b1 = bubble(meuse, &quot;cadmium&quot;, maxsize = 1.5, main = &quot;cadmium concentrations (ppm)&quot;,
+    key.entries = 2^(-1:4))
+b2 = bubble(meuse, &quot;zinc&quot;, maxsize = 1.5, main = &quot;zinc concentrations (ppm)&quot;,
+    key.entries =  100 * 2^(0:4))
+print(b1, split = c(1,1,2,1), more = TRUE)
+print(b2, split = c(2,1,2,1), more = FALSE)
+</code></pre>
+
+<p><img src="figure/unnamed-chunk-27-1.png" alt="plot of chunk unnamed-chunk-27"> </p>
+
+<p>Factor variables using <code>spplot</code>:</p>
+
+<pre><code class="r"># create two dummy factor variables, with equal labels:
+set.seed(31)
+nc$f = factor(sample(1:5,100,replace=T),labels=letters[1:5])
+nc$g = factor(sample(1:5,100,replace=T),labels=letters[1:5])
+library(RColorBrewer)
+## Two (dummy) factor variables shown with qualitative colour ramp; degrees in axes
+spplot(nc, c(&quot;f&quot;,&quot;g&quot;), col.regions=brewer.pal(5, &quot;Set3&quot;), scales=list(draw = TRUE))
+</code></pre>
+
+<p><img src="figure/unnamed-chunk-28-1.png" alt="plot of chunk unnamed-chunk-28"> </p>
+
+<h2 id="toc_6">Adding web map backgrounds</h2>
+
+<p>Both base plots and <code>spplot</code> can add web map backgrounds to plots,
+to help referencing. Special care needs to be taken to project the
+data into the web mercator (epsg 3857) projection.</p>
+
+<p>Using regular plot and <code>ggmap</code> background maps</p>
+
+<pre><code class="r">library(ggmap)
+</code></pre>
+
+<pre><code>## Loading required package: ggplot2
+</code></pre>
+
+<pre><code>## Warning: replacing previous import by &#39;grid::arrow&#39; when loading &#39;ggmap&#39;
+</code></pre>
+
+<pre><code>## Warning: replacing previous import by &#39;grid::unit&#39; when loading &#39;ggmap&#39;
+</code></pre>
+
+<pre><code>## Warning: replacing previous import by &#39;scales::alpha&#39; when loading &#39;ggmap&#39;
+</code></pre>
+
+<pre><code class="r">merc = CRS(&quot;+init=epsg:3857&quot;)
+WGS84 = CRS(&quot;+init=epsg:4326&quot;)
+
+meuse = spTransform(meuse, WGS84)
+bgMap = get_map(as.vector(bbox(meuse)), source = &quot;google&quot;, zoom = 13) # useless without zoom level
+</code></pre>
+
+<pre><code>## Warning: bounding box given to google - spatial extent only approximate.
+</code></pre>
+
+<pre><code>## converting bounding box to center/zoom specification. (experimental)
+## Map from URL : http://maps.googleapis.com/maps/api/staticmap?center=50.974088,5.743115&amp;zoom=13&amp;size=640x640&amp;scale=2&amp;maptype=terrain&amp;language=en-EN&amp;sensor=false
+</code></pre>
+
+<pre><code class="r"># plot with ggmap-google bg:
+plot(spTransform(meuse, merc), bgMap = bgMap, pch = 16, cex = .5)
+</code></pre>
+
+<p><img src="figure/unnamed-chunk-29-1.png" alt="plot of chunk unnamed-chunk-29"> </p>
+
+<p>Using spplot with ggmap-google bg:</p>
+
+<pre><code class="r">spplot(spTransform(meuse, merc), c(&quot;zinc&quot;,  &quot;lead&quot;), colorkey = TRUE,
+    sp.layout = list(panel.ggmap, bgMap, first = TRUE))
+</code></pre>
+
+<p><img src="figure/unnamed-chunk-30-1.png" alt="plot of chunk unnamed-chunk-30"> </p>
+
+<p>Using open streetmap background from <code>ggmap</code>:</p>
+
+<pre><code class="r">bb = t(apply(bbox(meuse), 1, bbexpand, .04))
+bgMap = get_map(as.vector(bb), source = &quot;osm&quot;) # WGS84 for background map
+plot(spTransform(meuse, merc), bgMap = bgMap, pch = 16, cex = .5)
+</code></pre>
+
+<p><img src="figure/unnamed-chunk-31-1.png" alt="plot of chunk unnamed-chunk-31"> </p>
+
+<p>Using <code>RgoogleMaps</code>:</p>
+
+<pre><code class="r">center = apply(coordinates(meuse), 2, mean)[2:1]
+library(RgoogleMaps)
+g = GetMap(center=center, zoom=13) # google
+par(mar = rep(0,4)) # fill full device
+plot(spTransform(meuse, merc), bgMap = g, pch = 16, cex = .5)
+</code></pre>
+
+<p><img src="figure/unnamed-chunk-32-1.png" alt="plot of chunk unnamed-chunk-32"> </p>
+
+<p>Using <code>RgoogleMaps</code> and <code>spplot</code>:</p>
+
+<pre><code class="r">spplot(spTransform(meuse, merc), c(&quot;zinc&quot;,  &quot;lead&quot;), colorkey = TRUE,
+    sp.layout = list(panel.RgoogleMaps, g, first = TRUE),
+    scales = list(draw = TRUE))
+</code></pre>
+
+<p><img src="figure/unnamed-chunk-33-1.png" alt="plot of chunk unnamed-chunk-33"> </p>
+
+<p>Here is a Norway boundary example:</p>
+
+<pre><code class="r"># Norway boundary example:
+library(cshapes)
+</code></pre>
+
+<pre><code>## Loading required package: plyr
+## 
+## Attaching package: &#39;plyr&#39;
+## 
+## The following object is masked from &#39;package:maps&#39;:
+## 
+##     ozone
+</code></pre>
+
+<pre><code class="r">cshp = cshp(as.Date(&quot;2000-01-1&quot;))
+norway = cshp[cshp$ISO1AL2 == &quot;NO&quot;,]
+
+bgMap = get_map(as.vector(bbox(norway))) # no is already in WGS84
+</code></pre>
+
+<pre><code>## Warning: bounding box given to google - spatial extent only approximate.
+</code></pre>
+
+<pre><code>## converting bounding box to center/zoom specification. (experimental)
+## Map from URL : http://maps.googleapis.com/maps/api/staticmap?center=64.571314,17.931559&amp;zoom=5&amp;size=640x640&amp;scale=2&amp;maptype=terrain&amp;language=en-EN&amp;sensor=false
+</code></pre>
+
+<pre><code class="r">plot(spTransform(norway, merc), bgMap = bgMap, border = &#39;red&#39;)
+</code></pre>
+
+<p><img src="figure/unnamed-chunk-34-1.png" alt="plot of chunk unnamed-chunk-34"> </p>
+
+<h2 id="toc_7">maps using ggplot2</h2>
+
+<p>In order to plot polygon data with <code>ggplot</code> we need to prepare
+(<code>fortify</code>) the data to a <code>data.frame</code>, and merge to each polygon
+vertex (row) all corresponding attributes:</p>
+
+<pre><code class="r">library(ggplot2)
+f = fortify(nc, region = &quot;CNTY_ID&quot;) 
+ff = merge(f, nc@data, by.x = &quot;id&quot;, by.y = &quot;CNTY_ID&quot;) # this replicates a lot of info
+</code></pre>
+
+<p>next, we can plot the data, but if we want one distance unit north
+to approximately match one unit east, we additionally need to fix
+the aspect <code>ratio</code>, since <code>ff</code> no longer contains information about
+its coordinate reference system:</p>
+
+<pre><code class="r">ggplot(ff) + 
+    aes(long, lat, group = group, fill = SID74) + 
+    geom_polygon() + 
+    coord_fixed(ratio = 1/cos((mean(bbox(nc)[2,]) * pi)/180)) 
+</code></pre>
+
+<p><img src="figure/unnamed-chunk-36-1.png" alt="plot of chunk unnamed-chunk-36"> </p>
+
+<p>Bubble plots can be generated e.g. by</p>
+
+<pre><code class="r">ggplot(as.data.frame(meuse)) + 
+    aes(x, y, size = zinc) + 
+    geom_point() +
+    coord_equal()
+</code></pre>
+
+<p><img src="figure/unnamed-chunk-37-1.png" alt="plot of chunk unnamed-chunk-37"> </p>
+
+</body>
+
+</html>
