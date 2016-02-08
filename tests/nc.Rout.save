@@ -1,0 +1,29 @@
+
+R : Copyright 2005, The R Foundation for Statistical Computing
+Version 2.1.1  (2005-06-20), ISBN 3-900051-07-0
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for a HTML browser interface to help.
+Type 'q()' to quit R.
+
+> # library(sp)
+> # library(maptools)
+> # data(ncshp)
+> # nc1 <- as.SpatialPolygons.Shapes(nc.shp$Shapes, as.character(nc.shp$att.data$FIPS))
+> # df <- nc.shp$att.data
+> # rownames(df) <- as.character(nc.shp$att.data$FIPS)
+> # identical(rownames(df), sapply(slot(nc1, "polygons"), function(i) slot(i, "ID")))
+> # nc <- SpatialPolygonsDataFrame(nc1, df)
+> # 
+> # nc$X = factor(sample(1:5,100,replace=T),labels=letters[1:5])
+> # nc$Y = factor(sample(1:5,100,replace=T),labels=letters[6:10])
+> # spplot(nc, c("X","Y"))
+> 

@@ -1,0 +1,24 @@
+Tue Jun 12 14:17:40 CEST 2007
+	Class-SpatialLines.R: removed check that a line needs at least 2 points; 
+	map2SpatialLines (hello.Rnw) would fail.
+	spsample.R: added correct area computation subtracting holes.
+
+Thu Sep  8 16:18:02 CEST 2005
+	contour methods
+	gridlines taken from example in transform/spproj
+
+Sun Jun 12 16:09:06 CEST 2005
+	polygons are plotted by default behind grids, if grid is main theme;
+	add first = FALSE to overplot
+
+Thu Jun  9 10:37:51 CEST 2005
+	attribute list assignment now checks length and is.vector
+	spplot does not reorder items alphabetically anymore
+
+Sat Jul  3 21:42:28 CEST 2004
+	added what argument to coordinates() to optionally retrieve names or columns numbers 
+Wed May 12 20:59:46 CEST 2004
+	completed prototypes; however they are not useful.
+Fri May  7 00:15:29 CEST 2004
+	added bbox function
+	added prototypes to some SpatialData classes

@@ -1,0 +1,278 @@
+
+R version 3.2.0 (2015-04-16) -- "Full of Ingredients"
+Copyright (C) 2015 The R Foundation for Statistical Computing
+Platform: x86_64-pc-linux-gnu (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> library(sp)
+> data(meuse.grid)
+> x = meuse.grid
+> coordinates(x) = c("x", "y")
+> gridded(x) = TRUE
+> gridded(x)
+[1] TRUE
+> image(x["dist"])
+> 
+> fullgrid(x) = TRUE
+> fullgrid(x)
+[1] TRUE
+> summary(x)
+Object of class SpatialGridDataFrame
+Coordinates:
+     min    max
+x 178440 181560
+y 329600 333760
+Is projected: NA 
+proj4string : [NA]
+Grid attributes:
+  cellcentre.offset cellsize cells.dim
+x            178460       40        78
+y            329620       40       104
+Data attributes:
+     part.a          part.b           dist         soil       ffreq     
+ Min.   :0.000   Min.   :0.000   Min.   :0.000   1   :1665   1   : 779  
+ 1st Qu.:0.000   1st Qu.:0.000   1st Qu.:0.119   2   :1084   2   :1335  
+ Median :0.000   Median :1.000   Median :0.272   3   : 354   3   : 989  
+ Mean   :0.399   Mean   :0.601   Mean   :0.297   NA's:5009   NA's:5009  
+ 3rd Qu.:1.000   3rd Qu.:1.000   3rd Qu.:0.440                          
+ Max.   :1.000   Max.   :1.000   Max.   :0.993                          
+ NA's   :5009    NA's   :5009    NA's   :5009                           
+> gridparameters(x)
+  cellcentre.offset cellsize cells.dim
+x            178460       40        78
+y            329620       40       104
+> class(as(x, "matrix"))
+[1] "matrix"
+Warning message:
+In as.matrix.SpatialGridDataFrame(from) :
+  as.matrix.SpatialPixelsDataFrame uses first column;
+ pass subset or [] for other columns
+> 
+> fullgrid(x) = FALSE
+> fullgrid(x)
+[1] FALSE
+> summary(x)
+Object of class SpatialPixelsDataFrame
+Coordinates:
+     min    max
+x 178440 181560
+y 329600 333760
+Is projected: NA 
+proj4string : [NA]
+Number of points: 3103
+Grid attributes:
+  cellcentre.offset cellsize cells.dim
+x            178460       40        78
+y            329620       40       104
+Data attributes:
+     part.a           part.b            dist        soil     ffreq   
+ Min.   :0.0000   Min.   :0.0000   Min.   :0.0000   1:1665   1: 779  
+ 1st Qu.:0.0000   1st Qu.:0.0000   1st Qu.:0.1193   2:1084   2:1335  
+ Median :0.0000   Median :1.0000   Median :0.2715   3: 354   3: 989  
+ Mean   :0.3986   Mean   :0.6014   Mean   :0.2971                    
+ 3rd Qu.:1.0000   3rd Qu.:1.0000   3rd Qu.:0.4402                    
+ Max.   :1.0000   Max.   :1.0000   Max.   :0.9926                    
+> class(as(x, "matrix"))
+[1] "matrix"
+Warning message:
+In as.matrix.SpatialGridDataFrame(from) :
+  as.matrix.SpatialPixelsDataFrame uses first column;
+ pass subset or [] for other columns
+> gridparameters(x)
+  cellcentre.offset cellsize cells.dim
+x            178460       40        78
+y            329620       40       104
+> 
+> df = data.frame(z = c(1:6,NA,8,9), 
++ 	xc = c(1,1,1,2,2,2,3,3,3), 
++ 	yc = c(rep(c(0, 1.5, 3),3)))
+> 
+> coordinates(df) = ~xc+yc
+> gridded(df) = TRUE
+> gridparameters(df)
+   cellcentre.offset cellsize cells.dim
+xc                 1      1.0         3
+yc                 0      1.5         3
+> as(df, "matrix")
+     [,1] [,2] [,3]
+[1,]    3    2    1
+[2,]    6    5    4
+[3,]    9    8   NA
+> 
+> # get grid topology:
+> grd = points2grid(as(df, "SpatialPoints"), 1e-31) 
+> grd
+                  xc  yc
+cellcentre.offset  1 0.0
+cellsize           1 1.5
+cells.dim          3 3.0
+> getGridIndex(coordinates(df), grd)
+[1] 7 4 1 8 5 2 9 6 3
+> 
+> g = SpatialGrid(grid = grd)
+> fullgrid(g)
+[1] TRUE
+> fullgrid(g) = TRUE
+> class(g)
+[1] "SpatialGrid"
+attr(,"package")
+[1] "sp"
+> # the next one has to fail:
+> fullgrid(g) <- FALSE
+> class(g)
+[1] "SpatialPixels"
+attr(,"package")
+[1] "sp"
+> 
+> print(summary(df))
+Object of class SpatialPixelsDataFrame
+Coordinates:
+     min  max
+xc  0.50 3.50
+yc -0.75 3.75
+Is projected: NA 
+proj4string : [NA]
+Number of points: 9
+Grid attributes:
+   cellcentre.offset cellsize cells.dim
+xc                 1      1.0         3
+yc                 0      1.5         3
+Data attributes:
+       z       
+ Min.   :1.00  
+ 1st Qu.:2.75  
+ Median :4.50  
+ Mean   :4.75  
+ 3rd Qu.:6.50  
+ Max.   :9.00  
+ NA's   :1     
+> image(df["z"])
+> as.image.SpatialGridDataFrame(df)
+$x
+[1] 1 2 3
+
+$y
+[1] 0.0 1.5 3.0
+
+$z
+     [,1] [,2] [,3]
+[1,]    1    2    3
+[2,]    4    5    6
+[3,]   NA    8    9
+
+> as.image.SpatialGridDataFrame(df["z"])
+$x
+[1] 1 2 3
+
+$y
+[1] 0.0 1.5 3.0
+
+$z
+     [,1] [,2] [,3]
+[1,]    1    2    3
+[2,]    4    5    6
+[3,]   NA    8    9
+
+> coordinatevalues(getGridTopology(df))
+$xc
+[1] 1 2 3
+
+$yc
+[1] 3.0 1.5 0.0
+
+> 
+> as.data.frame(df)
+   z xc  yc
+1  1  1 0.0
+2  2  1 1.5
+3  3  1 3.0
+4  4  2 0.0
+5  5  2 1.5
+6  6  2 3.0
+7 NA  3 0.0
+8  8  3 1.5
+9  9  3 3.0
+> 
+> fullgrid(df) = TRUE
+> as.data.frame(df)
+  z xc  yc
+1 3  1 3.0
+2 6  2 3.0
+3 9  3 3.0
+4 2  1 1.5
+5 5  2 1.5
+6 8  3 1.5
+7 1  1 0.0
+8 4  2 0.0
+> 
+> fullgrid(df) = FALSE  
+> as.data.frame(df)
+  z xc  yc
+1 3  1 3.0
+2 6  2 3.0
+3 9  3 3.0
+4 2  1 1.5
+5 5  2 1.5
+6 8  3 1.5
+7 1  1 0.0
+8 4  2 0.0
+> 
+> fullgrid(df) = TRUE
+> fullgrid(df) = FALSE
+> as.data.frame(df)
+  z xc  yc
+1 3  1 3.0
+2 6  2 3.0
+3 9  3 3.0
+4 2  1 1.5
+5 5  2 1.5
+6 8  3 1.5
+7 1  1 0.0
+8 4  2 0.0
+> 
+> df = as.data.frame(df)
+> set.seed(133331)
+> df$xc = df$xc + rep(.001*rnorm(3), 3)[1:8]
+> df.sp = SpatialPoints(df[c("xc", "yc")])
+> df.grd = SpatialPixels(df.sp, tolerance = .01)
+> df.grd[1:4,,tolerance=.01,drop=TRUE]
+Object of class SpatialPixels
+Grid topology:
+   cellcentre.offset  cellsize cells.dim
+xc          1.000433 0.9995197         3
+yc          1.500000 1.5000000         2
+SpatialPoints:
+        xc  yc
+1 1.000433 3.0
+2 1.997926 3.0
+3 2.999472 3.0
+4 1.000433 1.5
+Coordinate Reference System (CRS) arguments: NA 
+> df.grd[1:4,,tolerance=.01]
+Object of class SpatialPixels
+Grid topology:
+   cellcentre.offset  cellsize cells.dim
+xc          1.000433 0.9995197         3
+yc          0.000000 1.5000000         3
+SpatialPoints:
+        xc  yc
+1 1.000433 3.0
+2 1.997926 3.0
+3 2.999472 3.0
+4 1.000433 1.5
+Coordinate Reference System (CRS) arguments: NA 
+> 
+> proc.time()
+   user  system elapsed 
+  0.685   0.268   0.635 

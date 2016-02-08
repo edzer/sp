@@ -1,0 +1,184 @@
+
+R version 3.2.2 (2015-08-14) -- "Fire Safety"
+Copyright (C) 2015 The R Foundation for Statistical Computing
+Platform: x86_64-pc-linux-gnu (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> set.seed(1331)
+> cl1 = cbind(rnorm(3, 10), rnorm(3, 10))
+> cl2 = cbind(rnorm(5, 10), rnorm(5,  0))
+> cl3 = cbind(rnorm(7,  0), rnorm(7, 10))
+> 
+> library(sp)
+> mp = SpatialMultiPoints(list(cl1, cl2, cl3))
+> plot(mp, col = 2, cex = 1, pch = 1:3)
+> mp
+SpatialMultiPoints:
+[[1]]
+          [,1]      [,2]
+[1,]  9.377732 11.529001
+[2,] 11.136951  9.845501
+[3,]  9.762133 11.236448
+
+[[2]]
+          [,1]       [,2]
+[1,] 10.386325 -0.5827836
+[2,] 10.532143 -0.3125824
+[3,]  9.796604 -1.0536246
+[4,] 10.272737 -0.7188880
+[5,] 11.364576 -1.0525404
+
+[[3]]
+           [,1]      [,2]
+[1,] -0.8441413  9.184820
+[2,]  1.1420848 10.767842
+[3,]  1.9479070 10.844674
+[4,] -0.4512836 10.718613
+[5,]  0.6695716 10.349259
+[6,]  0.1269003 10.508655
+[7,] -0.7273297  9.233874
+
+Coordinate Reference System (CRS) arguments: NA 
+> mp[1:2]
+SpatialMultiPoints:
+[[1]]
+          [,1]      [,2]
+[1,]  9.377732 11.529001
+[2,] 11.136951  9.845501
+[3,]  9.762133 11.236448
+
+[[2]]
+          [,1]       [,2]
+[1,] 10.386325 -0.5827836
+[2,] 10.532143 -0.3125824
+[3,]  9.796604 -1.0536246
+[4,] 10.272737 -0.7188880
+[5,] 11.364576 -1.0525404
+
+Coordinate Reference System (CRS) arguments: NA 
+> as(mp, "SpatialPoints")
+SpatialPoints:
+       coords.x1  coords.x2
+ [1,]  9.3777317 11.5290011
+ [2,] 11.1369510  9.8455013
+ [3,]  9.7621333 11.2364485
+ [4,] 10.3863251 -0.5827836
+ [5,] 10.5321429 -0.3125824
+ [6,]  9.7966038 -1.0536246
+ [7,] 10.2727371 -0.7188880
+ [8,] 11.3645757 -1.0525404
+ [9,] -0.8441413  9.1848197
+[10,]  1.1420848 10.7678420
+[11,]  1.9479070 10.8446745
+[12,] -0.4512836 10.7186131
+[13,]  0.6695716 10.3492587
+[14,]  0.1269003 10.5086550
+[15,] -0.7273297  9.2338744
+attr(,"groupIndex")
+ [1] "1" "1" "1" "2" "2" "2" "2" "2" "3" "3" "3" "3" "3" "3" "3"
+Coordinate Reference System (CRS) arguments: NA 
+> 
+> print(mp, asWKT=TRUE, digits=3)
+SpatialMultiPoints:
+                                                                                   geometry
+1                                                MULTIPOINT (9.38 11.5,11.1 9.85,9.76 11.2)
+2                     MULTIPOINT (10.4 -0.583,10.5 -0.313,9.8 -1.05,10.3 -0.719,11.4 -1.05)
+3 MULTIPOINT (-0.844 9.18,1.14 10.8,1.95 10.8,-0.451 10.7,0.67 10.3,0.127 10.5,-0.727 9.23)
+Coordinate Reference System (CRS) arguments: NA 
+> 
+> mpdf = SpatialMultiPointsDataFrame(list(cl1, cl2, cl3), data.frame(a = 1:3))
+> mpdf
+               coordinates a
+1       (9.377732, 11.529) 1
+1.1   (11.13695, 9.845501) 1
+1.2   (9.762133, 11.23645) 1
+2   (10.38633, -0.5827836) 2
+2.1 (10.53214, -0.3125824) 2
+2.2  (9.796604, -1.053625) 2
+2.3  (10.27274, -0.718888) 2
+2.4   (11.36458, -1.05254) 2
+3    (-0.8441413, 9.18482) 3
+3.1   (1.142085, 10.76784) 3
+3.2   (1.947907, 10.84467) 3
+3.3 (-0.4512836, 10.71861) 3
+3.4  (0.6695716, 10.34926) 3
+3.5  (0.1269003, 10.50866) 3
+3.6 (-0.7273297, 9.233874) 3
+> print(mpdf, asWKT=TRUE, digits=3)
+                                                                                   geometry
+1                                                MULTIPOINT (9.38 11.5,11.1 9.85,9.76 11.2)
+2                     MULTIPOINT (10.4 -0.583,10.5 -0.313,9.8 -1.05,10.3 -0.719,11.4 -1.05)
+3 MULTIPOINT (-0.844 9.18,1.14 10.8,1.95 10.8,-0.451 10.7,0.67 10.3,0.127 10.5,-0.727 9.23)
+  a
+1 1
+2 2
+3 3
+> 
+> plot(mpdf, col = mpdf$a, cex = 1:3)
+> as(mpdf, "data.frame")
+            X1         X2 index a
+1    9.3777317 11.5290011     1 1
+1.1 11.1369510  9.8455013     1 1
+1.2  9.7621333 11.2364485     1 1
+2   10.3863251 -0.5827836     2 2
+2.1 10.5321429 -0.3125824     2 2
+2.2  9.7966038 -1.0536246     2 2
+2.3 10.2727371 -0.7188880     2 2
+2.4 11.3645757 -1.0525404     2 2
+3   -0.8441413  9.1848197     3 3
+3.1  1.1420848 10.7678420     3 3
+3.2  1.9479070 10.8446745     3 3
+3.3 -0.4512836 10.7186131     3 3
+3.4  0.6695716 10.3492587     3 3
+3.5  0.1269003 10.5086550     3 3
+3.6 -0.7273297  9.2338744     3 3
+Warning message:
+In data.row.names(row.names, rowsi, i) :
+  some row.names duplicated: 2,3,5,6,7,8,10,11,12,13,14,15 --> row.names NOT used
+> mpdf[1:2,]
+               coordinates a
+1       (9.377732, 11.529) 1
+1.1   (11.13695, 9.845501) 1
+1.2   (9.762133, 11.23645) 1
+2   (10.38633, -0.5827836) 2
+2.1 (10.53214, -0.3125824) 2
+2.2  (9.796604, -1.053625) 2
+2.3  (10.27274, -0.718888) 2
+2.4   (11.36458, -1.05254) 2
+> as(mpdf, "SpatialPointsDataFrame")
+               coordinates a
+1       (9.377732, 11.529) 1
+1.1   (11.13695, 9.845501) 1
+1.2   (9.762133, 11.23645) 1
+2   (10.38633, -0.5827836) 2
+2.1 (10.53214, -0.3125824) 2
+2.2  (9.796604, -1.053625) 2
+2.3  (10.27274, -0.718888) 2
+2.4   (11.36458, -1.05254) 2
+3    (-0.8441413, 9.18482) 3
+3.1   (1.142085, 10.76784) 3
+3.2   (1.947907, 10.84467) 3
+3.3 (-0.4512836, 10.71861) 3
+3.4  (0.6695716, 10.34926) 3
+3.5  (0.1269003, 10.50866) 3
+3.6 (-0.7273297, 9.233874) 3
+> 
+> # aggregate SpatialPointsDataFrame to SpatialMultiPointsDataFrame:
+> demo(meuse, ask = FALSE, echo = FALSE)
+> a = aggregate(meuse[c("zinc", "lead")], list(meuse$ffreq))
+> spplot(a[c("zinc", "lead")])
+> 
+> proc.time()
+   user  system elapsed 
+  0.660   0.323   0.656 
