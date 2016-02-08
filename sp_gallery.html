@@ -193,6 +193,12 @@ hr {
 <li>
 <a href="#toc_8">Other packages for making maps</a>
 </li>
+<li>
+<a href="#toc_9">Interactive maps: leaflet, mapview</a>
+</li>
+<li>
+<a href="#toc_10">SessionInfo</a>
+</li>
 </ul>
 </li>
 </ul>
@@ -870,6 +876,72 @@ view</a> contains
 pointers to other CRAN packages that have functionality for creating
 general or custom maps, in addition to pointers to packages that
 can be used for analyzing spatial data.</p>
+
+<h2 id="toc_9">Interactive maps: leaflet, mapview</h2>
+
+<p>R packages leaflet and mapview provide interactive, browser-based
+maps building upon the leaflet javascript library. An example is:</p>
+
+<pre><code class="r">library(mapview)
+</code></pre>
+
+<pre><code>## Loading required package: leaflet
+</code></pre>
+
+<pre><code class="r">mapview(meuse.grid, &quot;soil&quot;)@map
+</code></pre>
+
+<p>&lt;!--html_preserve--&gt;<div id="htmlwidget-3685" style="width:504px;height:504px;" class="leaflet"></div>
+<script type="application/json" data-for="htmlwidget-3685">{&quot;x&quot;:{&quot;calls&quot;:[{&quot;method&quot;:&quot;addProviderTiles&quot;,&quot;args&quot;:[&quot;OpenStreetMap&quot;,null,&quot;OpenStreetMap&quot;,{&quot;errorTileUrl&quot;:&quot;&quot;,&quot;noWrap&quot;:false,&quot;zIndex&quot;:null,&quot;unloadInvisibleTiles&quot;:null,&quot;updateWhenIdle&quot;:null,&quot;detectRetina&quot;:false,&quot;reuseTiles&quot;:false}]},{&quot;method&quot;:&quot;addProviderTiles&quot;,&quot;args&quot;:[&quot;Esri.WorldImagery&quot;,null,&quot;Esri.WorldImagery&quot;,{&quot;errorTileUrl&quot;:&quot;&quot;,&quot;noWrap&quot;:false,&quot;zIndex&quot;:null,&quot;unloadInvisibleTiles&quot;:null,&quot;updateWhenIdle&quot;:null,&quot;detectRetina&quot;:false,&quot;reuseTiles&quot;:false}]},{&quot;method&quot;:&quot;addProviderTiles&quot;,&quot;args&quot;:[&quot;Thunderforest.Landscape&quot;,null,&quot;Thunderforest.Landscape&quot;,{&quot;errorTileUrl&quot;:&quot;&quot;,&quot;noWrap&quot;:false,&quot;zIndex&quot;:null,&quot;unloadInvisibleTiles&quot;:null,&quot;updateWhenIdle&quot;:null,&quot;detectRetina&quot;:false,&quot;reuseTiles&quot;:false}]},{&quot;method&quot;:&quot;addProviderTiles&quot;,&quot;args&quot;:[&quot;OpenTopoMap&quot;,null,&quot;OpenTopoMap&quot;,{&quot;errorTileUrl&quot;:&quot;&quot;,&quot;noWrap&quot;:false,&quot;zIndex&quot;:null,&quot;unloadInvisibleTiles&quot;:null,&quot;updateWhenIdle&quot;:null,&quot;detectRetina&quot;:false,&quot;reuseTiles&quot;:false}]},{&quot;method&quot;:&quot;addRasterImage&quot;,&quot;args&quot;:[&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAE4AAABoCAYAAABfX8Y2AAADzUlEQVR4nO2dsVLcMBCGfzMpSA95FVoGihSQji41T5U63XUcRQoytLwK0EOnFEGJELIky7vSruRvhmHGHIPvu3+1K5+ByRiDjf88P72ao+PDKfW4gxono4Xnp1fjfo6xiXsjR5bLJg5haSmRw4ubE3T/cIHd/nxW3tDilpany7DicqXNpW5YcTHuHy6Sj5lGnONCaUvJurq8ezfbDZe40nXNL9nhxFExlLhY2k5PbpPf76ZuKHExchqCyzDi1sxsLjZ1w4ijZLc/N5u4QoYQR1WmlqvLu6l7cbnScrqqS/fiqLE7iK7FLSnRbRxhxN2vdiuOM21Ax+KoGf7qiE9J2gDgE/F5iCD2PkIJftqAwRK3dFaL0Z04jl1C6Hh34mrRlbhaaQM6EpcjrbQ5hOiiq1J3USCeNqCDxHFIy0G1OC5pqbQBiku15E1lSlSKc6VRy8pJG6BIXOuE+YgWRz2XpchNGyBMXG1Ra2gqrkQUV3kuSRvQcBzRlK4QTcRJk7Y0bUADcdKklaJ650BBSdqAys1hTdpazmwhRI0jITiFlaYNEF6q0lLmUk2ctKawJm2A4MRJThsgVBy3tLVpAwSK0yANqCQud32TXp4u4hLHCVXagMZznKaE+TRLXG1plGkDKoiTdsmbCvFbrhx+fPsd/fovY0jTBjAnbq6bUt5ulZLGRfddlSNtAKM4aXtTaljESZHGlTaA4XfyfWmhDnp6covvXz6/O3Z9c7b4Z7VoChbSxOVIA/BBWozSxZ9TGkA4jnCUp5XWqnPGIElcbOwoHT3WyOJOG1BpHFkqUGLCfFaLoy7RtdJqpA0QNgBrSJqlmrjUxp5CWq20ASvnuFiZpkTZNW/JaJJCvLjUupYrzUIhr6Y0YOEcJ2UrJYFscRTSKC8ntSarOSyV5gqyM1xK2s/Hlw/HSvavtcha42qXqLtG5nTb2usbkJG4bV0LExW3SZtnVlwraf4ok7POfZ2m6ueq4l2u65uz4FrXsnkEE9eyRHOvpLTuuB/EaVjXWksDvHFEg7TYdo76NocY/xKnQZokRF2PyyG2/sX+Gj41B0BfaaslT13icqgx13Unzs573PK6EucPyZzy1Ig7Oj6c7EfNsWOOyRgjtjnk/H8sy25/buYuQXFcdpqeHl/US3MJlae6OzJLKZUG/JVU5RaINSfJAdX5cMsTtcZJexFjiClVTdIAIeK0SQPexGk88dY0T5zWF62pOK3SAEdc7SehWRrgJa7Wk9EuDQiUKveT6kEakLh3hHIw7kWYJXnTzVp5vQmzLLojM0dir6J8/gDwZgaVYg4hXgAAAABJRU5ErkJggg==&quot;,[[50.9930155856758,5.72078928577738],[50.9554871869271,5.76549754238305]],0.8,null,null,&quot;soil&quot;]},{&quot;method&quot;:&quot;addLegend&quot;,&quot;args&quot;:[{&quot;colors&quot;:[&quot;#EBEAF7&quot;,&quot;#ABB342&quot;,&quot;#460000&quot;],&quot;labels&quot;:[&quot;1&quot;,&quot;2&quot;,&quot;3&quot;],&quot;na_color&quot;:null,&quot;na_label&quot;:&quot;NA&quot;,&quot;opacity&quot;:1,&quot;position&quot;:&quot;topright&quot;,&quot;type&quot;:&quot;factor&quot;,&quot;title&quot;:&quot;soil&quot;,&quot;extra&quot;:null,&quot;layerId&quot;:null,&quot;className&quot;:&quot;info legend&quot;}]},{&quot;method&quot;:&quot;addLayersControl&quot;,&quot;args&quot;:[[&quot;OpenStreetMap&quot;,&quot;Esri.WorldImagery&quot;,&quot;Thunderforest.Landscape&quot;,&quot;OpenTopoMap&quot;],&quot;soil&quot;,{&quot;collapsed&quot;:true,&quot;autoZIndex&quot;:true,&quot;position&quot;:&quot;topleft&quot;}]}],&quot;limits&quot;:{&quot;lat&quot;:[50.9554871869271,50.9930155856758],&quot;lng&quot;:[5.72078928577738,5.76549754238305]}},&quot;evals&quot;:[]}</script>&lt;!--/html_preserve--&gt;</p>
+
+<p>more examples are found <a href="https://environmentalinformatics-marburg.github.io/web-presentations/20150723_mapView.html">here</a>.</p>
+
+<h2 id="toc_10">SessionInfo</h2>
+
+<pre><code class="r">sessionInfo()
+</code></pre>
+
+<pre><code>## R version 3.2.3 (2015-12-10)
+## Platform: x86_64-pc-linux-gnu (64-bit)
+## Running under: Ubuntu 14.04.3 LTS
+## 
+## locale:
+##  [1] LC_CTYPE=en_US.UTF-8          LC_NUMERIC=C                 
+##  [3] LC_TIME=en_GB.UTF-8           LC_COLLATE=en_US.UTF-8       
+##  [5] LC_MONETARY=en_GB.UTF-8       LC_MESSAGES=en_US.UTF-8      
+##  [7] LC_PAPER=en_GB.UTF-8          LC_NAME=en_GB.UTF-8          
+##  [9] LC_ADDRESS=en_GB.UTF-8        LC_TELEPHONE=en_GB.UTF-8     
+## [11] LC_MEASUREMENT=en_GB.UTF-8    LC_IDENTIFICATION=en_GB.UTF-8
+## 
+## attached base packages:
+## [1] methods   stats     graphics  grDevices utils     datasets  base     
+## 
+## other attached packages:
+##  [1] mapview_1.0.0       leaflet_1.0.0       cshapes_0.4-2      
+##  [4] plyr_1.8.3          RgoogleMaps_1.2.0.7 ggmap_2.5.2        
+##  [7] ggplot2_2.0.0       RColorBrewer_1.1-2  gstat_1.1-1        
+## [10] rgeos_0.3-16        maps_3.0.1          rgdal_1.1-3        
+## [13] maptools_0.8-38     sp_1.2-2            knitr_1.11         
+## 
+## loaded via a namespace (and not attached):
+##  [1] zoo_1.7-12          OpenStreetMap_0.3.2 reshape2_1.4.1     
+##  [4] rJava_0.9-7         lattice_0.20-33     colorspace_1.2-6   
+##  [7] stats4_3.2.3        htmltools_0.3       yaml_2.1.13        
+## [10] base64enc_0.1-3     spacetime_1.1-5     hexbin_1.27.1      
+## [13] R.oo_1.19.0         foreign_0.8-66      R.utils_2.2.0      
+## [16] jpeg_0.1-8          foreach_1.4.3       stringr_1.0.0      
+## [19] munsell_0.4.2       gtable_0.1.2        raster_2.5-2       
+## [22] R.methodsS3_1.7.0   htmlwidgets_0.5     mapproj_1.2-4      
+## [25] codetools_0.2-14    evaluate_0.8        labeling_0.3       
+## [28] latticeExtra_0.6-26 parallel_3.2.3      gdalUtils_2.0.1.7  
+## [31] proto_0.3-10        xts_0.9-7           Rcpp_0.12.3        
+## [34] geosphere_1.5-1     satellite_0.2.0     scales_0.3.0       
+## [37] jsonlite_0.9.19     FNN_1.1             rjson_0.2.15       
+## [40] png_0.1-7           digest_0.6.9        stringi_1.0-1      
+## [43] rasterVis_0.37      RJSONIO_1.3-0       grid_3.2.3         
+## [46] tools_3.2.3         magrittr_1.5        iterators_1.0.8    
+## [49] intervals_0.15.1
+</code></pre>
 
 </body>
 

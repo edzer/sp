@@ -541,3 +541,21 @@ view](https://cran.r-project.org/web/views/Spatial.html) contains
 pointers to other CRAN packages that have functionality for creating
 general or custom maps, in addition to pointers to packages that
 can be used for analyzing spatial data.
+
+## Interactive maps: leaflet, mapview
+
+R packages leaflet and mapview provide interactive, browser-based
+maps building upon the leaflet javascript library. An example is:
+
+```{r}
+library(mapview)
+mapview(meuse.grid, "soil")@map
+```
+
+more examples are found [here](https://environmentalinformatics-marburg.github.io/web-presentations/20150723_mapView.html).
+
+## SessionInfo
+
+```{r}
+sessionInfo()
+```

@@ -352,3 +352,10 @@ ggplot(as.data.frame(meuse)) +
 	geom_point() +
 	coord_equal()
 
+## ------------------------------------------------------------------------
+library(mapview)
+mapview(meuse.grid, "soil")@map
+
+## ------------------------------------------------------------------------
+sessionInfo()
+
