@@ -438,8 +438,8 @@ library(ggmap)
 merc = CRS("+init=epsg:3857")
 WGS84 = CRS("+init=epsg:4326")
 
-meuse = spTransform(meuse, WGS84)
-bgMap = get_map(as.vector(bbox(meuse)), source = "google", zoom = 13) # useless without zoom level
+meuse.ll = spTransform(meuse, WGS84)
+bgMap = get_map(as.vector(bbox(meuse.ll)), source = "google", zoom = 13) # useless without zoom level
 
 # plot with ggmap-google bg:
 plot(spTransform(meuse, merc), bgMap = bgMap, pch = 16, cex = .5)
@@ -455,7 +455,7 @@ spplot(spTransform(meuse, merc), c("zinc",  "lead"), colorkey = TRUE,
 Using open streetmap background from `ggmap`:
 
 ```{r}
-bb = t(apply(bbox(meuse), 1, bbexpand, .04))
+bb = t(apply(bbox(meuse.ll), 1, bbexpand, .04))
 bgMap = get_map(as.vector(bb), source = "osm") # WGS84 for background map
 plot(spTransform(meuse, merc), bgMap = bgMap, pch = 16, cex = .5)
 ```
@@ -463,7 +463,7 @@ plot(spTransform(meuse, merc), bgMap = bgMap, pch = 16, cex = .5)
 Using `RgoogleMaps`:
 
 ```{r}
-center = apply(coordinates(meuse), 2, mean)[2:1]
+center = apply(coordinates(meuse.ll), 2, mean)[2:1]
 library(RgoogleMaps)
 g = GetMap(center=center, zoom=13) # google
 par(mar = rep(0,4)) # fill full device

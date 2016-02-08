@@ -727,8 +727,8 @@ data into the web mercator (epsg 3857) projection.</p>
 <pre><code class="r">merc = CRS(&quot;+init=epsg:3857&quot;)
 WGS84 = CRS(&quot;+init=epsg:4326&quot;)
 
-meuse = spTransform(meuse, WGS84)
-bgMap = get_map(as.vector(bbox(meuse)), source = &quot;google&quot;, zoom = 13) # useless without zoom level
+meuse.ll = spTransform(meuse, WGS84)
+bgMap = get_map(as.vector(bbox(meuse.ll)), source = &quot;google&quot;, zoom = 13) # useless without zoom level
 </code></pre>
 
 <pre><code>## Warning: bounding box given to google - spatial extent only approximate.
@@ -754,7 +754,7 @@ plot(spTransform(meuse, merc), bgMap = bgMap, pch = 16, cex = .5)
 
 <p>Using open streetmap background from <code>ggmap</code>:</p>
 
-<pre><code class="r">bb = t(apply(bbox(meuse), 1, bbexpand, .04))
+<pre><code class="r">bb = t(apply(bbox(meuse.ll), 1, bbexpand, .04))
 bgMap = get_map(as.vector(bb), source = &quot;osm&quot;) # WGS84 for background map
 plot(spTransform(meuse, merc), bgMap = bgMap, pch = 16, cex = .5)
 </code></pre>
@@ -763,7 +763,7 @@ plot(spTransform(meuse, merc), bgMap = bgMap, pch = 16, cex = .5)
 
 <p>Using <code>RgoogleMaps</code>:</p>
 
-<pre><code class="r">center = apply(coordinates(meuse), 2, mean)[2:1]
+<pre><code class="r">center = apply(coordinates(meuse.ll), 2, mean)[2:1]
 library(RgoogleMaps)
 g = GetMap(center=center, zoom=13) # google
 par(mar = rep(0,4)) # fill full device
