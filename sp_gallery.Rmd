@@ -549,7 +549,7 @@ maps building upon the leaflet javascript library. An example is:
 
 ```{r}
 library(mapview)
-mapview(meuse.grid, "soil")@map
+mapview(meuse.grid, zcol = "soil")@map
 ```
 
 more examples are found [here](https://environmentalinformatics-marburg.github.io/web-presentations/20150723_mapView.html).

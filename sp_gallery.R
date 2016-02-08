@@ -354,7 +354,7 @@ ggplot(as.data.frame(meuse)) +
 
 ## ------------------------------------------------------------------------
 library(mapview)
-mapview(meuse.grid, "soil")@map
+mapview(meuse.grid, zcol = "soil")@map
 
 ## ------------------------------------------------------------------------
 sessionInfo()
