@@ -1,4 +1,5 @@
-push:
-	git commit -a -m 'update'
-	git push origin gh-pages
+commit:
+	git commit -a
 
+push:
+	git push origin gh-pages
