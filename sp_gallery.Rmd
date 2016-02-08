@@ -12,6 +12,10 @@ output:
 
 # Plotting maps with `sp`
 
+This document shows example images created with objects represented
+by one of the classes for spatial data in packages sp. The .Rmd file
+is available here; the .R file here.
+
 ## Loading data and packages
 
 The Meuse data set is loaded using a demo script in package `sp`,
