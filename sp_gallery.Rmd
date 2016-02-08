@@ -519,6 +519,9 @@ ggplot(ff) +
 	coord_map()
 ```
 
+The [ggplot2 wiki](https://github.com/hadley/ggplot2/wiki/plotting-polygon-shapefiles)
+indicates that plotting polygons with holes may be problematic with ggplot.
+
 Bubble plots can be generated e.g. by
 
 ```{r}
@@ -527,6 +530,9 @@ ggplot(as.data.frame(meuse)) +
 	geom_point() +
 	coord_equal()
 ```
+
+where `coord_equal()` sets the unit aspect ratio of the axes,
+for projected coordinates.
 
 ## Other packages for making maps
 

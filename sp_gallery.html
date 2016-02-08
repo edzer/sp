@@ -847,6 +847,9 @@ coordinates:</p>
 
 <p><img src="figure/unnamed-chunk-36-1.png" alt="plot of chunk unnamed-chunk-36"> </p>
 
+<p>The <a href="https://github.com/hadley/ggplot2/wiki/plotting-polygon-shapefiles">ggplot2 wiki</a>
+indicates that plotting polygons with holes may be problematic with ggplot.</p>
+
 <p>Bubble plots can be generated e.g. by</p>
 
 <pre><code class="r">ggplot(as.data.frame(meuse)) + 
@@ -856,6 +859,9 @@ coordinates:</p>
 </code></pre>
 
 <p><img src="figure/unnamed-chunk-37-1.png" alt="plot of chunk unnamed-chunk-37"> </p>
+
+<p>where <code>coord_equal()</code> sets the unit aspect ratio of the axes,
+for projected coordinates.</p>
 
 <h2 id="toc_8">Other packages for making maps</h2>
 
