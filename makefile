@@ -6,7 +6,8 @@ index.html:	sp_gallery.html
 	cp sp_gallery.html index.html
 
 sp_gallery.html:	sp_gallery.Rmd
-	Rscript -e "library(knitr); purl(\"sp_gallery.Rmd\"); knit2html(\"sp_gallery.Rmd\", options=\"toc\")"
+	# Rscript -e "library(knitr); purl(\"sp_gallery.Rmd\"); knit2html(\"sp_gallery.Rmd\", options=\"toc\")"
+	Rscript -e "knitr::purl(\"sp_gallery.Rmd\"); rmarkdown::render(\"sp_gallery.Rmd\")"
 
 commit:
 	git commit -a
