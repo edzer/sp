@@ -358,7 +358,7 @@ ff = merge(f, nc@data, by.x = "id", by.y = "CNTY_ID") # this replicates a lot of
 ggplot(ff) + 
 	aes(long, lat, group = group, fill = SID74) + 
 	geom_polygon() + 
-	coord_map()
+	coord_quickmap()
 
 ## ------------------------------------------------------------------------
 ggplot(as.data.frame(meuse)) + 
@@ -368,7 +368,7 @@ ggplot(as.data.frame(meuse)) +
 
 ## ---- results="markup"---------------------------------------------------
 library(mapview)
-mapview(meuse.grid, zcol = "soil")@map
+mapview(meuse.grid, zcol = c("soil", "dist"))@map
 
 ## ------------------------------------------------------------------------
 sessionInfo()

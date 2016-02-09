@@ -523,17 +523,19 @@ ff = merge(f, nc@data, by.x = "id", by.y = "CNTY_ID") # this replicates a lot of
 
 next, we can plot the data, but if we want one distance unit north
 to approximately match one unit east, we additionally need to set
-`coord_map()` to instruct `ggplot` this concerns longitude/latitude
-coordinates:
+`coord_map()` or `coord_quickmap()` to instruct `ggplot` this
+concerns longitude/latitude coordinates (not stating the datum).
+`coord_map()` projects to mercator (by default), `coord_quickmap()`
+computes a suitable aspect ratio and plots degrees.
 
 ```{r}
 ggplot(ff) + 
 	aes(long, lat, group = group, fill = SID74) + 
 	geom_polygon() + 
-	coord_map()
+	coord_quickmap()
 ```
 
-Bubble plots can be generated e.g. by
+Bubble plots can be generated through `ggplot` by
 
 ```{r}
 ggplot(as.data.frame(meuse)) + 
@@ -563,7 +565,7 @@ maps building upon the leaflet javascript library. An example is:
 
 ```{r, results="markup"}
 library(mapview)
-mapview(meuse.grid, zcol = "soil")@map
+mapview(meuse.grid, zcol = c("soil", "dist"))@map
 ```
 
 more examples are found [here](https://environmentalinformatics-marburg.github.io/web-presentations/20150723_mapView.html).
