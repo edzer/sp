@@ -27,20 +27,23 @@ meuse.longlat = spTransform(meuse, crs.longlat)
 plot(meuse.longlat, axes = TRUE)
 
 ## ------------------------------------------------------------------------
+par(mar = rep(0,4))
 plot(meuse.longlat, asp = 1)
 
 ## ------------------------------------------------------------------------
+par(mar = c(0, 0, 1, 0))
 library(methods) # as
-plot(as(meuse, "Spatial"), expandBB = c(.05,0,0,0))
+plot(as(meuse, "Spatial"), expandBB = c(.05, 0, 0, 0))
 plot(meuse, add = TRUE)
 plot(gridlines(meuse), add = TRUE)
 text(labels(gridlines(meuse)))
 title("default gridlines within Meuse bounding box")
 
 ## ------------------------------------------------------------------------
+par(mar = c(0, 0, 1, 0))
 grd <- gridlines(meuse.longlat)
 grd_x <- spTransform(grd, CRS(proj4string(meuse)))
-plot(as(meuse, "Spatial"), expandBB = c(.05,0,0,0))
+plot(as(meuse, "Spatial"), expandBB = c(.05, 0, 0, 0))
 plot(meuse, add = TRUE)
 plot(grd_x, add=TRUE, col = grey(.8))
 text(labels(grd_x, crs.longlat))
@@ -67,6 +70,7 @@ maps2sp = function(xlim, ylim, l.out = 100, clip = TRUE) {
 		gIntersection(m, bb) # cut map slice in WGS84
 	}
 }
+par(mar = c(0, 0, 1, 0))
 m = maps2sp(c(-100,-20), c(10,55))
 sp = SpatialPoints(rbind(c(-101,9), c(-101,55), c(-19,9), c(-19,55)), CRS("+init=epsg:4326"))
 laea = CRS("+proj=laea +lat_0=30 +lon_0=-40")
@@ -82,6 +86,7 @@ text(labels(gl.laea, crs.longlat, side = 3:4), col = 'red')
 title("curved text label demo")
 
 # polar:
+par(mar = c(0, 0, 1, 0))
 pts=SpatialPoints(rbind(c(-180,-70),c(0,-70),c(180,-89),c(180,-70)), CRS("+init=epsg:4326"))
 gl = gridlines(pts, easts = seq(-180,180,20), ndiscr = 100)
 polar = CRS("+init=epsg:3031")
@@ -96,6 +101,7 @@ l$srt = 0 # otherwise they end up upside-down
 text(l, cex = .8)
 title("grid line labels on polar projection, epsg 3031")
 
+par(mar = c(0, 0, 1, 0))
 m = maps2sp(xlim = c(-180,180), ylim = c(-90,-70), clip = FALSE)
 gl = gridlines(m, easts = seq(-180,180,20))
 polar = CRS("+init=epsg:3031")
@@ -114,6 +120,7 @@ title("grid line labels on polar projection, epsg 3031")
 
 
 ## ------------------------------------------------------------------------
+par(mar = c(0, 0, 1, 0))
 plot(nc)
 invisible(text(coordinates(nc), labels=as.character(nc$NAME), cex=0.4))
 
@@ -123,6 +130,7 @@ rrt <- nc$SID74/nc$BIR74
 brks <- quantile(rrt, seq(0,1,1/7))
 cols <- grey((length(brks):2)/length(brks))
 dens <- (2:length(brks))*3
+par(mar = c(0, 0, 1, 0))
 plot(nc, col=cols[findInterval(rrt, brks, all.inside=TRUE)])
 
 ## ------------------------------------------------------------------------
@@ -130,28 +138,32 @@ rrt <- nc$SID74/nc$BIR74
 brks <- quantile(rrt, seq(0,1,1/7))
 cols <- grey((length(brks):2)/length(brks))
 dens <- (2:length(brks))*3
+par(mar = rep(0,4))
 plot(nc, density=dens[findInterval(rrt, brks, all.inside=TRUE)])
 
 ## ------------------------------------------------------------------------
+par(mar = rep(0,4))
 plot(meuse.grid)
 
 ## ------------------------------------------------------------------------
+par(mar = rep(0,4))
 image(meuse.grid["dist"])
 points(meuse)
 
 ## ------------------------------------------------------------------------
+par(mar = rep(0,4))
 image(meuse.grid["dist"])
 plot(meuse.grid, add = TRUE)
 
 ## ------------------------------------------------------------------------
 spplot(meuse, "zinc", do.log = TRUE,
-	key.space=list(x=0.2,y=0.9,corner=c(0,1)),
-	scales=list(draw=T))
+	key.space=list(x = 0.1, y = 0.95, corner = c(0, 1)),
+	scales=list(draw = TRUE))
 
 ## ------------------------------------------------------------------------
 spplot(meuse, "zinc", do.log = TRUE,
 	key.space=list(x=0.2,y=0.9,corner=c(0,1)),
-	scales=list(draw=T), cuts = 3,
+	scales=list(draw = TRUE), cuts = 3,
 	legendEntries = c("low", "intermediate", "high"))
 
 ## ------------------------------------------------------------------------
@@ -289,8 +301,8 @@ print(b2, split = c(2,1,2,1), more = FALSE)
 ## ------------------------------------------------------------------------
 # create two dummy factor variables, with equal labels:
 set.seed(31)
-nc$f = factor(sample(1:5,100,replace=T),labels=letters[1:5])
-nc$g = factor(sample(1:5,100,replace=T),labels=letters[1:5])
+nc$f = factor(sample(1:5, 100,replace = TRUE),labels=letters[1:5])
+nc$g = factor(sample(1:5, 100,replace = TRUE),labels=letters[1:5])
 library(RColorBrewer)
 ## Two (dummy) factor variables shown with qualitative colour ramp; degrees in axes
 spplot(nc, c("f","g"), col.regions=brewer.pal(5, "Set3"), scales=list(draw = TRUE))
@@ -300,11 +312,9 @@ spplot(nc, c("f","g"), col.regions=brewer.pal(5, "Set3"), scales=list(draw = TRU
 library(ggmap)
 merc = CRS("+init=epsg:3857")
 WGS84 = CRS("+init=epsg:4326")
-
 meuse.ll = spTransform(meuse, WGS84)
 bgMap = get_map(as.vector(bbox(meuse.ll)), source = "google", zoom = 13) # useless without zoom level
-
-# plot with ggmap-google bg:
+par(mar = rep(0,4))
 plot(spTransform(meuse, merc), bgMap = bgMap, pch = 16, cex = .5)
 
 ## ------------------------------------------------------------------------
@@ -312,6 +322,7 @@ spplot(spTransform(meuse, merc), c("zinc",  "lead"), colorkey = TRUE,
 	sp.layout = list(panel.ggmap, bgMap, first = TRUE))
 
 ## ------------------------------------------------------------------------
+par(mar = rep(0,4))
 bb = t(apply(bbox(meuse.ll), 1, bbexpand, .04))
 bgMap = get_map(as.vector(bb), source = "osm") # WGS84 for background map
 plot(spTransform(meuse, merc), bgMap = bgMap, pch = 16, cex = .5)
@@ -333,8 +344,8 @@ spplot(spTransform(meuse, merc), c("zinc",  "lead"), colorkey = TRUE,
 library(cshapes)
 cshp = cshp(as.Date("2000-01-1"))
 norway = cshp[cshp$ISO1AL2 == "NO",]
-
 NorwayMap = get_map(as.vector(bbox(norway))) # no is already in WGS84
+par(mar = rep(0,4))
 plot(spTransform(norway, merc), bgMap = NorwayMap, border = 'red')
 
 ## ------------------------------------------------------------------------
