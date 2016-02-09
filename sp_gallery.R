@@ -21,7 +21,7 @@ plot(meuse.riv, add = TRUE, col = grey(.9, alpha = .5))
 ## ------------------------------------------------------------------------
 proj4string(meuse)
 
-## ------------------------------------------------------------------------
+## ---- fig.height=8-------------------------------------------------------
 crs.longlat = CRS("+init=epsg:4326")
 meuse.longlat = spTransform(meuse, crs.longlat)
 plot(meuse.longlat, axes = TRUE)
@@ -30,23 +30,24 @@ plot(meuse.longlat, axes = TRUE)
 par(mar = rep(0,4))
 plot(meuse.longlat, asp = 1)
 
-## ------------------------------------------------------------------------
+## ---- fig.height=7.5-----------------------------------------------------
 par(mar = c(0, 0, 1, 0))
 library(methods) # as
 plot(as(meuse, "Spatial"), expandBB = c(.05, 0, 0, 0))
+plot(gridlines(meuse), add = TRUE, col = grey(.8))
 plot(meuse, add = TRUE)
-plot(gridlines(meuse), add = TRUE)
-text(labels(gridlines(meuse)))
-title("default gridlines within Meuse bounding box")
+text(labels(gridlines(meuse)), col = grey(.7))
+title("default gridlines with Meuse projected data")
 
 ## ------------------------------------------------------------------------
 par(mar = c(0, 0, 1, 0))
 grd <- gridlines(meuse.longlat)
 grd_x <- spTransform(grd, CRS(proj4string(meuse)))
 plot(as(meuse, "Spatial"), expandBB = c(.05, 0, 0, 0))
-plot(meuse, add = TRUE)
 plot(grd_x, add=TRUE, col = grey(.8))
-text(labels(grd_x, crs.longlat))
+plot(meuse, add = TRUE)
+text(labels(grd_x, crs.longlat), col = grey(.7))
+title("longitude latitude gridlines and labels")
 
 ## ------------------------------------------------------------------------
 # demonstrate axis labels with angle, both sides:

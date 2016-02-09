@@ -83,7 +83,7 @@ an aspect ratio is chosen such that in the middle of the plot one
 unit north approximates one unit east. For small regions, this works
 pretty well; also note the degree symbols in the axes tic marks:
 
-```{r}
+```{r, fig.height=8}
 crs.longlat = CRS("+init=epsg:4326")
 meuse.longlat = spTransform(meuse, crs.longlat)
 plot(meuse.longlat, axes = TRUE)
@@ -105,14 +105,14 @@ graticules, a grid with constant longitude and latitude lines.
 in the local reference system, or in long/lat. Here is an
 example of the local reference system:
 
-```{r}
+```{r, fig.height=7.5}
 par(mar = c(0, 0, 1, 0))
 library(methods) # as
 plot(as(meuse, "Spatial"), expandBB = c(.05, 0, 0, 0))
+plot(gridlines(meuse), add = TRUE, col = grey(.8))
 plot(meuse, add = TRUE)
-plot(gridlines(meuse), add = TRUE)
-text(labels(gridlines(meuse)))
-title("default gridlines within Meuse bounding box")
+text(labels(gridlines(meuse)), col = grey(.7))
+title("default gridlines with Meuse projected data")
 ```
 
 ```{r}
@@ -120,9 +120,10 @@ par(mar = c(0, 0, 1, 0))
 grd <- gridlines(meuse.longlat)
 grd_x <- spTransform(grd, CRS(proj4string(meuse)))
 plot(as(meuse, "Spatial"), expandBB = c(.05, 0, 0, 0))
-plot(meuse, add = TRUE)
 plot(grd_x, add=TRUE, col = grey(.8))
-text(labels(grd_x, crs.longlat))
+plot(meuse, add = TRUE)
+text(labels(grd_x, crs.longlat), col = grey(.7))
+title("longitude latitude gridlines and labels")
 ```
 
 These lines look pretty straight, because it concerns a small area.

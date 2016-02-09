@@ -165,18 +165,19 @@ plot(meuse.longlat, asp = 1)</code></pre>
 <pre class="r"><code>par(mar = c(0, 0, 1, 0))
 library(methods) # as
 plot(as(meuse, &quot;Spatial&quot;), expandBB = c(.05, 0, 0, 0))
+plot(gridlines(meuse), add = TRUE, col = grey(.8))
 plot(meuse, add = TRUE)
-plot(gridlines(meuse), add = TRUE)
-text(labels(gridlines(meuse)))
-title(&quot;default gridlines within Meuse bounding box&quot;)</code></pre>
+text(labels(gridlines(meuse)), col = grey(.7))
+title(&quot;default gridlines with Meuse projected data&quot;)</code></pre>
 <p><img src="sp_gallery_files/figure-html/unnamed-chunk-8-1.png" title="" alt="" width="672" /></p>
 <pre class="r"><code>par(mar = c(0, 0, 1, 0))
 grd &lt;- gridlines(meuse.longlat)
 grd_x &lt;- spTransform(grd, CRS(proj4string(meuse)))
 plot(as(meuse, &quot;Spatial&quot;), expandBB = c(.05, 0, 0, 0))
-plot(meuse, add = TRUE)
 plot(grd_x, add=TRUE, col = grey(.8))
-text(labels(grd_x, crs.longlat))</code></pre>
+plot(meuse, add = TRUE)
+text(labels(grd_x, crs.longlat), col = grey(.7))
+title(&quot;longitude latitude gridlines and labels&quot;)</code></pre>
 <p><img src="sp_gallery_files/figure-html/unnamed-chunk-9-1.png" title="" alt="" width="672" /></p>
 <p>These lines look pretty straight, because it concerns a small area. For</p>
 <pre class="r"><code># demonstrate axis labels with angle, both sides:
