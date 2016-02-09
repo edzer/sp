@@ -7,13 +7,13 @@ index.html:	sp_gallery.html
 
 sp_gallery.html:	sp_gallery.Rmd
 	# Rscript -e "library(knitr); purl(\"sp_gallery.Rmd\"); knit2html(\"sp_gallery.Rmd\", options=\"toc\")"
-	Rscript -e "knitr::purl(\"sp_gallery.Rmd\"); rmarkdown::render(\"sp_gallery.Rmd\")"
+	Rscript -e "knitr::purl(\"sp_gallery.Rmd\"); rmarkdown::render(\"sp_gallery.Rmd\", output_options = list(self_contained = FALSE))"
 
 commit:
 	git commit -a
 
 push:
-	git add figure/*
+	git add sp_gallery_files/* sp_gallery_files/*/*
 	make commit
 	git push origin gh-pages
 

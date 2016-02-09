@@ -4,6 +4,7 @@ output:
   html_document: 
     toc: yes
 ---
+
 <!--
 %\VignetteEngine{knitr::knitr}
 %\VignetteIndexEntry{sp map gallery}
