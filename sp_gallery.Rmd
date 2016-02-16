@@ -27,6 +27,7 @@ render("sp_gallery.Rmd")
 and the corresponding .R file by
 
 ```
+library(knitr)
 purl("sp_gallery.Rmd")
 ```
 

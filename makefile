@@ -19,3 +19,6 @@ push:
 
 view:
 	google-chrome sp_gallery.html
+
+onefile:
+	Rscript -e "knitr::purl(\"sp_gallery.Rmd\"); rmarkdown::render(\"sp_gallery.Rmd\")"
