@@ -368,7 +368,15 @@ ggplot(as.data.frame(meuse)) +
 
 ## ---- results="markup"---------------------------------------------------
 library(mapview)
+mapview(meuse, zcol = c("zinc", "lead"))@map
+
+## ---- results="markup"---------------------------------------------------
+library(mapview)
 mapview(meuse.grid, zcol = c("soil", "dist"))@map
+
+## ---- results="markup"---------------------------------------------------
+library(mapview)
+mapview(nc, zcol = c("SID74", "SID79"), alpha.regions = 1.0)@map
 
 ## ------------------------------------------------------------------------
 sessionInfo()

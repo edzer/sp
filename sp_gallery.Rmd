@@ -562,11 +562,22 @@ can be used for analyzing spatial data.
 ## Interactive maps: leaflet, mapview
 
 R packages leaflet and mapview provide interactive, browser-based
-maps building upon the leaflet javascript library. An example is:
+maps building upon the leaflet javascript library. Example with
+points, grid and polygons follow:
+
+```{r, results="markup"}
+library(mapview)
+mapview(meuse, zcol = c("zinc", "lead"))@map
+```
 
 ```{r, results="markup"}
 library(mapview)
 mapview(meuse.grid, zcol = c("soil", "dist"))@map
+```
+
+```{r, results="markup"}
+library(mapview)
+mapview(nc, zcol = c("SID74", "SID79"), alpha.regions = 1.0)@map
 ```
 
 more examples are found [here](https://environmentalinformatics-marburg.github.io/web-presentations/20150723_mapView.html).
