@@ -18,6 +18,8 @@
 \alias{dim.SpatialGridDataFrame}
 \alias{coerce,im,SpatialGridDataFrame-method}
 \alias{coerce,ppp,SpatialGridDataFrame-method}
+\alias{plot,SpatialGridDataFrame,missing-method}
+\alias{plot,SpatialPixelsDataFrame,missing-method}
 
 \title{Class "SpatialGridDataFrame" }
 \description{  Class for spatial attributes that have spatial locations
@@ -51,6 +53,35 @@ Class \code{"Spatial"}, by class \code{"SpatialGrid"}.
 	\item{cbind}{\code{signature(...)}: if arguments have identical topology, combine their
 	attribute values}
   }
+}
+
+\section{Plot method arguments}{
+The plot method for \dQuote{SpatialPixelsDataFrame} or \dQuote{SpatialGridDataFrame} 
+objects takes the following arguments:
+\describe{
+\item{x}{object of class \link{SpatialPixelsDataFrame} or \link{SpatialGridDataFrame}}
+\item{...}{ arguments passed on to \link{image.SpatialGridDataFrame}}
+\item{attr}{ integer or character, indicating the attribute variable to be plotted; default 1}
+\item{col}{ color ramp to be used; default \code{bpy.colors(100)} for continuous, or
+   \code{RColorBrewer::brewer.pal(nlevels(x[[1]]), "Set2")} for factor variables}
+\item{breaks}{ for continous attributes: values at which color breaks should take place }
+\item{zlim}{ for continuous attributes: 
+  numeric of length 2, specifying the range of attribute values to be plotted; 
+  default to data range \code{range(as.numeric(x[[attr]])[is.finite(x[[attr]])])}}
+\item{axes}{ logical: draw x and y axes? default \code{FALSE}}
+\item{xaxs}{character, default "i", see \link{par}}
+\item{yaxs}{character, default equal to \code{xaxs}, see \link{par}}
+\item{at}{numeric or NULL, values at which axis tics and labes should be drawn; default NULL (use \link{pretty})}
+\item{border}{color, to be used for drawing grid lines; default NA (don't draw grid lines)}
+\item{axis.pos}{integer, 1-4; default 4, see \link{axis}}
+\item{add.axis}{logical: draw axis along scale? default \code{TRUE}}
+\item{what}{what to draw: \code{"image"}, \code{"scale"}, or \code{"both"}; default "both"}
+\item{scale.size}{size for the scale bar; use \link{lcm} to specify in absolute size, or a numeric
+value such as \code{1/6} to specify relative size; default \code{lcm(2.8)}}
+\item{scale.shrink}{ non-negative numeric indicating the amount to shrink the scale length, default 0}
+\item{scale.frac}{for categorical attributes: numeric between 0 and 1, indicating the scale width, default 0.3}
+\item{scale.n}{for categorical attributes: integer, indicating how many scale categories should fill a complete width; default 15}
+}
 }
 
 \author{ Edzer Pebesma, \email{edzer.pebesma@uni-muenster.de} }

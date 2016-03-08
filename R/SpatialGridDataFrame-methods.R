@@ -354,3 +354,158 @@ setAs("SpatialGridDataFrame", "SpatialPolygonsDataFrame",
 
 length.SpatialPixelsDataFrame = function(x) { nrow(x@coords) }
 length.SpatialGridDataFrame = function(x) { .NumberOfCells(x@grid) }
+
+# http://menugget.blogspot.de/2013/12/new-version-of-imagescale-function.html
+#This function creates a color scale for use with the image()
+#function. Input parameters should be consistent with those
+#used in the corresponding image plot. The "axis.pos" argument
+#defines the side of the axis. The "add.axis" argument defines
+#whether the axis is added (default: TRUE)or not (FALSE).
+image.scale <- function(z, zlim, col = heat.colors(12), breaks, axis.pos=1, add.axis = TRUE, 
+		at = NULL, shrink = 0, ...) {
+	stopifnot(!is.factor(z))
+	if (!missing(breaks) && length(breaks) != (length(col) + 1))
+		stop("must have one more break than colour")
+	if (missing(breaks)) {
+		if (missing(zlim)) {
+			zlim <- range(z, na.rm=TRUE)
+			zlim[2] <- zlim[2]+c(zlim[2]-zlim[1])*(1E-3)#adds a bit to the range in both directions
+			zlim[1] <- zlim[1]-c(zlim[2]-zlim[1])*(1E-3)
+			breaks <- seq(zlim[1], zlim[2], length.out=(length(col)+1))
+		} else
+			breaks <- seq(zlim[1], zlim[2], length.out=(length(col)+1)) 
+	}
+	Shrink = function(r, s) {
+		w = diff(r)
+		c(r[1] - 0.5 * s * w, r[2] + 0.5 * s * w)
+	}
+	if (axis.pos %in% c(1,3)) {
+		ylim <- c(0, 1)
+		xlim <- Shrink(range(breaks), shrink)
+	}
+	if (axis.pos %in% c(2,4)) {
+		ylim <- Shrink(range(breaks), shrink)
+		xlim <- c(0, 1)
+	}
+	poly <- vector(mode="list", length(col))
+	for (i in seq(poly))
+		poly[[i]] <- c(breaks[i], breaks[i+1], breaks[i+1], breaks[i])
+	plot(1,1,t="n", ylim = ylim, xlim = xlim, axes = FALSE, 
+		xlab = "", ylab = "", xaxs = "i", yaxs = "i", ...)  
+	for(i in seq(poly)) {
+		if (axis.pos %in% c(1,3))
+			polygon(poly[[i]], c(0,0,1,1), col=col[i], border=NA)
+		if (axis.pos %in% c(2,4))
+			polygon(c(0,0,1,1), poly[[i]], col=col[i], border=NA)
+	}
+	if (shrink > 0) {
+		if (is.null(at))
+			at = pretty(breaks)
+		b = c(breaks[1], breaks[length(breaks)])
+		if (axis.pos %in% c(1,3))
+			lines(y = c(0,1,1,0,0), x = c(b[1],b[1],b[2],b[2],b[1]))
+		if (axis.pos %in% c(2,4))
+			lines(x = c(0,1,1,0,0), y = c(b[1],b[1],b[2],b[2],b[1]))
+	} else
+		box()
+	if (add.axis) 
+		axis(axis.pos, at)
+}
+
+image.scale.factor <- function(z, col = heat.colors(nlevels(z)), axis.pos = 1, scale.frac = 0.3, 
+		scale.n = 15, ...) {
+	stopifnot(is.factor(z))
+	stopifnot(axis.pos %in% c(1,4))
+	frc = scale.frac
+	stre = scale.n
+	plot(1, 1, t="n", ylim = c(0,1), xlim = c(0,1), axes = FALSE, 
+		xlab = "", ylab = "", xaxs = "i", yaxs = "i", ...)  
+	n = nlevels(z)
+	if (n != length(col))
+		stop("# of colors must be equal to # of factor levels")
+	lb = (1:n - 0.5)/max(n, stre) # place of the labels
+	poly <- vector(mode="list", length(col))
+	breaks = (0:n) / max(n, stre)
+	if (n < stre) { # center
+		breaks = breaks + (stre - n)/(2 * stre)
+		lb = lb + (stre - n)/(2 * stre)
+	}
+	for (i in seq(poly))
+		poly[[i]] <- c(breaks[i], breaks[i+1], breaks[i+1], breaks[i])
+	for(i in seq(poly)) {
+		if (axis.pos %in% c(1,3))
+			polygon(poly[[i]], c(1,1,1-frc,1-frc), col=col[i], border=NA)
+		if (axis.pos %in% c(2,4))
+			polygon(c(0,0,frc,frc), poly[[i]], col=col[i], border=NA)
+	}
+	b = c(breaks[1], breaks[length(breaks)])
+	if (axis.pos %in% c(1,3)) {
+		lines(y = c(1,1-frc,1-frc,1,1), x = c(b[1],b[1],b[2],b[2],b[1]))
+		# text(x = 1.05 * frc, y = lb, levels(z), pos = axis.pos)
+		text(y = (1-frc)/1.05, x = lb, levels(z), pos = axis.pos)
+	}
+	if (axis.pos %in% c(2,4)) {
+		lines(x = c(0,frc,frc,0,0), y = c(b[1],b[1],b[2],b[2],b[1]))
+		text(x = 1.05 * frc, y = lb, levels(z), pos = axis.pos)
+	}
+}
+
+plot.SpatialGridDataFrame = function(x, ..., attr = 1, col, breaks,
+		zlim = range(as.numeric(x[[attr]])[is.finite(x[[attr]])]),
+		axes = FALSE, xaxs = "i", yaxs = xaxs, at = NULL,
+		border = NA, axis.pos = 4, add.axis = TRUE, what = "both", scale.size = lcm(2.8),
+		scale.shrink = 0, scale.frac = 0.3, scale.n = 15) {
+
+	if (missing(col)) {
+		if (is.factor(x[[1]]))
+			col = RColorBrewer::brewer.pal(nlevels(x[[1]]), "Set2")
+		else
+			col = bpy.colors(100) # heat.colors(12)
+	}
+	image.args = list(x = x[1], col = col, zlim = zlim, axes = axes, xaxs = xaxs, yaxs = yaxs, ...)
+	if (!missing(breaks))
+		image.args$breaks = breaks
+	si = scale.size
+	if (what == "both")
+		switch (axis.pos,
+			layout(matrix(c(2,1), nrow=2, ncol=1), widths=1, heights=c(1,si)),  # 1
+			layout(matrix(c(1,2), nrow=1, ncol=2), widths=c(si,1), heights=1),  # 2
+			layout(matrix(c(1,2), nrow=2, ncol=1), widths=1, heights=c(si,1)),  # 3
+			layout(matrix(c(2,1), nrow=1, ncol=2), widths=c(1,si), heights=1)   # 4
+		)
+	# scale:
+	if (what %in% c("both", "scale")) {
+		mar = c(1,1,1,1)
+		if (! is.factor(x[[1]]))
+			mar[axis.pos] = 3
+		if (axes && axis.pos %in% c(2,4))
+			mar[1] = 3
+		if (axes && axis.pos %in% c(1,3))
+			mar[2] = 3
+		par(mar = mar)
+		if (is.factor(x[[1]]))
+			image.scale.factor(x[[1]], col = col, axis.pos = axis.pos, scale.frac = scale.frac, 
+				scale.n = scale.n)
+		else
+			image.scale(x[[1]], zlim = zlim, col = col, breaks = breaks, axis.pos = axis.pos,
+				add.axis = add.axis, at = at, shrink = scale.shrink)
+		# axis(axis.pos)
+	}
+	if (what %in% c("both", "image")) {
+		if (is.factor(x[[1]]))
+			image.args$x[[1]] = as.numeric(x[[1]])
+		mar=c(1,1,1,1)
+		if (axes)
+			mar[1:2] = 3
+		par(mar = mar)
+		do.call(image, image.args)
+		if (!is.na(border))
+			plot(geometry(x), col = border, add = TRUE)
+	}
+}
+
+setMethod("plot", signature(x = "SpatialGridDataFrame", y = "missing"), 
+	function(x,y,...) plot.SpatialGridDataFrame(x,...))
+
+setMethod("plot", signature(x = "SpatialPixelsDataFrame", y = "missing"), 
+	function(x,y,...) plot.SpatialGridDataFrame(x,...))

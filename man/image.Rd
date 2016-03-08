@@ -7,11 +7,9 @@
 \alias{as.image.SpatialGridDataFrame}
 \alias{image2Grid}
 \alias{imageScale}
-\title{ image gridded spatial data, or convert to format for image }
-\description{
-Convert gridded data in SpatialGridDataFrame to image format; call
-image on data in SpatialGridDataFrame format. The aspect ratio is set as either 1 for projected data, or stretched by distance from Equator for geographical coordinates.
-}
+\title{ Image or contour method for gridded spatial data; convert to and from image data structure  }
+\description{ Create image for gridded data in SpatialGridDataFrame or SpatialPixelsDataFrame
+objects. }
 \usage{
 \method{image}{SpatialGridDataFrame}(x, attr = 1, xcol = 1, ycol = 2, 
 	col = heat.colors(12), red=NULL, green=NULL, blue=NULL,
