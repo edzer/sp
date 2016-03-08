@@ -19,7 +19,6 @@
 \alias{coerce,im,SpatialGridDataFrame-method}
 \alias{coerce,ppp,SpatialGridDataFrame-method}
 \alias{plot,SpatialGridDataFrame,missing-method}
-\alias{plot,SpatialPixelsDataFrame,missing-method}
 
 \title{Class "SpatialGridDataFrame" }
 \description{  Class for spatial attributes that have spatial locations
@@ -56,8 +55,8 @@ Class \code{"Spatial"}, by class \code{"SpatialGrid"}.
 }
 
 \section{Plot method arguments}{
-The plot method for \dQuote{SpatialPixelsDataFrame} or \dQuote{SpatialGridDataFrame} 
-objects takes the following arguments:
+The plot methods for \dQuote{SpatialPixelsDataFrame} or \dQuote{SpatialGridDataFrame} 
+objects take the following arguments:
 \describe{
 \item{x}{object of class \link{SpatialPixelsDataFrame} or \link{SpatialGridDataFrame}}
 \item{...}{ arguments passed on to \link{image.SpatialGridDataFrame}}
@@ -90,6 +89,8 @@ value such as \code{1/6} to specify relative size; default \code{lcm(2.8)}}
   \code{\link{SpatialGrid-class}}, which does not contain the attribute data,
   and \code{\link{SpatialPixelsDataFrame-class} which holds possibly incomplete
   grids }
+
+  Plotting gridded data with sp: \url{http://r-spatial.org/r/2016/03/08/plotting-spatial-grids.html}
 }
 \examples{
 data(meuse.grid) # only the non-missing valued cells

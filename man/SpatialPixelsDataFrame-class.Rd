@@ -14,6 +14,7 @@
 \alias{as.data.frame.SpatialPixelsDataFrame}
 \alias{rbind.SpatialPixelsDataFrame}
 \alias{dim.SpatialPixelsDataFrame}
+\alias{plot,SpatialPixelsDataFrame,missing-method}
 
 \title{Class "SpatialPixelsDataFrame" }
 \description{  Class for spatial attributes that have spatial locations
@@ -51,6 +52,8 @@ Class \code{"Spatial"}, by class \code{"SpatialPixels"}.
 	a \link{SpatialGridDataFrame-class} first, and use \code{[} on that object}
 	\item{as.matrix}{\code{signature(x = "SpatialPixelsDataFrame")}: coerce to matrix }
 	\item{rbind}{\code{signature(x = "SpatialPixelsDataFrame")}: rbind-like method }
+	\item{plot}{\code{signature(x = "SpatialPixelsDataFrame", y = "missing")}: see
+	\link{SpatialGridDataFrame-class} for details}
   }
 }
 
