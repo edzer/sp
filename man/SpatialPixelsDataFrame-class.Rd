@@ -11,6 +11,7 @@
 \alias{coerce,SpatialPixelsDataFrame,SpatialPolygonsDataFrame-method}
 \alias{coerce,SpatialPixelsDataFrame,data.frame-method}
 \alias{coerce,SpatialPixelsDataFrame,matrix-method}
+\alias{coerce,SpatialPixelsDataFrame,array-method}
 \alias{as.data.frame.SpatialPixelsDataFrame}
 \alias{rbind.SpatialPixelsDataFrame}
 \alias{dim.SpatialPixelsDataFrame}

@@ -121,7 +121,7 @@ setAs("SpatialPixelsDataFrame", "SpatialPolygonsDataFrame",
 as.matrix.SpatialPixelsDataFrame = function(x, ...) {
 	# fullgrid(x) = TRUE
 	x = as(x, "SpatialGridDataFrame")
-	as(x, "matrix", ...)
+	as.matrix(x, ...)
 }
 
 as.array.SpatialGridDataFrame = function(x,...) {
@@ -133,13 +133,17 @@ as.array.SpatialGridDataFrame = function(x,...) {
 setAs("SpatialGridDataFrame", "array", function(from) 
 	as.array.SpatialGridDataFrame(from))
 
+setAs("SpatialPixelsDataFrame", "array", function(from) 
+	as(as(from, "SpatialGridDataFrame"), "array"))
+
 as.matrix.SpatialGridDataFrame = function(x, ..., byrow = FALSE) {
 	if (ncol(x@data) > 1)
 		warning(
-		"as.matrix.SpatialPixelsDataFrame uses first column;\n pass subset or [] for other columns")
-	# try, at some stage also:
-	# matrix(x@data[[1]], x@grid@cells.dim[2], x@grid@cells.dim[1], byrow=TRUE)
-	matrix(x@data[[1]], x@grid@cells.dim[1], x@grid@cells.dim[2], byrow=byrow)
+		"as.matrix.SpatialGridDataFrame uses first column;\n use subset or [] for other columns")
+	if (byrow)
+		matrix(x@data[[1]], x@grid@cells.dim[2], x@grid@cells.dim[1], byrow=byrow)
+	else
+		matrix(x@data[[1]], x@grid@cells.dim[1], x@grid@cells.dim[2], byrow=byrow)
 }
 
 setAs("SpatialPixelsDataFrame", "matrix", function(from) 
@@ -366,15 +370,10 @@ image.scale <- function(z, zlim, col = heat.colors(12), breaks, axis.pos=1, add.
 	stopifnot(!is.factor(z))
 	if (!missing(breaks) && length(breaks) != (length(col) + 1))
 		stop("must have one more break than colour")
-	if (missing(breaks)) {
-		if (missing(zlim)) {
-			zlim <- range(z, na.rm=TRUE)
-			zlim[2] <- zlim[2]+c(zlim[2]-zlim[1])*(1E-3)#adds a bit to the range in both directions
-			zlim[1] <- zlim[1]-c(zlim[2]-zlim[1])*(1E-3)
-			breaks <- seq(zlim[1], zlim[2], length.out=(length(col)+1))
-		} else
-			breaks <- seq(zlim[1], zlim[2], length.out=(length(col)+1)) 
-	}
+	if (missing(zlim))
+		zlim <- range(z, na.rm=TRUE)
+	if (missing(breaks))
+		breaks <- seq(zlim[1], zlim[2], length.out = length(col) + 1)
 	Shrink = function(r, s) {
 		w = diff(r)
 		c(r[1] - 0.5 * s * w, r[2] + 0.5 * s * w)
