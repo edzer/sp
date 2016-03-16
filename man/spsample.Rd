@@ -39,7 +39,8 @@ for sampling on a hexagonal lattice; \code{"clustered"} for clustered sampling;
  \code{"Fibonacci"} for Fibonacci sampling on the sphere (see references).}
 \item{bb}{ bounding box of the sampled domain; setting this to a smaller
 value leads to sub-region sampling }
-\item{offset}{ for regular sampling only: the offset (position) of the regular
+\item{offset}{ for square cell-based sampling types (regular, stratified, 
+nonaligned): the offset (position) of the regular
 grid; the default for \code{spsample} methods is a random location in
 the unit cell [0,1] x [0,1], leading to a different grid after
 each call; if this is set to \code{c(0.5,0.5)}, the returned grid is

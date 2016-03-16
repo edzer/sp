@@ -461,7 +461,11 @@ plot.SpatialGridDataFrame = function(x, ..., attr = 1, col, breaks,
 		else
 			col = bpy.colors(100) # heat.colors(12)
 	}
-	image.args = list(x = x[1], col = col, zlim = zlim, axes = axes, xaxs = xaxs, yaxs = yaxs, ...)
+	image.args = list(x = x, col = col, zlim = zlim, axes = axes, xaxs = xaxs, yaxs = yaxs, ...)
+	if (all(c("red", "green", "blue") %in% names(image.args))) # legend off:
+		what = "image"	
+	else # plot band 1:
+		image.args$x = x[1]
 	if (!missing(breaks))
 		image.args$breaks = breaks
 	si = scale.size
