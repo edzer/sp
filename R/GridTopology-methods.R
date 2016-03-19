@@ -160,12 +160,14 @@ as.SpatialPolygons.GridTopology <- function(grd, proj4string=CRS(as.character(NA
 		yi <- grd_crds[i,2]
 		x <- c(xi-cS2x, xi-cS2x, xi+cS2x, xi+cS2x, xi-cS2x)
 		y <- c(yi-cS2y, yi+cS2y, yi+cS2y, yi-cS2y, yi-cS2y)
-		Srl[[i]] <- Polygons(list(Polygon(coords=cbind(x, y)
-#, proj4string=proj4string
-)), ID=IDs[i])
-                comment(Srl[[i]]) <- "0"
+		Srl[[i]] <- Polygons(list(Polygon(coords = cbind(x,y))), ID = IDs[i])
+		comment(Srl[[i]]) <- "0"
 	}
-	res <- SpatialPolygons(Srl, proj4string=proj4string)
+	res <- SpatialPolygons(Srl, proj4string = proj4string)
+	# address https://github.com/edzer/sp/issues/3:
+	coordnam = names(grd@cellcentre.offset)
+	if (!is.null(coordnam))
+		coordnames(res) = coordnam
 	res
 }
 setAs("GridTopology", "SpatialPolygons", function(from)
