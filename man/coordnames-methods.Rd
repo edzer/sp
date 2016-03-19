@@ -8,8 +8,6 @@
 \alias{coordnames,Lines-method}
 \alias{coordnames,Line-method}
 \alias{coordnames,SpatialPolygons-method}
-\alias{coordnames,Polygons-method}
-\alias{coordnames,Polygon-method}
 \alias{coordnames<-}
 \alias{coordnames<-,SpatialPoints,character-method}
 \alias{coordnames<-,SpatialMultiPoints,character-method}
