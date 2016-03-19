@@ -144,16 +144,19 @@ setReplaceMethod("coordnames",
 	signature(x = "SpatialPolygons", value = "character"),
 	function(x, value) {
 		dimnames(x@bbox)[[1]] = value
-		for (i in seq(along = x@polygons))
-			coordnames(x@polygons[[i]]) = value
+		#for (i in seq(along = x@polygons))
+		#	coordnames(x@polygons[[i]]) = value
+		x@polygons = lapply(x@polygons, 
+			function(y) lapply(y@Polygons,
+				function(z) dimnames(z@coords)[[2]] = value))
 		x
 	}
 )
 setReplaceMethod("coordnames", 
 	signature(x = "Polygons", value = "character"),
 	function(x, value) {
-		for (i in seq(along = x@Polygons))
-			coordnames(x@Polygons[[i]]) = value
+		x@Polygons = lapply(x@Polygons,
+			function(z) dimnames(z@coords)[[2]] = value)
 		x
 	}
 )
