@@ -1,5 +1,10 @@
 \name{NEWS} 
 \title{News for Package 'sp'}
+\section{Changes in version 1.2-3 (2016-03-20)}{
+  \itemize{
+    \item \code{as.SpatialPolygons.GridTopology} now drops rownames of coordinates generated, but keeps coordinate (column) names from the \code{cellcentre.offset} slot of the grid.
+  }
+}
 \section{Changes in version 1.2-2 (2016-02-05)}{
   \itemize{
 	\item method `row.names` for `SpatialPoints` makes unique row names, or drops them.
