@@ -102,7 +102,7 @@ export(
 	degreeLabelsNS,
 	longlat.scales,
 	bbexpand,
-        compassRose,
+	compassRose,
 
 	as.image.SpatialGridDataFrame,
 	image2Grid,

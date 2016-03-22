@@ -7,6 +7,8 @@
 \alias{coordnames,SpatialLines-method}
 \alias{coordnames,Lines-method}
 \alias{coordnames,Line-method}
+\alias{coordnames,Polygon-method}
+\alias{coordnames,Polygons-method}
 \alias{coordnames,SpatialPolygons-method}
 \alias{coordnames<-}
 \alias{coordnames<-,SpatialPoints,character-method}
@@ -15,8 +17,6 @@
 \alias{coordnames<-,Lines,character-method}
 \alias{coordnames<-,Line,character-method}
 \alias{coordnames<-,SpatialPolygons,character-method}
-\alias{coordnames<-,Polygons,character-method}
-\alias{coordnames<-,Polygon,character-method}
 \alias{coordnames<-,GridTopology,character-method}
 \alias{coordnames<-,SpatialGrid,character-method}
 \alias{coordnames<-,SpatialPixels,character-method}
@@ -39,15 +39,13 @@ retrieve or assign coordinate names for classes in \pkg{sp}
 }}
 \section{Methods for "coordnames<-"}{
 \describe{
-\item{x = "SpatialPoints", value = "character"}{ assigns coordinate names }
-\item{x = "SpatialLines", value = "character"}{ assigns coordinate names }
-\item{x = "Lines", value = "character"}{ assigns coordinate names }
-\item{x = "Line", value = "character"}{ assigns coordinate names }
-\item{x = "SpatialPolygons", value = "character"}{ assigns coordinate names }
-\item{x = "Polygons", value = "character"}{ assigns coordinate names }
-\item{x = "Polygon", value = "character"}{ assigns coordinate names }
-\item{x = "GridTopology", value = "character"}{ assigns coordinate names }
-\item{x = "SpatialGrid", value = "character"}{ assigns coordinate names }
-\item{x = "SpatialPixels", value = "character"}{ assigns coordinate names }
+\item{x = "SpatialPoints", value = "character"}{ replace coordinate names }
+\item{x = "SpatialLines", value = "character"}{ replace coordinate names }
+\item{x = "Lines", value = "character"}{ replace coordinate names }
+\item{x = "Line", value = "character"}{ replace coordinate names }
+\item{x = "SpatialPolygons", value = "character"}{ replace coordinate names }
+\item{x = "GridTopology", value = "character"}{ replace coordinate names }
+\item{x = "SpatialGrid", value = "character"}{ replace coordinate names }
+\item{x = "SpatialPixels", value = "character"}{ replace coordinate names }
 }}
 \keyword{methods}
