@@ -22,7 +22,8 @@ aggregate.data.frame.SP <- function (x, by, FUN, ..., dissolve = TRUE) {
         names(by)[ind] <- paste("Group", ind, sep = ".")
     }
     nrx <- NROW(x)
-    if (any(lengths(by) != nrx)) 
+    # if (any(lengths(by) != nrx)) 
+	if (any(sapply(by, length) != nrx))
         stop("arguments must have same length")
     y <- as.data.frame(by, stringsAsFactors = FALSE)
     keep <- complete.cases(by)
