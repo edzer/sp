@@ -1,8 +1,4 @@
 aggregate.data.frame.SP <- function (x, by, FUN, ..., dissolve = TRUE) {
-	# taken from stats::aggregate.data.frame, in
-	# R 3.1.0, Fri May 23 23:31:15 CEST 2014 svn rev 65387 
-	# took out option simplify, as it doesn't make sense to not do that
-    # moved "FUN <- match.fun(FUN)" to top caller
 
 	# EP added:
 	stopifnot(is(x, "Spatial"))
@@ -10,12 +6,12 @@ aggregate.data.frame.SP <- function (x, by, FUN, ..., dissolve = TRUE) {
 	geom = geometry(x)
 	x = x@data
 
-    if (NROW(x) == 0L) 
-        stop("no rows to aggregate")
-    if (NCOL(x) == 0L) {
-        x <- data.frame(x = rep(1, NROW(x)))
-        return(aggregate.data.frame(x, by, function(x) 0L)[seq_along(by)])
-    }
+    stopifnot(NROW(x) > 0L) 
+    stopifnot(NCOL(x) > 0L)
+    FUN <- match.fun(FUN)
+
+	# next: fragment taken from stats::aggregate.data.frame, in
+	# R 3.2.4, svn 70336, to find grp
     if (!is.list(by)) 
         stop("'by' must be a list")
     if (is.null(names(by)) && length(by)) 
@@ -26,7 +22,7 @@ aggregate.data.frame.SP <- function (x, by, FUN, ..., dissolve = TRUE) {
         names(by)[ind] <- paste("Group", ind, sep = ".")
     }
     nrx <- NROW(x)
-    if (any(unlist(lapply(by, length)) != nrx)) 
+    if (any(lengths(by) != nrx)) 
         stop("arguments must have same length")
     y <- as.data.frame(by, stringsAsFactors = FALSE)
     keep <- complete.cases(by)
@@ -38,37 +34,14 @@ aggregate.data.frame.SP <- function (x, by, FUN, ..., dissolve = TRUE) {
         z <- gsub(" ", "0", format(y, scientific = FALSE))
         return(z)
     }
-    if (ncol(y)) 
-        grp <- rank(do.call(paste, c(lapply(rev(y), ident), list(sep = "."))), 
-            ties.method = "min")
-    else grp <- integer(nrx)
-    y <- y[match(sort(unique(grp)), grp, 0L), , drop = FALSE]
-    nry <- NROW(y)
-    z <- lapply(x, function(e) {
-        ans <- lapply(X = split(e, grp), FUN = FUN, ...)
-        if (length(len <- unique(sapply(ans, length))) == 1L) {
-            if (len == 1L) {
-                cl <- lapply(ans, oldClass)
-                cl1 <- cl[[1L]]
-                ans <- unlist(ans, recursive = FALSE)
-                if (!is.null(cl1) && all(sapply(cl, function(x) identical(x, 
-                  cl1)))) 
-                  class(ans) <- cl1
-            }
-            else if (len > 1L) 
-                ans <- matrix(unlist(ans, recursive = FALSE), 
-                  nrow = nry, ncol = len, byrow = TRUE, dimnames = {
-                    if (!is.null(nms <- names(ans[[1L]]))) 
-                      list(NULL, nms)
-                    else NULL
-                  })
-        }
-        ans
-    })
-    len <- length(y)
-    for (i in seq_along(z)) y[[len + i]] <- z[[i]]
-    names(y) <- c(names(by), names(x))
-    row.names(y) <- NULL
+    grp <- if (ncol(y)) {
+        grp <- lapply(rev(y), ident)
+        names(grp) <- NULL
+        do.call(paste, c(grp, list(sep = ".")))
+    } else integer(nrx)
+
+	# let aggregate.data.frame do the attribute work:
+	y = aggregate(x, by, FUN, ..., simplify = TRUE) 
 
 	# original would now return y; I added:
 	if (dissolve) { # dissolve/merge:
@@ -87,22 +60,23 @@ aggregate.data.frame.SP <- function (x, by, FUN, ..., dissolve = TRUE) {
 		}
 	} else
 		y = y[as.integer(factor(grp)),,drop=FALSE] # repeat
-	if (identical(y$ID, rep(1, nrow(y))))
-		y$ID = NULL # remove ID field
 	addAttrToGeom(geom, y, match.ID = FALSE)
 }
 
-aggregate.Spatial = function(x, by = list(ID = rep(1, length(x))), FUN = mean, ..., 
+aggregate.Spatial = function(x, by = list(ID = rep(1, length(x))), FUN, ..., 
 		dissolve = TRUE, areaWeighted = FALSE) {
-    FUN <- match.fun(FUN)
 	if (is(by, "Spatial")) { # maybe better do S4 method dispatch?
 		by0 = by
 		if (gridded(by))
 			by = as(by, "SpatialPolygons")
-		if (is(x, "SpatialPolygonsDataFrame") && is(by, "SpatialPolygons") && areaWeighted)
+		if (is(x, "SpatialPolygonsDataFrame") && is(by, "SpatialPolygons") && areaWeighted) {
+			if (!missing(FUN))
+				warning("argument FUN is ignored in area-weighted aggregation, see documentation")
 			df = aggregatePolyWeighted(x, by)
-		else
+		} else {
+    		FUN <- match.fun(FUN)
 			df = over(by, x, fn = FUN, ...)
+		}
 		addAttrToGeom(by0, df, match.ID = FALSE)
 	} else
 		aggregate.data.frame.SP(x, by, FUN, ..., dissolve = dissolve)

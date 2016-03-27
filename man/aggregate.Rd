@@ -7,14 +7,14 @@
 \description{ spatial aggregation of thematic information in spatial objects}
 \usage{
 \method{aggregate}{Spatial}(x, by = list(ID = rep(1, length(x))),
-	FUN = mean, \dots, dissolve = TRUE, areaWeighted = FALSE)
+	FUN, \dots, dissolve = TRUE, areaWeighted = FALSE)
 }
 \arguments{
 \item{x}{object deriving from \link{Spatial}, with attributes }
 \item{by}{aggregation predicate; if \code{by} is a \link{Spatial} object,
 the geometry by which attributes in \code{x} are aggregated; if \code{by}
 is a list, aggregation by attribute(s), see \link{aggregate.data.frame}}
-\item{FUN}{aggregation function }
+\item{FUN}{aggregation function, e.g. \link{mean}; see details}
 \item{...}{arguments passed on to function \code{FUN}, unless \code{minDimension}
 is specified, which is passed on to function \link{over}}
 \item{dissolve}{logical; should, when aggregating based on attributes, the
@@ -35,6 +35,12 @@ mode) is returned. This will compute the \link[rgeos]{gIntersection}
 of \code{x} and \code{by}; see examples below.
 
 If \code{by} is missing, aggregates over all features.
+}
+\details{
+\code{FUN} should be a function that takes as first argument a
+vector, and that returns a single number. The canonical examples
+are \link{mean} and \link{sum}. Counting features is obtained when
+summing an attribute variable that has the value 1 everywhere.
 }
 
 \author{Edzer Pebesma, \email{edzer.pebesma@uni-muenster.de}}
@@ -60,16 +66,16 @@ if (require(rgeos)) {
 	x = aggregate(meuse[c("zinc", "copper")], ab, mean)
 	spplot(x)
 	# aggregation by attribute, then dissolve to polygon:
-	x = aggregate(meuse.grid["dist"], list(i=i))
+	x = aggregate(meuse.grid["dist"], list(i=i), mean)
 	spplot(x["i"])
-	x = aggregate(meuse.grid["dist"], list(i=i,j=j))
+	x = aggregate(meuse.grid["dist"], list(i=i,j=j), mean)
 	spplot(x["dist"], col.regions=bpy.colors())
 	spplot(x["i"], col.regions=bpy.colors(4))
 	spplot(x["j"], col.regions=bpy.colors())
 }
 }
 
-x = aggregate(meuse.grid["dist"], list(i=i,j=j), dissolve = FALSE)
+x = aggregate(meuse.grid["dist"], list(i=i,j=j), mean, dissolve = FALSE)
 spplot(x["j"], col.regions=bpy.colors())
 
 if (require(gstat) && require(rgeos)) {
@@ -77,7 +83,7 @@ if (require(gstat) && require(rgeos)) {
 	spplot(x[1],col.regions=bpy.colors())
 	i = cut(x$var1.pred, seq(4, 7.5, by=.5), 
 		include.lowest = TRUE)
-	xa = aggregate(x["var1.pred"], list(i=i))
+	xa = aggregate(x["var1.pred"], list(i=i), mean)
 	spplot(xa[1],col.regions=bpy.colors(8))
 }
 

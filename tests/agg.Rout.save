@@ -1,6 +1,6 @@
 
-R version 3.2.2 (2015-08-14) -- "Fire Safety"
-Copyright (C) 2015 The R Foundation for Statistical Computing
+R version 3.2.4 Revised (2016-03-16 r70336) -- "Very Secure Dishes"
+Copyright (C) 2016 The R Foundation for Statistical Computing
 Platform: x86_64-pc-linux-gnu (64-bit)
 
 R is free software and comes with ABSOLUTELY NO WARRANTY.
@@ -25,6 +25,9 @@ Type 'q()' to quit R.
 > p$ag2 = aggregate(p, p, mean, minDimension = 1)[[1]]
 > p$ag3 = aggregate(p, p, mean, minDimension = 2)[[1]]
 > p$ag4 = aggregate(p, p, mean, areaWeighted=TRUE)[[1]]
+Warning message:
+In aggregate.Spatial(p, p, mean, areaWeighted = TRUE) :
+  argument FUN is ignored in area-weighted aggregation, see documentation
 > pts = cbind(c(9,21,21,9,9),c(9,9,21,21,9))
 > sq = SpatialPolygons(list(Polygons(list(Polygon(pts)), "ID")))
 > rnd2 = function(x) round(x, 2)
@@ -48,7 +51,10 @@ Type 'q()' to quit R.
 +   aggregate(p, sq, mean, minDimension = 2)[[1]],
 +   aggregate(p, sq, mean, areaWeighted=TRUE)[[1]]))
 [1] 0.56 0.56 0.56 0.56 0.72
+Warning message:
+In aggregate.Spatial(p, sq, mean, areaWeighted = TRUE) :
+  argument FUN is ignored in area-weighted aggregation, see documentation
 > 
 > proc.time()
    user  system elapsed 
-  0.988   0.268   0.958 
+  0.932   0.312   0.939 

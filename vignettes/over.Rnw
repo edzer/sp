@@ -429,7 +429,7 @@ gridded(meuse.grid) = ~x+y
 off = gridparameters(meuse.grid)$cellcentre.offset + 20
 gt = GridTopology(off, c(400,400), c(8,11))
 SG = SpatialGrid(gt)
-agg = aggregate(meuse.grid[3], SG)
+agg = aggregate(meuse.grid[3], SG, mean)
 @
 Figure \ref{fig:agg} shows the result of this aggregation
 (\code{agg}, in colors) and the points (+) of the original grid
@@ -451,7 +451,7 @@ x 400 m grid}
 An example of the aggregated values of \code{meuse.grid} along
 (or under) the line shown in Figure \ref{fig:lines} are
 <<>>=
-sl.agg = aggregate(meuse.grid[,1:3], sl)
+sl.agg = aggregate(meuse.grid[,1:3], sl, mean)
 class(sl.agg)
 as.data.frame(sl.agg)
 @
