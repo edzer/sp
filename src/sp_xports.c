@@ -50,7 +50,8 @@ SEXP SP_PREFIX(Polygon_c)(const SEXP coords, const SEXP n, const SEXP ihole) {
 	}
 	/* from here one, ccopy is duplicate of coords that is closed */
 
-    SP_PREFIX(spRFindCG_c)(n, ccopy, &xc, &yc, &area);
+    /* SP_PREFIX(spRFindCG_c)(n, ccopy, &xc, &yc, &area); */
+    SP_PREFIX(spRFindCG_c)(getAttrib(ccopy, R_DimSymbol), ccopy, &xc, &yc, &area);
     if (fabs(area) < DOUBLE_EPS) {
         if (!R_FINITE(xc) || !R_FINITE(yc)) {
             if (nn == 1) {
