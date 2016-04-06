@@ -3,9 +3,9 @@ sudo: false
 cache: packages
 
 addons:
-	apt:
-		packages:
-			- libgdal1-dev
-			- libgeos-dev
-			- libproj-dev
-			- proj-data
+  apt:
+    packages:
+      - libgdal1-dev
+      - libgeos-dev
+      - libproj-dev
+      - proj-data
