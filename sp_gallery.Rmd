@@ -252,6 +252,11 @@ plot(meuse.grid["dist"], zlim = c(0,1))
 plot(geometry(meuse.grid), add = TRUE, col = grey(.8))
 ```
 
+Read
+[this](http://r-spatial.org/r/2016/03/08/plotting-spatial-grids.html)
+blog post to find out more about the options available (and
+limitations) for plotting gridded data with base plot methods in sp.
+
 ## using lattice plot (spplot)
 
 The following plot colours points with a legend in the plotting area and adds scales:
