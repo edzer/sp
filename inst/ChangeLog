@@ -1,3 +1,90 @@
+2016-03-30  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* src/sp_xports.c: fix Mike's report on
+	https://stat.ethz.ch/pipermail/r-sig-geo/2016-March/024214.html
+
+2016-03-28  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* R/aggregate.R: substitute lenghts for r-oldrel build
+
+2016-03-28  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* R/aggregate.R, man/aggregate.Rd, tests/agg.Rout.save,
+	vignettes/over.Rnw: remove default aggregation function; reduce
+	duplication from aggregate.data.frame
+
+2016-03-23  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* NAMESPACE, man/coordnames-methods.Rd: tidy
+
+2016-03-20  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* R/GridTopology-methods.R, inst/NEWS.Rd: drop rownames, add
+	colnames from grid@cellcentre.offset
+
+2016-03-20  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* R/SpatialPolygons-methods.R, man/coordnames-methods.Rd: correct
+	coordnames<- error for SpatialPolygons
+
+2016-03-19  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* R/SpatialPolygons-methods.R: optimize coordnames<- by avoiding
+	method dispatch
+
+2016-03-19  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* R/GridTopology-methods.R: propagate names(cellcentre.offset) too
+	coordnames in coercion to SpatialPolygons
+
+2016-03-16  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* R/SpatialGridDataFrame-methods.R, man/spsample.Rd: update offset
+	docs; add r/g/b/ to plot/image
+
+2016-03-08  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* R/SpatialGridDataFrame-methods.R,
+	man/SpatialPixelsDataFrame-class.Rd, tests/grid.Rout.save: improve
+	as.matrix and as.array methods for gridded data
+
+2016-03-08  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* man/SpatialGridDataFrame-class.Rd,
+	man/SpatialPixelsDataFrame-class.Rd: add ref to blog, add cross ref
+
+2016-03-08  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* R/SpatialGridDataFrame-methods.R, inst/include/sp.h,
+	man/SpatialGridDataFrame-class.Rd, man/image.Rd, src/sp.h: add scale
+	to default plot method for gridded data
+
+2016-02-08  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* README.md: add gallery link
+
+2016-02-08  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* DESCRIPTION: add URL to new maps gallery
+
+2016-02-08  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* DESCRIPTION: bump version
+
+2016-02-07  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* R/SpatialLines-methods.R, R/gridlines.R, demo/polar.R,
+	man/gridlines.Rd: rework the graticule labels() logic, adjust
+	examples.
+
+2016-02-06  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* .Rbuildignore, inst/NEWS.Rd: add ChangeLog to .Rbuildingore
+
+2016-02-05  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* inst/ChangeLog: update ChangeLog
+
 2016-02-05  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
 
 	* R/rbind.R: keep row.names but make them unique, in case first
