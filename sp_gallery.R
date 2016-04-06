@@ -143,18 +143,15 @@ par(mar = rep(0,4))
 plot(nc, density=dens[findInterval(rrt, brks, all.inside=TRUE)])
 
 ## ------------------------------------------------------------------------
-par(mar = rep(0,4))
-plot(meuse.grid)
+image(meuse.grid)
 
 ## ------------------------------------------------------------------------
-par(mar = rep(0,4))
-image(meuse.grid["dist"])
-points(meuse)
+plot(meuse.grid["dist"])
+points(meuse, col = 'green')
 
 ## ------------------------------------------------------------------------
-par(mar = rep(0,4))
-image(meuse.grid["dist"])
-plot(meuse.grid, add = TRUE)
+plot(meuse.grid["dist"], zlim = c(0,1))
+plot(geometry(meuse.grid), add = TRUE, col = grey(.8))
 
 ## ------------------------------------------------------------------------
 spplot(meuse, "zinc", do.log = TRUE,

@@ -236,23 +236,20 @@ par(mar = rep(0,4))
 plot(nc, density=dens[findInterval(rrt, brks, all.inside=TRUE)])
 ```
 
-Plot a grid file, using base plot:
+Plot/image of a grid file, using base plot methods:
 
 ```{r}
-par(mar = rep(0,4))
-plot(meuse.grid)
+image(meuse.grid)
 ```
 
 ```{r}
-par(mar = rep(0,4))
-image(meuse.grid["dist"])
-points(meuse)
+plot(meuse.grid["dist"])
+points(meuse, col = 'green')
 ```
 
 ```{r}
-par(mar = rep(0,4))
-image(meuse.grid["dist"])
-plot(meuse.grid, add = TRUE)
+plot(meuse.grid["dist"], zlim = c(0,1))
+plot(geometry(meuse.grid), add = TRUE, col = grey(.8))
 ```
 
 ## using lattice plot (spplot)
