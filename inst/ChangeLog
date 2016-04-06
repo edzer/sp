@@ -1,3 +1,7 @@
+2016-04-06  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* inst/ChangeLog: update ChangeLog
+
 2016-03-30  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
 
 	* src/sp_xports.c: fix Mike's report on
