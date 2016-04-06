@@ -6,6 +6,7 @@ addons:
   apt:
     packages:
       - libgdal1-dev
-      - libgeos-dev
-      - libproj-dev
-      - proj-data
+
+# - libgeos-dev
+# - libproj-dev
+# - proj-data
