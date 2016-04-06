@@ -4,6 +4,8 @@ cache: packages
 
 addons:
   apt:
+	sources:
+	  - ppa:ubuntugis/ubuntugis-unstable
     packages:
       - libgdal-dev
 
