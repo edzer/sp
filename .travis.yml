@@ -6,5 +6,6 @@ dist: trusty
 addons:
   apt:
     packages:
+      - libhdf5-serial-dev
       - libgdal-dev
       - libproj-dev
