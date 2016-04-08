@@ -1,3 +1,71 @@
+2016-04-08  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* DESCRIPTION: move methods from Imports: to Depends:
+
+2016-04-07  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* .travis.yml: remove caching
+
+2016-04-07  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* .travis.yml: remove caching
+
+2016-04-07  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* .travis.yml: add hdf
+
+2016-04-07  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* .travis.yml: add hdf
+
+2016-04-07  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* .travis.yml: add hdf
+
+2016-04-07  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* .travis.yml: try new config
+
+2016-04-06  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* .travis.yml: put back old travis file in place
+
+2016-04-06  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* .travis.yml: correct typo
+
+2016-04-06  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* .travis.yml: test
+
+2016-04-06  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* .travis.yml: test
+
+2016-04-06  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* .travis.yml: test
+
+2016-04-06  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* .travis.yml: test
+
+2016-04-06  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* .travis.yml: test new travis
+
+2016-04-06  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* inst/NEWS.Rd, inst/include/sp_xports.c: updates for sp 1.2-3
+
+2016-04-06  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* .travis.yml: try out new config
+
+2016-04-06  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* inst/ChangeLog: update ChangeLog
+
 2016-04-06  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
 
 	* inst/ChangeLog: update ChangeLog
