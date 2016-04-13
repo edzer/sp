@@ -175,6 +175,16 @@ over(pol, pts, returnList = TRUE)
 row.names(pol[pts])
 @
 
+\code{over} can also be used to query polygons in a single object overlay each other:
+
+<<>>=
+over(pol, pol, returnList = TRUE)
+@
+
+The output tells us that \code{x1} does not overlay any polygons other than itself, within the \code{pol} object. \code{x2} has overlaps with itself and \code{x5}, and so on.
+Note that the \emph{types} of overlap queried by \code{over} include any overlapping points or edges under the \href{https://en.wikipedia.org/wiki/DE-9IM}{DE-9IM} standard. Other types of spatial overlap can be queried using functions from the rgeos package, as illustrated by the help page launched with \code{?rgeos::gRelate}.
+
+
 \section{Using \code{over} to extract attributes}
 \label{attr}
 
