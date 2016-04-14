@@ -2,11 +2,12 @@
 \title{News for Package 'sp'}
 \section{Changes in version 1.2-3 (2016-04-06)}{
   \itemize{
-	\item updated sp gallery, see \url{https://edzer.github.io/sp/}
-    \item improved base plot methods for \code{SpatialGridDataFrame} and \code{SpatialPixelsDataFrame} objects, see \url{http://r-spatial.org/r/2016/03/08/plotting-spatial-grids.html} for examples
-	\item improved the graticule \code{labels} methods, see \code{?gridlines}
-	\item fixed hole assignment for triangles, reported in \url{https://stat.ethz.ch/pipermail/r-sig-geo/2016-March/024214.html}
-    \item \code{as.SpatialPolygons.GridTopology} now drops rownames of coordinates generated, but keeps coordinate (column) names from the \code{cellcentre.offset} slot of the grid.
+	\item update sp gallery, see \url{https://edzer.github.io/sp/}
+	\item move \code{methods} from Imports: to Depends:
+    \item improve base plot methods for \code{SpatialGridDataFrame} and \code{SpatialPixelsDataFrame} objects, see \url{http://r-spatial.org/r/2016/03/08/plotting-spatial-grids.html} for examples
+	\item improve the graticule \code{labels} methods, see \code{?gridlines}
+	\item fix hole assignment for triangles, reported in \url{https://stat.ethz.ch/pipermail/r-sig-geo/2016-March/024214.html}
+    \item \code{as.SpatialPolygons.GridTopology} drops rownames of coordinates generated, but keeps coordinate (column) names from the \code{cellcentre.offset} slot of the grid.
   }
 }
 \section{Changes in version 1.2-2 (2016-02-05)}{
