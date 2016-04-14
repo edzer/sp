@@ -16,7 +16,8 @@ useDynLib(sp,
 
 importFrom(graphics, plot, hist, polygon, par, polypath, lines, strheight, 
 	text, contour, axTicks, axis, rasterImage, image, box, plot.new, 
-	plot.window, rect, segments, points, locator, identify, title)
+	plot.window, rect, segments, points, locator, identify, title,
+	layout, lcm)
 importFrom(stats, aggregate, na.omit, aggregate.data.frame, complete.cases, 
 	quantile, as.formula, dist, runif, model.frame, na.fail)
 import(utils)
