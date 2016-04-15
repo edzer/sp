@@ -27,6 +27,7 @@ University of Muenster, Weseler Strasse 253, 48151 M\"{u}nster, Germany.
 \date{\today}
 
 \begin{document}
+\SweaveOpts{concordance=TRUE}
 
 \maketitle
 
@@ -160,8 +161,11 @@ Now, the polygons \code{pol} in which points \code{pts} lie are
 <<>>=
 over(pts, pol)
 @
-As points \code{b} and \code{c} fall in two overlapping polygons, we can
-retrieve the complete information as a list:
+As points \code{b} and \code{c} touch two overlapping polygons,
+the output from the previous command does not provide all information
+about the overlaps, only returning the \emph{last} polygon which touched
+them (polygon 5 in both cases).
+The complete information can be retrieved as a list:
 <<>>=
 over(pts, pol, returnList = TRUE)
 @
