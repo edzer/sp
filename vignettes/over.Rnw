@@ -169,7 +169,10 @@ The complete information can be retrieved as a list:
 <<>>=
 over(pts, pol, returnList = TRUE)
 @
-and the appropriate points falling in any of the polygons are selected by
+This shows that \code{over} returns true if geometries in one element touch
+geometries in another: they do not have to fully overlap
+(see section \ref{dim} to constrain the selection criteria).
+The points falling in or touching any of the polygons are selected by:
 <<>>=
 pts[pol]
 @
