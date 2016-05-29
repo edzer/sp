@@ -43,7 +43,12 @@ x \%over\% y
 \item{y}{layer from which the geometries or attributes are queried}
 \item{returnList}{ logical; see value }
 \item{fn}{(optional) a function; see value }
-\item{...}{arguments passed on to function \code{fn}}
+\item{...}{arguments passed on to function \code{fn}, except for the special
+argument \code{minDimension}: minimal dimension for an intersection to be counted;
+-1 takes any intersection, and does not order; 0 takes any intersection
+but will order according to dimensionality of the intersections (if returnList
+is TRUE, 1 (2) selects intersections with dimension 1, meaning
+lines (2, meaning areas); see \code{vignette("over")} for details }
 }
 \value{ 
 If \code{y} is only geometry an object of length \code{length(x)}.
