@@ -373,6 +373,14 @@ mapview(meuse.grid, zcol = c("soil", "dist"))
 ## ---- results="markup"---------------------------------------------------
 mapview(nc, zcol = c("SID74", "SID79"), alpha.regions = 1.0)
 
+## ---- results="markup"---------------------------------------------------
+m1 <- mapview(meuse, zcol = "soil", burst = TRUE)
+m2 <- mapview(meuse, zcol = "lead")
+m3 <- mapview(meuse, zcol = "landuse", map.types = "Esri.WorldImagery")
+m4 <- mapview(meuse, zcol = "dist.m")
+sync(m1, m2, m3, m4) # 4 panels synchronised
+# latticeView(m1, m2, m3, m4) # 4 panels
+
 ## ------------------------------------------------------------------------
 sessionInfo()
 
