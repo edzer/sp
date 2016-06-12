@@ -365,13 +365,13 @@ ggplot(as.data.frame(meuse)) +
 
 ## ---- results="markup"---------------------------------------------------
 library(mapview)
-mapview(meuse, zcol = c("zinc", "lead"))@map
+mapview(meuse, zcol = c("zinc", "lead"))
 
 ## ---- results="markup"---------------------------------------------------
-mapview(meuse.grid, zcol = c("soil", "dist"))@map
+mapview(meuse.grid, zcol = c("soil", "dist"))
 
 ## ---- results="markup"---------------------------------------------------
-mapview(nc, zcol = c("SID74", "SID79"), alpha.regions = 1.0)@map
+mapview(nc, zcol = c("SID74", "SID79"), alpha.regions = 1.0)
 
 ## ------------------------------------------------------------------------
 sessionInfo()

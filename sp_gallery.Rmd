@@ -569,15 +569,15 @@ points, grid and polygons follow:
 
 ```{r, results="markup"}
 library(mapview)
-mapview(meuse, zcol = c("zinc", "lead"))@map
+mapview(meuse, zcol = c("zinc", "lead"))
 ```
 
 ```{r, results="markup"}
-mapview(meuse.grid, zcol = c("soil", "dist"))@map
+mapview(meuse.grid, zcol = c("soil", "dist"))
 ```
 
 ```{r, results="markup"}
-mapview(nc, zcol = c("SID74", "SID79"), alpha.regions = 1.0)@map
+mapview(nc, zcol = c("SID74", "SID79"), alpha.regions = 1.0)
 ```
 
 more examples are found [here](https://environmentalinformatics-marburg.github.io/web-presentations/20150723_mapView.html).
