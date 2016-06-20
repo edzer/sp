@@ -50,9 +50,9 @@ SEXP pointsInBox(const SEXP lb, const SEXP px, const SEXP py) {
     double *x, ppx, ppy;
     SEXP res, px1, py1, lb1;
 
-    PROTECT(px1 = duplicate(px)); pc++;
-    PROTECT(py1 = duplicate(py)); pc++;
-    PROTECT(lb1 = duplicate(lb)); pc++;
+    PROTECT(px1 = NAMED(px) ? duplicate(px) : px); pc++;
+    PROTECT(py1 = NAMED(py) ? duplicate(py) : py); pc++;
+    PROTECT(lb1 = NAMED(lb) ? duplicate(lb) : lb); pc++;
     PROTECT(res = NEW_LIST(n)); pc++;
     x = (double *) R_alloc((size_t) (m*4), sizeof(double));
     k = (int *) R_alloc((size_t) m, sizeof(int));
