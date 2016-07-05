@@ -365,19 +365,19 @@ ggplot(as.data.frame(meuse)) +
 
 ## ---- results="markup"---------------------------------------------------
 library(mapview)
-mapview(meuse, zcol = c("zinc", "lead"))
+mapview(meuse, zcol = c("zinc", "lead"), legend = TRUE)
 
 ## ---- results="markup"---------------------------------------------------
-mapview(meuse.grid, zcol = c("soil", "dist"))
+mapview(meuse.grid, zcol = c("soil", "dist"), legend = TRUE)
 
 ## ---- results="markup"---------------------------------------------------
-mapview(nc, zcol = c("SID74", "SID79"), alpha.regions = 1.0)
+mapview(nc, zcol = c("SID74", "SID79"), alpha.regions = 1.0, legend = TRUE)
 
 ## ---- results="markup"---------------------------------------------------
-m1 <- mapview(meuse, zcol = "soil", burst = TRUE)
-m2 <- mapview(meuse, zcol = "lead")
-m3 <- mapview(meuse, zcol = "landuse", map.types = "Esri.WorldImagery")
-m4 <- mapview(meuse, zcol = "dist.m")
+m1 <- mapview(meuse, zcol = "soil", burst = TRUE, legend = TRUE)
+m2 <- mapview(meuse, zcol = "lead", legend = TRUE)
+m3 <- mapview(meuse, zcol = "landuse", map.types = "Esri.WorldImagery", legend = TRUE)
+m4 <- mapview(meuse, zcol = "dist.m", legend = TRUE)
 sync(m1, m2, m3, m4) # 4 panels synchronised
 # latticeView(m1, m2, m3, m4) # 4 panels
 
