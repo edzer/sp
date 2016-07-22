@@ -79,18 +79,18 @@ rbind.SpatialPolygons = function(..., makeUniqueIDs = FALSE) {
 	SpatialPolygons(pl, proj4string = CRS(proj4string(dots[[1]])))
 }
 
-rbind.SpatialPolygonsDataFrame <- function(..., makeUniqueIDs = FALSE) {
+rbind.SpatialPolygonsDataFrame <- function(..., makeUniqueIDs = TRUE) {
 	dots = list(...)
 	names(dots) <- NULL # bugfix Clement Calenge 100417
 	lst = lapply(dots, function(x) as(x, "SpatialPolygons"))
 	lst$makeUniqueIDs = makeUniqueIDs
 	pl = do.call(rbind.SpatialPolygons, lst)
 	df = do.call(rbind, lapply(dots, function(x) x@data))
-	SpatialPolygonsDataFrame(pl, df)
+	SpatialPolygonsDataFrame(pl, df, match.ID = FALSE)
 }
 
 
-rbind.SpatialLines = function(..., makeUniqueIDs = FALSE) {
+rbind.SpatialLines = function(..., makeUniqueIDs = TRUE) {
 	dots = list(...)
 	names(dots) <- NULL
 	stopifnot(identicalCRS(dots))
@@ -105,7 +105,7 @@ rbind.SpatialLinesDataFrame <- function(...) {
 	names(dots) <- NULL # bugfix Clement Calenge 100417
 	ll = do.call(rbind, lapply(dots, function(x) as(x, "SpatialLines")))
 	df = do.call(rbind, lapply(dots, function(x) x@data))
-	SpatialLinesDataFrame(ll, df)
+	SpatialLinesDataFrame(ll, df, match.ID = FALSE)
 }
 
 cbind.Spatial <- function(...) {
