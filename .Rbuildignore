@@ -8,3 +8,5 @@ build-release.sh
 src/sp.h.in
 .travis.yml
 README.md
+^.*\.Rproj$
+^\.Rproj\.user$
