@@ -162,7 +162,7 @@ srdf=SpatialPolygonsDataFrame(sr, data.frame(cbind(1:4,5:2),
 data(meuse)
 coordinates(meuse) = ~x+y
 
-# plot(meuse)
+plot(meuse)
 polygon(r1)
 polygon(r2)
 polygon(r3)
