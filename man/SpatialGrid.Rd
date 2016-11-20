@@ -25,8 +25,8 @@ getGridTopology(obj)
 areaSpatialGrid(obj)
 }
 \arguments{
-    \item{cellcentre.offset}{numeric; vector with the smallest coordinates for
-    each dimension}
+    \item{cellcentre.offset}{numeric; vector with the smallest centroid coordinates for
+    each dimension; coordinates refer to the cell centre}
     \item{cellsize}{numeric; vector with the cell size in each dimension}
     \item{cells.dim}{integer; vector with number of cells in each dimension}
 	\item{points}{ coordinates, object of class \link{SpatialPoints-class} }
