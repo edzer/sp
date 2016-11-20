@@ -21,7 +21,7 @@ see \link{SpatialGrid}
 }
 \section{Slots}{
   \describe{
-    \item{\code{cellcentre.offset}:}{numeric; vector with the smallest coordinates for
+    \item{\code{cellcentre.offset}:}{numeric; vector with the smallest centroid coordinates for
 	each dimension; coordinates refer to the cell centre }
     \item{\code{cellsize}:}{numeric; vector with the cell size in each dimension}
     \item{\code{cells.dim}:}{integer; vector with number of cells in each dimension}
