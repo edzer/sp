@@ -1,3 +1,62 @@
+2016-12-08  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* src/gcdist.c: fix gcdist, following geosphere::distMeeuws and
+	http://www.abecedarical.com/javascript/script_greatcircle.html
+
+2016-11-20  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* man/SpatialGrid.Rd: update docs, see
+	https://github.com/edzer/sp/issues/18
+
+2016-11-20  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* man/GridTopology-class.Rd: fix
+	https://github.com/edzer/sp/issues/18
+
+2016-10-07  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* .travis.yml: set back
+
+2016-10-07  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* .travis.yml: try without sudo
+
+2016-09-06  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* : Merge pull request #14 from Robinlovelace/master Plot meuse, fix #13 - print still crazy tho
+
+2016-07-22  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* R/rbind.R: fix rbind issue
+
+2016-06-20  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* inst/include/sp_xports.c, src/pip.c, src/pip2.c, src/sp_xports.c: 
+	avoid duplicate(x) when x is not NAMED()
+
+2016-06-20  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* DESCRIPTION: version bump
+
+2016-05-29  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* : commit 61196594f1e07fb4db31e33b6b7dc45484375c51 Author: Edzer
+	Pebesma <edzer.pebesma@uni-muenster.de> Date:   Sun May 29 22:34:59
+	2016 +0200
+
+2016-04-15  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* : Merge pull request #7 from Robinlovelace/master Be more explicit about returnList and touching points being counted
+
+2016-04-15  Robin Lovelace <rob00x@gmail.com>
+
+	* vignettes/over.Rnw: Make explicit the output with/without
+	returnList
+
+2016-04-14  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* inst/ChangeLog: update ChangeLog
+
 2016-04-14  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
 
 	* .Rbuildignore, NAMESPACE, README.md: tidy
