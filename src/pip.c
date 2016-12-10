@@ -10,10 +10,26 @@ SEXP R_point_in_polygon_sp(const SEXP px, const SEXP py, const SEXP polx,
 	POLYGON pol;
 	SEXP ret, px1, py1, polx1, poly1;
 
-	PROTECT(px1 = NAMED(px) ? duplicate(px) : px); pc++;
-	PROTECT(py1 = NAMED(py) ? duplicate(py) : px); pc++;
-	PROTECT(polx1 = NAMED(polx) ? duplicate(polx) : polx); pc++;
-	PROTECT(poly1 = NAMED(poly) ? duplicate(poly) : poly); pc++;
+	if (NAMED(px)) {
+		PROTECT(px1 = duplicate(px));
+		pc++;
+	} else
+		px1 = px;
+	if (NAMED(py)) {
+		PROTECT(py1 = duplicate(py));
+		pc++;
+	} else
+		py1 = py;
+	if (NAMED(polx)) {
+		PROTECT(polx1 = duplicate(polx));
+		pc++;
+	} else
+		polx1 = polx;
+	if (NAMED(poly)) {
+		PROTECT(poly1 = duplicate(poly));
+		pc++;
+	} else
+		poly1 = poly;
 
 	pol.lines = LENGTH(polx); /* check later that first == last */
 	pol.p = (PLOT_POINT *) R_alloc((size_t) pol.lines, sizeof(PLOT_POINT)); 
