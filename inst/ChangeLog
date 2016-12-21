@@ -1,3 +1,9 @@
+2016-12-21  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* : Merge pull request #16 from samuel-rosa/patch-1 Update argument offset in spsample.Rd. Re: your remark triangular
+	vs. hexagonal: does that depend on whether we see the points as grid
+	cell centers or grid cell corners? I see them as grid cell centers.
+
 2016-12-11  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
 
 	* inst/include/sp.h, inst/include/sp_xports.c, src/pip.c,
@@ -25,6 +31,11 @@
 
 	* man/GridTopology-class.Rd: fix
 	https://github.com/edzer/sp/issues/18
+
+2016-10-08  Alessandro Samuel-Rosa <samuel-rosa@users.noreply.github.com>
+
+	* man/spsample.Rd: Update spsample.Rd `type = "hexagonal"`also uses the values passed to argument
+	`offset`.
 
 2016-10-07  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
 
