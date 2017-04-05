@@ -560,7 +560,7 @@ and soil process modelling. Geoderma 89, 1-2,
 \item
 Pebesma, E., 2012.  Spatio-temporal overlay and
 aggregation.  Package vignette for package spacetime,
-\url{http://cran.r-project.org/web/packages/spacetime/vignettes/sto.pdf}
+\url{https://cran.r-project.org/web/packages/spacetime/vignettes/sto.pdf}
 
 \end{itemize}
 

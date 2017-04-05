@@ -35,7 +35,7 @@ all n x n distances, not the sufficient n x (n-1).
 }
 
 \note{The function can also be used to find a local kilometer equivalent to a plot scaled in decimal degrees in order to draw a scale bar.  }
-\references{\url{http://www.abecedarical.com/javascript/script_greatcircle.html}}
+\references{\code{http://www.abecedarical.com/javascript/script_greatcircle.html}}
 \author{Roger Bivand, Edzer Pebesma}
 
 

@@ -34,6 +34,13 @@ Polygon <- function(coords, hole=as.logical(NA)) {
 	if (ncol(coords) != 2) stop("coords must be a two-column matrix")
 # RSB 091203
         n <- dim(coords)[1]
+        if (n < 4L) {
+            warning("less than 4 coordinates in polygon")
+            if (n == 1L) coords <- rbind(coords, coords, coords, coords)
+            else if (n == 2L) coords <- rbind(coords, coords[1,], coords[1,])
+            else if (n == 3L) coords <- rbind(coords, coords[1,])
+            n <- dim(coords)[1]
+        }
         stopifnot(is.logical(hole))
         ihole <- as.integer(hole)
 # RSB 100126 fixing hole assumption

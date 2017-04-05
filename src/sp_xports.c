@@ -318,7 +318,7 @@ SEXP SP_PREFIX(Polygons_validate_c)(const SEXP obj) {
 SEXP SP_PREFIX(SpatialPolygons_c)(const SEXP pls, const SEXP pO, 
 		const SEXP p4s) {
 
-    SEXP ans, bbox;
+    SEXP ans, bbox, ppO;
     int pc=0;
 
     PROTECT(ans = NEW_OBJECT(MAKE_CLASS("SpatialPolygons"))); pc++;
@@ -328,11 +328,12 @@ SEXP SP_PREFIX(SpatialPolygons_c)(const SEXP pls, const SEXP pO,
     SET_SLOT(ans, install("proj4string"), p4s);
 
     if (pO == R_NilValue) {
-        SET_SLOT(ans, install("plotOrder"),
-			SP_PREFIX(SpatialPolygons_plotOrder_c)(pls));
+		PROTECT(ppO = SP_PREFIX(SpatialPolygons_plotOrder_c)(pls));
+		pc++;
     } else
-        // SET_SLOT(ans, install("plotOrder"), NAMED(pO) ? duplicate(pO) : pO);
-        SET_SLOT(ans, install("plotOrder"), pO);
+		ppO = pO;
+    // SET_SLOT(ans, install("plotOrder"), NAMED(pO) ? duplicate(pO) : pO);
+    SET_SLOT(ans, install("plotOrder"), ppO);
 
     PROTECT(bbox = SP_PREFIX(bboxCalcR_c(pls))); pc++;
     SET_SLOT(ans, install("bbox"), bbox);

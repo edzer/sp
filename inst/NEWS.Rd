@@ -1,5 +1,17 @@
 \name{NEWS} 
 \title{News for Package 'sp'}
+\section{Changes in version 1.2-5 (2017-xx-xx)}{
+ \itemize{
+  \item address warning from Tomas Kalibera's static code checking
+ }
+}
+\section{Changes in version 1.2-4 (2016-12-21)}{
+  \itemize{
+    \item fix bug in duplicating objects in C; see \url{https://github.com/edzer/sp/commit/8f8a66090e47cf0f6bbf5549376c0bc07b6c29df}
+	\item fix all long/lat-based great circle distance functions; see \url{https://github.com/edzer/sp/commit/d8374ff7efc6735cba9a054748c602bed0672f23} and \url{https://stat.ethz.ch/pipermail/r-sig-geo/2016-December/025201.html}
+	\item clarified cellcentre.offset documentation, see \url{https://github.com/edzer/sp/issues/18}
+  }
+}
 \section{Changes in version 1.2-3 (2016-04-06)}{
   \itemize{
 	\item update sp gallery, see \url{https://edzer.github.io/sp/}
