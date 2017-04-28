@@ -9,7 +9,7 @@
 \title{ disaggregate SpatialLines, SpatialLinesDataFrame, 
 SpatialPolygons, or SpatialPolygonsDataFrame objects }
 \description{ disaggregate SpatialLines, SpatialLinesDataFrame, 
-SpatialPolygons, or SpatialPolygonsDataFrame objects }
+SpatialPolygons, or SpatialPolygonsDataFrame objects, using functions from rgeos to handle polygon hole nesting }
 \usage{ disaggregate(x, ...) }
 \arguments{
 \item{x}{object of class \link{SpatialLines} or \link{SpatialPolygons}}
