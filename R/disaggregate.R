@@ -56,7 +56,11 @@ explodePolygons <- function(x, ignoreholes=FALSE, ...) {
     count <- count + np[i]
     p <- c(p, pp)
   }
-  p <- rgeos::createSPComment(SpatialPolygons(p))
+  p <- SpatialPolygons(p)
+  ps <- slot(p, "polygons")
+  for (i in seq(along=ps))
+    comment(ps[[i]]) <- rgeos::createPolygonsComment(ps[[i]])
+  slot(p, "polygons") <- ps
   proj4string(p) <- crs
   
   if (.hasSlot(x, 'data')) {
