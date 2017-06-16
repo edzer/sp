@@ -1,6 +1,6 @@
 
-R Under development (unstable) (2015-08-18 r69117) -- "Unsuffered Consequences"
-Copyright (C) 2015 The R Foundation for Statistical Computing
+R version 3.4.0 (2017-04-21) -- "You Stupid Darkness"
+Copyright (C) 2017 The R Foundation for Statistical Computing
 Platform: x86_64-pc-linux-gnu (64-bit)
 
 R is free software and comes with ABSOLUTELY NO WARRANTY.
@@ -33,7 +33,7 @@ Error in coordinates(a) <- cbind(1:10, 10:1) : object 'a' not found
 Error in `[.data.frame`(object, , -coord.numbers, drop = FALSE) : 
   undefined columns selected
 > try(coordinates(x) <- ~x+y+z) # z is not present
-Error in eval(expr, envir, enclos) : object 'z' not found
+Error in eval(predvars, data, env) : object 'z' not found
 > x$x2 = x$x^2
 > x$y2 = x$y^2
 > try(coordinates(x) <- ~x+y+x2+y2) # 4D now passes check...
@@ -219,4 +219,4 @@ In CRS("+proj=lonlat +ellps=WGS84") :
 > 
 > proc.time()
    user  system elapsed 
-  0.579   0.087   0.603 
+  1.044   0.236   1.080 

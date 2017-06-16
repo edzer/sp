@@ -738,6 +738,7 @@ function (lst, z, ..., cuts = ifelse(identical(FALSE, colorkey), 5, 100),
 	if (length(cex) == n) {
 		cex.key = cex
 		lst$cex = cex[groups]
+		lst$cex[is.na(lst$cex)] = 0
 	} else if (missing(cex.key))
 		cex.key = mean(cex, na.rm = TRUE)
 

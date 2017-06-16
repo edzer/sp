@@ -1,7 +1,8 @@
 \name{NEWS} 
 \title{News for Package 'sp'}
-\section{Changes in version 1.2-5 (2017-xx-xx)}{
+\section{Changes in version 1.2-5 (2017-06-16)}{
  \itemize{
+  \item address error in spplot, leading to display of "Error using packet 1: mixture of missing and non missing values for cex"
   \item address warning from Tomas Kalibera's static code checking
  }
 }
