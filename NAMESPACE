@@ -297,6 +297,7 @@ S3method(as.matrix, SpatialPixelsDataFrame)
 
 S3method(aggregate, Spatial)
 
+S3method(cbind, Spatial)
 S3method(cbind, SpatialGridDataFrame)
 
 S3method(contour, SpatialPixelsDataFrame)
@@ -388,6 +389,17 @@ S3method(print, SpatialPixelsDataFrame)
 S3method(print, SpatialLinesDataFrame)
 S3method(print, summary.Spatial)
 S3method(print, summary.GridTopology)
+
+S3method(rbind, SpatialLines)
+S3method(rbind, SpatialLinesDataFrame)
+S3method(rbind, SpatialMultiPoints)
+S3method(rbind, SpatialMultiPointsDataFrame)
+S3method(rbind, SpatialPixels)
+S3method(rbind, SpatialPixelsDataFrame)
+S3method(rbind, SpatialPoints)
+S3method(rbind, SpatialPointsDataFrame)
+S3method(rbind, SpatialPolygons)
+S3method(rbind, SpatialPolygonsDataFrame)
 
 S3method(split, SpatialPoints)
 
