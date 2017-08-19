@@ -28,6 +28,8 @@ SpatialGrid = function(grid, proj4string = CRS(as.character(NA))) {
 setAs("SpatialGrid", "SpatialPixels", 
 	function(from) { 
 		pts = as(from, "SpatialPoints")
+		pts@bbox[,1] = pts@bbox[,1] - 0.5 * from@grid@cellsize
+		pts@bbox[,2] = pts@bbox[,2] + 0.5 * from@grid@cellsize
 		new("SpatialPixels", pts, grid = from@grid, grid.index = 1:length(pts))
 	}
 )
