@@ -51,21 +51,21 @@ SEXP pointsInBox(const SEXP lb, const SEXP px, const SEXP py) {
     SEXP res, px1, py1, lb1;
 
 	/*
-    PROTECT(px1 = NAMED(px) ? duplicate(px) : px); pc++;
-    PROTECT(py1 = NAMED(py) ? duplicate(py) : py); pc++;
-    PROTECT(lb1 = NAMED(lb) ? duplicate(lb) : lb); pc++;
+    PROTECT(px1 = MAYBE_REFERENCED(px) ? duplicate(px) : px); pc++;
+    PROTECT(py1 = MAYBE_REFERENCED(py) ? duplicate(py) : py); pc++;
+    PROTECT(lb1 = MAYBE_REFERENCED(lb) ? duplicate(lb) : lb); pc++;
 	*/
-	if (NAMED(px)) {
+	if (MAYBE_REFERENCED(px)) {
 		PROTECT(px1 = duplicate(px));
 		pc++;
 	} else
 		px1 = px;
-	if (NAMED(py)) {
+	if (MAYBE_REFERENCED(py)) {
 		PROTECT(py1 = duplicate(py));
 		pc++;
 	} else
 		py1 = py;
-	if (NAMED(lb)) {
+	if (MAYBE_REFERENCED(lb)) {
 		PROTECT(lb1 = duplicate(lb));
 		pc++;
 	} else
