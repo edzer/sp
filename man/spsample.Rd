@@ -26,7 +26,7 @@ makegrid(x, n = 10000, nsig = 2, cellsize, offset = rep(0.5, nrow(bb)),
 }
 \arguments{
 \item{x}{Spatial object; \code{spsample(x,...)} is a generic method for the
-existing \code{sample.Xxx} fumctions}
+existing \code{sample.Xxx} functions}
 \item{...}{ optional arguments, passed to the appropriate \code{sample.Xxx}
 functions; see NOTES for \code{nclusters} and \code{iter}}
 \item{n}{ (approximate) sample size }

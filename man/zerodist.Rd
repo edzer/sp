@@ -16,7 +16,7 @@ remove.duplicates(obj, zero = 0.0, remove.second = TRUE, memcmp = TRUE)
 \item{zero}{ distance values less than or equal to this threshold value are
 considered to have zero distance (default 0.0);
 units are those of the coordinates for projected data or unknown projection,
-or km if coordinates are defined to be longitute/latitude }
+or km if coordinates are defined to be longitude/latitude }
 \item{unique.ID}{logical; if TRUE, return an ID (integer) for each point 
 that is different only when two points do not share the same location }
 \item{memcmp}{use \code{memcmp} to find exactly equal coordinates; see NOTE}

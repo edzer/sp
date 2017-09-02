@@ -73,7 +73,7 @@ is stored or a partial grid (i.e., only the non-missing valued cells);
 calling \link{coordinates} on them will give the coordinates for the
 grid cells.
 
-SpatialPoints, SpatialPixels and SpatialGrid can be of arbitray
+SpatialPoints, SpatialPixels and SpatialGrid can be of arbitrary
 dimension, although most of the effort is in making them work for two
 dimensional data.
 
