@@ -63,14 +63,14 @@ objects take the following arguments:
 \item{attr}{ integer or character, indicating the attribute variable to be plotted; default 1}
 \item{col}{ color ramp to be used; default \code{bpy.colors(100)} for continuous, or
    \code{RColorBrewer::brewer.pal(nlevels(x[[1]]), "Set2")} for factor variables}
-\item{breaks}{ for continous attributes: values at which color breaks should take place }
+\item{breaks}{ for continuous attributes: values at which color breaks should take place }
 \item{zlim}{ for continuous attributes: 
   numeric of length 2, specifying the range of attribute values to be plotted; 
   default to data range \code{range(as.numeric(x[[attr]])[is.finite(x[[attr]])])}}
 \item{axes}{ logical: draw x and y axes? default \code{FALSE}}
 \item{xaxs}{character, default "i", see \link{par}}
 \item{yaxs}{character, default equal to \code{xaxs}, see \link{par}}
-\item{at}{numeric or NULL, values at which axis tics and labes should be drawn; default NULL (use \link{pretty})}
+\item{at}{numeric or NULL, values at which axis tics and labels should be drawn; default NULL (use \link{pretty})}
 \item{border}{color, to be used for drawing grid lines; default NA (don't draw grid lines)}
 \item{axis.pos}{integer, 1-4; default 4, see \link{axis}}
 \item{add.axis}{logical: draw axis along scale? default \code{TRUE}}

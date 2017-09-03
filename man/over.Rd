@@ -75,7 +75,7 @@ with the inner and boundary of each \code{y} geometry.  The order
 in which matched \code{y} geometries are returned is determined by
 the dimension of the overlap (2: area overlap, 1: line in common,
 0: point in common), and then by the position in the string (1,
-2, 4, 5, meaning points in polygons are prefered over points on
+2, 4, 5, meaning points in polygons are preferred over points on
 polygon boundaries). 
 }
 

@@ -73,7 +73,7 @@ SpatialGrid stores grid topology and may or may not store the coordinates
 of the actual points, which may form a subset of the full grid. To find
 out or change this, see \link{fullgrid}.
 
-points2grid tries to figure out the grid topology from points. It succees
+points2grid tries to figure out the grid topology from points. It succeeds
 only if points on a grid line have constant y column, and points on a
 grid column have constant x coordinate, etc. In other cases, use signif
 on the raw coordinate matrices to make sure this is the case.
