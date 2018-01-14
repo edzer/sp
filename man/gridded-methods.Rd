@@ -39,13 +39,13 @@ one, or demotes a gridded structure back to a non-structured one.
 	gridparameters(obj)
 }
 \arguments{
-\item{obj}{ object deriviving from class "Spatial" (for gridded), or
+\item{obj}{ object deriving from class "Spatial" (for gridded), or
 object of class \link{SpatialGridDataFrame-class} (for fullgrid and gridparameters)}
 \item{value}{logical replacement values, TRUE or FALSE}
 }
 \section{Methods}{
 \describe{
-\item{obj = "Spatial"}{ object deriviving from class "Spatial" }
+\item{obj = "Spatial"}{ object deriving from class "Spatial" }
 }}
 \value{ if obj derives from class Spatial, gridded(object) will tell
 whether it is has topology on a regular grid; if assigned TRUE, if the
