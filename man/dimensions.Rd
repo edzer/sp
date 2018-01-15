@@ -15,7 +15,7 @@ retrieves spatial dimensions box from spatial data
 }
 \section{Methods}{
 \describe{
-\item{obj = "Spatial"}{ object deriviving from class "Spatial" }
+\item{obj = "Spatial"}{ object deriving from class "Spatial" }
 }}
 \value{ two-column matrix; the first column has the minimum,
 the second the maximum values; rows represent the spatial
