@@ -10,7 +10,7 @@
 \alias{recenter,Line-method}
 \title{Methods for Function recenter in Package `sp'}
 \description{
- Methods for function \code{recenter} in package \pkg{sp} to shift or re-center geographical coordinates for a Pacific view. All longitudes < 0 are added to 360, to avoid for instance parts of Alaska being represented on the far left and right of a plot because they have values straddling 180 degrees. In general, using a projected coordinate reference system is to be prefered, but this method permits a geographical coordinate reference system to be used. This idea was suggested by Greg Snow, and corresponds to the two world representations in the \pkg{maps} package. 
+ Methods for function \code{recenter} in package \pkg{sp} to shift or re-center geographical coordinates for a Pacific view. All longitudes < 0 are added to 360, to avoid for instance parts of Alaska being represented on the far left and right of a plot because they have values straddling 180 degrees. In general, using a projected coordinate reference system is to be preferred, but this method permits a geographical coordinate reference system to be used. This idea was suggested by Greg Snow, and corresponds to the two world representations in the \pkg{maps} package. 
 }
 \section{Methods}{
 \describe{
