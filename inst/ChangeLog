@@ -1,5 +1,13 @@
 2018-01-18  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
 
+	* tests/pass1.Rout.save: cran release
+
+2018-01-18  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* inst/ChangeLog: update ChangeLog
+
+2018-01-18  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
 	* inst/ChangeLog: update ChangeLog
 
 2018-01-16  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
