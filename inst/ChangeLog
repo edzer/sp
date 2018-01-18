@@ -1,3 +1,26 @@
+2018-01-16  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* : commit 97600d8dbbd4a6ad9921c223cd788367aa296703 Merge: 09085ff
+	7f72e86 Author: Edzer Pebesma <edzer.pebesma@uni-muenster.de> Date:
+	Tue Jan 16 19:10:27 2018 +0100
+
+2018-01-16  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* DESCRIPTION, inst/include/sp.h, src/sp.h: version bump
+
+2018-01-16  Sebastian Meyer <seb.meyer@fau.de>
+
+	* R/CRS-methods.R: restore CRS()-based comparison of proj4string()s
+	[fixes #46]
+
+2018-01-15  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* : Merge pull request #45 from jameslamb/master Fix minor typos in documentation
+
+2018-01-05  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* inst/ChangeLog: update ChangeLog
+
 2017-12-21  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
 
 	* inst/ChangeLog: update ChangeLog
