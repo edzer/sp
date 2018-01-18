@@ -1,6 +1,6 @@
 
-R version 3.2.2 (2015-08-14) -- "Fire Safety"
-Copyright (C) 2015 The R Foundation for Statistical Computing
+R version 3.4.3 (2017-11-30) -- "Kite-Eating Tree"
+Copyright (C) 2017 The R Foundation for Statistical Computing
 Platform: x86_64-pc-linux-gnu (64-bit)
 
 R is free software and comes with ABSOLUTELY NO WARRANTY.
@@ -292,7 +292,7 @@ SpatialPoints:
 Coordinate Reference System (CRS) arguments: +init=epsg:28992
 +proj=sterea +lat_0=52.15616055555555 +lon_0=5.38763888888889
 +k=0.9999079 +x_0=155000 +y_0=463000 +ellps=bessel
-+towgs84=565.4171,50.3319,465.5524,-0.398957388243134,0.343987817378283,-1.87740163998045,4.0725
++towgs84=565.4171,50.3319,465.5524,-0.398957,0.343988,-1.87740,4.0725
 +units=m +no_defs 
 > dim(p[0])
 NULL
@@ -327,7 +327,7 @@ proj4string :
 [+init=epsg:28992 +proj=sterea +lat_0=52.15616055555555
 +lon_0=5.38763888888889 +k=0.9999079 +x_0=155000 +y_0=463000
 +ellps=bessel
-+towgs84=565.4171,50.3319,465.5524,-0.398957388243134,0.343987817378283,-1.87740163998045,4.0725
++towgs84=565.4171,50.3319,465.5524,-0.398957,0.343988,-1.87740,4.0725
 +units=m +no_defs]
 Grid attributes:
   cellcentre.offset cellsize cells.dim
@@ -350,7 +350,7 @@ proj4string :
 [+init=epsg:28992 +proj=sterea +lat_0=52.15616055555555
 +lon_0=5.38763888888889 +k=0.9999079 +x_0=155000 +y_0=463000
 +ellps=bessel
-+towgs84=565.4171,50.3319,465.5524,-0.398957388243134,0.343987817378283,-1.87740163998045,4.0725
++towgs84=565.4171,50.3319,465.5524,-0.398957,0.343988,-1.87740,4.0725
 +units=m +no_defs]
 Grid attributes:
   cellcentre.offset cellsize cells.dim
@@ -373,7 +373,7 @@ proj4string :
 [+init=epsg:28992 +proj=sterea +lat_0=52.15616055555555
 +lon_0=5.38763888888889 +k=0.9999079 +x_0=155000 +y_0=463000
 +ellps=bessel
-+towgs84=565.4171,50.3319,465.5524,-0.398957388243134,0.343987817378283,-1.87740163998045,4.0725
++towgs84=565.4171,50.3319,465.5524,-0.398957,0.343988,-1.87740,4.0725
 +units=m +no_defs]
 Grid attributes:
   cellcentre.offset cellsize cells.dim
@@ -397,7 +397,7 @@ proj4string :
 [+init=epsg:28992 +proj=sterea +lat_0=52.15616055555555
 +lon_0=5.38763888888889 +k=0.9999079 +x_0=155000 +y_0=463000
 +ellps=bessel
-+towgs84=565.4171,50.3319,465.5524,-0.398957388243134,0.343987817378283,-1.87740163998045,4.0725
++towgs84=565.4171,50.3319,465.5524,-0.398957,0.343988,-1.87740,4.0725
 +units=m +no_defs]
 > 
 > # SpatialPolygonsDataFrame:
@@ -419,7 +419,7 @@ proj4string :
 [+init=epsg:28992 +proj=sterea +lat_0=52.15616055555555
 +lon_0=5.38763888888889 +k=0.9999079 +x_0=155000 +y_0=463000
 +ellps=bessel
-+towgs84=565.4171,50.3319,465.5524,-0.398957388243134,0.343987817378283,-1.87740163998045,4.0725
++towgs84=565.4171,50.3319,465.5524,-0.398957,0.343988,-1.87740,4.0725
 +units=m +no_defs]
 Data attributes:
  something
@@ -437,7 +437,7 @@ proj4string :
 [+init=epsg:28992 +proj=sterea +lat_0=52.15616055555555
 +lon_0=5.38763888888889 +k=0.9999079 +x_0=155000 +y_0=463000
 +ellps=bessel
-+towgs84=565.4171,50.3319,465.5524,-0.398957388243134,0.343987817378283,-1.87740163998045,4.0725
++towgs84=565.4171,50.3319,465.5524,-0.398957,0.343988,-1.87740,4.0725
 +units=m +no_defs]
 > 
 > # SpatialLines
@@ -457,7 +457,7 @@ proj4string :
 [+init=epsg:28992 +proj=sterea +lat_0=52.15616055555555
 +lon_0=5.38763888888889 +k=0.9999079 +x_0=155000 +y_0=463000
 +ellps=bessel
-+towgs84=565.4171,50.3319,465.5524,-0.398957388243134,0.343987817378283,-1.87740163998045,4.0725
++towgs84=565.4171,50.3319,465.5524,-0.398957,0.343988,-1.87740,4.0725
 +units=m +no_defs]
 > 
 > # SpatialLinesDataFrame
@@ -479,7 +479,7 @@ proj4string :
 [+init=epsg:28992 +proj=sterea +lat_0=52.15616055555555
 +lon_0=5.38763888888889 +k=0.9999079 +x_0=155000 +y_0=463000
 +ellps=bessel
-+towgs84=565.4171,50.3319,465.5524,-0.398957388243134,0.343987817378283,-1.87740163998045,4.0725
++towgs84=565.4171,50.3319,465.5524,-0.398957,0.343988,-1.87740,4.0725
 +units=m +no_defs]
 Data attributes:
  something
@@ -497,7 +497,7 @@ proj4string :
 [+init=epsg:28992 +proj=sterea +lat_0=52.15616055555555
 +lon_0=5.38763888888889 +k=0.9999079 +x_0=155000 +y_0=463000
 +ellps=bessel
-+towgs84=565.4171,50.3319,465.5524,-0.398957388243134,0.343987817378283,-1.87740163998045,4.0725
++towgs84=565.4171,50.3319,465.5524,-0.398957,0.343988,-1.87740,4.0725
 +units=m +no_defs]
 > 
 > m = meuse
@@ -622,4 +622,4 @@ Error in SpatialPointsDataFrame(pts, df, match.ID = TRUE) :
 > 
 > proc.time()
    user  system elapsed 
-  0.889   0.324   0.889 
+  0.900   0.276   0.869 
