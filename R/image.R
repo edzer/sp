@@ -13,8 +13,9 @@ image.SpatialGridDataFrame = function(x, attr = 1, xcol = 1, ycol = 2,
 		red=NULL, green=NULL, blue=NULL, axes = FALSE, xlim = NULL, 
 		ylim = NULL, add = FALSE, ..., asp = NA, 
 		setParUsrBB=FALSE, interpolate = FALSE, angle = 0,
-                useRasterImage = missing(breaks), breaks, 
-		zlim = range(as.numeric(x[[attr]])[is.finite(x[[attr]])])) {
+		useRasterImage = !(.Platform$GUI[1] == "Rgui" && getIdentification() == "R Console") &&
+			missing(breaks),
+		breaks, zlim = range(as.numeric(x[[attr]])[is.finite(x[[attr]])])) {
 
 	if (!add) 
 		suppressWarnings(plot(as(x, "Spatial"),

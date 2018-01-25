@@ -16,7 +16,8 @@ objects. }
         axes = FALSE, xlim = NULL,
 	ylim = NULL, add = FALSE, ..., asp = NA, setParUsrBB=FALSE,
         interpolate = FALSE, angle = 0, 
-	useRasterImage = missing(breaks), breaks,
+	useRasterImage = !(.Platform$GUI[1] == "Rgui" && getIdentification() == "R Console") &&
+	    missing(breaks), breaks,
 	zlim = range(as.numeric(x[[attr]])[is.finite(x[[attr]])]))
 \method{image}{SpatialPixelsDataFrame}(x, ...) 
 \method{image}{SpatialPixels}(x, ...) 
@@ -48,7 +49,7 @@ to the existing plot. }
 \item{...}{ arguments passed to \link{image}, see examples }
 \item{asp}{ aspect ratio to be used for plot }
 \item{setParUsrBB}{default FALSE, see \code{\link{Spatial-class}} for further details}
-\item{useRasterImage}{default \code{!.isSDI()} as a workaround for a problem with repeated use in Windows SDI installations; if TRUE, use \code{\link[graphics]{rasterImage}} to render the image if available; for legacy rendering set FALSE}
+\item{useRasterImage}{if TRUE, use \code{\link[graphics]{rasterImage}} to render the image if available; for legacy rendering set FALSE; should be FALSE on Windows SDI installations}
 \item{breaks}{class breaks for coloured values}
 \item{interpolate}{default FALSE, a logical vector (or scalar) indicating whether to apply linear interpolation to the image when drawing, see \code{\link[graphics]{rasterImage}}}
 \item{angle}{default 0, angle of rotation (in degrees, anti-clockwise from positive x-axis, about the bottom-left corner), see \code{\link[graphics]{rasterImage}}}
