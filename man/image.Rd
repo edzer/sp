@@ -16,7 +16,7 @@ objects. }
         axes = FALSE, xlim = NULL,
 	ylim = NULL, add = FALSE, ..., asp = NA, setParUsrBB=FALSE,
         interpolate = FALSE, angle = 0, 
-	useRasterImage = (!.isSDI() && missing(breaks)), breaks,
+	useRasterImage = missing(breaks), breaks,
 	zlim = range(as.numeric(x[[attr]])[is.finite(x[[attr]])]))
 \method{image}{SpatialPixelsDataFrame}(x, ...) 
 \method{image}{SpatialPixels}(x, ...) 

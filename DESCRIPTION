@@ -11,7 +11,8 @@ Authors@R: c(person("Edzer", "Pebesma", role = c("aut", "cre"),
 			person("Michael", "Sumner", role = "ctb"),
 			person("Don", "MacQueen", role = "ctb"),
 			person("Jim", "Lemon", role = "ctb"),
-			person("Josh", "O'Brien", role = "ctb"))
+			person("Josh", "O'Brien", role = "ctb"),
+			person("Joseph", "O'Rourke", role = "ctb"))
 Depends: R (>= 3.0.0), methods
 Imports: utils, stats, graphics, grDevices, lattice, grid
 Suggests: RColorBrewer, rgdal (>= 0.8-7), rgeos (>= 0.3-13), gstat, maptools, deldir

@@ -13,7 +13,7 @@ image.SpatialGridDataFrame = function(x, attr = 1, xcol = 1, ycol = 2,
 		red=NULL, green=NULL, blue=NULL, axes = FALSE, xlim = NULL, 
 		ylim = NULL, add = FALSE, ..., asp = NA, 
 		setParUsrBB=FALSE, interpolate = FALSE, angle = 0,
-                useRasterImage=(!.isSDI() && missing(breaks)), breaks, 
+                useRasterImage = missing(breaks), breaks, 
 		zlim = range(as.numeric(x[[attr]])[is.finite(x[[attr]])])) {
 
 	if (!add) 
@@ -22,8 +22,6 @@ image.SpatialGridDataFrame = function(x, attr = 1, xcol = 1, ycol = 2,
 			setParUsrBB=setParUsrBB))
 
 	if (exists("rasterImage") && useRasterImage) {
-		if (.isSDI()) 
-			warning("Bug in SDI raster handling - your R graphics window may stop displaying output")
 		bb <- bbox(x)
 		scl <- function(xx, zlim) {
 			xx = matrix(as.numeric(xx), nrow(xx), ncol(xx))
@@ -154,23 +152,6 @@ image2Grid <- function (im, p4 = as.character(NA), digits=10)
     SpatialGridDataFrame(GridTopology(c(xx[1], yy[1]), c(diff(xx[1:2]), 
         diff(yy[1:2])), cells.dim), data.frame(z = as.vector(im$z[, 
         ncol(im$z):1])), proj4string = CRS(p4))
-}
-
-# copied from the svMisc package, copyright Philippe Grosjean,
-# Romain Francois & Kamil Barton
-".isSDI" <- function()
-{
-	# This function is specific to Windows, but it is defined everywhere
-	# so that we don't have to test the platform before use!
-	# Check if Rgui was started in SDI mode (needed by some GUI clients)
-
-	# 1) First is it Rgui?
-	if (!.Platform$GUI[1] == "Rgui")
-        return(FALSE)    # This is not Rgui
-
-        # RGui SDI mode: returns "R Console", in MDI mode: returns "RGui"
-        if (getIdentification() == "R Console") return(TRUE) else return(FALSE)
-
 }
 
 # menugget,
