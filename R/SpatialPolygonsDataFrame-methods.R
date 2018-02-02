@@ -31,11 +31,13 @@ SpatialPolygonsDataFrame <- function(Sr, data, match.ID = TRUE) {
 # 120416 add top-level comment to reduce comment checking
         cSr <- comment(Sr)
         if (is.null(cSr))
-            comment(res) <- as.character(any(sapply(slot(res, "polygons"),
+            comment(res) <- as.character(all(sapply(slot(res, "polygons"),
+# 180201 change any to all after NULL comment found
                 function(x) !is.null(comment(x))), na.rm=TRUE))
         else {
             if (!is.character(cSr) || is.na(cSr) || length(cSr) != 1)
-            cSr <- as.character(any(sapply(slot(res, "polygons"),
+            cSr <- as.character(all(sapply(slot(res, "polygons"),
+# 180201 change any to all after NULL comment found
                 function(x) !is.null(comment(x))), na.rm=TRUE))
             comment(res) <- cSr
         }
