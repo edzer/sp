@@ -1,3 +1,25 @@
+2018-02-02  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* inst/include/sp.h, src/sp.h: header files
+
+2018-02-02  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* R/SpatialPolygons-methods.R, R/SpatialPolygonsDataFrame-methods.R: 
+	wrong comment field returned from adehabitatAR::CharHull fixes https://github.com/r-spatial/sf/issues/636 fixes
+	https://github.com/edzer/sp/issues/49
+
+2018-01-25  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* DESCRIPTION, R/image.R, man/image.Rd: bump version; fix #48
+
+2018-01-25  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* DESCRIPTION, R/image.R, man/image.Rd: CRAN release 1.2-7
+
+2018-01-18  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* inst/ChangeLog: update ChangeLog
+
 2018-01-18  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
 
 	* inst/ChangeLog: update ChangeLog
