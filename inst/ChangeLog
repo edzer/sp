@@ -1,3 +1,22 @@
+2018-06-05  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* : commit baed36cc769a4109b6c50d3565b0f42f93a0f506 Author: Edzer
+	Pebesma <edzer.pebesma@uni-muenster.de> Date:   Tue Jun 5 11:53:13
+	2018 +0200
+
+2018-06-02  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* : Merge pull request #52 from rsbivand/master run build-prep
+
+2018-06-02  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* : Merge pull request #51 from rsbivand/master rchk MAKE_CLASS vulnerability
+
+2018-06-02  Roger Bivand <roger.bivand@nhh.no>
+
+	* DESCRIPTION, inst/include/sp_xports.c, src/sp_xports.c: rchk fix:
+	PROTECT MAKE_CLASS in src/sp_xports.c
+
 2018-02-02  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
 
 	* inst/include/sp.h, src/sp.h: header files
