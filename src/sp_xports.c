@@ -14,7 +14,7 @@ SEXP SP_PREFIX(sp_linkingTo_version)(void) {
 
 SEXP SP_PREFIX(Polygon_c)(const SEXP coords, const SEXP n, const SEXP ihole) {
 
-    SEXP SPans, labpt, Area, ringDir, hole;
+    SEXP SPans, labpt, Area, ringDir, hole, cls;
     double area, xc, yc;
     double *x, *y;
     int pc=0, rev=FALSE;
@@ -74,8 +74,9 @@ SEXP SP_PREFIX(Polygon_c)(const SEXP coords, const SEXP n, const SEXP ihole) {
         }
     }
 
-    PROTECT(SPans = NEW_OBJECT(MAKE_CLASS("Polygon"))); pc++;
-
+// rchk MAKE_CLASS allocates RSB 180602
+    PROTECT(cls = MAKE_CLASS("Polygon")); pc++;
+    PROTECT(SPans = NEW_OBJECT(cls)); pc++; 
     PROTECT(ringDir = NEW_INTEGER(1)); pc++;
     INTEGER_POINTER(ringDir)[0] = (area > 0.0) ? -1 : 1;
 // -1 cw hole, 1 ccw not-hole
@@ -179,7 +180,7 @@ SEXP SP_PREFIX(Polygon_validate_c)(const SEXP obj) {
 
 SEXP SP_PREFIX(Polygons_c)(const SEXP pls, const SEXP ID) {
 
-    SEXP ans, labpt, Area, plotOrder, crds, pl, n, hole, pls1, ID1;
+    SEXP ans, labpt, Area, plotOrder, crds, pl, n, hole, pls1, ID1, cls;
     int nps, i, pc=0, sumholes;
     double *areas, *areaseps, fuzz;
     int *po, *holes;
@@ -234,7 +235,9 @@ SEXP SP_PREFIX(Polygons_c)(const SEXP pls, const SEXP ID) {
         SET_VECTOR_ELT(pls1, (po[0] - R_OFFSET), pl);
     }
 
-    PROTECT(ans = NEW_OBJECT(MAKE_CLASS("Polygons"))); pc++;
+// rchk MAKE_CLASS allocates RSB 180602
+    PROTECT(cls = MAKE_CLASS("Polygons")); pc++;
+    PROTECT(ans = NEW_OBJECT(cls)); pc++;
     SET_SLOT(ans, install("Polygons"), pls1);
     SET_SLOT(ans, install("ID"), ID1);
 
@@ -318,10 +321,12 @@ SEXP SP_PREFIX(Polygons_validate_c)(const SEXP obj) {
 SEXP SP_PREFIX(SpatialPolygons_c)(const SEXP pls, const SEXP pO, 
 		const SEXP p4s) {
 
-    SEXP ans, bbox, ppO;
+    SEXP ans, bbox, ppO, cls;
     int pc=0;
 
-    PROTECT(ans = NEW_OBJECT(MAKE_CLASS("SpatialPolygons"))); pc++;
+// rchk MAKE_CLASS allocates RSB 180602
+    PROTECT(cls = MAKE_CLASS("SpatialPolygons")); pc++;
+    PROTECT(ans = NEW_OBJECT(cls)); pc++;
     // SET_SLOT(ans, install("polygons"), MAYBE_REFERENCED(pls) ? duplicate(pls) : pls);
     SET_SLOT(ans, install("polygons"), pls);
     // SET_SLOT(ans, install("proj4string"), MAYBE_REFERENCED(p4s) ? duplicate(p4s) : p4s);
