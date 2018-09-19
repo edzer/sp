@@ -215,7 +215,7 @@ with different factor levels result in an error.
 }
 
 \references{
-\url{http://rspatial.r-forge.r-project.org/gallery/}
+\url{https://edzer.github.io/sp/}
 }
 \seealso{\link[lattice]{xyplot}, \link[lattice]{levelplot},
 \link[lattice]{panel.identify} to identify objects }

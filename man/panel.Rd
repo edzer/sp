@@ -83,7 +83,7 @@ call function \code{spplot.key} for the last panel drawn on a page.
 }
 
 \references{
-\url{http://rspatial.r-forge.r-project.org/gallery/} has a graph gallery with
+\url{https://edzer.github.io/sp/} has a graph gallery with
 examples with R code.
 }
 \seealso{\link{spplot}, \link{spplot-methods}}
