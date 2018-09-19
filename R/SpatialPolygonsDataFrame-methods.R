@@ -111,7 +111,7 @@ setMethod("[", "SpatialPolygonsDataFrame", function(x, i, j, ... , drop = TRUE) 
 #	x@bbox <- .bboxCalcR(x@polygons)
 	if (length(i) > 0) {
             y@bbox <- .Call(bboxCalcR_c, y@polygons)
-            if (is.numeric(i) && i < 0) {
+            if (is.numeric(i) && any(i < 0)) {
 #                 area <- sapply(x@polygons, function(y) y@area)
 #                 x@plotOrder <- as.integer(order(area, decreasing=TRUE))
                   y@plotOrder <- .Call(SpatialPolygons_plotOrder_c, y@polygons)

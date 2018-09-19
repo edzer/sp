@@ -63,7 +63,7 @@ setReplaceMethod("coordinates", signature(object = "data.frame", value = "ANY"),
 		cc = object[, value] # retrieve coords
 		coord.numbers = match(value, names(object))
 	} else if (is.null(dim(value)) && length(value) > 1) { # coord.columns?
-		if (any(value != as.integer(value) || any(value < 1)))
+		if (any(value != as.integer(value)) || any(value < 1))
 			stop("coordinate columns should be positive integers")
 		cc = object[, value] # retrieve coords
 		coord.numbers = value
