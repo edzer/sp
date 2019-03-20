@@ -81,3 +81,7 @@ identicalCRS1 = function(x, y) {
   args_y <- strsplit(y@projargs, " +")[[1]]
   setequal(args_x, args_y)
 }
+
+is.na.CRS = function(x) {
+	is.na(x@projargs)
+}
