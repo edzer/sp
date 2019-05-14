@@ -1,6 +1,6 @@
 
-R version 3.0.2 (2013-09-25) -- "Frisbee Sailing"
-Copyright (C) 2013 The R Foundation for Statistical Computing
+R version 3.6.0 (2019-04-26) -- "Planting of a Tree"
+Copyright (C) 2019 The R Foundation for Statistical Computing
 Platform: x86_64-pc-linux-gnu (64-bit)
 
 R is free software and comes with ABSOLUTELY NO WARRANTY.
@@ -35,8 +35,8 @@ Type 'q()' to quit R.
  [91]  91  92  93  94  95  96  97  98  99 100 101 102 103 104 105 106 107 108
 [109] 109 110 111 112 113 114 115 116 117 118 119 120 121 122 123 124 125 126
 [127] 127 128 129 130 131 132 133 134 135 136 137 138 139 140 141 142 143 144
-[145] 145 146 147 148 149 150 151 152 153 154 155 100  91 148 141  25  64  97
-[163]  71   5  92
+[145] 145 146 147 148 149 150 151 152 153 154 155 140   9  26   7  90  17 133
+[163]  82  35 116
 > # remove the duplicate rows:
 > meusedup2 = meusedup[-zd[,2], ]
 > print(summary(meusedup2))
@@ -119,4 +119,4 @@ Data attributes:
 > 
 > proc.time()
    user  system elapsed 
-  0.456   0.036   0.486 
+  0.232   0.028   0.252 
