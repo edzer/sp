@@ -8,7 +8,7 @@
 #endif
 /* remember to touch local_stubs.c */
 
-#define SP_VERSION "1.3-1"
+#define SP_VERSION "1.3-2"
 
 #include <R.h>
 /* RSB 091203 */

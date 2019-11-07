@@ -1,5 +1,11 @@
 \name{NEWS} 
 \title{News for Package 'sp'}
+\section{Changes in version 1.3-2 (2019-11-07)}{
+\itemize{
+ \item fix length > 1 in coercion to logical error; #54, #60
+ \item add \code{is.na} method for \code{CRS} objects
+}
+}
 \section{Changes in version 1.2-5 (2017-06-16)}{
  \itemize{
   \item address error in spplot, leading to display of "Error using packet 1: mixture of missing and non missing values for cex"
