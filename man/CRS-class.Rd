@@ -23,12 +23,13 @@ Objects can be created by calls of the form \code{CRS("projargs")}, where "proja
   }
 }
 \usage{
-CRS(projargs, doCheckCRSArgs=TRUE)
+CRS(projargs, doCheckCRSArgs=TRUE, SRS_string=NULL)
 identicalCRS(x,y)
 }
 \arguments{
 \item{projargs}{A character string of projection arguments; the arguments must be entered exactly as in the PROJ.4 documentation; if the projection is unknown, use \code{as.character(NA)}, it may be missing or an empty string of zero length and will then set to the missing value.}
 \item{doCheckCRSArgs}{default TRUE, must be set to FALSE by package developers including \code{CRS} in an S4 class definition to avoid uncontrollable loading of the \pkg{rgdal} namespace}
+\item{SRS_string}{default NULL, experimental in connection with adaptation to GDAL>=3/PROJ>=6; a valid WKT string or SRS definition such as \code{"EPSG:4326"}}
 \item{x}{object having a \link{proj4string} method,
 or if \code{y} is missing, list with objects that have a \code{proj4string} method}
 \item{y}{object of class \link{Spatial}, or having a \link{proj4string} method}
