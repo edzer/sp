@@ -79,6 +79,8 @@ function \code{\link[rgeos]{createSPComment}} to add such comments to each Polyg
 the polygons slot of this SpatialPolygons object. Exterior rings are coded
 zero, while interior rings are coded with the 1-based index of the
 exterior ring to which they belong. SpatialPolygons objects created by reading using \code{\link[rgdal]{readOGR}} from \pkg{rgdal} have the comments set on input, as OGR also uses SFS.
+
+Refer to Bivand et al. (2013), pages 47-48 and 132-133 for a further discussion.
 }
 
 \note{
@@ -87,6 +89,10 @@ checked that all IDs are unique. If \code{rbind}-ing \code{SpatialPolygons} with
 unique IDs, it is possible to set the argument \code{makeUniqueIDs = TRUE}, although
 it is preferred to change these explicitly with \code{\link{spChFIDs}}.
 }
+
+
+\references{Roger Bivand, Edzer Pebesma and Virgilio Gomez-Rubio, 2013. Applied spatial data analysis with R, Second edition. Springer, NY. \url{https://asdar-book.org/}}
+
 \author{ Roger Bivand }
 \seealso{ \code{\link{SpatialPolygons}} }
 \examples{

@@ -47,6 +47,8 @@ function \code{\link[rgeos]{createSPComment}} to add such comments to each Polyg
 the polygons slot of this SpatialPolygons object. Exterior rings are coded
 zero, while interior rings are coded with the 1-based index of the
 exterior ring to which they belong. SpatialPolygons objects created by reading using \code{\link[rgdal]{readOGR}} from \pkg{rgdal} have the comments set on input, as OGR also uses SFS.
+
+Refer to Bivand et al. (2013), pages 47-48 and 132-133 for a further discussion.
 }
 
 \value{
@@ -58,5 +60,7 @@ exterior ring to which they belong. SpatialPolygons objects created by reading u
 \code{SpatialPoints} with label points.
 }
 \seealso{ \link{SpatialPolygons-class}, \link{SpatialPolygonsDataFrame-class} }
+
+\references{Roger Bivand, Edzer Pebesma and Virgilio Gomez-Rubio, 2013. Applied spatial data analysis with R, Second edition. Springer, NY. \url{https://asdar-book.org/}}
 
 \keyword{manip}
