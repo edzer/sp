@@ -117,7 +117,7 @@ l$srt = 0 # otherwise they end up upside-down
 text(l)
 title("grid line labels on polar projection, epsg 3031")
 \dontrun{
-demo(polar) # adds the map of the antarctic
+if (require(maps)) demo(polar) # adds the map of the antarctic
 }
 }
 
