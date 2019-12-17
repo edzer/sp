@@ -44,22 +44,22 @@ if (!is.R()) {
 # sessionInfo()/read.dcf() problem in loop 080307
     comm <- NULL
     if (doCheckCRSArgs && requireNamespace("rgdal", quietly = TRUE)) {
-      if ((length(grep("ob_tran", uprojargs)) > 0L) ||
-        (packageVersion("rgdal") < "1.5.1" && !rgdal::new_proj_and_gdal())) {
-        if (!is.na(uprojargs)) {
-          res <- rgdal::checkCRSArgs(uprojargs)
-          if (!res[[1]]) 
-              stop(res[[2]])
-          uprojargs <- res[[2]]
-        }
-      } else {
-        res <- rgdal::checkCRSArgs_ng(uprojargs=uprojargs,
-          SRS_string=SRS_string)
-        if (!is.na(uprojargs) && !res[[1]]) 
-          stop(res[[2]])
-        uprojargs <- res[[2]]
-        comm <- res[[3]]
-      }
+        if ((length(grep("ob_tran", uprojargs)) > 0L) ||
+            packageVersion("rgdal") < "1.5.1") {
+            if (!is.na(uprojargs)) {
+                res <- rgdal::checkCRSArgs(uprojargs)
+                if (!res[[1]]) stop(res[[2]])
+                uprojargs <- res[[2]]
+            }
+        } else if (packageVersion("rgdal") >= "1.5.1") {
+            if (rgdal::new_proj_and_gdal()) {
+                res <- rgdal::checkCRSArgs_ng(uprojargs=uprojargs,
+                    SRS_string=SRS_string)
+                if (!is.na(uprojargs) && !res[[1]]) stop(res[[2]])
+                uprojargs <- res[[2]]
+                comm <- res[[3]]
+            } else stop("rgdal version mismatch")
+        } else stop("rgdal version mismatch")
     }
     res <- new("CRS", projargs=uprojargs)
     if (!is.null(comm)) comment(res) <- comm
