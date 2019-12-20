@@ -58,7 +58,8 @@ image(meuse.grid["dist"])
 plot(xxpl, add = TRUE)
 points(xx, cex = .5)
 \dontrun{
-spplot(aggregate(meuse.grid[,1:3], xxpl), main = "aggregated meuse.grid")
+spplot(aggregate(as(meuse.grid[,1:3], "SpatialPolygonsDataFrame"), xxpl,
+ areaWeighted=TRUE), main = "aggregated meuse.grid")
 }
 }
 \keyword{spatial}

@@ -8,7 +8,8 @@ if (!is.R()) {
   }
 }
 
-"CRS" <- function(projargs=NA_character_, doCheckCRSArgs=TRUE) {
+"CRS" <- function(projargs=NA_character_, doCheckCRSArgs=TRUE,
+    SRS_string=NULL) {
 # cautious change BDR 150424
     if (!is.na(projargs) && !nzchar(projargs)) projargs <- NA_character_
 # condition added 140301
@@ -41,15 +42,27 @@ if (!is.R()) {
 #    if (length(grep("rgdal", search()) > 0) &&
 #      (sessionInfo()$otherPkgs$rgdal$Version > "0.4-2")) {
 # sessionInfo()/read.dcf() problem in loop 080307
-    if (doCheckCRSArgs) {
-      if (!is.na(uprojargs) && requireNamespace("rgdal", quietly = TRUE)) {
-        res <- rgdal::checkCRSArgs(uprojargs)
-        if (!res[[1]]) 
-            stop(res[[2]])
-        uprojargs <- res[[2]]
-      }
+    comm <- NULL
+    if (doCheckCRSArgs && requireNamespace("rgdal", quietly = TRUE)) {
+        if ((length(grep("ob_tran", uprojargs)) > 0L) ||
+            packageVersion("rgdal") < "1.5.1") {
+            if (!is.na(uprojargs)) {
+                res <- rgdal::checkCRSArgs(uprojargs)
+                if (!res[[1]]) stop(res[[2]])
+                uprojargs <- res[[2]]
+            }
+        } else if (packageVersion("rgdal") >= "1.5.1") {
+            if (rgdal::new_proj_and_gdal()) {
+                res <- rgdal::checkCRSArgs_ng(uprojargs=uprojargs,
+                    SRS_string=SRS_string)
+                if (!is.na(uprojargs) && !res[[1]]) stop(res[[2]])
+                uprojargs <- res[[2]]
+                comm <- res[[3]]
+            } else stop("rgdal version mismatch")
+        } else stop("rgdal version mismatch")
     }
     res <- new("CRS", projargs=uprojargs)
+    if (!is.null(comm)) comment(res) <- comm
     res
 }
 
