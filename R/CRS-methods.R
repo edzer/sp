@@ -58,7 +58,13 @@ if (!is.R()) {
                 if (!is.na(uprojargs) && !res[[1]]) stop(res[[2]])
                 uprojargs <- res[[2]]
                 comm <- res[[3]]
-            } else stop("rgdal version mismatch")
+            } else { #stop("rgdal version mismatch")
+                if (!is.na(uprojargs)) {
+                    res <- rgdal::checkCRSArgs(uprojargs)
+                    if (!res[[1]]) stop(res[[2]])
+                    uprojargs <- res[[2]]
+                }
+            }
         } else stop("rgdal version mismatch")
     }
     res <- new("CRS", projargs=uprojargs)
