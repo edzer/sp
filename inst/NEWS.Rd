@@ -1,5 +1,15 @@
 \name{NEWS} 
 \title{News for Package 'sp'}
+\section{Changes in version 1.4-1 (2020-xx-yy)}{
+\itemize{
+	\item ..
+}
+}
+\section{Changes in version 1.4-0 (2020-02-21)}{
+\itemize{
+	\item prepare for new (>= 1.5.1) rgdal, which listens to a comments() field of a CRS object carrying a WKT representation of a CRS; @rsb, https://github.com/edzer/sp/pull/67 and https://github.com/edzer/sp/pull/69
+}
+}
 \section{Changes in version 1.3-2 (2019-11-07)}{
 \itemize{
  \item fix length > 1 in coercion to logical error; #54, #60
