@@ -29,43 +29,43 @@ if (!is.R()) {
             warning("'lonlat' changed to 'longlat': ", projargs)
         }
     }    
-    if (is.na(projargs))
+    if (is.na(projargs)) {
         uprojargs <- projargs
-    else uprojargs <- paste(unique(unlist(strsplit(projargs, " "))), 
+    } else {
+        uprojargs <- paste(unique(unlist(strsplit(projargs, " "))), 
 	collapse=" ")
-    if (length(grep("= ", uprojargs)) != 0)
-	stop(paste("No spaces permitted in PROJ4 argument-value pairs:", 
-	    uprojargs))
-    if (length(grep(" [:alnum:]", uprojargs)) != 0)
-	stop(paste("PROJ4 argument-value pairs must begin with +:", 
-	    uprojargs))
+        if (length(grep("= ", uprojargs)) != 0)
+	    stop(paste("No spaces permitted in PROJ4 argument-value pairs:", 
+	        uprojargs))
+        if (length(grep(" [:alnum:]", uprojargs)) != 0)
+	    stop(paste("PROJ4 argument-value pairs must begin with +:", 
+	        uprojargs))
+    }
 #    if (length(grep("rgdal", search()) > 0) &&
 #      (sessionInfo()$otherPkgs$rgdal$Version > "0.4-2")) {
 # sessionInfo()/read.dcf() problem in loop 080307
     comm <- NULL
-    if (doCheckCRSArgs && requireNamespace("rgdal", quietly = TRUE)) {
-        if ((length(grep("ob_tran", uprojargs)) > 0L) ||
-            packageVersion("rgdal") < "1.5.1") {
-            if (!is.na(uprojargs)) {
+    if (!is.na(uprojargs) || !is.null(SRS_string)) {
+        if (doCheckCRSArgs && requireNamespace("rgdal", quietly = TRUE)) {
+            if ((length(grep("ob_tran", uprojargs)) > 0L) ||
+                packageVersion("rgdal") < "1.5.1") {
                 res <- rgdal::checkCRSArgs(uprojargs)
                 if (!res[[1]]) stop(res[[2]])
                 uprojargs <- res[[2]]
-            }
-        } else if (packageVersion("rgdal") >= "1.5.1") {
-            if (rgdal::new_proj_and_gdal()) {
-                res <- rgdal::checkCRSArgs_ng(uprojargs=uprojargs,
-                    SRS_string=SRS_string)
-                if (!is.na(uprojargs) && !res[[1]]) stop(res[[2]])
-                uprojargs <- res[[2]]
-                comm <- res[[3]]
-            } else { #stop("rgdal version mismatch")
-                if (!is.na(uprojargs)) {
+            } else if (packageVersion("rgdal") >= "1.5.1") {
+                if (rgdal::new_proj_and_gdal()) {
+                    res <- rgdal::checkCRSArgs_ng(uprojargs=uprojargs,
+                        SRS_string=SRS_string)
+                    if (!res[[1]]) stop(res[[2]])
+                    uprojargs <- res[[2]]
+                    comm <- res[[3]]
+                } else { #stop("rgdal version mismatch")
                     res <- rgdal::checkCRSArgs(uprojargs)
                     if (!res[[1]]) stop(res[[2]])
                     uprojargs <- res[[2]]
                 }
-            }
-        } else stop("rgdal version mismatch")
+            } else stop("rgdal version mismatch")
+        }
     }
     res <- new("CRS", projargs=uprojargs)
     if (!is.null(comm)) comment(res) <- comm
