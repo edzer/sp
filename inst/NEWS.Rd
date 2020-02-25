@@ -2,7 +2,7 @@
 \title{News for Package 'sp'}
 \section{Changes in version 1.4-1 (2020-xx-yy)}{
 \itemize{
-	\item ..
+	\item warn on NULL projargs in CRS(); https://github.com/edzer/sp/pull/74
 }
 }
 \section{Changes in version 1.4-0 (2020-02-21)}{
