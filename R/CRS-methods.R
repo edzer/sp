@@ -11,7 +11,8 @@ if (!is.R()) {
 "CRS" <- function(projargs=NA_character_, doCheckCRSArgs=TRUE,
     SRS_string=NULL) {
 # cautious change BDR 150424
-    if (!is.na(projargs) && !nzchar(projargs)) projargs <- NA_character_
+# trap NULL too 200225
+    if ((is.null(projargs)) || (!is.na(projargs) && !nzchar(projargs))) projargs <- NA_character_
 # condition added 140301
     stopifnot(is.logical(doCheckCRSArgs))
     stopifnot(length(doCheckCRSArgs) == 1L)
