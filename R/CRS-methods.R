@@ -12,6 +12,8 @@ if (!is.R()) {
     SRS_string=NULL) {
 # cautious change BDR 150424
 # trap NULL too 200225
+    if (is.null(projargs))
+        warning("CRS: projargs should not be NULL; set to NA")
     if ((is.null(projargs)) || (!is.na(projargs) && !nzchar(projargs))) projargs <- NA_character_
 # condition added 140301
     stopifnot(is.logical(doCheckCRSArgs))
