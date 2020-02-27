@@ -1,3 +1,35 @@
+2020-02-25  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* inst/NEWS.Rd: update news
+
+2020-02-25  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* : Merge pull request #74 from rsbivand/master trap NULL projargs
+
+2020-02-25  Roger Bivand <Roger.Bivand@nhh.no>
+
+	* R/CRS-methods.R: trap NULL projargs
+
+2020-02-24  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* : Merge pull request #72 from rsbivand/master See email from CRAN
+
+2020-02-24  Roger Bivand <roger.bivand@nhh.no>
+
+	* DESCRIPTION, R/CRS-methods.R: correcting if nesting in CRS()
+
+2020-02-24  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* inst/NEWS.Rd: fix #71
+
+2020-02-20  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* DESCRIPTION, inst/include/sp.h, src/sp.h: bump version
+
+2020-02-20  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* inst/ChangeLog: update ChangeLog
+
 2020-02-20  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
 
 	* : Merge pull request #69 from rsbivand/master fix error for old PROJ/GDAL
