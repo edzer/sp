@@ -1,7 +1,21 @@
 setMethod("proj4string", signature(obj = "Spatial"),
-	function(obj) 
-		as.character(obj@proj4string@projargs)
+	function(obj) {
+                if (!is.null(comment(slot(obj, "proj4string"))))
+                    warning("CRS object has comment, which is lost in output")
+		res <- as.character(obj@proj4string@projargs)
+                res
+        }
 )
+
+setMethod("wkt", signature(obj = "Spatial"),
+	function(obj) {
+                comm <- comment(slot(obj, "proj4string"))
+                if (is.null(comm))
+                    warning("CRS object has no comment")
+		comm
+        }
+)
+
 
 ReplProj4string = function(obj, value) {
 	p4str <- value@projargs

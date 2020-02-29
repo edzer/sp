@@ -74,6 +74,19 @@ if (!is.R()) {
     if (!is.null(comm)) comment(res) <- comm
     res
 }
+if (!isGeneric("wkt"))
+	setGeneric("wkt", function(obj)
+		standardGeneric("wkt"))
+
+setMethod("wkt", signature(obj = "CRS"),
+	function(obj) {
+                comm <- comment(obj)
+                if (is.null(comm))
+                    warning("CRS object has no comment")
+		comm
+        }
+)
+
 
 "print.CRS" <- function(x, ...)
 {
