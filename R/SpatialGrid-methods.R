@@ -3,7 +3,7 @@ SpatialPixels = function(points, tolerance = sqrt(.Machine$double.eps),
 	if (!is(points, "SpatialPoints"))
 		stop("points should be of class or extending SpatialPoints")
 	is.gridded = gridded(points)
-	if (is.na(proj4string(points))) 
+	if (is.na(slot(slot(points, "proj4string"), "projargs"))) 
 		proj4string(points) = proj4string
 	if (is.null(grid))
 		grid = points2grid(points, tolerance, round)
@@ -206,7 +206,7 @@ setMethod("[", "SpatialGrid",
 			stop("NAs not permitted in indices")
 		m = matrix(idx, gr@cells.dim[2], gr@cells.dim[1], byrow = TRUE)[rows,cols]
 		idx = as.vector(m) # t(m)?
-		cc = SpatialPixels(SpatialPoints(coordinates(x)[idx,,drop=FALSE], CRS(proj4string(x))))
+		cc = SpatialPixels(SpatialPoints(coordinates(x)[idx,,drop=FALSE], rebuild_CRS(x)))
 		cc = as(cc, "SpatialGrid")
 		cc
 	}
@@ -274,7 +274,7 @@ as.SpatialPolygons.SpatialPixels <- function(obj) {
 		Srl[[i]] <- Polygons(list(Polygon(coords=cbind(x, y))), ID=IDs[i])
                 comment(Srl[[i]]) <- "0"
 	}
-	res <- SpatialPolygons(Srl, proj4string=CRS(proj4string(obj)))
+	res <- SpatialPolygons(Srl, proj4string=rebuild_CRS(obj))
 	res
 }
 setAs("SpatialPixels", "SpatialPolygons", 

@@ -8,6 +8,26 @@ if (!is.R()) {
   }
 }
 
+if (!isGeneric("rebuild_CRS"))
+	setGeneric("rebuild_CRS", function(obj)
+		standardGeneric("rebuild_CRS"))
+
+setMethod("rebuild_CRS", signature(obj = "Spatial"),
+	function(obj) {
+            slot(obj, "proj4string") <- rebuild_CRS(slot(obj, "proj4string"))
+        }
+)
+
+setMethod("rebuild_CRS", signature(obj = "CRS"),
+	function(obj) {
+            if (is.null(comment(obj))) {
+                obj <- CRS(slot(obj, "projargs"))
+            } 
+            obj
+        }
+)
+
+
 "CRS" <- function(projargs=NA_character_, doCheckCRSArgs=TRUE,
     SRS_string=NULL) {
 # cautious change BDR 150424
@@ -100,12 +120,12 @@ setMethod("show", "CRS", function(object) print.CRS(object))
 
 identicalCRS = function(x, y) {
 	if (! missing(y))
-		identicalCRS1(CRS(proj4string(x)), CRS(proj4string(y)))
+		identicalCRS1(rebuild_CRS(x), rebuild_CRS(y))
 	else { # x has to be list:
 		stopifnot(is.list(x))
 		if (length(x) > 1) {
-			p1 = CRS(proj4string(x[[1]]))
-			!any(!sapply(x[-1], function(p2) identicalCRS1(CRS(proj4string(p2)), p1)))
+			p1 = rebuild_CRS(x[[1]])
+			!any(!sapply(x[-1], function(p2) identicalCRS1(rebuild_CRS(p2), p1)))
 		} else
 			TRUE
 	}

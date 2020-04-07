@@ -51,7 +51,7 @@ asWKTSpatialPoints = function(x, digits = getOption("digits")) {
 		print(x@coords)
 	pst <- paste(strwrap(paste(
 		"Coordinate Reference System (CRS) arguments:", 
-		proj4string(x))), collapse="\n")
+		slot(slot(x, "proj4string"), "projargs"))), collapse="\n")
 	cat(pst, "\n")
 }
 setMethod("show", "SpatialPoints", function(object) print.SpatialPoints(object))

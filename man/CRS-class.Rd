@@ -7,6 +7,8 @@
 \alias{print.CRS}
 \alias{show,CRS-method}
 \alias{wkt,CRS-method}
+\alias{rebuild_CRS}
+\alias{rebuild_CRS,CRS-method}
 
 \title{Class "CRS" of coordinate reference system arguments}
 
@@ -25,6 +27,7 @@ Objects can be created by calls of the form \code{CRS("projargs")}, where "proja
   \describe{
     \item{show}{\code{signature(object = "CRS")}: print projection arguments in object }
     \item{wkt}{\code{signature(object = "CRS")}: return WKT comment on object}
+    \item{rebuild_CRS}{rebuild a CRS object, usually used to add a WKT comment with PROJ >= 6 and GDAL >= 3}
   }
 }
 \usage{

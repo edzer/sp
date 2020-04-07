@@ -271,7 +271,8 @@ exportMethods(
 	spsample,
 	summary,
 	surfaceArea, 
-	spTransform
+	spTransform,
+        rebuild_CRS
 )
 
 S3method(as.array, SpatialGridDataFrame)

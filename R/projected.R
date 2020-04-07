@@ -77,7 +77,7 @@ setReplaceMethod("proj4string", c("Spatial", "CRS"), ReplProj4string)
 
 setMethod("is.projected", signature(obj = "Spatial"),
 	function(obj) {
-		p4str <- proj4string(obj)
+		p4str <- slot(slot(obj, "proj4string"), "projargs")
 		if (is.na(p4str) || !nzchar(p4str)) 
 			return(as.logical(NA))
 		else {

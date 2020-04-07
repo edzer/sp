@@ -220,7 +220,7 @@ plot.Spatial <- function(x, xlim = NULL, ylim = NULL,
 	if (is.null(ylim)) 
 		ylim <- expBB(bbox[2,], expandBB[c(1,3)])
 	if (is.na(asp)) 
-		asp <- ifelse(is.na(proj4string(x)) || is.projected(x), 1.0, 
+		asp <- ifelse(is.na(slot(slot(x, "proj4string"), "projargs")) || is.projected(x), 1.0, 
 			1/cos((mean(ylim) * pi)/180))
 
 	plot.new()

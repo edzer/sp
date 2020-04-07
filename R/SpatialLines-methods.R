@@ -215,7 +215,7 @@ getSpatialLinesMidPoints = function(SL) {
 		)
 	)
 	ret = t(sapply(ret, function(x) apply(x, 1, mean)))
-	SpatialPoints(ret, CRS(proj4string(SL)))
+	SpatialPoints(ret, slot(SL, "proj4string"))
 }
 
 LinesLength = function(Ls, longlat=FALSE) sum(sapply(Ls@Lines, LineLength, longlat))
@@ -245,7 +245,7 @@ setAs("SpatialLines", "SpatialPoints", function(from) {
 				lapply(from@lines, function(x) coordinates(as(x, "SpatialPoints"))))
 		if (!is.null(rownames(cc)))
 			rownames(cc) = make.unique(rownames(cc))
-		SpatialPoints(cc, CRS(proj4string(from)))
+		SpatialPoints(cc, rebuild_CRS(from))
 	}
 )
 setAs("Lines", "SpatialMultiPoints", function(from) {
@@ -255,7 +255,7 @@ setAs("Lines", "SpatialMultiPoints", function(from) {
 setAs("SpatialLines", "SpatialMultiPoints", function(from) {
 		l = lapply(from@lines, function(x) do.call(rbind, coordinates(x)))
 		names(l) = sapply(from@lines, function(x) x@ID)
-		SpatialMultiPoints(l, CRS(proj4string(from)))
+		SpatialMultiPoints(l, rebuild_CRS(from))
 	}
 )
 SpatialLines2SpatialPointsDataFrame = function(from) {
@@ -267,7 +267,7 @@ SpatialLines2SpatialPointsDataFrame = function(from) {
 	L3 = rep(1:length(from@lines), times = sapply(L, length))
 	L = unlist(L)
 	SpatialPointsDataFrame(spp, data.frame(Lines.NR = L3, Lines.ID=L2, 
-		Line.NR=L), proj4string=CRS(proj4string(from)))
+		Line.NR=L), proj4string=rebuild_CRS(from))
 }
 setAs("SpatialLines", "SpatialPointsDataFrame", function(from)
 	SpatialLines2SpatialPointsDataFrame(from)
@@ -317,7 +317,7 @@ labels.SpatialLines = function(object, labelCRS, side = 1:2, ...) {
 	# 1=below, 2=left, 3=above and 4=right.
 	if (! identical(names(object), c("EW", "NS")))
 		warning("this labels method is meant to operate on SpatialLines created with sp::gridlines")
-	if (missing(labelCRS) && !is.na(proj4string(object)))
+	if (missing(labelCRS) && !is.na(slot(slot(object, "proj4string"), "projargs")))
 		labelCRS = object@proj4string
 
 	cc = coordinates(object)
@@ -338,7 +338,7 @@ labels.SpatialLines = function(object, labelCRS, side = 1:2, ...) {
 	# get the labels:
 	if (! missing(labelCRS))
 		object = spTransform(object, labelCRS) # may do nothing
-	if (is.na(proj4string(object)))
+	if (is.na(slot(slot(object, "proj4string"), "projargs")))
 		is.p = TRUE
 	else 
 		is.p = is.projected(object)

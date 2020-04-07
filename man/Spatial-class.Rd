@@ -21,6 +21,7 @@
 \alias{owin-class}
 \alias{ppp-class}
 \alias{psp-class}
+\alias{rebuild_CRS,Spatial-method}
 
 \title{Class "Spatial"}
 \description{ An abstract class from which useful spatial classes are
@@ -51,6 +52,7 @@ are never to be generated; only derived classes can be meaningful }
 	\item{\code{$}}{ retrieves attribute column }
 	\item{\code{$<-}}{ sets or replaces attribute column, or promote a
 	geometry-only object to an object having an attribute }
+    \item{rebuild_CRS}{rebuild a CRS object, usually used to add a WKT comment with PROJ >= 6 and GDAL >= 3}
   }
 }
 
