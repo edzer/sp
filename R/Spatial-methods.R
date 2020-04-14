@@ -360,6 +360,13 @@ setReplaceMethod("[", c("Spatial", "ANY", "ANY", "ANY"),
 	}
 )
 
+setMethod("rebuild_CRS", signature(obj = "Spatial"),
+	function(obj) {
+            slot(obj, "proj4string") <- rebuild_CRS(slot(obj, "proj4string"))
+            obj
+        }
+)
+
 # Don MacQueen provided head & tail:
 head.Spatial <- function(x, n=6L, ...) {
     ix <- sign(n)*seq(abs(n))

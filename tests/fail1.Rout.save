@@ -1,6 +1,6 @@
 
-R version 3.4.0 (2017-04-21) -- "You Stupid Darkness"
-Copyright (C) 2017 The R Foundation for Statistical Computing
+R version 4.0.0 beta (2020-04-13 r78215) -- "Arbor Day"
+Copyright (C) 2020 The R Foundation for Statistical Computing
 Platform: x86_64-pc-linux-gnu (64-bit)
 
 R is free software and comes with ABSOLUTELY NO WARRANTY.
@@ -212,11 +212,13 @@ y         50.955770 0.0003318105       112
 Error in CRS("+proj=latlon +ellps=WGS84") : 
   northings must follow eastings: +proj=latlon +ellps=WGS84
 > try(CRS("+proj=lonlat +ellps=WGS84"))
-CRS arguments: +proj=longlat +ellps=WGS84 
-Warning message:
-In CRS("+proj=lonlat +ellps=WGS84") :
+CRS arguments: +proj=longlat +ellps=WGS84 +no_defs 
+Warning messages:
+1: In CRS("+proj=lonlat +ellps=WGS84") :
   'lonlat' changed to 'longlat': +proj=longlat +ellps=WGS84
+2: In showSRID(uprojargs, format = "PROJ", multiline = "NO") :
+  Discarded datum Unknown based on WGS84 ellipsoid in CRS definition
 > 
 > proc.time()
    user  system elapsed 
-  1.044   0.236   1.080 
+  0.652   0.045   0.732 

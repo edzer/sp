@@ -42,7 +42,7 @@ as.SPixDF.SGDF = function(from) {
    	}
    	data = data.frame(data, stringsAsFactors = FALSE)
    	names(data) = names(from@data)
-	SpatialGridDataFrame(from@grid, data, rebuild_CRS(from))
+	SpatialGridDataFrame(from@grid, data, rebuild_CRS(slot(from, "proj4string")))
 }
 #setAs("SpatialPixelsDataFrame", "SpatialGridDataFrame", as.SPixDF.SGDF)
 
@@ -65,7 +65,8 @@ pix2grid = function(from) {
 			data[,fi] = v
 		}
 	}
-	SpatialGridDataFrame(from@grid, data, rebuild_CRS(from))
+	SpatialGridDataFrame(from@grid, data,
+            rebuild_CRS(slot(from, "proj4string")))
 }
 setAs("SpatialPixelsDataFrame", "SpatialGridDataFrame", pix2grid)
 
@@ -264,7 +265,8 @@ subs.SpatialGridDataFrame <- function(x, i, j, ... , drop = FALSE) {
 		x@data[] = NA
 		return(x)
 	} 
-	pts = SpatialPoints(coordinates(x)[idx,,drop=FALSE], rebuild_CRS(x))
+	pts = SpatialPoints(coordinates(x)[idx,,drop=FALSE], 
+            rebuild_CRS(slot(x, "proj4string")))
 	if (length(idx) == 1)
 		SpatialPointsDataFrame(pts, x@data[idx, k, drop = FALSE])
 	else {
@@ -292,7 +294,7 @@ cbind.SpatialGridDataFrame = function(...) {
 	gr@data = do.call(cbind, lapply(grds, function(x) x@data))
 	#for (i in 2:ngrds)
 	#	gr@data = cbind(gr@data, grds[[i]]@data)
-	proj4string(gr) = rebuild_CRS(grds[[1]])
+	proj4string(gr) = rebuild_CRS(slot(grds[[1]], "proj4string"))
 	gr
 }
 

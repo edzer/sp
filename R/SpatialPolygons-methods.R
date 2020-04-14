@@ -131,7 +131,7 @@ setMethod("[", "SpatialPolygons", function(x, i, j, ..., drop = TRUE) {
 		stopifnot(validObject(x))
 		x
 	} else
-		SpatialPolygons(x@polygons[i], proj4string=rebuild_CRS(x))
+		SpatialPolygons(x@polygons[i], proj4string=rebuild_CRS(slot(x, "proj4string")))
 #	x@polygons = x@polygons[i]
 #	x@bbox <- .bboxCalcR(x@polygons)
 #	area <- sapply(slot(x, "polygons"), function(i) slot(i, "area"))
@@ -172,7 +172,7 @@ getSpatialPolygonsLabelPoints = function(SP) {
 	.Deprecated("slot", package = "sp",
             msg="use *apply and slot directly, or coordinates method")
 	ret = t(sapply(slot(SP, "polygons"), function(x) slot(x, "labpt")))
-	SpatialPoints(ret, rebuild_CRS(SP))
+	SpatialPoints(ret, rebuild_CRS(slot(SP, "proj4string")))
 }
 
 as.Lines.Polygons = function(from) {
@@ -183,7 +183,7 @@ setAs("Polygons", "Lines", as.Lines.Polygons)
 
 as.SpatialLines.SpatialPolygons = function(from)
 	SpatialLines(lapply(from@polygons, function(x) as(x, "Lines")),
-		rebuild_CRS(from))
+		rebuild_CRS(slot(from, "proj4string")))
 
 setAs("SpatialPolygons", "SpatialLines", as.SpatialLines.SpatialPolygons)
 

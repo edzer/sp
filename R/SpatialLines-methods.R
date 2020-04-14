@@ -245,7 +245,7 @@ setAs("SpatialLines", "SpatialPoints", function(from) {
 				lapply(from@lines, function(x) coordinates(as(x, "SpatialPoints"))))
 		if (!is.null(rownames(cc)))
 			rownames(cc) = make.unique(rownames(cc))
-		SpatialPoints(cc, rebuild_CRS(from))
+		SpatialPoints(cc, rebuild_CRS(slot(from, "proj4string")))
 	}
 )
 setAs("Lines", "SpatialMultiPoints", function(from) {
@@ -255,7 +255,7 @@ setAs("Lines", "SpatialMultiPoints", function(from) {
 setAs("SpatialLines", "SpatialMultiPoints", function(from) {
 		l = lapply(from@lines, function(x) do.call(rbind, coordinates(x)))
 		names(l) = sapply(from@lines, function(x) x@ID)
-		SpatialMultiPoints(l, rebuild_CRS(from))
+		SpatialMultiPoints(l, rebuild_CRS(slot(from, "proj4string")))
 	}
 )
 SpatialLines2SpatialPointsDataFrame = function(from) {
@@ -267,7 +267,7 @@ SpatialLines2SpatialPointsDataFrame = function(from) {
 	L3 = rep(1:length(from@lines), times = sapply(L, length))
 	L = unlist(L)
 	SpatialPointsDataFrame(spp, data.frame(Lines.NR = L3, Lines.ID=L2, 
-		Line.NR=L), proj4string=rebuild_CRS(from))
+		Line.NR=L), proj4string=rebuild_CRS(slot(from, "proj4string")))
 }
 setAs("SpatialLines", "SpatialPointsDataFrame", function(from)
 	SpatialLines2SpatialPointsDataFrame(from)

@@ -12,12 +12,6 @@ if (!isGeneric("rebuild_CRS"))
 	setGeneric("rebuild_CRS", function(obj)
 		standardGeneric("rebuild_CRS"))
 
-setMethod("rebuild_CRS", signature(obj = "Spatial"),
-	function(obj) {
-            slot(obj, "proj4string") <- rebuild_CRS(slot(obj, "proj4string"))
-        }
-)
-
 setMethod("rebuild_CRS", signature(obj = "CRS"),
 	function(obj) {
             if (is.null(comment(obj))) {
@@ -70,8 +64,7 @@ setMethod("rebuild_CRS", signature(obj = "CRS"),
     comm <- NULL
     if (!is.na(uprojargs) || !is.null(SRS_string)) {
         if (doCheckCRSArgs && requireNamespace("rgdal", quietly = TRUE)) {
-            if ((length(grep("ob_tran", uprojargs)) > 0L) ||
-                packageVersion("rgdal") < "1.5.1") {
+            if (packageVersion("rgdal") < "1.5.1") {
                 res <- rgdal::checkCRSArgs(uprojargs)
                 if (!res[[1]]) stop(res[[2]])
                 uprojargs <- res[[2]]
@@ -120,12 +113,15 @@ setMethod("show", "CRS", function(object) print.CRS(object))
 
 identicalCRS = function(x, y) {
 	if (! missing(y))
-		identicalCRS1(rebuild_CRS(x), rebuild_CRS(y))
+		identicalCRS1(rebuild_CRS(slot(x, "proj4string")),
+                    rebuild_CRS(slot(y, "proj4string")))
 	else { # x has to be list:
 		stopifnot(is.list(x))
 		if (length(x) > 1) {
-			p1 = rebuild_CRS(x[[1]])
-			!any(!sapply(x[-1], function(p2) identicalCRS1(rebuild_CRS(p2), p1)))
+			p1 = rebuild_CRS(slot(x[[1]], "proj4string"))
+			!any(!sapply(x[-1], function(p2) {
+                            identicalCRS1(rebuild_CRS(slot(p2, "proj4string")),
+                            p1)}))
 		} else
 			TRUE
 	}

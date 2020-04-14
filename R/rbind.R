@@ -19,7 +19,7 @@ rbind.SpatialPoints <- function(...) {
 		x
 	}
 	ret = SpatialPoints(do.call(rbind, lapply(dots, coordinates.strip)),
-		rebuild_CRS(dots[[1]]))
+		rebuild_CRS(slot(dots[[1]], "proj4string")))
 	if (!dropRowNames)
 		row.names(ret) = make.unique(do.call(c, lapply(dots, row.names)))
 	ret
@@ -40,7 +40,7 @@ rbind.SpatialMultiPoints <- function(...) {
 	names(dots) <- NULL
 	stopifnot(identicalCRS(dots))
 	SpatialMultiPoints(do.call(c, lapply(dots, slot, name="coords")),
-	rebuild_CRS(dots[[1]]))
+	rebuild_CRS(slot(dots[[1]], "proj4string")))
 }
 
 rbind.SpatialMultiPointsDataFrame <- function(...) {
@@ -76,7 +76,7 @@ rbind.SpatialPolygons = function(..., makeUniqueIDs = FALSE) {
 	pl = do.call(c, lapply(dots, function(x) slot(x, "polygons")))
 	if (makeUniqueIDs)
 		pl = makeUniqueIDs(pl)
-	SpatialPolygons(pl, proj4string = rebuild_CRS(dots[[1]]))
+	SpatialPolygons(pl, proj4string = rebuild_CRS(slot(dots[[1]], "proj4string")))
 }
 
 rbind.SpatialPolygonsDataFrame <- function(..., makeUniqueIDs = TRUE) {
@@ -97,7 +97,7 @@ rbind.SpatialLines = function(..., makeUniqueIDs = TRUE) {
 	ll = do.call(c, lapply(dots, function(x) slot(x, "lines")))
 	if (makeUniqueIDs)
 		ll = makeUniqueIDs(ll)
-	SpatialLines(ll, proj4string = rebuild_CRS(dots[[1]]))
+	SpatialLines(ll, proj4string = rebuild_CRS(slot(dots[[1]], "proj4string")))
 }
 
 rbind.SpatialLinesDataFrame <- function(...) {

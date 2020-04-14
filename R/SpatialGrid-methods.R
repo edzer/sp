@@ -206,7 +206,7 @@ setMethod("[", "SpatialGrid",
 			stop("NAs not permitted in indices")
 		m = matrix(idx, gr@cells.dim[2], gr@cells.dim[1], byrow = TRUE)[rows,cols]
 		idx = as.vector(m) # t(m)?
-		cc = SpatialPixels(SpatialPoints(coordinates(x)[idx,,drop=FALSE], rebuild_CRS(x)))
+		cc = SpatialPixels(SpatialPoints(coordinates(x)[idx,,drop=FALSE], rebuild_CRS(slot(x, "proj4string"))))
 		cc = as(cc, "SpatialGrid")
 		cc
 	}
@@ -274,7 +274,7 @@ as.SpatialPolygons.SpatialPixels <- function(obj) {
 		Srl[[i]] <- Polygons(list(Polygon(coords=cbind(x, y))), ID=IDs[i])
                 comment(Srl[[i]]) <- "0"
 	}
-	res <- SpatialPolygons(Srl, proj4string=rebuild_CRS(obj))
+	res <- SpatialPolygons(Srl, proj4string=rebuild_CRS(slot(obj, "proj4string")))
 	res
 }
 setAs("SpatialPixels", "SpatialPolygons", 

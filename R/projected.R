@@ -74,18 +74,28 @@ setReplaceMethod("proj4string", c("Spatial", "CRS"), ReplProj4string)
         attr(res, "details") <- list(W, E, S, N)
 	res
 }
+is.projectedSpatial <- function(obj) {
+	p4str <- slot(obj, "proj4string")
+	is.projected(p4str)
+}
 
-setMethod("is.projected", signature(obj = "Spatial"),
-	function(obj) {
-		p4str <- slot(slot(obj, "proj4string"), "projargs")
-		if (is.na(p4str) || !nzchar(p4str)) 
-			return(as.logical(NA))
-		else {
-			res <- grep("longlat", p4str, fixed = TRUE)
-			if (length(res) == 0)
-				return(TRUE)
-			else
-				return(FALSE)
-		}
+setMethod("is.projected", signature(obj = "Spatial"), is.projectedSpatial)
+
+is.projectedCRS <- function(obj) {
+	p4str <- slot(obj, "projargs")
+	if (is.na(p4str) || !nzchar(p4str)) 
+		return(as.logical(NA))
+	else {
+		res <- grep("longlat", p4str, fixed = TRUE)
+		if (length(res) == 0)
+			return(TRUE)
+		else
+			return(FALSE)
 	}
-)
+}
+
+
+
+setMethod("is.projected", signature(obj = "CRS"), is.projectedCRS)
+
+

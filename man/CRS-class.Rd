@@ -9,6 +9,7 @@
 \alias{wkt,CRS-method}
 \alias{rebuild_CRS}
 \alias{rebuild_CRS,CRS-method}
+\alias{is.projected,CRS-method}
 
 \title{Class "CRS" of coordinate reference system arguments}
 
