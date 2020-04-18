@@ -112,14 +112,18 @@ setMethod("wkt", signature(obj = "CRS"),
 setMethod("show", "CRS", function(object) print.CRS(object))
 
 identicalCRS = function(x, y) {
-	if (! missing(y))
+	if (! missing(y)) {
+            if (inherits(x, "ST")) x <- slot(x, "sp")
+            if (inherits(y, "ST")) y <- slot(y, "sp")
 		identicalCRS1(rebuild_CRS(slot(x, "proj4string")),
                     rebuild_CRS(slot(y, "proj4string")))
-	else { # x has to be list:
+	} else { # x has to be list:
 		stopifnot(is.list(x))
 		if (length(x) > 1) {
+                        if (inherits(x[[1]], "ST")) x[[1]] <- slot(x[[1]], "sp")
 			p1 = rebuild_CRS(slot(x[[1]], "proj4string"))
 			!any(!sapply(x[-1], function(p2) {
+                            if (inherits(p2, "ST")) p2 <- slot(p2, "sp")
                             identicalCRS1(rebuild_CRS(slot(p2, "proj4string")),
                             p1)}))
 		} else
