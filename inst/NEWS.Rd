@@ -7,7 +7,7 @@
 }
 \section{Changes in version 1.4-0 (2020-02-21)}{
 \itemize{
-	\item prepare for new (>= 1.5.1) rgdal, which listens to a comments() field of a CRS object carrying a WKT representation of a CRS; @rsb, https://github.com/edzer/sp/pull/67 and https://github.com/edzer/sp/pull/69
+	\item prepare for new (>= 1.5.1) rgdal, which creates and listens to a comments() field of a CRS object carrying a WKT representation of a CRS rather than the proj4string; @rsb, https://github.com/edzer/sp/pull/67 and https://github.com/edzer/sp/pull/69 ; for more info see e.g. https://github.com/edzer/sp/issues/68 and https://github.com/r-spatial/discuss/issues/28
 }
 }
 \section{Changes in version 1.3-2 (2019-11-07)}{
