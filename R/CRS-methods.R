@@ -1,4 +1,4 @@
-# Copyright (c) 2003-8 by Barry Rowlingson and Roger Bivand
+# Copyright (c) 2003-20 by Barry Rowlingson and Roger Bivand
 
 if (!is.R()) {
   strsplit <- function(a,b) {
@@ -7,6 +7,20 @@ if (!is.R()) {
     else list(unlist(unpaste(a, b)))
   }
 }
+
+if (!isGeneric("rebuild_CRS"))
+	setGeneric("rebuild_CRS", function(obj)
+		standardGeneric("rebuild_CRS"))
+
+setMethod("rebuild_CRS", signature(obj = "CRS"),
+	function(obj) {
+            if (is.null(comment(obj))) {
+                obj <- CRS(slot(obj, "projargs"))
+            } 
+            obj
+        }
+)
+
 
 "CRS" <- function(projargs=NA_character_, doCheckCRSArgs=TRUE,
     SRS_string=NULL) {
@@ -50,8 +64,7 @@ if (!is.R()) {
     comm <- NULL
     if (!is.na(uprojargs) || !is.null(SRS_string)) {
         if (doCheckCRSArgs && requireNamespace("rgdal", quietly = TRUE)) {
-            if ((length(grep("ob_tran", uprojargs)) > 0L) ||
-                packageVersion("rgdal") < "1.5.1") {
+            if (packageVersion("rgdal") < "1.5.1") {
                 res <- rgdal::checkCRSArgs(uprojargs)
                 if (!res[[1]]) stop(res[[2]])
                 uprojargs <- res[[2]]
@@ -74,6 +87,19 @@ if (!is.R()) {
     if (!is.null(comm)) comment(res) <- comm
     res
 }
+if (!isGeneric("wkt"))
+	setGeneric("wkt", function(obj)
+		standardGeneric("wkt"))
+
+setMethod("wkt", signature(obj = "CRS"),
+	function(obj) {
+                comm <- comment(obj)
+                if (is.null(comm))
+                    warning("CRS object has no comment")
+		comm
+        }
+)
+
 
 "print.CRS" <- function(x, ...)
 {
@@ -86,13 +112,35 @@ if (!is.R()) {
 setMethod("show", "CRS", function(object) print.CRS(object))
 
 identicalCRS = function(x, y) {
-	if (! missing(y))
-		identicalCRS1(CRS(proj4string(x)), CRS(proj4string(y)))
-	else { # x has to be list:
+	if (! missing(y)) {
+            if (inherits(x, "ST")) x <- slot(slot(x, "sp"), "proj4string")
+            else if (inherits(x, "Raster")) x <- slot(x, "crs")
+            else x <- slot(x, "proj4string")
+            if (inherits(y, "ST")) y <- slot(slot(y, "sp"), "proj4string")
+            else if (inherits(y, "Raster")) y <- slot(y, "crs")
+            else y <- slot(y, "proj4string")
+	    identicalCRS1(rebuild_CRS(x), rebuild_CRS(y))
+	} else { # x has to be list:
 		stopifnot(is.list(x))
+                if (inherits(x[[1]], "Tracks")) {
+                    x <- unlist(lapply(x, function(j) {
+                        y <- slot(j, "tracks") 
+                          if (!is.null(y)) lapply(y, function(l) 
+                            if (!is.null(l)) slot(l, "sp"))}))
+                }
 		if (length(x) > 1) {
-			p1 = CRS(proj4string(x[[1]]))
-			!any(!sapply(x[-1], function(p2) identicalCRS1(CRS(proj4string(p2)), p1)))
+                    if (inherits(x[[1]], "ST")) 
+                        x[[1]] <- slot(slot(x[[1]], "sp"), "proj4string")
+                    else if (inherits(x[[1]], "Raster"))
+                        x[[1]] <- slot(x[[1]], "crs")
+                    else x[[1]] <- slot(x[[1]], "proj4string")
+		    p1 = rebuild_CRS(x[[1]])
+		    !any(!sapply(x[-1], function(p2) {
+                        if (inherits(p2, "ST")) 
+                            p2 <- slot(slot(p2, "sp"), "proj4string")
+                        else if (inherits(p2, "Raster")) p2 <- slot(p2, "crs")
+                        else p2 <- slot(p2, "proj4string")
+                        identicalCRS1(rebuild_CRS(p2), p1)}))
 		} else
 			TRUE
 	}

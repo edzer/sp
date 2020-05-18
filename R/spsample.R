@@ -117,7 +117,7 @@ sample.Spatial = function(x, n, type, bb = bbox(x), offset = runif(nrow(bb)),
 			xy[,2] >= bb[2,1] & xy[,2] <= bb[2,2]
 	xy = xy[sel,, drop = FALSE]
 	rownames(xy) = NULL
-	SpatialPoints(xy, CRS(proj4string(x)))
+	SpatialPoints(xy, rebuild_CRS(slot(x, "proj4string")))
 }
 
 setMethod("spsample", signature(x = "Spatial"), sample.Spatial)
@@ -192,7 +192,7 @@ sample.SpatialLines = function(x, n, type, offset = runif(1), ...) {
 	}
 	ret = do.call(rbind, ret)
 	if (!is.null(ret)) 
-		proj4string(ret) = CRS(proj4string(x))
+		proj4string(ret) = rebuild_CRS(slot(x, "proj4string"))
 	ret
 }
 setMethod("spsample", signature(x = "SpatialLines"), sample.SpatialLines)
@@ -341,7 +341,7 @@ sample.SpatialPolygons = function(x, n, type = "random", bb = bbox(x),
 		res <- res[sample(nrow(res@coords), n)]
 	if (is.null(res))
 		stop("iteration did not converge; try enlarging argument iter")
-	proj4string(res) = CRS(proj4string(x))
+	proj4string(res) = rebuild_CRS(slot(x, "proj4string"))
 	res
 }
 setMethod("spsample", signature(x = "SpatialPolygons"), sample.SpatialPolygons)
@@ -435,7 +435,7 @@ HexPoints2SpatialPolygons = function(hex, dx) {
 	IDS = paste("ID", 1:npoly, sep="")
 	for (i in 1:npoly)
 		Srl[[i]] = Polygons(list(Polygon(ret[[i]])), IDS[i])
-	res <- SpatialPolygons(Srl, proj4string=CRS(proj4string(hex)))
+	res <- SpatialPolygons(Srl, proj4string=rebuild_CRS(slot(hex, "proj4string")))
 	res
 }
 

@@ -21,6 +21,7 @@
 \alias{owin-class}
 \alias{ppp-class}
 \alias{psp-class}
+\alias{rebuild_CRS,Spatial-method}
 
 \title{Class "Spatial"}
 \description{ An abstract class from which useful spatial classes are
@@ -34,10 +35,7 @@ are never to be generated; only derived classes can be meaningful }
 	x-coordinate (first row), y-coordinate (second row) and optionally,
 	for points and grids only, further coordinates. The constructed 
 	Spatial object will be invalid if any bbox values are NA or infinite. The column names must be \code{c("min", "max")}}
-    \item{\code{proj4string}:}{Object of class \code{"CRS"};
-	holding a valid proj4 string, which can be used for unprojecting
-	or reprojecting coordinates; it is initialised to NA. Other strings
-	are checked for validity in the rgdal package, but attempts to assign a string containing "longlat" to data extending beyond longitude [-180, 360] or lattitude [-90, 90] will be stopped or warned, use \code{\link{set_ll_warn}} to warn rather than stop, and \code{\link{set_ll_TOL}} to change the default tolerance for the range exceedance tests.}
+    \item{\code{proj4string}:}{Object of class \code{"CRS"}. The name of this slot was chosen to reflect the use of Proj.4 strings to represent coordinate reference systems (CRS). The slot name will continue to be used, but as PROJ >= 6 and GDAL >= 3 are taken into use for reading files and for projection and transformation, the Proj.4 string CRS representation is being supplemented by a WKT2 (2019) representation. The reason for the modification is that important keys in the Proj.4 string representation are being deprecated in PROJ >= 6 and GDAL >= 3. Legacy \code{"CRS"}  objects hold only a valid Proj.4 string, which can be used for unprojecting or reprojecting coordinates; it is initialised to NA. If the \code{"CRS"} object is instantiated using \code{CRS()} with \pkg{rgdal} using PROJ >= 6 and GDAL >= 3, the object may also have a WKT2 (2019) string carried as a \code{comment}. Non-NA strings may be checked for validity in the rgdal package, but attempts to assign a string containing "longlat" to data extending beyond longitude [-180, 360] or lattitude [-90, 90] will be stopped or warned, use \code{\link{set_ll_warn}} to warn rather than stop, and \code{\link{set_ll_TOL}} to change the default tolerance for the range exceedance tests.}
   }
 }
 \section{Methods}{
@@ -54,6 +52,7 @@ are never to be generated; only derived classes can be meaningful }
 	\item{\code{$}}{ retrieves attribute column }
 	\item{\code{$<-}}{ sets or replaces attribute column, or promote a
 	geometry-only object to an object having an attribute }
+    \item{rebuild_CRS}{rebuild a CRS object, usually used to add a WKT comment with PROJ >= 6 and GDAL >= 3}
   }
 }
 
@@ -117,6 +116,13 @@ classes in this package derive from it }
   \code{\link{SpatialGridDataFrame-class}}
 %  \code{\link{SpatialPolygonsDataFrame-class}},
 }
-%\examples{}
+\examples{
+o <- new("Spatial")
+proj4string(o) <- CRS("+init=epsg:27700")
+if (!is.null(comment(slot(o, "proj4string")))) {
+  cat(strsplit(wkt(o), "\\n")[[1]], sep="\n")
+  cat(strsplit(wkt(slot(o, "proj4string")), "\\n")[[1]], sep="\n")
+}
+}
 
 \keyword{classes}

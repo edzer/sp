@@ -26,7 +26,7 @@ gridlines = function(x, easts = pretty(bbox(x)[1,]),
 		crs = CRS("+init=epsg:4326")
 	} else {
 		bb = bbox(x)
-		crs = CRS(proj4string(x))
+		crs = slot(x, "proj4string")
 		easts <- easts[easts >= bb[1,1] & easts <= bb[1,2]]
 		norths <- norths[norths >= bb[2,1] & norths <= bb[2,2]]
 	}
@@ -56,7 +56,7 @@ gridat <- function(x, easts = pretty(bbox(x)[1,]),
 	a1lab <- degreeLabelsEW(a1[,1])
 	a2 <- cbind(rep(bb[1,ac], length(norths)), norths)
 	a2lab <- degreeLabelsNS(a2[,2])
-	as <- SpatialPoints(rbind(a1, a2), CRS(proj4string(x)))
+	as <- SpatialPoints(rbind(a1, a2), slot(x, "proj4string"))
 	res <- SpatialPointsDataFrame(as,
 		data.frame(labels = c(a1lab, a2lab),
 			pos = c(rep(1L+((ac-1)*2), length(easts)),

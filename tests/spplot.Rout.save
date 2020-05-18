@@ -1,6 +1,6 @@
 
-R version 3.1.0 (2014-04-10) -- "Spring Dance"
-Copyright (C) 2014 The R Foundation for Statistical Computing
+R version 4.0.0 beta (2020-04-13 r78215) -- "Arbor Day"
+Copyright (C) 2020 The R Foundation for Statistical Computing
 Platform: x86_64-pc-linux-gnu (64-bit)
 
 R is free software and comes with ABSOLUTELY NO WARRANTY.
@@ -45,4 +45,4 @@ Coordinate Reference System (CRS) arguments: NA
 > 
 > proc.time()
    user  system elapsed 
-  0.516   0.020   0.529 
+  0.462   0.031   0.526 

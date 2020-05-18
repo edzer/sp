@@ -260,6 +260,7 @@ exportMethods(
 	"polygons<-",
 	proj4string,
 	"proj4string<-",
+        wkt,
 	recenter,
 	show, 
 	spChFIDs,
@@ -270,7 +271,8 @@ exportMethods(
 	spsample,
 	summary,
 	surfaceArea, 
-	spTransform
+	spTransform,
+        rebuild_CRS
 )
 
 S3method(as.array, SpatialGridDataFrame)
