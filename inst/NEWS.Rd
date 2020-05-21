@@ -1,6 +1,12 @@
 \name{NEWS} 
 \title{News for Package 'sp'}
-\section{Changes in version 1.4-1 (2020-xx-yy)}{
+\section{Changes in version 1.4-2 (2020-05-20)}{
+\itemize{
+	\item Adding a wkt() method and muting internal warnings; https://github.com/edzer/sp/pull/76
+}
+}
+
+\section{Changes in version 1.4-1 (2020-02-29)}{
 \itemize{
 	\item warn on NULL projargs in CRS(); https://github.com/edzer/sp/pull/74
 }
