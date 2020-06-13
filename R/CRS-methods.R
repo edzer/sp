@@ -102,7 +102,7 @@ setMethod("wkt", signature(obj = "CRS"),
                     } else {
                       if (get("PROJ6_warnings_count",
                         envir=.spOptions) == 0L) {
-                        warning("CRS object has no comment")
+                        warning("CRS object has no comment\n repeated warnings suppressed")
                       }
                       assign("PROJ6_warnings_count",
                         get("PROJ6_warnings_count",

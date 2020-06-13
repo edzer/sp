@@ -8,7 +8,7 @@ setMethod("proj4string", signature(obj = "Spatial"),
                     } else {
                       if (get("PROJ6_warnings_count",
                         envir=.spOptions) == 0L) {
-                        warning("CRS object has comment, which is lost in output")
+                        warning("CRS object has comment, which is lost in output\n repeated warnings suppressed")
                       }
                       assign("PROJ6_warnings_count",
                         get("PROJ6_warnings_count",
@@ -31,7 +31,7 @@ setMethod("wkt", signature(obj = "Spatial"),
                     } else {
                       if (get("PROJ6_warnings_count",
                         envir=.spOptions) == 0L) {
-                        warning("CRS object has no comment")
+                        warning("CRS object has no comment\n repeated warnings suppressed")
                       }
                       assign("PROJ6_warnings_count",
                         get("PROJ6_warnings_count",
