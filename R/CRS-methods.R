@@ -94,8 +94,22 @@ if (!isGeneric("wkt"))
 setMethod("wkt", signature(obj = "CRS"),
 	function(obj) {
                 comm <- comment(obj)
-                if (is.null(comm))
-                    warning("CRS object has no comment")
+                if (is.null(comm)) {
+                  if (get("rgdal_show_exportToProj4_warnings",
+                    envir=.spOptions)) {
+                    if (!get("thin_PROJ6_warnings", envir=.spOptions)) {
+                      warning("CRS object has no comment")
+                    } else {
+                      if (get("PROJ6_warnings_count",
+                        envir=.spOptions) == 0L) {
+                        warning("CRS object has no comment")
+                      }
+                      assign("PROJ6_warnings_count",
+                        get("PROJ6_warnings_count",
+                        envir=.spOptions) + 1L, envir=.spOptions)
+                   }
+                 }
+                }
 		comm
         }
 )
