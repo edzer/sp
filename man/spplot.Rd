@@ -218,7 +218,7 @@ with different factor levels result in an error.
 \url{https://edzer.github.io/sp/}
 }
 \seealso{\link[lattice]{xyplot}, \link[lattice]{levelplot},
-\link[lattice]{panel.identify} to identify objects }
+\link[lattice:interaction]{panel.identify} to identify objects }
 \author{
 Edzer Pebesma, \email{edzer.pebesma@uni-muenster.de}
 }

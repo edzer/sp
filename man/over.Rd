@@ -132,11 +132,11 @@ not guaranteed.
 
 \code{over} methods that involve \code{SpatialLines} objects, or
 pairs of \code{SpatialPolygons} require package \code{rgeos},
-and use \link[rgeos]{gIntersects}.}
+and use \link[rgeos:pred-binary-gIntersects]{gIntersects}.}
 
 \seealso{
 \code{vignette("over")} for examples and figures;
-\link{point.in.polygon}, package \link[rgeos]{gIntersects}}
+\link{point.in.polygon}, package \link[rgeos:pred-binary-gIntersects]{gIntersects}}
 \examples{
 r1 = cbind(c(180114, 180553, 181127, 181477, 181294, 181007, 180409, 
 180162, 180114), c(332349, 332057, 332342, 333250, 333558, 333676, 
