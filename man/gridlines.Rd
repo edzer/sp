@@ -58,7 +58,7 @@ on its coordinates, and takes care of attributes \code{pos}, \code{labels},
   of Roger Bivand.
 }
 
-\seealso{ \link[rgdal]{spTransform}; llgridlines in \code{rgdal} (recent versions) for plotting long-lat grid over projected data }
+\seealso{ \link[rgdal:spTransform-methods]{spTransform}; llgridlines in \code{rgdal} (recent versions) for plotting long-lat grid over projected data }
 \examples{
 data(meuse)
 coordinates(meuse) = ~x+y

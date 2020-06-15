@@ -67,7 +67,7 @@ element the \code{data.frame} elements of all geometries in \code{y}
 that correspond to that element of \code{x}.
 
 In case the \code{rgeos} \code{over} methods are used,
-matching is done by \link[rgeos]{gRelate}, which uses DE-9IM
+matching is done by \link[rgeos:pred-binary-gRelate]{gRelate}, which uses DE-9IM
 (\url{https://en.wikipedia.org/wiki/DE-9IM}). From the string
 returned, characters 1, 2, 4 and 5 are used, indicating the dimension
 of the overlap of the inner and boundary of each \code{x} geometry
