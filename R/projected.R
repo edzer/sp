@@ -1,7 +1,20 @@
 setMethod("proj4string", signature(obj = "Spatial"),
 	function(obj) {
                 if (!is.null(comment(slot(obj, "proj4string"))))
-                    warning("CRS object has comment, which is lost in output")
+                  if (get("rgdal_show_exportToProj4_warnings",
+                    envir=.spOptions)) {
+                    if (!get("thin_PROJ6_warnings", envir=.spOptions)) {
+                      warning("CRS object has comment, which is lost in output")
+                    } else {
+                      if (get("PROJ6_warnings_count",
+                        envir=.spOptions) == 0L) {
+                        warning("CRS object has comment, which is lost in output\n repeated warnings suppressed")
+                      }
+                      assign("PROJ6_warnings_count",
+                        get("PROJ6_warnings_count",
+                        envir=.spOptions) + 1L, envir=.spOptions)
+                   }
+                 }
 		res <- as.character(obj@proj4string@projargs)
                 res
         }
@@ -10,8 +23,22 @@ setMethod("proj4string", signature(obj = "Spatial"),
 setMethod("wkt", signature(obj = "Spatial"),
 	function(obj) {
                 comm <- comment(slot(obj, "proj4string"))
-                if (is.null(comm))
-                    warning("CRS object has no comment")
+                if (is.null(comm)) {
+                  if (get("rgdal_show_exportToProj4_warnings",
+                    envir=.spOptions)) {
+                    if (!get("thin_PROJ6_warnings", envir=.spOptions)) {
+                      warning("CRS object has no comment")
+                    } else {
+                      if (get("PROJ6_warnings_count",
+                        envir=.spOptions) == 0L) {
+                        warning("CRS object has no comment\n repeated warnings suppressed")
+                      }
+                      assign("PROJ6_warnings_count",
+                        get("PROJ6_warnings_count",
+                        envir=.spOptions) + 1L, envir=.spOptions)
+                   }
+                 }
+                }
 		comm
         }
 )
