@@ -36,9 +36,9 @@ CRS(projargs, doCheckCRSArgs=TRUE, SRS_string=NULL)
 identicalCRS(x,y)
 }
 \arguments{
-\item{projargs}{A character string of projection arguments; the arguments must be entered exactly as in the PROJ.4 documentation; if the projection is unknown, use \code{as.character(NA)}, it may be missing or an empty string of zero length and will then set to the missing value.}
+\item{projargs}{A character string of projection arguments; the arguments must be entered exactly as in the PROJ.4 documentation; if the projection is unknown, use \code{as.character(NA)}, it may be missing or an empty string of zero length and will then set to the missing value. With \pkg{rgdal} built with PROJ >= 6 and GDAL >= 3, the \code{+init=} key may only be used with value \code{epsg:<code>}}
 \item{doCheckCRSArgs}{default TRUE, must be set to FALSE by package developers including \code{CRS} in an S4 class definition to avoid uncontrollable loading of the \pkg{rgdal} namespace}
-\item{SRS_string}{default NULL, only used when \pkg{rgdal} is built with PROJ >= 6 and GDAL >= 3; a valid WKT string or SRS definition such as \code{"EPSG:4326"}}
+\item{SRS_string}{default NULL, only used when \pkg{rgdal} is built with PROJ >= 6 and GDAL >= 3; a valid WKT string or SRS definition such as \code{"EPSG:4326"} or \code{"ESRI:102761"}}
 \item{x}{object having a \link{proj4string} method,
 or if \code{y} is missing, list with objects that have a \code{proj4string} method}
 \item{y}{object of class \link{Spatial}, or having a \link{proj4string} method}
@@ -68,21 +68,35 @@ CRS()
 CRS("")
 CRS(as.character(NA))
 CRS("+proj=longlat +datum=WGS84")
-if (require(rgdal)) {
+run <- FALSE
+run <- require(rgdal) 
+if (run) {
   print(CRSargs(CRS("+proj=longlat +datum=NAD27")))
+}
+if (run) {
   print(CRSargs(CRS("+init=epsg:4267")))
+}
+if (run) {
   print(CRSargs(CRS("+init=epsg:26978")))
+}
+if (run) {
   print(CRSargs(CRS(paste("+proj=sterea +lat_0=52.15616055555555",
  "+lon_0=5.38763888888889 +k=0.999908 +x_0=155000 +y_0=463000 +ellps=bessel",
  " +towgs84=565.237,50.0087,465.658,-0.406857,0.350733,-1.87035,4.0812 +units=m"))))
+}
+if (run) {
   print(CRSargs(CRS("+init=epsg:28992")))
 }
-# see http://trac.osgeo.org/gdal/ticket/1987
+if (run) {
+  print(CRSargs(CRS(SRS_string="ESRI:102761")))
+}
+if (run) {
 o <- new("Spatial")
 proj4string(o) <- CRS("+init=epsg:27700")
-if (!is.null(comment(slot(o, "proj4string")))) {
-  cat(strsplit(wkt(o), "\\n")[[1]], sep="\n")
-  cat(strsplit(wkt(slot(o, "proj4string")), "\\n")[[1]], sep="\n")
+}
+if (run && !is.null(comment(slot(o, "proj4string")))) {
+  cat(wkt(o), sep="\n")
+  cat(wkt(slot(o, "proj4string")), sep="\n")
 }
 }
 \keyword{classes}
