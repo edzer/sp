@@ -75,7 +75,7 @@ its containing exterior ring. In order to avoid introducing incompatible
 changes into the class definition of Polygons objects, a comment has been
 added as a single character string to each such object. Here we can trust
 the data source to assign the hole status correctly, and use the simple
-function \code{\link[rgeos]{createSPComment}} to add such comments to each Polygons member of  
+function \code{\link[rgeos:comment-functions]{createSPComment}} to add such comments to each Polygons member of  
 the polygons slot of this SpatialPolygons object. Exterior rings are coded
 zero, while interior rings are coded with the 1-based index of the
 exterior ring to which they belong. SpatialPolygons objects created by reading using \code{\link[rgdal]{readOGR}} from \pkg{rgdal} have the comments set on input, as OGR also uses SFS.

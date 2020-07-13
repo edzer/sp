@@ -67,7 +67,7 @@ element the \code{data.frame} elements of all geometries in \code{y}
 that correspond to that element of \code{x}.
 
 In case the \code{rgeos} \code{over} methods are used,
-matching is done by \link[rgeos]{gRelate}, which uses DE-9IM
+matching is done by \link[rgeos:pred-binary-gRelate]{gRelate}, which uses DE-9IM
 (\url{https://en.wikipedia.org/wiki/DE-9IM}). From the string
 returned, characters 1, 2, 4 and 5 are used, indicating the dimension
 of the overlap of the inner and boundary of each \code{x} geometry
@@ -132,11 +132,11 @@ not guaranteed.
 
 \code{over} methods that involve \code{SpatialLines} objects, or
 pairs of \code{SpatialPolygons} require package \code{rgeos},
-and use \link[rgeos]{gIntersects}.}
+and use \link[rgeos:pred-binary-gIntersects]{gIntersects}.}
 
 \seealso{
 \code{vignette("over")} for examples and figures;
-\link{point.in.polygon}, package \link[rgeos]{gIntersects}}
+\link{point.in.polygon}, package \link[rgeos:pred-binary-gIntersects]{gIntersects}}
 \examples{
 r1 = cbind(c(180114, 180553, 181127, 181477, 181294, 181007, 180409, 
 180162, 180114), c(332349, 332057, 332342, 333250, 333558, 333676, 

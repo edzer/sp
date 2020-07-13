@@ -21,7 +21,7 @@ system.
 }
 \note{
 Package \code{rgdal} provides the methods doing actual transformation,
-see \link[rgdal]{spTransform}; when \code{rgdal} cannot be loaded, an
+see \link[rgdal:spTransform-methods]{spTransform}; when \code{rgdal} cannot be loaded, an
 error message follows.
 }
 \keyword{methods}

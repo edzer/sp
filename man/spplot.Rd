@@ -89,7 +89,7 @@ e.g. \code{exp(x)~x+y|name} to plot the exponent of the z-variable}
 \item{xlim}{ numeric; x-axis limits }
 \item{ylim}{ numeric; y-axis limits }
 \item{edge.col}{ color of symbol edge }
-\item{colorkey}{ if FALSE, use symbol key; if TRUE, use continuous, levelplot-like colorkey; if list, follow syntax of argument \code{colorkey} in \link[lattice]{levelplot} (see below for an example) }
+\item{colorkey}{ if FALSE, use symbol key; if TRUE, use continuous, levelplot-like colorkey; if list, follow syntax of argument \code{colorkey} in \link[lattice:interaction]{levelplot} (see below for an example) }
 \item{widths}{width of grob}
 \item{heights}{heights of grob}
 \item{fill}{fill color of grob}
@@ -218,7 +218,7 @@ with different factor levels result in an error.
 \url{https://edzer.github.io/sp/}
 }
 \seealso{\link[lattice]{xyplot}, \link[lattice]{levelplot},
-\link[lattice]{panel.identify} to identify objects }
+\link[lattice:interaction]{panel.identify} to identify objects }
 \author{
 Edzer Pebesma, \email{edzer.pebesma@uni-muenster.de}
 }
