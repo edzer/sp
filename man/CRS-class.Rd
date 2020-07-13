@@ -88,7 +88,8 @@ if (run) {
   print(CRSargs(CRS("+init=epsg:28992")))
 }
 if (run) {
-  print(CRSargs(CRS(SRS_string="ESRI:102761")))
+  o <- try(CRS(SRS_string="ESRI:102760"))
+  if (!inherits(o, "try-error")) print(CRSargs(o))
 }
 if (run) {
 o <- new("Spatial")
