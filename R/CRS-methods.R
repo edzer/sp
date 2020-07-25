@@ -34,9 +34,21 @@ setMethod("rebuild_CRS", signature(obj = "CRS"),
     stopifnot(length(doCheckCRSArgs) == 1L)
     stopifnot(is.character(projargs))
     if (!is.na(projargs)) {
-        if (length(grep("^[ ]*\\+", projargs)) == 0)
-            stop(paste("PROJ4 argument-value pairs must begin with +:", 
-	        projargs))
+        if (length(grep("^[ ]*\\+", projargs)) == 0) {
+            if (is.null(SRS_string)) {
+                if (doCheckCRSArgs && 
+                    requireNamespace("rgdal", quietly = TRUE)) {
+                    if (packageVersion("rgdal") >= "1.5.1" && 
+                        rgdal::new_proj_and_gdal()) {
+                        SRS_string <- projargs
+                        projargs <- NA_character_
+                    }
+                }
+            } else {
+                stop(paste("PROJ4 argument-value pairs must begin with +:", 
+	            projargs))
+            }
+        }
     }
     if (!is.na(projargs)) {
         if (length(grep("latlon", projargs)) != 0)

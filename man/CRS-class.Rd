@@ -36,7 +36,7 @@ CRS(projargs, doCheckCRSArgs=TRUE, SRS_string=NULL)
 identicalCRS(x,y)
 }
 \arguments{
-\item{projargs}{A character string of projection arguments; the arguments must be entered exactly as in the PROJ.4 documentation; if the projection is unknown, use \code{as.character(NA)}, it may be missing or an empty string of zero length and will then set to the missing value. With \pkg{rgdal} built with PROJ >= 6 and GDAL >= 3, the \code{+init=} key may only be used with value \code{epsg:<code>}}
+\item{projargs}{A character string of projection arguments; the arguments must be entered exactly as in the PROJ.4 documentation; if the projection is unknown, use \code{as.character(NA)}, it may be missing or an empty string of zero length and will then set to the missing value. With \pkg{rgdal} built with PROJ >= 6 and GDAL >= 3, the \code{+init=} key may only be used with value \code{epsg:<code>}. From \pkg{sp} version 1.4-4, the string associated with the SRS_string argument may be entered as-is and will be set as SRS_string if the projargs argument does not begin with a \code{+} (suggested by Mikko Vihtakari).}
 \item{doCheckCRSArgs}{default TRUE, must be set to FALSE by package developers including \code{CRS} in an S4 class definition to avoid uncontrollable loading of the \pkg{rgdal} namespace}
 \item{SRS_string}{default NULL, only used when \pkg{rgdal} is built with PROJ >= 6 and GDAL >= 3; a valid WKT string or SRS definition such as \code{"EPSG:4326"} or \code{"ESRI:102761"}}
 \item{x}{object having a \link{proj4string} method,
@@ -89,6 +89,14 @@ if (run) {
 }
 if (run) {
   o <- try(CRS(SRS_string="ESRI:102760"))
+  if (!inherits(o, "try-error")) print(CRSargs(o))
+}
+if (run) {
+  o <- try(CRS("EPSG:4326"))
+  if (!inherits(o, "try-error")) print(CRSargs(o))
+}
+if (run) {
+  o <- try(CRS("ESRI:102760"))
   if (!inherits(o, "try-error")) print(CRSargs(o))
 }
 if (run) {
