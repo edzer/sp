@@ -23,7 +23,7 @@ setMethod("rebuild_CRS", signature(obj = "CRS"),
 
 
 "CRS" <- function(projargs=NA_character_, doCheckCRSArgs=TRUE,
-    SRS_string=NULL) {
+    SRS_string=NULL, get_source_if_boundcrs=TRUE) {
 # cautious change BDR 150424
 # trap NULL too 200225
     if (is.null(projargs))
@@ -32,6 +32,8 @@ setMethod("rebuild_CRS", signature(obj = "CRS"),
 # condition added 140301
     stopifnot(is.logical(doCheckCRSArgs))
     stopifnot(length(doCheckCRSArgs) == 1L)
+    stopifnot(is.logical(get_source_if_boundcrs))
+    stopifnot(length(get_source_if_boundcrs) == 1L)
     stopifnot(is.character(projargs))
     if (!is.na(projargs)) {
         if (length(grep("^[ ]*\\+", projargs)) == 0) {
@@ -82,8 +84,14 @@ setMethod("rebuild_CRS", signature(obj = "CRS"),
                 uprojargs <- res[[2]]
             } else if (packageVersion("rgdal") >= "1.5.1") {
                 if (rgdal::new_proj_and_gdal()) {
-                    res <- rgdal::checkCRSArgs_ng(uprojargs=uprojargs,
-                        SRS_string=SRS_string)
+                    if (packageVersion("rgdal") >= "1.5.17") {
+                        res <- rgdal::checkCRSArgs_ng(uprojargs=uprojargs,
+                            SRS_string=SRS_string,
+                            get_source_if_boundcrs=get_source_if_boundcrs)
+                    } else {
+                        res <- rgdal::checkCRSArgs_ng(uprojargs=uprojargs,
+                            SRS_string=SRS_string)
+                    }
                     if (!res[[1]]) stop(res[[2]])
                     uprojargs <- res[[2]]
                     comm <- res[[3]]
