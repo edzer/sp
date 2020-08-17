@@ -113,7 +113,8 @@ is.projectedCRS <- function(obj) {
         wkt2 <- wkt(obj)
         if (!is.null(wkt2)) {
             if (requireNamespace("rgdal", quietly = TRUE)) {
-                if (packageVersion("rgdal") >= "1.5.17") {
+                if (packageVersion("rgdal") >= "1.5.17" && 
+                    rgdal::new_proj_and_gdal()) {
                     res <- rgdal::OSRIsProjected(obj)
                 } else {
                     res <- substring(wkt2, 1, 3) != "GEO"
@@ -128,7 +129,8 @@ is.projectedCRS <- function(obj) {
 		return(as.logical(NA))
 	} else {
             if (requireNamespace("rgdal", quietly = TRUE)) {
-                if (packageVersion("rgdal") >= "1.5.17") {
+                if (packageVersion("rgdal") >= "1.5.17" && 
+                    rgdal::new_proj_and_gdal()) {
                     res <- rgdal::OSRIsProjected(obj)
                 } else {
 		    res <- length(grep("longlat", p4str, fixed = TRUE)) == 0L
