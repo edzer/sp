@@ -15,6 +15,7 @@ Type 'demo()' for some demos, 'help()' for on-line help, or
 'help.start()' for an HTML browser interface to help.
 Type 'q()' to quit R.
 
+> options("rgdal_show_exportToProj4_warnings"="none")
 > library(sp)
 > data(meuse)
 > data(meuse.grid)
@@ -23,8 +24,6 @@ Type 'q()' to quit R.
 > x = coordinates(meuse)
 > y = coordinates(meuse.grid)
 > out = spDists(meuse,meuse.grid)
-Warning message:
-In wkt(obj) : CRS object has no comment
 > out2 = as.matrix(dist(rbind(coordinates(meuse),coordinates(meuse.grid))))
 > out2 = out2[1:155,155+1:nrow(y)]
 > # should be equal:
@@ -35,8 +34,6 @@ In wkt(obj) : CRS object has no comment
       0       0       0       0       0       0 
 > 
 > out = spDists(meuse.grid,meuse)
-Warning message:
-In wkt(obj) : CRS object has no comment
 > sum(out2 - t(out))
 [1] 0
 > summary(as.vector(out2 - t(out)))
@@ -45,4 +42,4 @@ In wkt(obj) : CRS object has no comment
 > 
 > proc.time()
    user  system elapsed 
-  0.726   0.141   0.864 
+  0.716   0.139   0.849 
