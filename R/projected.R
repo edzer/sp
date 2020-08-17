@@ -109,16 +109,34 @@ is.projectedSpatial <- function(obj) {
 setMethod("is.projected", signature(obj = "Spatial"), is.projectedSpatial)
 
 is.projectedCRS <- function(obj) {
+# bug spotted by Finn Lindgren 200817
+        wkt2 <- wkt(obj)
+        if (!is.null(wkt2)) {
+            if (requireNamespace("rgdal", quietly = TRUE)) {
+                if (packageVersion("rgdal") >= "1.5.17") {
+                    res <- rgdal::OSRIsProjected(obj)
+                }
+            } else {
+                res <- substring(wkt2, 1, 3) == "GEO"
+            }
+            return(res)
+        }
 	p4str <- slot(obj, "projargs")
-	if (is.na(p4str) || !nzchar(p4str)) 
+	if (is.na(p4str) || !nzchar(p4str)) {
 		return(as.logical(NA))
-	else {
+	} else {
+            if (requireNamespace("rgdal", quietly = TRUE)) {
+                if (packageVersion("rgdal") >= "1.5.17") {
+                    res <- rgdal::OSRIsProjected(obj)
+                }
+            } else {
 		res <- grep("longlat", p4str, fixed = TRUE)
 		if (length(res) == 0)
 			return(TRUE)
 		else
 			return(FALSE)
-	}
+	    }
+        }
 }
 
 

@@ -1,3 +1,4 @@
+options("rgdal_show_exportToProj4_warnings"="none")
 library(sp)
 xy = expand.grid(x = 1:4, y = 1:4)
 xy.sp = SpatialPoints(xy)

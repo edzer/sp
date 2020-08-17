@@ -1,3 +1,4 @@
+options("rgdal_show_exportToProj4_warnings"="none")
 library(sp)
 g = SpatialGrid(GridTopology(c(5,5), c(10,10), c(3,3)))
 p = as(g, "SpatialPolygons")
