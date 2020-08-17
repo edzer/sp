@@ -187,5 +187,5 @@ identicalCRS1 = function(x, y) {
 }
 
 is.na.CRS = function(x) {
-	is.na(x@projargs)
+	is.na(x@projargs) && is.null(comment(slot(x, "proj4string")))
 }
