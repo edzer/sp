@@ -1,6 +1,10 @@
 "SpatialMultiPointsDataFrame" = function(coords, data,
 		proj4string = CRS(as.character(NA)), match.ID, bbox = NULL) {
 
+	if (is(coords, "SpatialMultiPoints") &&
+		!is.na(slot(proj4string, "projargs")))
+		warning("If the coords argument is a SpatialMultiPoints object, set its CRS first;\n  the proj4string argument to this function is ignored.")
+
 	if (!is(coords, "SpatialMultiPoints"))
 		coords = SpatialMultiPoints(coords, proj4string = proj4string, bbox = bbox)
 	mtch = NULL
