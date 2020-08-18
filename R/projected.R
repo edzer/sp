@@ -1,6 +1,6 @@
 setMethod("proj4string", signature(obj = "Spatial"),
 	function(obj) {
-                if (!is.null(comment(slot(obj, "proj4string"))))
+                if (!is.null(comment(slot(obj, "proj4string")))) {
                   if (get("rgdal_show_exportToProj4_warnings",
                     envir=.spOptions)) {
                     if (!get("thin_PROJ6_warnings", envir=.spOptions)) {
@@ -15,7 +15,8 @@ setMethod("proj4string", signature(obj = "Spatial"),
                         envir=.spOptions) + 1L, envir=.spOptions)
                    }
                  }
-		res <- as.character(obj@proj4string@projargs)
+		}
+                res <- as.character(obj@proj4string@projargs)
                 res
         }
 )
@@ -110,7 +111,7 @@ setMethod("is.projected", signature(obj = "Spatial"), is.projectedSpatial)
 
 is.projectedCRS <- function(obj) {
 # bug spotted by Finn Lindgren 200817
-        wkt2 <- wkt(obj)
+        wkt2 <- comment(obj)
         if (!is.null(wkt2)) {
             if (requireNamespace("rgdal", quietly = TRUE)) {
                 if (packageVersion("rgdal") >= "1.5.17" && 

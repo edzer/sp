@@ -368,10 +368,25 @@ setMethod("rebuild_CRS", signature(obj = "Spatial"),
 )
 
 # Don MacQueen provided head & tail:
-head.Spatial <- function(x, n=6L, ...) {
-    ix <- sign(n)*seq(abs(n))
-    x[ ix , , drop=FALSE]
+#head.Spatial <- function(x, n=6L, ...) {
+#    ix <- sign(n)*seq(abs(n))
+#    x[ ix , , drop=FALSE]
+#}
+# revision from Finn Lindgren
+head.Spatial <- function (x, n = 6L, ...)
+{
+  if (n > 0L) {
+    n <- min(n, nrow(x))
+    ix <- seq_len(n)
+  } else if (n < 0L) {
+    n <- min(abs(n), nrow(x))
+    ix <- seq_len(nrow(x) - n)
+  } else {
+    ix <- seq_len(0)
+  }
+  x[ix, , drop = FALSE]
 }
+
 
 tail.Spatial <- function(x, n=6L, ...) {
     ix <- sign(n)*rev(seq(nrow(x), by=-1L, len=abs(n)))
