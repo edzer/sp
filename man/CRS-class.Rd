@@ -51,7 +51,7 @@ whether \code{x} and \code{y} have identical CRS, or if \code{y}
 is missing whether all objects in list \code{x}
 have identical CRS.
 }
-\references{\url{https://github.com/OSGeo/proj.4}}
+\references{\url{https://github.com/OSGeo/PROJ}}
 \author{Roger Bivand \email{Roger.Bivand@nhh.no}}
 
 \note{
