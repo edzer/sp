@@ -1043,9 +1043,15 @@ that exceed the memory capacity of the computers available.  A method for analys
 grids without fully loading them into memory then seems useful. Note that 
 package \pkg{rgdal} allows for partial reading of grids, e.g.,
 
+<<echo=FALSE,results=hide>>=
+run <- require(rgdal, quietly=TRUE)
+@
+
 \begin{footnotesize}
 <<>>=
-fn <- system.file("pictures/erdas_spnad83.tif", package = "rgdal")[1]
+if (run) {
+  fn <- system.file("pictures/erdas_spnad83.tif", package = "rgdal")[1]
+}
 @
 <<eval=FALSE>>=
 x <- readGDAL(fn, output.dim = c(120, 132))
@@ -1061,13 +1067,19 @@ Yet another approach is to use the low-level opening routines and then
 subset:
 
 \begin{footnotesize}
-<< >>= 
+<<>>= 
+if (run) {
 library(rgdal)
 x <- GDAL.open(fn)
 class(x)
+}
+if (run) {
 x.subs <- x[1:100, 1:100, 1]
 class(x.subs)
+}
+if (run) {
 gridparameters(x.subs)
+}
 @
 \end{footnotesize}
 An object of class \code{GDALReadOnlyDataset} only contains a file handle.
@@ -1088,12 +1100,14 @@ We will define two classes,
 <<echo=FALSE>>= 
 options("width"=50)
 @
-<< >>=
+<<>>=
+if (run) {
 setClass("SpatialGDAL",
     representation("Spatial", grid = "GridTopology", grod = "GDALReadOnlyDataset", 
 # NOT TOO WIDE
 		name = "character"))
 setClass("SpatialGDALWrite", "SpatialGDAL")
+}
 @
 <<echo=FALSE>>= 
 options("width"=70)

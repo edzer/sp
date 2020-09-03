@@ -1,3 +1,4 @@
+options("rgdal_show_exportToProj4_warnings"="none")
 library(sp)
 x = c(0.5, 1.5, 0.5, 1.5, 1.6)
 y = c(1.5, 1.5, 0.5, 0.5, 0.5)

@@ -10,3 +10,4 @@ src/sp.h.in
 README.md
 ^.*\.Rproj$
 ^\.Rproj\.user$
+docs

@@ -58,6 +58,10 @@ if (!is.null(comment(slot(o, "proj4string")))) {
   cat(strsplit(wkt(o), "\\n")[[1]], sep="\n")
   cat(strsplit(wkt(slot(o, "proj4string")), "\\n")[[1]], sep="\n")
 }
+is.projected(CRS("+proj=longlat"))
+is.projected(CRS("+proj=geocent"))
+is.projected(CRS("+proj=geocent +units=km"))
+
 }
 
 \keyword{spatial}

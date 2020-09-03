@@ -1,5 +1,5 @@
 
-R version 4.0.0 beta (2020-04-13 r78215) -- "Arbor Day"
+R version 4.0.2 (2020-06-22) -- "Taking Off Again"
 Copyright (C) 2020 The R Foundation for Statistical Computing
 Platform: x86_64-pc-linux-gnu (64-bit)
 
@@ -15,6 +15,7 @@ Type 'demo()' for some demos, 'help()' for on-line help, or
 'help.start()' for an HTML browser interface to help.
 Type 'q()' to quit R.
 
+> options("rgdal_show_exportToProj4_warnings"="none")
 > library(sp)
 > data(meuse)
 > x = meuse
@@ -213,12 +214,10 @@ Error in CRS("+proj=latlon +ellps=WGS84") :
   northings must follow eastings: +proj=latlon +ellps=WGS84
 > try(CRS("+proj=lonlat +ellps=WGS84"))
 CRS arguments: +proj=longlat +ellps=WGS84 +no_defs 
-Warning messages:
-1: In CRS("+proj=lonlat +ellps=WGS84") :
+Warning message:
+In CRS("+proj=lonlat +ellps=WGS84") :
   'lonlat' changed to 'longlat': +proj=longlat +ellps=WGS84
-2: In showSRID(uprojargs, format = "PROJ", multiline = "NO") :
-  Discarded datum Unknown based on WGS84 ellipsoid in CRS definition
 > 
 > proc.time()
    user  system elapsed 
-  0.652   0.045   0.732 
+  0.585   0.045   0.630 

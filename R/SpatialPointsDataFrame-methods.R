@@ -1,6 +1,10 @@
 "SpatialPointsDataFrame" = function(coords, data, coords.nrs = numeric(0), 
 		proj4string = CRS(as.character(NA)), match.ID, bbox = NULL) {
 
+	if (is(coords, "SpatialPoints") &&
+		!is.na(slot(proj4string, "projargs")))
+		warning("If the coords argument is a SpatialPoints object, set its CRS first;\n  the proj4string argument to this function is ignored.")
+
 	if (!is(coords, "SpatialPoints"))
 		coords = coordinates(coords) 
 		# make sure data.frame becomes double matrix; NA checks

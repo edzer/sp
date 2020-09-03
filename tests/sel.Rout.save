@@ -1,6 +1,6 @@
 
-R version 3.1.1 (2014-07-10) -- "Sock it to Me"
-Copyright (C) 2014 The R Foundation for Statistical Computing
+R version 4.0.2 (2020-06-22) -- "Taking Off Again"
+Copyright (C) 2020 The R Foundation for Statistical Computing
 Platform: x86_64-pc-linux-gnu (64-bit)
 
 R is free software and comes with ABSOLUTELY NO WARRANTY.
@@ -15,6 +15,7 @@ Type 'demo()' for some demos, 'help()' for on-line help, or
 'help.start()' for an HTML browser interface to help.
 Type 'q()' to quit R.
 
+> options("rgdal_show_exportToProj4_warnings"="none")
 > library(sp)
 > x = c(0.5, 1.5, 0.5, 1.5, 1.6)
 > y = c(1.5, 1.5, 0.5, 0.5, 0.5)
@@ -200,4 +201,4 @@ e 2 c
 > 
 > proc.time()
    user  system elapsed 
-  0.554   0.030   0.569 
+  0.435   0.025   0.454 

@@ -1,6 +1,6 @@
 
-R version 3.0.1 (2013-05-16) -- "Good Sport"
-Copyright (C) 2013 The R Foundation for Statistical Computing
+R version 4.0.2 (2020-06-22) -- "Taking Off Again"
+Copyright (C) 2020 The R Foundation for Statistical Computing
 Platform: x86_64-pc-linux-gnu (64-bit)
 
 R is free software and comes with ABSOLUTELY NO WARRANTY.
@@ -15,6 +15,7 @@ Type 'demo()' for some demos, 'help()' for on-line help, or
 'help.start()' for an HTML browser interface to help.
 Type 'q()' to quit R.
 
+> options("rgdal_show_exportToProj4_warnings"="none")
 > library(sp)
 > data(meuse)
 > x = meuse
@@ -330,4 +331,4 @@ Data attributes:
 > 
 > proc.time()
    user  system elapsed 
-  0.460   0.052   0.506 
+  0.291   0.033   0.320 
