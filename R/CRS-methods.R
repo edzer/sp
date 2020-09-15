@@ -76,7 +76,7 @@ setMethod("rebuild_CRS", signature(obj = "CRS"),
 #      (sessionInfo()$otherPkgs$rgdal$Version > "0.4-2")) {
 # sessionInfo()/read.dcf() problem in loop 080307
     comm <- NULL
-    if (!is.na(uprojargs) || !is.null(SRS_string)) {
+    if (!is.na(uprojargs) || (!is.null(SRS_string) && nzchar(SRS_string))) {
         if (doCheckCRSArgs && requireNamespace("rgdal", quietly = TRUE)) {
             if (packageVersion("rgdal") < "1.5.1") {
                 res <- rgdal::checkCRSArgs(uprojargs)
