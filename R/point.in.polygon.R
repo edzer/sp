@@ -81,7 +81,7 @@ pointsInPolys2 <- function(pls, cand, pts, mode.checked=FALSE,
 	else
 		res <- rep(as.integer(NA), n)
 	# print(cand)
-    for (i in seq(along=cand)) {
+    for (i in seq_along(cand)) {
         candi <- cand[[i]]
         if (length(candi) > 0) {
             ptsi <- pts[candi,,drop=FALSE]
