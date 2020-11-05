@@ -58,7 +58,7 @@ explodePolygons <- function(x, ignoreholes=FALSE, ...) {
   }
   p <- SpatialPolygons(p)
   ps <- slot(p, "polygons")
-  for (i in seq(along=ps))
+  for (i in seq_along(ps))
     comment(ps[[i]]) <- rgeos::createPolygonsComment(ps[[i]])
   slot(p, "polygons") <- ps
   proj4string(p) <- crs
@@ -118,9 +118,9 @@ unfoldLines = function(x) {
   nobjs <- sum(sapply(crds, length))
   out <- vector(mode="list", length=nobjs)
   i <- 1
-  for (j in seq(along=crds)) {
+  for (j in seq_along(crds)) {
       jcrds <- crds[[j]]
-      for (k in seq(along=jcrds)) {
+      for (k in seq_along(jcrds)) {
         out[[i]] <- Lines(list(Line(jcrds[k])), as.character(i))
         i <- i + 1
       }
