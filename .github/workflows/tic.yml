@@ -85,6 +85,7 @@ jobs:
         run: |
           sudo apt install libcurl4-openssl-dev libgit2-dev
           tlmgr install ae
+          tlmgr install grfext
 
       - name: "[Custom block] [Linux] Install spatial libraries"
         if: runner.os == 'Linux'
