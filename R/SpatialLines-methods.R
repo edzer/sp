@@ -123,9 +123,9 @@ plotSpatialLines <- function(SL, xlim = NULL, ylim = NULL,
 	if (length(ljoin) != length(lst)) ljoin <- rep(ljoin, length = length(lst))
 	if (length(lmitre) != length(lst)) lmitre <- rep(lmitre, length = length(lst))
 
-	for (i in seq(along=lst)) {
+	for (i in seq_along(lst)) {
 		sllst = lst[[i]]@Lines
-		for (j in seq(along=sllst)) {
+		for (j in seq_along(sllst)) {
 			crds <- coordinates(sllst[[j]])
 			lines(crds, col = col[i], lwd = lwd[i], lty = lty[i],
 				lend = lend[i], ljoin = ljoin[i], lmitre = lmitre[i])
@@ -187,7 +187,7 @@ setReplaceMethod("coordnames",
 	signature(x = "SpatialLines", value = "character"),
 	function(x, value) {
 		dimnames(x@bbox)[[1]] = value
-		for (i in seq(along = x@lines))
+		for (i in seq_along(x@lines))
 			coordnames(x@lines[[i]]) = value
 		x
 	}
@@ -195,7 +195,7 @@ setReplaceMethod("coordnames",
 setReplaceMethod("coordnames",
 	signature(x = "Lines", value = "character"),
 	function(x, value) {
-		for (i in seq(along = x@Lines))
+		for (i in seq_along(x@Lines))
 			coordnames(x@Lines[[i]]) = value
 		x
 	}
@@ -267,7 +267,7 @@ SpatialLines2SpatialPointsDataFrame = function(from) {
 	L3 = rep(1:length(from@lines), times = sapply(L, length))
 	L = unlist(L)
 	SpatialPointsDataFrame(spp, data.frame(Lines.NR = L3, Lines.ID=L2, 
-		Line.NR=L), proj4string=rebuild_CRS(slot(from, "proj4string")))
+		Line.NR=L))
 }
 setAs("SpatialLines", "SpatialPointsDataFrame", function(from)
 	SpatialLines2SpatialPointsDataFrame(from)

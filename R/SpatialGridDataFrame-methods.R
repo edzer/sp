@@ -31,7 +31,7 @@ setMethod("addAttrToGeom", signature(x = "SpatialGrid", y = "data.frame"),
 as.SPixDF.SGDF = function(from) {
    	data = list()
    	n = .NumberOfCells(from@grid)
-   	for (i in seq(along = from@data)) {
+   	for (i in seq_along(from@data)) {
 		v = vector(mode(from@data[[i]]), n)
       	if (is.factor(from@data[[i]]))
 			v = factor(rep(NA, n), levels = levels(from@data[[i]]))

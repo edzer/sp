@@ -1,3 +1,196 @@
+2020-09-15  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* : Merge pull request #90 from rsbivand/master CRS(SRS_string="") now works
+
+2020-09-03  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* : Merge pull request #89 from rsbivand/master fix URLs
+
+2020-09-03  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* : Merge pull request #87 from rsbivand/master Add example for ESRI:
+
+2020-08-26  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* : new object with comment on CRS
+
+2020-08-18  Roger Bivand <roger.bivand@nhh.no>
+
+	* R/SpatialMultiPointsDataFrame-methods.R: futher fixes from Finn
+	Lindgren, re-write of head method
+
+2020-08-18  Roger Bivand <roger.bivand@nhh.no>
+
+	* DESCRIPTION, R/Spatial-methods.R,
+	R/SpatialPointsDataFrame-methods.R, R/projected.R: futher fixes from
+	Finn Lindgren, re-write of head method
+
+2020-08-17  Roger Bivand <roger.bivand@nhh.no>
+
+	* R/projected.R: fix issues in rgdal
+
+2020-08-17  Roger Bivand <roger.bivand@nhh.no>
+
+	* R/CRS-methods.R: fix is.na.CRS() for presence of non-null WKT
+
+2020-08-17  Roger Bivand <roger.bivand@nhh.no>
+
+	* R/projected.R, man/gridlines.Rd, tests/spDists.Rout.save,
+	vignettes/csdacm.Rnw: fix fallout from is.projected fix for legacy
+	vignette
+
+2020-08-17  Roger Bivand <roger.bivand@nhh.no>
+
+	* R/projected.R, man/is.projected.Rd, tests/agg.R,
+	tests/agg.Rout.save, tests/base.R, tests/base.Rout.save,
+	tests/fail1.R, tests/fail1.Rout.save, tests/grid.R,
+	tests/grid.Rout.save, tests/over2.R, tests/over2.Rout.save,
+	tests/pass1.R, tests/pass1.Rout.save, tests/point.in.polygon.R,
+	tests/point.in.polygon.Rout.save, tests/sel.R, tests/sel.Rout.save,
+	tests/sp1.R, tests/sp1.Rout.save, tests/spDists.R,
+	tests/spDists.Rout.save, tests/spplot.R, tests/spplot.Rout.save,
+	tests/zerodist.R, tests/zerodist.Rout.save: fix to Finn Lindgrens
+	issue: Proj4 string of +proj=geocent +units=km fails
+
+2020-08-09  Roger Bivand <roger.bivand@nhh.no>
+
+	* inst/include/sp.h, src/sp.h: bump version numbers
+
+2020-08-08  Roger Bivand <roger.bivand@nhh.no>
+
+	* R/CRS-methods.R, man/CRS-class.Rd: handle BOUNDCRS by default
+
+2020-07-25  Roger Bivand <roger.bivand@nhh.no>
+
+	* DESCRIPTION, R/CRS-methods.R, man/CRS-class.Rd: move CRS projargs
+	arg to SRS_string if first non-blank character not +
+
+2020-07-13  Roger Bivand <roger.bivand@nhh.no>
+
+	* man/CRS-class.Rd: add example with ESRI:
+
+2020-07-13  Roger Bivand <roger.bivand@nhh.no>
+
+	* man/CRS-class.Rd: add example with ESRI:
+
+2020-07-13  Roger Bivand <roger.bivand@nhh.no>
+
+	* : Merge remote-tracking branch 'upstream/master'
+
+2020-06-29  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* src/gcdist.c: fixes #85
+
+2020-06-22  Roger Bivand <rsbivand@users.noreply.github.com>
+
+	* docs/_config.yml: Set theme jekyll-theme-minimal
+
+2020-06-22  Roger Bivand <roger.bivand@nhh.no>
+
+	* .Rbuildignore, docs/404.html, docs/authors.html,
+	docs/bootstrap-toc.css, docs/bootstrap-toc.js, docs/docsearch.css,
+	docs/docsearch.js, docs/index.html, docs/link.svg,
+	docs/pkgdown.css, docs/pkgdown.js, docs/pkgdown.yml,
+	docs/reference/00sp.html, docs/reference/CRS-class.html,
+	docs/reference/DMS-class.html,
+	docs/reference/GridTopology-class.html,
+	docs/reference/Line-class.html, docs/reference/Line.html,
+	docs/reference/Lines-class.html, docs/reference/Polygon-class.html,
+	docs/reference/Polygons-class.html, docs/reference/Rlogo.html,
+	docs/reference/Spatial-class.html,
+	docs/reference/SpatialGrid-class.html,
+	docs/reference/SpatialGrid.html,
+	docs/reference/SpatialGridDataFrame-class.html,
+	docs/reference/SpatialGridDataFrame.html,
+	docs/reference/SpatialLines-class.html,
+	docs/reference/SpatialLines.html,
+	docs/reference/SpatialLinesDataFrame-class.html,
+	docs/reference/SpatialMultiPoints-class.html,
+	docs/reference/SpatialMultiPoints.html,
+	docs/reference/SpatialMultiPointsDataFrame-class.html,
+	docs/reference/SpatialPixels-class.html,
+	docs/reference/SpatialPixelsDataFrame-class.html,
+	docs/reference/SpatialPoints-class.html,
+	docs/reference/SpatialPoints.html,
+	docs/reference/SpatialPointsDataFrame-class.html,
+	docs/reference/SpatialPolygons-class.html,
+	docs/reference/SpatialPolygons.html,
+	docs/reference/SpatialPolygonsDataFrame-class.html,
+	docs/reference/addattr.html, docs/reference/aggregate.html,
+	docs/reference/as.SpatialPolygons.GridTopology.html,
+	docs/reference/as.SpatialPolygons.PolygonsList.html,
+	docs/reference/asciigrid.html, docs/reference/bbox.html,
+	docs/reference/bpy.colors.html, docs/reference/bubble.html,
+	docs/reference/char2dms.html, docs/reference/compassRose.html,
+	docs/reference/coordinates-methods.html,
+	docs/reference/coordinates.html,
+	docs/reference/coordnames-methods.html,
+	docs/reference/degaxis.html, docs/reference/dimensions.html,
+	docs/reference/disaggregate.html, docs/reference/flip.html,
+	docs/reference/geometry-methods.html,
+	docs/reference/gridded-methods.html,
+	docs/reference/gridindex2nb.html, docs/reference/gridlines.html,
+	docs/reference/image.html, docs/reference/index.html,
+	docs/reference/is.projected.html, docs/reference/loadmeuse.html,
+	docs/reference/mapasp.html, docs/reference/merge.html,
+	docs/reference/meuse.grid.html, docs/reference/meuse.grid_ll.html,
+	docs/reference/meuse.html, docs/reference/meuse.riv.html,
+	docs/reference/over.html, docs/reference/panel.html,
+	docs/reference/point.in.polygon.html,
+	docs/reference/polygons-methods.html, docs/reference/polygons.html,
+	docs/reference/recenter-methods.html,
+	docs/reference/select.spatial.html,
+	docs/reference/sp-deprecated.html,
+	docs/reference/spChFIDs-methods.html,
+	docs/reference/spDistsN1.html, docs/reference/spTransform.html,
+	docs/reference/spplot.html, docs/reference/spsample.html,
+	docs/reference/stack.html, docs/reference/surfaceArea.html,
+	docs/reference/zerodist.html: add pkgdown
+
+2020-06-17  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* : commit 3b5fc4750578f9cf577f980bbd2c3fdad73ae92a Merge: fbb89c0
+	c974fe5 Author: Edzer Pebesma <edzer.pebesma@uni-muenster.de> Date:
+	Wed Jun 17 13:54:10 2020 +0200
+
+2020-06-15  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* man/over.Rd, man/spplot.Rd: r-devel docs fixes
+
+2020-06-15  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* man/CRS-class.Rd, man/SpatialPolygons-class.Rd,
+	man/SpatialPolygons.Rd, man/aggregate.Rd, man/gridlines.Rd,
+	man/over.Rd, man/spTransform.Rd, man/spplot.Rd,
+	tests/grid.Rout.save: docs fixes for r-devel
+
+2020-06-13  Roger Bivand <roger.bivand@nhh.no>
+
+	* R/CRS-methods.R, R/projected.R: add options -
+	rgdal_show_exportToProj4_warnings - all/thin/none to sp
+
+2020-06-13  Roger Bivand <roger.bivand@nhh.no>
+
+	* DESCRIPTION, R/AAA.R, R/CRS-methods.R, R/projected.R: add options
+	- rgdal_show_exportToProj4_warnings - all/thin/none to sp
+
+2020-05-21  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* inst/NEWS.Rd: update NEWS; #79
+
+2020-05-18  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* : Merge pull request #76 from rsbivand/master Adding a wkt() method (WIP) and muting internal warnings
+
+2020-05-18  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* DESCRIPTION, inst/NEWS.Rd, inst/include/sp.h, src/sp.h: bump
+	version; #79
+
+2020-04-27  Roger Bivand <Roger.Bivand@nhh.no>
+
+	* inst/ChangeLog: update ChangeLog
+
 2020-04-27  Roger Bivand <roger.bivand@nhh.no>
 
 	* inst/include/sp.h, src/sp.h: bump version in headers

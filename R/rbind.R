@@ -2,7 +2,7 @@ makeUniqueIDs <- function(lst) {
 	ids = sapply(lst, function(i) slot(i, "ID"))
 	if (any(duplicated(ids))) {
 		ids <- make.unique(as.character(unlist(ids)), sep = "")
-		for (i in seq(along = ids))
+		for (i in seq_along(ids))
 			lst[[i]]@ID = ids[i]
 	}
 	lst

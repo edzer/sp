@@ -36,7 +36,7 @@ coordinatevalues = function(obj) {
 	if (!is(obj, "GridTopology"))
 		stop("function only works for objects of class or extending GridTopology")
 	ret = list()
-	for (i in seq(along=obj@cells.dim)) {
+	for (i in seq_along(obj@cells.dim)) {
 		if (i == 2) # y-axis is the exception--starting at top of map, and decreasing:
 			ret[[i]] = obj@cellcentre.offset[i] + 
 				obj@cellsize[i] * ((obj@cells.dim[i] - 1):0)

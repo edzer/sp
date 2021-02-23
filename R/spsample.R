@@ -268,7 +268,7 @@ sample.Polygons = function(x, n, type = "random", bb = bbox(x),
 	sum_area <- sum(area[smple])
 	while (is.null(res) && its < iter) {
 	    ptsres <- vector(mode="list", length=length(area))
-	    for (i in seq(along=ptsres)) {
+	    for (i in seq_along(ptsres)) {
 		if (smple[i]) {
 		    nnow <- ceiling(n*(area[i]/sum_area))
 		    ptsres[[i]] <- sample.Polygon(x=pls[[i]], 

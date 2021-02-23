@@ -392,7 +392,7 @@ function (x, y, z, subscripts, at = pretty(z), shrink, labels = NULL,
    			rep(col.regions, length = numcol)
    		else col.regions[floor(1 + (1:numcol - 1) * (numcol.r - 1)/(numcol - 1))]
 	zcol <- rep(NA, length(z))
-	for (i in seq(along = col.regions)) zcol[!is.na(x) & !is.na(y) & 
+	for (i in seq_along(col.regions)) zcol[!is.na(x) & !is.na(y) & 
       			!is.na(z) & z >= at[i] & z < at[i + 1]] <- i
 	label.style <- match.arg(label.style)
 	x <- as.numeric(x[subscripts])
@@ -558,8 +558,8 @@ sp.theme = function(set = FALSE, regions = list(col = bpy.colors(100)), ...) {
 }
 
 spplot.key = function(sp.layout, rows = 1, cols = 1) {
-	for (i in seq(along=rows)) {
-		for (j in seq(along=cols)) {
+	for (i in seq_along(rows)) {
+		for (j in seq_along(cols)) {
 			trellis.focus("panel", cols[j], rows[i], highlight = FALSE)
 			sppanel(sp.layout)
 			trellis.unfocus()
