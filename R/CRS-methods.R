@@ -35,6 +35,14 @@ setMethod("rebuild_CRS", signature(obj = "CRS"),
     stopifnot(is.logical(get_source_if_boundcrs))
     stopifnot(length(get_source_if_boundcrs) == 1L)
     stopifnot(is.character(projargs))
+    CRS_CACHE <- get("CRS_CACHE", envir=.sp_CRS_cache)
+    input_projargs <- projargs
+    if (!is.na(input_projargs)) {
+        res <- CRS_CACHE[[input_projargs]]
+        if (!is.null(res)) {
+            return(res)
+        }
+    }
     if (!is.na(projargs)) {
         if (length(grep("^[ ]*\\+", projargs)) == 0) {
             if (is.null(SRS_string)) {
@@ -105,6 +113,9 @@ setMethod("rebuild_CRS", signature(obj = "CRS"),
     }
     res <- new("CRS", projargs=uprojargs)
     if (!is.null(comm)) comment(res) <- comm
+    CRS_CACHE[[input_projargs]] <- res
+    assign("CRS_CACHE", CRS_CACHE, envir=.sp_CRS_cache)
+
     res
 }
 if (!isGeneric("wkt"))
