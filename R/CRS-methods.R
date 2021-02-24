@@ -35,10 +35,10 @@ setMethod("rebuild_CRS", signature(obj = "CRS"),
     stopifnot(is.logical(get_source_if_boundcrs))
     stopifnot(length(get_source_if_boundcrs) == 1L)
     stopifnot(is.character(projargs))
-    CRS_CACHE <- get("CRS_CACHE", envir=.sp_CRS_cache)
+#    CRS_CACHE <- get("CRS_CACHE", envir=.sp_CRS_cache)
     input_projargs <- projargs
     if (!is.na(input_projargs)) {
-        res <- CRS_CACHE[[input_projargs]]
+        res <- .sp_CRS_cache[[input_projargs]]
         if (!is.null(res)) {
             return(res)
         }
@@ -48,10 +48,19 @@ setMethod("rebuild_CRS", signature(obj = "CRS"),
             if (is.null(SRS_string)) {
                 if (doCheckCRSArgs && 
                     requireNamespace("rgdal", quietly = TRUE)) {
-                    if (packageVersion("rgdal") >= "1.5.1" && 
-                        rgdal::new_proj_and_gdal()) {
-                        SRS_string <- projargs
-                        projargs <- NA_character_
+                    if (packageVersion("rgdal") >= "1.5.1") { 
+                        if (rgdal::new_proj_and_gdal()) {
+                            SRS_string <- projargs
+                            projargs <- NA_character_
+                        } else {
+                            if (substring(projargs, 1, 4) == "EPSG") {
+                                pa0 <- strsplit(projargs, ":")[[1]]
+                                projargs <- paste0("+init=epsg:", pa0[2])
+                            } else {
+                                stop("Cannot revert", projargs,
+                                    "to +init=epsg:")
+                            }
+                        }
                     }
                 }
             } else {
@@ -113,8 +122,9 @@ setMethod("rebuild_CRS", signature(obj = "CRS"),
     }
     res <- new("CRS", projargs=uprojargs)
     if (!is.null(comm)) comment(res) <- comm
-    CRS_CACHE[[input_projargs]] <- res
-    assign("CRS_CACHE", CRS_CACHE, envir=.sp_CRS_cache)
+    if (!is.na(slot(res, "projargs"))) .sp_CRS_cache[[input_projargs]] <- res
+#    CRS_CACHE[[input_projargs]] <- res
+#    assign("CRS_CACHE", CRS_CACHE, envir=.sp_CRS_cache)
 
     res
 }
