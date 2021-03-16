@@ -389,7 +389,7 @@ function (x, y, z, subscripts, at = pretty(z), shrink, labels = NULL,
 	numcol <- length(at) - 1
 	numcol.r <- length(col.regions)
 	col.regions <- if (numcol.r <= numcol) 
-   			rep(col.regions, length = numcol)
+			rep_len(col.regions, numcol)
    		else col.regions[floor(1 + (1:numcol - 1) * (numcol.r - 1)/(numcol - 1))]
 	zcol <- rep(NA, length(z))
 	for (i in seq_along(col.regions)) zcol[!is.na(x) & !is.na(y) & 
@@ -491,7 +491,7 @@ SpatialPolygonsRescale = function(obj, offset, scale = 1, fill = "black", col = 
 		scale = rep(scale,2)
 	pls = slot(obj, "polygons")
    	pO = slot(obj, "plotOrder")
-	fill = rep(fill, length = length(pls))
+	fill = rep_len(fill, length(pls))
    	for (i in pO) {
    		Srs <- slot(pls[[i]], "Polygons")
    		pOi <- slot(pls[[i]], "plotOrder")
@@ -689,7 +689,7 @@ function (lst, z, ..., cuts = ifelse(identical(FALSE, colorkey), 5, 100),
                   max(lz[valid]), length = cuts + 1))[2:(cuts)], 
                   max(z[valid]))
             }
-            else cuts = seq(min(z[valid]), max(z[valid]), length = cuts + 
+            else cuts = seq(min(z[valid]), max(z[valid]), length.out = cuts +
                 1)
         }
         groups = cut(as.matrix(z), cuts, dig.lab = 4, include.lowest = TRUE)
