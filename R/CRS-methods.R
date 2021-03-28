@@ -158,9 +158,15 @@ setMethod("wkt", signature(obj = "CRS"),
 
 "print.CRS" <- function(x, ...)
 {
+    cat("Coordinate Reference System:\n")
     pst <- paste(strwrap(x@projargs), collapse="\n")
-    if (nchar(pst) < 40) cat(paste("CRS arguments:", pst, "\n"))
-    else cat(paste("CRS arguments:\n", pst, "\n"))
+    if (nchar(pst) < 40) cat(paste("Deprecated Proj.4 representation:", pst, "\n"))
+    else cat(paste("Deprecated Proj.4 representation:\n", pst, "\n"))
+    wkt <- wkt(x)
+    if (!is.null(wkt)) {
+        cat("WKT2 2019 representation:\n")
+        cat(wkt, "\n")
+    }
     invisible(pst)
 }
 

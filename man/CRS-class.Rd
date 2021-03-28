@@ -26,7 +26,7 @@ Objects can be created by calls of the form \code{CRS("projargs")}, where "proja
 
 \section{Methods}{
   \describe{
-    \item{show}{\code{signature(object = "CRS")}: print projection arguments in object }
+    \item{show}{\code{signature(object = "CRS")}: print deprecated Proj.4 projection arguments and WKT2 2019 representation if available }
     \item{wkt}{\code{signature(object = "CRS")}: return WKT comment on object}
     \item{rebuild_CRS}{rebuild a CRS object, usually used to add a WKT comment with PROJ >= 6 and GDAL >= 3}
   }
