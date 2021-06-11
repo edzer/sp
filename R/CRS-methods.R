@@ -1,4 +1,4 @@
-# Copyright (c) 2003-20 by Barry Rowlingson and Roger Bivand
+# Copyright (c) 2003-21 by Barry Rowlingson and Roger Bivand
 
 if (!is.R()) {
   strsplit <- function(a,b) {
@@ -41,6 +41,16 @@ setMethod("rebuild_CRS", signature(obj = "CRS"),
         res <- .sp_CRS_cache[[input_projargs]]
         if (!is.null(res)) {
             return(res)
+        }
+    }
+    if (doCheckCRSArgs && requireNamespace("rgdal", quietly = TRUE)) {
+       if (packageVersion("rgdal") >= "1.5.1" && !rgdal::new_proj_and_gdal()) {
+           if (is.na(projargs) && !is.null(SRS_string)) {
+               if (substring(SRS_string, 1, 4) == "EPSG") {
+                   pa0 <- strsplit(SRS_string, ":")[[1]]
+                   projargs <- paste0("+init=epsg:", pa0[2])
+               }
+           }
         }
     }
     if (!is.na(projargs)) {
@@ -113,9 +123,11 @@ setMethod("rebuild_CRS", signature(obj = "CRS"),
                     uprojargs <- res[[2]]
                     comm <- res[[3]]
                 } else { #stop("rgdal version mismatch")
-                    res <- rgdal::checkCRSArgs(uprojargs)
-                    if (!res[[1]]) stop(res[[2]])
-                    uprojargs <- res[[2]]
+                    if (!is.na(uprojargs)) {
+                        res <- rgdal::checkCRSArgs(uprojargs)
+                        if (!res[[1]]) stop(res[[2]])
+                        uprojargs <- res[[2]]
+                    }
                 }
             } else stop("rgdal version mismatch")
         }
