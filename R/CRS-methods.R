@@ -23,7 +23,7 @@ setMethod("rebuild_CRS", signature(obj = "CRS"),
 
 
 "CRS" <- function(projargs=NA_character_, doCheckCRSArgs=TRUE,
-    SRS_string=NULL, get_source_if_boundcrs=TRUE) {
+    SRS_string=NULL, get_source_if_boundcrs=TRUE, from_sf=FALSE) {
 # cautious change BDR 150424
 # trap NULL too 200225
     if (is.null(projargs))
@@ -32,6 +32,13 @@ setMethod("rebuild_CRS", signature(obj = "CRS"),
 # condition added 140301
     stopifnot(is.logical(doCheckCRSArgs))
     stopifnot(length(doCheckCRSArgs) == 1L)
+# https://github.com/edzer/sp/issues/107
+# https://github.com/rvalavi/blockCV/issues/18
+    if (from_sf && !is.na(projargs) && !is.null(SRS_string)) {
+        res <- new("CRS", projargs=projargs)
+        comment(res) <- SRS_string
+        return(res)
+    }
     stopifnot(is.logical(get_source_if_boundcrs))
     stopifnot(length(get_source_if_boundcrs) == 1L)
     stopifnot(is.character(projargs))
