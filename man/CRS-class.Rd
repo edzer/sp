@@ -32,8 +32,7 @@ Objects can be created by calls of the form \code{CRS("projargs")}, where "proja
   }
 }
 \usage{
-CRS(projargs, doCheckCRSArgs=TRUE, SRS_string=NULL,
- get_source_if_boundcrs=TRUE, from_sf=FALSE)
+CRS(projargs, doCheckCRSArgs=TRUE, SRS_string=NULL, get_source_if_boundcrs=TRUE)
 identicalCRS(x,y)
 }
 \arguments{
@@ -41,7 +40,6 @@ identicalCRS(x,y)
 \item{doCheckCRSArgs}{default TRUE, must be set to FALSE by package developers including \code{CRS} in an S4 class definition to avoid uncontrollable loading of the \pkg{rgdal} namespace}
 \item{SRS_string}{default NULL, only used when \pkg{rgdal} is built with PROJ >= 6 and GDAL >= 3; a valid WKT string or SRS definition such as \code{"EPSG:4326"} or \code{"ESRI:102761"}}
 \item{get_source_if_boundcrs}{(from \pkg{rgdal} 1.5-17, default TRUE) The presence of the \code{+towgs84=} key in a Proj4 string \code{projargs=} argument value may promote the output WKT2 CRS to BOUNDCRS for PROJ >= 6 and GDAL >= 3, which is a coordinate operation from the input datum to WGS84. This is often unfortunate, so a PROJ function is called through \pkg{rgdal} to retrieve the underlying source definition.}
-\item{from_sf}{default false, set by \pkg{sf} coercion method to simply copy in projargs and WKT2_2019 comment values}
 \item{x}{object having a \link{proj4string} method,
 or if \code{y} is missing, list with objects that have a \code{proj4string} method}
 \item{y}{object of class \link{Spatial}, or having a \link{proj4string} method}
