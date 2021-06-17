@@ -11,6 +11,10 @@ assign("col.regions", bpy.colors(), envir = .spOptions)
 assign("thin_PROJ6_warnings", FALSE, envir=.spOptions)
 assign("PROJ6_warnings_count", 0L, envir=.spOptions)
 
+#.sp_CRS_cache <- new.env(FALSE, globalenv())
+#assign("CRS_CACHE", list(), envir=.sp_CRS_cache)
+.sp_CRS_cache <- new.env(hash=TRUE, globalenv())
+
 .onLoad <- function(lib, pkg) {
   load_stuff()
 }

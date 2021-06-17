@@ -1,4 +1,4 @@
-# Copyright (c) 2003-20 by Barry Rowlingson and Roger Bivand
+# Copyright (c) 2003-21 by Barry Rowlingson and Roger Bivand
 
 if (!is.R()) {
   strsplit <- function(a,b) {
@@ -35,15 +35,42 @@ setMethod("rebuild_CRS", signature(obj = "CRS"),
     stopifnot(is.logical(get_source_if_boundcrs))
     stopifnot(length(get_source_if_boundcrs) == 1L)
     stopifnot(is.character(projargs))
+#    CRS_CACHE <- get("CRS_CACHE", envir=.sp_CRS_cache)
+    input_projargs <- projargs
+    if (!is.na(input_projargs)) {
+        res <- .sp_CRS_cache[[input_projargs]]
+        if (!is.null(res)) {
+            return(res)
+        }
+    }
+    if (doCheckCRSArgs && requireNamespace("rgdal", quietly = TRUE)) {
+       if (packageVersion("rgdal") >= "1.5.1" && !rgdal::new_proj_and_gdal()) {
+           if (is.na(projargs) && !is.null(SRS_string)) {
+               if (substring(SRS_string, 1, 4) == "EPSG") {
+                   pa0 <- strsplit(SRS_string, ":")[[1]]
+                   projargs <- paste0("+init=epsg:", pa0[2])
+               }
+           }
+        }
+    }
     if (!is.na(projargs)) {
         if (length(grep("^[ ]*\\+", projargs)) == 0) {
             if (is.null(SRS_string)) {
                 if (doCheckCRSArgs && 
                     requireNamespace("rgdal", quietly = TRUE)) {
-                    if (packageVersion("rgdal") >= "1.5.1" && 
-                        rgdal::new_proj_and_gdal()) {
-                        SRS_string <- projargs
-                        projargs <- NA_character_
+                    if (packageVersion("rgdal") >= "1.5.1") { 
+                        if (rgdal::new_proj_and_gdal()) {
+                            SRS_string <- projargs
+                            projargs <- NA_character_
+                        } else {
+                            if (substring(projargs, 1, 4) == "EPSG") {
+                                pa0 <- strsplit(projargs, ":")[[1]]
+                                projargs <- paste0("+init=epsg:", pa0[2])
+                            } else {
+                                stop("Cannot revert", projargs,
+                                    "to +init=epsg:")
+                            }
+                        }
                     }
                 }
             } else {
@@ -96,15 +123,21 @@ setMethod("rebuild_CRS", signature(obj = "CRS"),
                     uprojargs <- res[[2]]
                     comm <- res[[3]]
                 } else { #stop("rgdal version mismatch")
-                    res <- rgdal::checkCRSArgs(uprojargs)
-                    if (!res[[1]]) stop(res[[2]])
-                    uprojargs <- res[[2]]
+                    if (!is.na(uprojargs)) {
+                        res <- rgdal::checkCRSArgs(uprojargs)
+                        if (!res[[1]]) stop(res[[2]])
+                        uprojargs <- res[[2]]
+                    }
                 }
             } else stop("rgdal version mismatch")
         }
     }
     res <- new("CRS", projargs=uprojargs)
     if (!is.null(comm)) comment(res) <- comm
+    if (!is.na(slot(res, "projargs"))) .sp_CRS_cache[[input_projargs]] <- res
+#    CRS_CACHE[[input_projargs]] <- res
+#    assign("CRS_CACHE", CRS_CACHE, envir=.sp_CRS_cache)
+
     res
 }
 if (!isGeneric("wkt"))
@@ -137,9 +170,15 @@ setMethod("wkt", signature(obj = "CRS"),
 
 "print.CRS" <- function(x, ...)
 {
+    cat("Coordinate Reference System:\n")
     pst <- paste(strwrap(x@projargs), collapse="\n")
-    if (nchar(pst) < 40) cat(paste("CRS arguments:", pst, "\n"))
-    else cat(paste("CRS arguments:\n", pst, "\n"))
+    if (nchar(pst) < 40) cat(paste("Deprecated Proj.4 representation:", pst, "\n"))
+    else cat(paste("Deprecated Proj.4 representation:\n", pst, "\n"))
+    wkt <- wkt(x)
+    if (!is.null(wkt)) {
+        cat("WKT2 2019 representation:\n")
+        cat(wkt, "\n")
+    }
     invisible(pst)
 }
 
