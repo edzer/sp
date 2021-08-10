@@ -39,7 +39,7 @@
   \itemize{
 	\item update sp gallery, see \url{https://edzer.github.io/sp/}
 	\item move \code{methods} from Imports: to Depends:
-    \item improve base plot methods for \code{SpatialGridDataFrame} and \code{SpatialPixelsDataFrame} objects, see \url{https://www.r-spatial.org/r/2016/03/08/plotting-spatial-grids.html} for examples
+    \item improve base plot methods for \code{SpatialGridDataFrame} and \code{SpatialPixelsDataFrame} objects, see \url{https://r-spatial.org/r/2016/03/08/plotting-spatial-grids.html} for examples
 	\item improve the graticule \code{labels} methods, see \code{?gridlines}
 	\item fix hole assignment for triangles, reported in \url{https://stat.ethz.ch/pipermail/r-sig-geo/2016-March/024214.html}
     \item \code{as.SpatialPolygons.GridTopology} drops rownames of coordinates generated, but keeps coordinate (column) names from the \code{cellcentre.offset} slot of the grid
