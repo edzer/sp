@@ -38,7 +38,7 @@ a package startup message is displayed if PROJ >= 6 and GDAL >= 3, including the
 
 > To mute warnings of possible GDAL/OSR exportToProj4() degradation, use  options("rgdal_show_exportToProj4_warnings"="none") before loading rgdal.
 
-In **sp** 1.4 and **rgdal** 1.5, the default option value is `"all"`, in **sp** >= 1.5 and **rgdal** >= 1.6, the default will ne flipped to `"none"`.
+In **sp** 1.4 and **rgdal** 1.5, the default option value is `"all"`, in **sp** >= 1.5 and **rgdal** >= 1.6, the default will be flipped to `"none"`.
 
 ## Testing
 
@@ -48,7 +48,7 @@ Consequently, it is best either not to check warnings that perform differently w
 
 To mute warnings in all settings, add the option above early in any relevant test file. 
 
-Fine-grained control may be obtained using:
+Fine-grained control may be obtained using `rgdal::rgdal_extSoftVersion()`:
 
 ```{r, eval=run}
 rgdal::rgdal_extSoftVersion()
