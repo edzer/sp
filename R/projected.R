@@ -4,7 +4,7 @@ setMethod("proj4string", signature(obj = "Spatial"),
                   if (get("rgdal_show_exportToProj4_warnings",
                     envir=.spOptions)) {
                     if (!get("thin_PROJ6_warnings", envir=.spOptions)) {
-                      warning("CRS object has comment, which is lost in output")
+                      warning("CRS object has comment, which is lost in output; in tests, see\nhttps://cran.r-project.org/web/packages/sp/vignettes/CRS_warnings.html")
                     } else {
                       if (get("PROJ6_warnings_count",
                         envir=.spOptions) == 0L) {

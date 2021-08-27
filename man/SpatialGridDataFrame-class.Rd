@@ -90,7 +90,7 @@ value such as \code{1/6} to specify relative size; default \code{lcm(2.8)}}
   and \code{\link{SpatialPixelsDataFrame-class} which holds possibly incomplete
   grids }
 
-  Plotting gridded data with sp: \url{https://www.r-spatial.org/r/2016/03/08/plotting-spatial-grids.html}
+  Plotting gridded data with sp: \url{https://r-spatial.org/r/2016/03/08/plotting-spatial-grids.html}
 }
 \examples{
 data(meuse.grid) # only the non-missing valued cells
