@@ -120,6 +120,7 @@ setMethod("[", "SpatialPolygonsDataFrame", function(x, i, j, ... , drop = TRUE) 
             }
 	} else
 	    y@bbox = x@bbox
+        if (!is.null(comment(x))) comment(y) <- comment(x)
 	y
 ###
 ### RSB: do something with labelpoints here? How can I check they are present?
