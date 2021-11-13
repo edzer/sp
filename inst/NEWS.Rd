@@ -1,5 +1,11 @@
 \name{NEWS} 
 \title{News for Package 'sp'}
+\section{Changes in version 1.4-6 (2020-08-27)}{
+\itemize{
+	\item add CRS cache and update CRS print method; https://github.com/edzer/sp/pull/103
+}
+}
+
 \section{Changes in version 1.4-2 (2020-05-20)}{
 \itemize{
 	\item Adding a wkt() method and muting internal warnings; https://github.com/edzer/sp/pull/76
