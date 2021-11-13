@@ -130,8 +130,11 @@ setMethod("[", "SpatialPolygons", function(x, i, j, ..., drop = TRUE) {
 		x@plotOrder = integer(0)
 		stopifnot(validObject(x))
 		x
-	} else
-		SpatialPolygons(x@polygons[i], proj4string=rebuild_CRS(slot(x, "proj4string")))
+	} else {
+		y = SpatialPolygons(x@polygons[i], proj4string=rebuild_CRS(slot(x, "proj4string")))
+                if (!is.null(comment(x))) comment(y) <- comment(x)
+                y
+        }
 #	x@polygons = x@polygons[i]
 #	x@bbox <- .bboxCalcR(x@polygons)
 #	area <- sapply(slot(x, "polygons"), function(i) slot(i, "area"))
