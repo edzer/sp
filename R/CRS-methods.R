@@ -43,7 +43,21 @@ setMethod("rebuild_CRS", signature(obj = "CRS"),
             return(res)
         }
     }
-    if (doCheckCRSArgs && requireNamespace("rgdal", quietly = TRUE)) {
+    if (get("evolution_status", envir=.spOptions) > 0L) doCheckCRSArgs <- FALSE
+    if (get("evolution_status", envir=.spOptions) == 2L) {
+        if (requireNamespace("sf", quietly = TRUE)) {
+            if ((is.na(projargs) && !is.null(SRS_string))) {
+                res <- sf::st_crs(SRS_string)
+            } else {
+                res <- sf::st_crs(projargs)
+            }
+            return(as(res, "CRS"))
+        } else {
+            warning("sf required for evolution_status==2L")
+        }
+    }
+    if ((is.na(projargs) && !is.null(SRS_string)) && 
+       doCheckCRSArgs && requireNamespace("rgdal", quietly = TRUE)) {
        if (packageVersion("rgdal") >= "1.5.1" && !rgdal::new_proj_and_gdal()) {
            if (is.na(projargs) && !is.null(SRS_string)) {
                if (substring(SRS_string, 1, 4) == "EPSG") {
