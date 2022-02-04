@@ -6,6 +6,8 @@
 
 R Classes and Methods for Spatial Data.
 
+On `evolution` branch, `options("sp_evolution_status")` may be set to `0L` for legacy behaviour, `1L` for setting `CRS(, doCheckCRSArgs=FALSE, )` and other minor steps to block calls out to **rgdal** etc., and `2L` to use **sf** internally (not completed yet). If this option is not set, the environment variable `_SP_EVOLUTION_STATUS_` can be used, set to `"0"`, `"1"` or `"2"`; this is being tried for running revdep checks under different evolution scenarios.
+
 See:
 
 * Pebesma, E.J., R.S. Bivand, 2005. Classes and methods for spatial data in R. 
