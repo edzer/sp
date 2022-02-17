@@ -122,8 +122,9 @@ setMethod("is.projected", signature(obj = "Spatial"), is.projectedSpatial)
 is.projectedCRS <- function(obj) {
 # bug spotted by Finn Lindgren 200817
 	p4str <- slot(obj, "projargs")
-	if (is.na(p4str)) return(as.logical(NA))
         wkt2 <- comment(obj)
+# test wkt2 as well, revdep inlabru 220216
+	if (is.null(wkt2) && is.na(p4str)) return(as.logical(NA))
         if (!is.null(wkt2)) {
            if (get("evolution_status", envir=.spOptions) == 0L && 
                 requireNamespace("rgdal", quietly = TRUE)) {
