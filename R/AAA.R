@@ -43,13 +43,13 @@ load_stuff <- function() {
   if (!is.null(evolution_status)) {
     stopifnot(is.integer(as.integer(evolution_status)))
     stopifnot(evolution_status >= 0L && evolution_status <= 2L)
-    assign("evolution_status", evolution_status, envir=.spOptions)
+    assign("evolution_status", unname(evolution_status), envir=.spOptions)
   } else {
     evolution_status <- Sys.getenv("_SP_EVOLUTION_STATUS_")
     if (nchar(evolution_status) > 0L) {
       stopifnot(is.integer(as.integer(evolution_status)))
       stopifnot(evolution_status >= 0L && evolution_status <= 2L)
-      assign("evolution_status", evolution_status, envir=.spOptions)
+      assign("evolution_status", unname(evolution_status), envir=.spOptions)
     }
   }
 }
