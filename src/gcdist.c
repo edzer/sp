@@ -73,8 +73,8 @@ void sp_gcdist(double *lon1, double *lon2, double *lat1, double *lat2,
     a = 6378.137;              /* WGS-84 equatorial radius in km */
     f = 1.0/298.257223563;     /* WGS-84 ellipsoid flattening factor */
     
-    if (fabs(lat1[0] - lat2[0]) < DOUBLE_EPS) {
-        if (fabs(fmod(lon1[0] - lon2[0], 360.0)) < DOUBLE_EPS) {
+    if (fabs(lat1[0] - lat2[0]) < DBL_EPSILON) {
+        if (fabs(fmod(lon1[0] - lon2[0], 360.0)) < DBL_EPSILON) {
             dist[0] = 0.0;
             return;
         }
