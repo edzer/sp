@@ -57,7 +57,7 @@ SEXP SP_PREFIX(Polygon_c)(const SEXP coords, const SEXP n, const SEXP ihole) {
 
     /* SP_PREFIX(spRFindCG_c)(n, ccopy, &xc, &yc, &area); */
     SP_PREFIX(spRFindCG_c)(getAttrib(ccopy, R_DimSymbol), ccopy, &xc, &yc, &area);
-    if (fabs(area) < DOUBLE_EPS) {
+    if (fabs(area) < DBL_EPSILON) {
         if (!R_FINITE(xc) || !R_FINITE(yc)) {
             if (nn == 1) {
                 xc = NUMERIC_POINTER(ccopy)[0];
@@ -200,7 +200,7 @@ SEXP SP_PREFIX(Polygons_c)(const SEXP pls, const SEXP ID) {
     // PROTECT(ID1 = MAYBE_REFERENCED(ID) ? duplicate(ID) : ID); pc++;
 
     nps = length(pls1);
-    fuzz = R_pow(DOUBLE_EPS, (2.0/3.0));
+    fuzz = R_pow(DBL_EPSILON, (2.0/3.0));
     areas = (double *) R_alloc((size_t) nps, sizeof(double));
     areaseps = (double *) R_alloc((size_t) nps, sizeof(double));
     holes = (int *) R_alloc((size_t) nps, sizeof(int));
