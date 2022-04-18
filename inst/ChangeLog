@@ -1,3 +1,119 @@
+2022-03-26  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* : Merge pull request #115 from rsbivand/S-compatibility remove S-compatibility DBL defs
+
+2021-11-14  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* DESCRIPTION: bump version
+
+2021-11-13  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* : commit 074be52d744882cac97d34ff34144e8edd08f85c Author: Edzer
+	Pebesma <edzer.pebesma@uni-muenster.de> Date:   Sat Nov 13 16:40:46
+	2021 +0100
+
+2021-11-07  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* : Merge pull request #108 from rsbivand/master preserve SF comment in "[" for SpatialPolygons*
+
+2021-08-27  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* : Merge pull request #103 from rsbivand/master CRS cache and updated CRS print method
+
+2021-08-12  Roger Bivand <Roger.Bivand@gmail.com>
+
+	* vignettes/CRS_warnings.Rmd: typo in vignette
+
+2021-08-10  Roger Bivand <Roger.Bivand@gmail.com>
+
+	* DESCRIPTION, R/projected.R, inst/NEWS.Rd,
+	man/SpatialGridDataFrame-class.Rd, vignettes/CRS_warnings.Rmd: add
+	vignette and link from proj4string() warnings
+
+2021-06-17  Roger Bivand <Roger.Bivand@gmail.com>
+
+	* R/CRS-methods.R, man/CRS-class.Rd: Revert "exploring upstream
+	#107" This reverts commit fbe5b883cde864861ac7202bad3122aec824b03e.
+
+2021-06-15  Roger Bivand <Roger.Bivand@gmail.com>
+
+	* R/CRS-methods.R, man/CRS-class.Rd: exploring upstream #107
+
+2021-06-11  Roger Bivand <Roger.Bivand@gmail.com>
+
+	* R/CRS-methods.R, man/CRS-class.Rd: cover corner cases for PROJ < 6
+	and SRS_string used
+
+2021-03-28  Roger Bivand <Roger.Bivand@gmail.com>
+
+	* R/CRS-methods.R, man/CRS-class.Rd, tests/fail1.Rout.save: update
+	CRS print method
+
+2021-03-16  Sebastian Meyer <seb.meyer@fau.de>
+
+	* R/bpy.colors.R, R/spplot.R: fix partially matched argument names
+
+2021-02-24  Roger Bivand <roger.bivand@nhh.no>
+
+	* R/AAA.R, R/CRS-methods.R: change list() to new.env(hash=TRUE); add
+	PROJ < 6 work-around for EPSG:xxxx
+
+2021-02-23  Roger Bivand <roger.bivand@nhh.no>
+
+	* DESCRIPTION, inst/include/sp.h, src/sp.h: tidy
+
+2021-02-23  Roger Bivand <roger.bivand@nhh.no>
+
+	* : Merge remote-tracking branch 'upstream/master'
+
+2021-01-26  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* : after --resave-data
+
+2021-01-26  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* .github/workflows/tic.yml: update
+
+2021-01-26  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* .github/workflows/tic.yml: update
+
+2021-01-26  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* README.md: new badge
+
+2021-01-26  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* .Rbuildignore, .github/workflows/tic.yml, tic.R: add tic
+
+2021-01-10  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* R/point.in.polygon.R, build-release.sh, inst/include/sp.h,
+	src/sp.h: version bump; simplify2array consistency issue addresses request from Kurt / CRAN, to not assume a list is returned
+	in this case.
+
+2020-11-27  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* DESCRIPTION: bump version
+
+2020-11-27  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* : Merge pull request #93 from bastistician/fix92 fix #92
+
+2020-11-04  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* R/point.in.polygon.R: avoid warning when warnPartialMatchArgs=TRUE
+
+2020-10-26  Sebastian Meyer <seb.meyer@fau.de>
+
+	* R/SpatialLines-methods.R: fix #92 `spp` is "SpatialPoints", so the proj4string argument is ignored
+	anyway (and produces a warning since
+	9101ce27f552a33f1cffa04ddf13a5a820e90fb0)
+
+2020-10-05  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* inst/ChangeLog: update ChangeLog
+
 2020-09-15  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
 
 	* : Merge pull request #90 from rsbivand/master CRS(SRS_string="") now works
