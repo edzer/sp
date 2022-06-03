@@ -12,7 +12,7 @@ if (!isGeneric("merge")) {
 setMethod('merge', signature(x='Spatial', y='ANY'), 
   function(x, y, ...) {
 	y <- try(as.data.frame(y))
-	if (class(y) != 'data.frame') {
+	if (!inherits(y, 'data.frame')) {
 		stop('y cannot be coerced to a data.frame')
 	}
 	merge(x, y)
