@@ -10,6 +10,7 @@ assign("PolypathRule", "winding", envir = .spOptions)
 assign("col.regions", bpy.colors(), envir = .spOptions)
 assign("thin_PROJ6_warnings", FALSE, envir=.spOptions)
 assign("PROJ6_warnings_count", 0L, envir=.spOptions)
+assign("evolution_status", 0L, envir=.spOptions)
 
 #.sp_CRS_cache <- new.env(FALSE, globalenv())
 #assign("CRS_CACHE", list(), envir=.sp_CRS_cache)
@@ -37,6 +38,19 @@ load_stuff <- function() {
     assign("thin_PROJ6_warnings", TRUE, envir=.spOptions)
   } else {
     assign("rgdal_show_exportToProj4_warnings", FALSE, envir=.spOptions)
+  }
+  evolution_status <- unlist(options("sp_evolution_status"))
+  if (!is.null(evolution_status)) {
+    stopifnot(is.integer(as.integer(evolution_status)))
+    stopifnot(evolution_status >= 0L && evolution_status <= 2L)
+    assign("evolution_status", unname(evolution_status), envir=.spOptions)
+  } else {
+    evolution_status <- Sys.getenv("_SP_EVOLUTION_STATUS_")
+    if (nchar(evolution_status) > 0L) {
+      stopifnot(is.integer(as.integer(evolution_status)))
+      stopifnot(evolution_status >= 0L && evolution_status <= 2L)
+      assign("evolution_status", unname(evolution_status), envir=.spOptions)
+    }
   }
 }
 
