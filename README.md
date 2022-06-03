@@ -6,7 +6,7 @@
 
 R Classes and Methods for Spatial Data.
 
-On `evolution` branch and *before* **sp** is loaded, `options("sp_evolution_status")` may be set to `0L` for legacy behaviour, `1L` for setting `CRS(, doCheckCRSArgs=FALSE, )` and other minor steps to block calls out to **rgdal** etc., and `2L` to use **sf** internally (not completed yet). If this option is not set, the environment variable `_SP_EVOLUTION_STATUS_` can be used, again *before* **sp** is loaded, set to `"0"`, `"1"` or `"2"`; this is being tried for running revdep checks under different evolution scenarios.
+*Before* **sp** is loaded, `options("sp_evolution_status")` may be set to `0L` for legacy behaviour, `1L` for setting `CRS(, doCheckCRSArgs=FALSE, )` and other minor steps to block calls out to **rgdal** etc., and `2L` to use **sf** internally (not completed yet). If this option is not set, the environment variable `_SP_EVOLUTION_STATUS_` can be used, again *before* **sp** is loaded, set to `"0"`, `"1"` or `"2"`; this is used for running revdep checks under different evolution scenarios, anticipating [retirement of maptools, rgdal and rgeos](https://r-spatial.org/r/2022/04/12/evolution.html).
 
 See:
 
