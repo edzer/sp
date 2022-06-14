@@ -103,16 +103,6 @@ setReplaceMethod("proj4string", c("Spatial", "CRS"), ReplProj4string)
 	res
 }
 is.projectedSpatial <- function(obj) {
-        if (get("evolution_status", envir=.spOptions) == 2L) {
-            if (requireNamespace("sf", quietly = TRUE)) {
-                obj1 <- SpatialPoints(t(bbox(obj)), proj4string=slot(obj,
-                    "proj4string"))
-                res <- !sf::st_is_longlat(sf::st_as_sf(obj1))
-                return(res)
-            } else {
-                warning("sf required for evolution_status==2L")
-            }
-        }
 	p4str <- slot(obj, "proj4string")
 	is.projected(p4str)
 }
@@ -120,6 +110,14 @@ is.projectedSpatial <- function(obj) {
 setMethod("is.projected", signature(obj = "Spatial"), is.projectedSpatial)
 
 is.projectedCRS <- function(obj) {
+        if (get("evolution_status", envir=.spOptions) == 2L) {
+            if (requireNamespace("sf", quietly = TRUE)) {
+                res <- !sf::st_is_longlat(obj)
+                return(res)
+            } else {
+                warning("sf required for evolution_status==2L")
+            }
+        }
 # bug spotted by Finn Lindgren 200817
 	p4str <- slot(obj, "projargs")
         wkt2 <- comment(obj)
