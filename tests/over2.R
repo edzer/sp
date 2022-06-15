@@ -1,6 +1,7 @@
 options("rgdal_show_exportToProj4_warnings"="none")
 library(sp)
 
+if (require(rgeos, quietly = TRUE)) {
 g = SpatialGrid(GridTopology(c(0,0), c(1,1), c(3,3)))
 p = as(g, "SpatialPolygons")
 over(g,g)
@@ -39,3 +40,4 @@ rgeos::overGeomGeom(pt,sp,returnList=TRUE, minDimension = 0)
 rgeos::overGeomGeom(pt,pt,minDimension=2)
 rgeos::overGeomGeom(pt,pt,minDimension=1)
 rgeos::overGeomGeom(pt,pt,minDimension=0)
+}

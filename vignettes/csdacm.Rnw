@@ -961,12 +961,13 @@ Let us first generate, as an example, a set of 100 conditional Gaussian
 simulations for the zinc variable in the meuse data set:
 \begin{footnotesize}
 <<eval=TRUE,echo=TRUE>>= 
-library(gstat)
 data(meuse)
 coordinates(meuse) <- ~x+y
-v <- vgm(.5, "Sph", 800, .05)
-sim <- krige(log(zinc)~1, meuse, meuse.grid, v, nsim=100, nmax=30)
-sim@data <- exp(sim@data)
+if (require(gstat, quietly = TRUE)) {
+ v <- vgm(.5, "Sph", 800, .05)
+ sim <- krige(log(zinc)~1, meuse, meuse.grid, v, nsim=100, nmax=30)
+ sim@data <- exp(sim@data)
+}
 @
 \end{footnotesize}
 
@@ -985,8 +986,10 @@ after which we can find the sample lower and upper 95\%
 confidence limits by
 \begin{footnotesize}
 << >>=
+if (require(gstat, quietly = TRUE)) {
 sim$lower <- quantile.Spatial(sim[1:100], probs = 0.025)
 sim$upper <- quantile.Spatial(sim[1:100], probs = 0.975)
+}
 @
 \end{footnotesize}
 
@@ -994,7 +997,9 @@ To get the sample distribution of the areal median, we can aggregate over
 layers:
 \begin{footnotesize}
 << >>=
+if (require(gstat, quietly = TRUE)) {
 medians <- quantile.Spatial(sim[1:100], probs = 0.5, byLayer = TRUE)
+}
 @
 <<eval=FALSE>>=
 hist(medians)
@@ -1025,9 +1030,11 @@ fractionBelow <- function(x, q, byLayer = FALSE) {
 options("width"=70)
 @
 << >>=
+if (require(gstat, quietly = TRUE)) {
 over500 <- 1 - fractionBelow(sim[1:100], 200, byLayer = TRUE)
 summary(over500)
 quantile(over500, c(0.025, 0.975))
+}
 @
 \end{footnotesize}
 
@@ -1072,12 +1079,8 @@ if (run) {
 library(rgdal)
 x <- GDAL.open(fn)
 class(x)
-}
-if (run) {
 x.subs <- x[1:100, 1:100, 1]
 class(x.subs)
-}
-if (run) {
 gridparameters(x.subs)
 }
 @

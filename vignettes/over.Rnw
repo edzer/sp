@@ -144,10 +144,14 @@ and shown in figure \ref{fig:toy}.
 
 \begin{figure}[htb]
 <<fig=TRUE,echo=FALSE>>=
-library(RColorBrewer)
-pal = brewer.pal(5, "Set2")
-plot(pol, xlim = c(-1.1, 2.1), ylim = c(-1.1, 1.6), border=pal, axes=TRUE,
-	col = paste0(pal, "4D"))
+if (require(RColorBrewer, quietly = TRUE)) {
+ pal = brewer.pal(5, "Set2")
+ col = paste0(pal, "4D")
+} else {
+ pal = 1:5
+ col = pal
+}
+plot(pol, xlim = c(-1.1, 2.1), ylim = c(-1.1, 1.6), border=pal, axes=TRUE, col = col)
 points(pts, col='red')
 text(c(-1,0.1,0.1,1.9,0.45), c(0.05,0.05,-.95,0.05,0.15), 
 	c("x1", "x2", "x3", "x4", "x5"))
@@ -188,7 +192,9 @@ row.names(pol[pts])
 \code{over} can also be used to query polygons in a single object overlay each other:
 
 <<>>=
-over(pol, pol, returnList = TRUE)
+if (require(rgeos, quietly = TRUE)) {
+ over(pol, pol, returnList = TRUE)
+}
 @
 
 \noindent
@@ -300,7 +306,7 @@ text(c(0.52, 1.52), c(1.5, 1.5), c("L1", "L2"))
 The set of \code{over} operations on the polygons, lines and points 
 is shown below (note that lists and vectors are named in this case):
 <<>>=
-library(rgeos)
+if (require(rgeos, quietly = TRUE)) {
 over(pol, pol)
 over(pol, pol,returnList = TRUE)
 over(pol, L)
@@ -309,6 +315,7 @@ over(L, pol, returnList = TRUE)
 over(L, L)
 over(pts, L)
 over(L, pts)
+}
 @
 
 Another example overlays a line with a grid, shown in figure \ref{fig:grid}.
@@ -319,9 +326,11 @@ gridded(meuse.grid) = ~x+y
 Pt = list(x = c(178274.9,181639.6), y = c(329760.4,333343.7))
 sl = SpatialLines(list(Lines(Line(cbind(Pt$x,Pt$y)), "L1")))
 image(meuse.grid)
-xo = over(sl, geometry(meuse.grid), returnList = TRUE)
-image(meuse.grid[xo[[1]], ],col=grey(0.5),add=T)
-lines(sl)
+if (require(rgeos, quietly = TRUE)) {
+ xo = over(sl, geometry(meuse.grid), returnList = TRUE)
+ image(meuse.grid[xo[[1]], ],col=grey(0.5),add=T)
+ lines(sl)
+}
 @
 \caption{ Overlay of line with grid, identifying cells crossed (or touched)
 by the line }
@@ -342,17 +351,21 @@ text(coordinates(g), labels = 1:9)
 
 We can match these geometries with themselves by
 <<>>=
+if (require(rgeos, quietly = TRUE)) {
 over(g,g)
 over(p,p)
 over(p,g)
 over(g,p)
+}
 @
 and see that most give a 1:1 match, except for polygons-polygons \code{(p,p)}.
 
 When we ask for the full set of matches, we see
 <<>>=
+if (require(rgeos, quietly = TRUE)) {
 over(px[5], g, returnList = TRUE)
 over(p[c(1,5)], p, returnList = TRUE)
+}
 @
 and note that the implementation lets grids/pixels not match
 (intersect) with neighbour grid cells, but that polygons do. 
@@ -369,8 +382,10 @@ By default, polygon-polygon features are matched by
 {\em any} order (feature order, it seems). Although it is slower,
 we  can however improve on this by switching to \code{rgeos::gRelate}, and see
 <<>>=
+if (require(rgeos, quietly = TRUE)) {
 over(px[5], g, returnList = TRUE, minDimension = 0)
 over(p[c(1,5)], p, returnList = TRUE, minDimension = 0)
+}
 @
 When \code{minDimension = 0} is specified, the matching geometries
 are being returned based on a nested ordering. First, ordering
@@ -391,7 +406,9 @@ Note that the ordering also determines which feature is matched
 when \code{returnList=FALSE}, as in this case the first element of
 the ordered set is taken:
 <<>>=
+if (require(rgeos, quietly = TRUE)) {
 over(p, p, minDimension = 0)
+}
 @
 
 Consider the following example where a point is {\em on} \code{x1} and {\em in} \code{x2}: 
@@ -413,12 +430,14 @@ When matching the point \code{pt} with the two polygons, the
 sp method (default) gives no preference of the second polygon
 that (fully) contains the point; the rgeos method however does:
 <<>>=
+if (require(rgeos, quietly = TRUE)) {
 over(pt,sp)
 over(pt,sp,minDimension=0)
 over(pt,sp,returnList=TRUE)
 rgeos::overGeomGeom(pt,sp)
 rgeos::overGeomGeom(pt,sp,returnList=TRUE)
 rgeos::overGeomGeom(pt,sp,returnList=TRUE,minDimension=0)
+}
 @
 
 % #    x1     x2 
@@ -435,12 +454,14 @@ area overlap {\em or} line in common. This can be done using the
 parameter \code{minDimension}:
 
 <<>>=
+if (require(rgeos, quietly = TRUE)) {
 over(p[5], p, returnList=TRUE, minDimension=0)
 over(p[5], p, returnList=TRUE, minDimension=1)
 over(p[5], p, returnList=TRUE, minDimension=2)
 rgeos::overGeomGeom(pt, pt, minDimension=2) # empty
 rgeos::overGeomGeom(pt, pt, minDimension=1) # empty
 rgeos::overGeomGeom(pt, pt, minDimension=0)
+}
 @
 
 \section{Aggregation}
@@ -474,9 +495,11 @@ x 400 m grid}
 An example of the aggregated values of \code{meuse.grid} along
 (or under) the line shown in Figure \ref{fig:lines} are
 <<>>=
+if (require(rgeos, quietly = TRUE)) {
 sl.agg = aggregate(meuse.grid[,1:3], sl, mean)
 class(sl.agg)
 as.data.frame(sl.agg)
+}
 @
 Function \code{aggregate} returns a spatial object of the same
 class of \code{sl} (\code{SpatialLines}), and \code{as.data.frame}
@@ -490,6 +513,7 @@ specifying {\em how} polygons intersect\footnote{sp versions
 in Figure \ref{fig:agg}.
 
 <<>>=
+if (require(rgeos, quietly = TRUE)) {
 g = SpatialGrid(GridTopology(c(5,5), c(10,10), c(3,3)))
 p = as(g, "SpatialPolygons")
 p$z = c(1,0,1,0,1,0,1,0,1)
@@ -499,10 +523,12 @@ p$ag1a = aggregate(p, p, mean, minDimension = 0)[[1]]
 p$ag2 = aggregate(p, p, mean, minDimension = 1)[[1]]
 p$ag3 = aggregate(p, p, mean, minDimension = 2)[[1]]
 p$ag4 = aggregate(p, p, areaWeighted=TRUE)[[1]]
+}
 @
 
 \begin{figure}[ht]
 <<echo=FALSE,fig=TRUE>>=
+if (require(rgeos, quietly = TRUE)) {
 pts = cbind(c(9,21,21,9,9),c(9,9,21,21,9))
 sq = SpatialPolygons(list(Polygons(list(Polygon(pts)), "ID")))
 rnd2 = function(x) round(x, 2)
@@ -519,6 +545,8 @@ spplot(p, names.attr = c("source", "default aggregate", "minDimension=0",
 	"minDimension=1", "minDimension=2", "areaWeighted=TRUE"), layout = c(3,2), 
 	as.table=TRUE, col.regions=bpy.colors(151)[50:151], cuts=100, 
 	sp.layout = l, scales = list(draw = TRUE))
+} else
+	plot(1)
 @
 \caption{Effect of aggregating checker board {\tt SpatialPolygons} by themselves, for
 different values of {\tt minDimension} and {\tt areaWeighted}; the green square example
@@ -536,12 +564,14 @@ using {\tt minDimension}, and area weighting for aggregating the 0-1 checker
 board of figure \ref{fig:agg} by the green square polygon ({\tt sq}) 
 shown in the last panel of that figure:
 <<>>=
+if (require(rgeos, quietly = TRUE)) {
 round(c(
   aggDefault = aggregate(p, sq, mean)[[1]],
   aggMinDim0 = aggregate(p, sq, mean, minDimension = 0)[[1]],
   aggMinDim1 = aggregate(p, sq, mean, minDimension = 1)[[1]],
   aggMinDim2 = aggregate(p, sq, mean, minDimension = 2)[[1]],
   areaWeighted = aggregate(p, sq, areaWeighted=TRUE)[[1]]), 3)
+}
 @
 
 

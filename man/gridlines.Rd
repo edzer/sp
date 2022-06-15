@@ -60,6 +60,12 @@ on its coordinates, and takes care of attributes \code{pos}, \code{labels},
 
 \seealso{ \link[rgdal:spTransform-methods]{spTransform}; llgridlines in \code{rgdal} (recent versions) for plotting long-lat grid over projected data }
 \examples{
+
+run <- FALSE
+if (get("evolution_status", envir=sp:::.spOptions) != 1L) run <- TRUE
+if (get("evolution_status", envir=sp:::.spOptions) == 2L && requireNamespace("sf", quietly=TRUE)) run <- TRUE
+if (get("evolution_status", envir=sp:::.spOptions) == 0L && requireNamespace("rgdal", quietly=TRUE)) run <- TRUE
+
 data(meuse)
 coordinates(meuse) = ~x+y
 plot(meuse)
@@ -67,12 +73,7 @@ plot(gridlines(meuse), add = TRUE)
 text(labels(gridlines(meuse)))
 title("default gridlines within Meuse bounding box")
 
-run <- FALSE
-if (get("evolution_status", envir=sp:::.spOptions) != 1L) run <- TRUE
-if (get("evolution_status", envir=sp:::.spOptions) == 2L && requireNamespace("sf", quietly=TRUE)) run <- TRUE
-if (get("evolution_status", envir=sp:::.spOptions) == 0L && requireNamespace("rgdal", quietly=TRUE)) run <- TRUE
-
-if (run) {
+if (run && require(rgdal, quietly = TRUE)) {
 proj4string(meuse) <- CRS("+init=epsg:28992")
 crs.longlat <- CRS("+init=epsg:4326")
 meuse_ll <- spTransform(meuse, crs.longlat)
@@ -130,6 +131,6 @@ title("grid line labels on polar projection, epsg 3031")
 \dontrun{
 if (require(maps)) demo(polar) # adds the map of the antarctic
 }
-}
 
+}
 \keyword{spatial}

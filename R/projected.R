@@ -110,53 +110,24 @@ is.projectedSpatial <- function(obj) {
 setMethod("is.projected", signature(obj = "Spatial"), is.projectedSpatial)
 
 is.projectedCRS <- function(obj) {
-        if (get("evolution_status", envir=.spOptions) == 2L) {
-            if (requireNamespace("sf", quietly = TRUE)) {
-                res <- !sf::st_is_longlat(obj)
-                return(res)
-            } else {
-                warning("sf required for evolution_status==2L")
-            }
-        }
-# bug spotted by Finn Lindgren 200817
 	p4str <- slot(obj, "projargs")
-        wkt2 <- comment(obj)
-# test wkt2 as well, revdep inlabru 220216
-	if (is.null(wkt2) && is.na(p4str)) return(as.logical(NA))
-        if (!is.null(wkt2)) {
-           if (get("evolution_status", envir=.spOptions) == 0L && 
-                requireNamespace("rgdal", quietly = TRUE)) {
-                if (packageVersion("rgdal") >= "1.5.17" && 
-                    rgdal::new_proj_and_gdal()) {
-                    res <- rgdal::OSRIsProjected(obj)
-                } else {
-                    res <- substring(wkt2, 1, 3) != "GEO"
-                }
-            } else {
-                res <- substring(wkt2, 1, 3) != "GEO"
-            }
-            return(res)
-        }
-	if (is.na(p4str) || !nzchar(p4str)) {
-		return(as.logical(NA))
-	} else {
-            if (get("evolution_status", envir=.spOptions) == 0L && 
-                requireNamespace("rgdal", quietly = TRUE)) {
-                if (packageVersion("rgdal") >= "1.5.17" && 
-                    rgdal::new_proj_and_gdal()) {
-                    res <- rgdal::OSRIsProjected(obj)
-                } else {
-		    res <- length(grep("longlat", p4str, fixed = TRUE)) == 0L
-                }
-            } else {
-		res <- length(grep("longlat", p4str, fixed = TRUE)) == 0L
-	    }
-            return(res)
-        }
+	wkt2 <- comment(obj)
+	if (get("evolution_status", envir=.spOptions) == 2L) {
+		if (!requireNamespace("sf", quietly = TRUE))
+			stop("sf required for evolution_status==2L")
+		!sf::st_is_longlat(obj)
+	} else if (is.null(wkt2) && is.na(p4str))
+		as.logical(NA)
+	else if (get("evolution_status", envir=.spOptions) == 0L && 
+			requireNamespace("rgdal", quietly = TRUE) &&
+			packageVersion("rgdal") >= "1.5.17" && rgdal::new_proj_and_gdal())
+		rgdal::OSRIsProjected(obj)
+	else if (!is.null(wkt2)) # and old rgdal version
+		substring(wkt2, 1, 3) != "GEO"
+	else if (is.na(p4str) || !nzchar(p4str))
+		as.logical(NA)
+	else
+		length(grep("longlat", p4str, fixed = TRUE)) == 0L
 }
 
-
-
 setMethod("is.projected", signature(obj = "CRS"), is.projectedCRS)
-
-
