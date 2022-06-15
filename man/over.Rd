@@ -138,6 +138,7 @@ and use \link[rgeos:pred-binary-gIntersects]{gIntersects}.}
 \code{vignette("over")} for examples and figures;
 \link{point.in.polygon}, package \link[rgeos:pred-binary-gIntersects]{gIntersects}}
 \examples{
+if (require(rgeos, quietly = TRUE)) {
 r1 = cbind(c(180114, 180553, 181127, 181477, 181294, 181007, 180409, 
 180162, 180114), c(332349, 332057, 332342, 333250, 333558, 333676, 
 332618, 332413, 332349))
@@ -194,5 +195,6 @@ over(meuse.grid, sr)
 over(meuse.grid, srdf, fn = mean)
 over(as(meuse.grid, "SpatialPoints"), sr)
 over(as(meuse.grid, "SpatialPoints"), srdf)
+}
 }
 \keyword{methods}

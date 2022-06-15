@@ -24,6 +24,7 @@ per \link{Polygons}, respectively.
 
 \author{ Robert Hijmans, Edzer Pebesma }
 \examples{
+if (require(rgeos, quietly = TRUE)) {
 Sr1 = Polygon(cbind(c(2,4,4,1,2),c(2,3,5,4,2)), hole = FALSE)
 Sr2 = Polygon(cbind(c(5,4,2,5),c(2,3,2,2)), hole = FALSE)
 Sr3 = Polygon(cbind(c(4,4,5,10,4),c(5,3,2,5,5)), hole = FALSE)
@@ -46,5 +47,6 @@ S2 = Lines(list(Sl2), ID="b")
 sl = SpatialLines(list(S1,S2))
 length(sl)
 length(disaggregate(sl))
+}
 }
 \keyword{methods}

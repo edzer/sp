@@ -1,5 +1,6 @@
 options("rgdal_show_exportToProj4_warnings"="none")
 library(sp)
+if (require(rgeos, quietly = TRUE)) {
 g = SpatialGrid(GridTopology(c(5,5), c(10,10), c(3,3)))
 p = as(g, "SpatialPolygons")
 p$z = c(1,0,1,0,1,0,1,0,1)
@@ -31,3 +32,4 @@ rnd2(c(aggregate(p, sq, mean)[[1]],
   aggregate(p, sq, mean, minDimension = 1)[[1]],
   aggregate(p, sq, mean, minDimension = 2)[[1]],
   aggregate(p, sq, mean, areaWeighted=TRUE)[[1]]))
+}
