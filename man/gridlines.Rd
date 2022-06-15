@@ -62,11 +62,10 @@ on its coordinates, and takes care of attributes \code{pos}, \code{labels},
 \examples{
 
 run <- FALSE
-if (get("evolution_status", envir=sp:::.spOptions) != 1L) run <- TRUE
-if (get("evolution_status", envir=sp:::.spOptions) == 2L && 
-      requireNamespace("sf", quietly=TRUE)) run <- TRUE
-if (get("evolution_status", envir=sp:::.spOptions) == 0L &&
-      requireNamespace("rgdal", quietly=TRUE)) run <- TRUE
+ES <- get("evolution_status", envir=sp:::.spOptions)
+if (ES != 1L) run <- TRUE
+if (ES == 2L && requireNamespace("sf", quietly=TRUE)) run <- TRUE
+if (ES == 0L && requireNamespace("rgdal", quietly=TRUE)) run <- TRUE
 
 data(meuse)
 coordinates(meuse) = ~x+y
@@ -75,7 +74,7 @@ plot(gridlines(meuse), add = TRUE)
 text(labels(gridlines(meuse)))
 title("default gridlines within Meuse bounding box")
 
-if (run && require(rgdal, quietly = TRUE)) {
+if (run) {
 proj4string(meuse) <- CRS("+init=epsg:28992")
 crs.longlat <- CRS("+init=epsg:4326")
 meuse_ll <- spTransform(meuse, crs.longlat)
