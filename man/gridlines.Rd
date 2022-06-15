@@ -63,8 +63,10 @@ on its coordinates, and takes care of attributes \code{pos}, \code{labels},
 
 run <- FALSE
 if (get("evolution_status", envir=sp:::.spOptions) != 1L) run <- TRUE
-if (get("evolution_status", envir=sp:::.spOptions) == 2L && requireNamespace("sf", quietly=TRUE)) run <- TRUE
-if (get("evolution_status", envir=sp:::.spOptions) == 0L && requireNamespace("rgdal", quietly=TRUE)) run <- TRUE
+if (get("evolution_status", envir=sp:::.spOptions) == 2L && 
+      requireNamespace("sf", quietly=TRUE)) run <- TRUE
+if (get("evolution_status", envir=sp:::.spOptions) == 0L &&
+      requireNamespace("rgdal", quietly=TRUE)) run <- TRUE
 
 data(meuse)
 coordinates(meuse) = ~x+y
