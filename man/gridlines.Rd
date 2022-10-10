@@ -63,7 +63,6 @@ on its coordinates, and takes care of attributes \code{pos}, \code{labels},
 
 run <- FALSE
 ES <- get("evolution_status", envir=sp:::.spOptions)
-if (ES != 1L) run <- TRUE
 if (ES == 2L && requireNamespace("sf", quietly=TRUE)) run <- TRUE
 if (ES == 0L && requireNamespace("rgdal", quietly=TRUE)) run <- TRUE
 
