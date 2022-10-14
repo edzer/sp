@@ -41,7 +41,8 @@ load_stuff <- function() {
   }
   evolution_status <- unlist(options("sp_evolution_status"))
   if (!is.null(evolution_status)) {
-    stopifnot(is.integer(as.integer(evolution_status)))
+    evolution_status <- as.integer(evolution_status)
+    stopifnot(is.integer(evolution_status))
     stopifnot(evolution_status >= 0L && evolution_status <= 2L)
     assign("evolution_status", unname(evolution_status), envir=.spOptions)
   } else {
