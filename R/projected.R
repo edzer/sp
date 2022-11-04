@@ -115,7 +115,12 @@ is.projectedCRS <- function(obj) {
 	if (get("evolution_status", envir=.spOptions) == 2L) {
 		if (!requireNamespace("sf", quietly = TRUE))
 			stop("sf required for evolution_status==2L")
-		!sf::st_is_longlat(obj)
+		o <- try(sf::st_is_longlat(obj), silent=TRUE)
+# rbgm workaround for +proj=utm +zone=18 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs +# +a=6378137.0 +es=0.006694380022900787 +lon_0=-75d00 +lat_0=0d00 +x_0=500000.0 +y_0=0.0 +k=0.9996 in bgmfiles Final_CAM_Boxes_8.bgm
+                if (inherits(o, "try-error"))
+                    length(grep("longlat", p4str, fixed = TRUE)) == 0L
+                else
+                    !o
 	} else if (is.null(wkt2) && is.na(p4str))
 		as.logical(NA)
 	else if (get("evolution_status", envir=.spOptions) == 0L && 

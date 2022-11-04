@@ -24,12 +24,12 @@ load_stuff <- function() {
   rgdal_show_exportToProj4_warnings <- options("rgdal_show_exportToProj4_warnings")
   if (!is.null(rgdal_show_exportToProj4_warnings)) {
     if (!(rgdal_show_exportToProj4_warnings %in% c("all", "thin", "none"))) {
-# CURRENT DEFAULT: "all"
-      rgdal_show_exportToProj4_warnings <- "all"
+# 1.5-1 DEFAULT: "none"
+      rgdal_show_exportToProj4_warnings <- "none"
     }
   } else {
-# CURRENT DEFAULT: "all"
-    rgdal_show_exportToProj4_warnings <- "all"
+# 1.5-1 DEFAULT: "none"
+    rgdal_show_exportToProj4_warnings <- "none"
   }
   if (rgdal_show_exportToProj4_warnings == "all") {
     assign("rgdal_show_exportToProj4_warnings", TRUE, envir=.spOptions)

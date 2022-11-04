@@ -63,7 +63,6 @@ on its coordinates, and takes care of attributes \code{pos}, \code{labels},
 
 run <- FALSE
 ES <- get("evolution_status", envir=sp:::.spOptions)
-if (ES != 1L) run <- TRUE
 if (ES == 2L && requireNamespace("sf", quietly=TRUE)) run <- TRUE
 if (ES == 0L && requireNamespace("rgdal", quietly=TRUE)) run <- TRUE
 
@@ -87,19 +86,22 @@ plot(grd_x, add=TRUE, lty=2)
 grdat_ll <- gridat(meuse_ll)
 grdat_x <- spTransform(grdat_ll, CRS("+init=epsg:28992"))
 text(grdat_x)
-
+}
+if (run) {
 # labels North and East:
 plot(meuse)
 plot(grd_x, add=TRUE, lty=2)
 grdat_ll <- gridat(meuse_ll, side="EN")
 grdat_x <- spTransform(grdat_ll, CRS("+init=epsg:28992"))
 text(grdat_x)
-
+}
+if (run) {
 # now using labels:
 plot(meuse)
 plot(grd_x, add=TRUE, lty=2)
 text(labels(grd_x, crs.longlat))
-
+}
+if (run) {
 # demonstrate axis labels with angle, both sides:
 sp = SpatialPoints(rbind(c(-101,9), c(-101,55), c(-19,9), c(-19,55)), crs.longlat)
 laea = CRS("+proj=laea +lat_0=30 +lon_0=-40")
@@ -110,7 +112,8 @@ plot(gl, add = TRUE)
 text(labels(gl, crs.longlat))
 text(labels(gl, crs.longlat, side = 3:4), col = 'red')
 title("curved text label demo")
-
+}
+if (run) {
 # polar:
 pts=SpatialPoints(rbind(c(-180,-70),c(0,-70),c(180,-89),c(180,-70)), crs.longlat)
 polar = CRS("+init=epsg:3031")
