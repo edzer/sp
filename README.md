@@ -1,7 +1,7 @@
 # sp
 
 [![R-CMD-check](https://github.com/edzer/sp/workflows/tic/badge.svg)](https://github.com/edzer/sp/actions)
-[![cran checks](https://cranchecks.info/badges/worst/sp)](https://cran.r-project.org/web/checks/check_results_sp.html)
+[![cran checks](https://badges.cranchecks.info/badges/worst/sp.svg)](https://cran.r-project.org/web/checks/check_results_sp.html)
 [![Downloads](http://cranlogs.r-pkg.org/badges/sp?color=brightgreen)](http://www.r-pkg.org/pkg/sp)
 
 R Classes and Methods for Spatial Data.
