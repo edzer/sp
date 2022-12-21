@@ -112,7 +112,9 @@ setMethod("is.projected", signature(obj = "Spatial"), is.projectedSpatial)
 is.projectedCRS <- function(obj) {
 	p4str <- slot(obj, "projargs")
 	wkt2 <- comment(obj)
-	if (get("evolution_status", envir=.spOptions) == 2L) {
+	if (is.null(wkt2) && is.na(p4str))
+		as.logical(NA)
+	else if (get("evolution_status", envir=.spOptions) == 2L) {
 		if (!requireNamespace("sf", quietly = TRUE))
 			stop("sf required for evolution_status==2L")
 		o <- try(sf::st_is_longlat(obj), silent=TRUE)
@@ -121,9 +123,7 @@ is.projectedCRS <- function(obj) {
                     length(grep("longlat", p4str, fixed = TRUE)) == 0L
                 else
                     !o
-	} else if (is.null(wkt2) && is.na(p4str))
-		as.logical(NA)
-	else if (get("evolution_status", envir=.spOptions) == 0L && 
+	} else if (get("evolution_status", envir=.spOptions) == 0L && 
 			requireNamespace("rgdal", quietly = TRUE) &&
 			packageVersion("rgdal") >= "1.5.17" && rgdal::new_proj_and_gdal())
 		rgdal::OSRIsProjected(obj)
