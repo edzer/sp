@@ -23,7 +23,7 @@ setMethod("rebuild_CRS", signature(obj = "CRS"),
 
 
 "CRS" <- function(projargs=NA_character_, doCheckCRSArgs=TRUE,
-    SRS_string=NULL, get_source_if_boundcrs=TRUE) {
+    SRS_string=NULL, get_source_if_boundcrs=TRUE, use_cache=TRUE) {
 # cautious change BDR 150424
 # trap NULL too 200225
     if (is.null(projargs))
@@ -37,7 +37,7 @@ setMethod("rebuild_CRS", signature(obj = "CRS"),
     stopifnot(is.character(projargs))
 #    CRS_CACHE <- get("CRS_CACHE", envir=.sp_CRS_cache)
     input_projargs <- projargs
-    if (!is.na(input_projargs)) {
+    if (!is.na(input_projargs) && use_cache) {
         res <- .sp_CRS_cache[[input_projargs]]
         if (!is.null(res)) {
             return(res)
