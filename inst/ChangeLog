@@ -1,10 +1,19 @@
 2023-01-12  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
 
+	* : Merge pull request #126 from rsbivand/internalise_status Internalise status
+
+2023-01-12  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
 	* : Merge pull request #124 from rsbivand/sprintf Sprintf
 
-2022-12-21  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+2023-01-10  Roger Bivand <Roger.Bivand@gmail.com>
 
-	* R/projected.R: fixes #125
+	* DESCRIPTION, NAMESPACE, R/CRS-methods.R, R/spOptions.R,
+	man/CRS-class.Rd, man/spTransform.Rd: add internalised status
+
+2023-01-10  Roger Bivand <Roger.Bivand@gmail.com>
+
+	* : Merge remote-tracking branch 'upstream/main'
 
 2022-12-13  Roger Bivand <Roger.Bivand@gmail.com>
 
