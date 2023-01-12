@@ -49,6 +49,7 @@ aggregate.data.frame.SP <- function (x, by, FUN, ..., dissolve = TRUE) {
 		if (!gridded(geom) && is(geom, "SpatialPoints"))
 			geom = split(geom, factor(grp)) # creates SpatialMultiPoints
 		else {
+			.Deprecated("sf::agregate")
 			if (!requireNamespace("rgeos", quietly = TRUE))
 				stop("rgeos required")
 			if (is(geom, "SpatialLines"))
@@ -71,6 +72,7 @@ aggregate.Spatial = function(x, by = list(ID = rep(1, length(x))), FUN, ...,
 		if (gridded(by))
 			by = as(by, "SpatialPolygons")
 		if (is(x, "SpatialPolygonsDataFrame") && is(by, "SpatialPolygons") && areaWeighted) {
+			.Deprecated("sf::agregate")
 			if (!missing(FUN))
 				warning("argument FUN is ignored in area-weighted aggregation, see documentation")
 			df = aggregatePolyWeighted(x, by)

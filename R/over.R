@@ -205,6 +205,7 @@ setMethod("over", signature("SpatialPoints", "SpatialPixelsDataFrame"),
 
 setMethod("over", signature("Spatial", "Spatial"),  # catch remaining:
 	function(x, y, returnList = FALSE, fn = NULL, ...) {
+		.Deprecated("sf::st_intersects or sf::aggregate")
     	if (!requireNamespace("rgeos", quietly = TRUE))
 			stop("package rgeos is required for additional over methods")
 		if (is(x, "SpatialMultiPoints") || is(y, "SpatialMultiPoints"))

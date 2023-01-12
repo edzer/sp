@@ -37,6 +37,10 @@ of \code{x} and \code{by}; see examples below.
 If \code{by} is missing, aggregates over all features.
 }
 \details{
+For as far as these functions use package rgeos, (lines, polygons,
+dissolve = TRUE), they are deprecated as rgeos will retire; try
+using sf::aggregate instead.
+
 \code{FUN} should be a function that takes as first argument a
 vector, and that returns a single number. The canonical examples
 are \link{mean} and \link{sum}. Counting features is obtained when
@@ -83,8 +87,8 @@ if (require(gstat) && require(rgeos)) {
 	spplot(x[1],col.regions=bpy.colors())
 	i = cut(x$var1.pred, seq(4, 7.5, by=.5), 
 		include.lowest = TRUE)
-	xa = aggregate(x["var1.pred"], list(i=i), mean)
-	spplot(xa[1],col.regions=bpy.colors(8))
+	# xa = aggregate(x["var1.pred"], list(i=i), mean)
+	# spplot(xa[1],col.regions=bpy.colors(8))
 }
 
 if (require(rgeos)) {
@@ -111,12 +115,12 @@ if (require(rgeos)) {
   text(coordinates(i), ids.i, cex = .8, col = 'blue')
 
   # compute & plot area-weighted average; will warn for the factor
-  ret = aggregate(p1, p2, areaWeighted = TRUE)
-  spplot(ret)
+  #ret = aggregate(p1, p2, areaWeighted = TRUE)
+  #spplot(ret)
 
   # all-factor attributes: compute area-dominant factor level:
-  ret = aggregate(p1["x"], p2, areaWeighted = TRUE) 
-  spplot(ret)
+  #ret = aggregate(p1["x"], p2, areaWeighted = TRUE) 
+  #spplot(ret)
 }
 }
 \keyword{methods}
