@@ -21,7 +21,7 @@ SEXP SP_PREFIX(Polygon_c)(const SEXP coords, const SEXP n, const SEXP ihole) {
     int i, ii, nn=INTEGER_POINTER(n)[0];
     SEXP valid;
     SEXP ccopy,  /* copy of coords to go into returned structure */
-		dim1;
+        dim1;
 
     for (i=0; i<nn; i++) {
        if(!R_FINITE(NUMERIC_POINTER(coords)[i]))
@@ -658,13 +658,13 @@ void SP_PREFIX(comm2comment)(char *buf, int bufsiz, int *comm, int nps) {
     if (bufsiz < nc1) error("comm2comment: buffer overflow");
 
     pr = snprintf(buf, bufsiz, "%d", comm[0]);
-	bufsiz -= pr;
+    bufsiz -= pr;
     for (i = 1; i < nps; i++) {
         snprintf(cbuf, 15, " %d", comm[i]);
         if (strlen(buf) + strlen(cbuf) >= bufsiz)
             error("comm2comment: buffer overflow");
         strncat(buf, cbuf, bufsiz);
-		bufsiz -= strlen(cbuf);
+        bufsiz -= strlen(cbuf);
     }
     strcat(buf, "\0");
     return;
