@@ -1,5 +1,19 @@
 2023-01-12  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
 
+	* src/sp_xports.c: format; #126
+
+2023-01-12  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* build-release.sh, inst/include/sp_xports.c, src/sp_xports.c,
+	tests/spDists.Rout.save: fix snprintf()'s, use strncat for strcat;
+	#126
+
+2023-01-12  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* inst/ChangeLog: update ChangeLog
+
+2023-01-12  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
 	* : Merge pull request #126 from rsbivand/internalise_status Internalise status
 
 2023-01-12  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
