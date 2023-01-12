@@ -651,18 +651,20 @@ SEXP SP_PREFIX(comment2comm)(const SEXP obj) {
 
 void SP_PREFIX(comm2comment)(char *buf, int bufsiz, int *comm, int nps) {
     char cbuf[15];
-    int i, nc, nc1;
+    int i, nc, nc1, pr;
 
     nc = (int) (ceil(log10(nps)+1.0)+1.0);
     nc1 = (nc*nps)+1;
     if (bufsiz < nc1) error("comm2comment: buffer overflow");
 
-    snprintf(buf, sizeof(buf), "%d", comm[0]);
-    for (i=1; i<nps; i++) {
-        snprintf(cbuf, sizeof(cbuf), " %d", comm[i]);
+    pr = snprintf(buf, bufsiz, "%d", comm[0]);
+	bufsiz -= pr;
+    for (i = 1; i < nps; i++) {
+        snprintf(cbuf, 15, " %d", comm[i]);
         if (strlen(buf) + strlen(cbuf) >= bufsiz)
             error("comm2comment: buffer overflow");
-        strcat(buf, cbuf);
+        strncat(buf, cbuf, bufsiz);
+		bufsiz -= strlen(cbuf);
     }
     strcat(buf, "\0");
     return;
