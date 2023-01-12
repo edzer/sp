@@ -1,6 +1,153 @@
+2023-01-12  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* : Merge pull request #124 from rsbivand/sprintf Sprintf
+
+2022-12-21  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* R/projected.R: fixes #125
+
+2022-12-13  Roger Bivand <Roger.Bivand@gmail.com>
+
+	* man/aggregate.Rd: update link in help file to rgeos-deprecated
+
+2022-12-12  Roger Bivand <Roger.Bivand@gmail.com>
+
+	* DESCRIPTION, inst/include/sp.h, inst/include/sp_xports.c,
+	src/sp.h, src/sp_xports.c: address CRAN sprintf warning
+
+2022-12-10  Roger Bivand <Roger.Bivand@gmail.com>
+
+	* : Merge remote-tracking branch 'upstream/main'
+
+2022-11-28  Roger Bivand <Roger.Bivand@gmail.com>
+
+	* : Merge remote-tracking branch 'upstream/main'
+
+2022-10-14  Roger Bivand <Roger.Bivand@gmail.com>
+
+	* R/AAA.R: re-do _SP_EVOLUTION_STATUS_ parsing
+
+2022-10-14  Roger Bivand <Roger.Bivand@gmail.com>
+
+	* R/AAA.R: re-do _SP_EVOLUTION_STATUS_ parsing
+
+2022-10-10  Roger <roger.bivand@gmail.com>
+
+	* man/gridlines.Rd: fix logic error in status and package absence
+
+2022-10-08  Roger Bivand <Roger.Bivand@gmail.com>
+
+	* inst/include/sp.h, src/sp.h, src/sp.h.in: fix -Wstrict-prototypes
+	warning
+
+2022-07-06  Roger <roger.bivand@gmail.com>
+
+	* : commit 102cdd6f0ce3c0386ea01d8612de46af393b8d2e Author: Roger
+	<roger.bivand@gmail.com> Date:   Wed Jul 6 16:02:24 2022 +0200
+
+2022-06-15  Roger Bivand <Roger.Bivand@gmail.com>
+
+	* : commit 1f34d0dcb0e691bd45c0f4afa1ec053b66dc75fa Merge: d51fb91
+	5ca423d Author: Roger Bivand <Roger.Bivand@gmail.com> Date:   Wed
+	Jun 15 22:15:43 2022 +0200
+
+2022-06-15  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* man/gridlines.Rd: ES use in #117
+
+2022-06-15  Roger <roger.bivand@gmail.com>
+
+	* man/gridlines.Rd: evolution status 2; no rgdal/rgeos/maptools
+
+2022-06-15  Roger Bivand <Roger.Bivand@gmail.com>
+
+	* R/AAA.R, man/gridlines.Rd: break man page lines; change proj4 spec
+	loss default warning
+
+2022-06-15  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* man/gridlines.Rd: break long lines; #117
+
+2022-06-15  Roger Bivand <Roger.Bivand@gmail.com>
+
+	* : resolve merge conflicts
+
+2022-06-15  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* man/gridlines.Rd: modify gridlines example; #117 * also passes if _R_CHECK_DEPENDS_ONLY_=true;
+
+2022-06-14  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* R/projected.R: merge RSB's fix and clean up is.projectedCRS
+
+2022-06-14  Roger Bivand <Roger.Bivand@gmail.com>
+
+	* man/gridlines.Rd: correct gridlines example for evolution
+
+2022-06-14  Roger Bivand <Roger.Bivand@gmail.com>
+
+	* R/projected.R: refix is.projected()
+
+2022-06-14  Roger Bivand <Roger.Bivand@gmail.com>
+
+	* : commit aac5e239ebbd50e437e4784b84d4032f622a3d2e Merge: cfe9cdb
+	b0fe80a Author: Roger Bivand <Roger.Bivand@gmail.com> Date:   Tue
+	Jun 14 10:13:10 2022 +0200
+
+2022-06-14  Roger Bivand <Roger.Bivand@gmail.com>
+
+	* DESCRIPTION, inst/include/sp.h, src/sp.h: increment version
+
+2022-06-03  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* DESCRIPTION, R/merge.R, inst/include/sp.h, src/sp.h: tidy for CRAN
+	release
+
+2022-06-03  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* DESCRIPTION, README.md, inst/NEWS.Rd: version; update news
+
+2022-06-03  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* : Merge pull request #116 from rsbivand/evolution Evolution 1
+
 2022-03-26  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
 
 	* : Merge pull request #115 from rsbivand/S-compatibility remove S-compatibility DBL defs
+
+2022-03-26  Roger Bivand <roger.bivand@gmail.com>
+
+	* inst/include/sp.h, inst/include/sp_xports.c, src/gcdist.c,
+	src/sp.h, src/sp_xports.c: remove S-compatibility DBL defs
+
+2022-03-11  Roger Bivand <Roger.Bivand@gmail.com>
+
+	* R/AAA.R: unname evolution status
+
+2022-03-11  Roger Bivand <Roger.Bivand@gmail.com>
+
+	* README.md: clarify README: set evolution status before loading
+	package
+
+2022-02-17  Roger Bivand <Roger.Bivand@gmail.com>
+
+	* R/projected.R: test wkt2 as well as NA projargs in
+	is.projectedCRS() - inlabru revdep
+
+2022-02-04  Roger Bivand <Roger.Bivand@gmail.com>
+
+	* R/Spatial-methods.R: support for evolution_status environment
+	variable, see README.md
+
+2022-02-04  Roger Bivand <Roger.Bivand@gmail.com>
+
+	* R/AAA.R, README.md: support for evolution_status environment
+	variable, see README.md
+
+2022-02-03  Roger Bivand <Roger.Bivand@gmail.com>
+
+	* DESCRIPTION, R/AAA.R, R/CRS-methods.R, R/projected.R: add global
+	sp_evolution_status option
 
 2021-11-14  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
 
