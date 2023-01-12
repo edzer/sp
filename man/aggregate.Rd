@@ -31,7 +31,7 @@ or by attribute values, using aggregation function \code{FUN}.
 If \code{areaWeighted} is \code{TRUE}, \code{FUN} is ignored and the
 area weighted mean is computed for numerical variables, or if all
 attributes are \code{factor}s, the area dominant factor level (area
-mode) is returned. This will compute the \link[rgeos:topo-bin-gIntersection]{gIntersection}
+mode) is returned. This will compute the \link[rgeos:rgeos-deprecated]{gIntersection}
 of \code{x} and \code{by}; see examples below.
 
 If \code{by} is missing, aggregates over all features.
