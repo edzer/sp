@@ -19,9 +19,9 @@ is a list, aggregation by attribute(s), see \link{aggregate.data.frame}}
 is specified, which is passed on to function \link{over}}
 \item{dissolve}{logical; should, when aggregating based on attributes, the
 resulting geometries be dissolved? Note that if \code{x} has class
-\code{SpatialPointsDataFrame}, this returns an object of class \code{SpatialMultiPointsDataFrame}}
+\code{SpatialPointsDataFrame}, this returns an object of class \code{SpatialMultiPointsDataFrame}; deprecated}
 \item{areaWeighted}{logical; should the aggregation of \code{x} be weighted by the
-areas it intersects with each feature of \code{by}? See value.}
+areas it intersects with each feature of \code{by}? See value; deprecated.}
 }
 \value{ 
 The aggregation of attribute values of \code{x} either over the
@@ -31,8 +31,9 @@ or by attribute values, using aggregation function \code{FUN}.
 If \code{areaWeighted} is \code{TRUE}, \code{FUN} is ignored and the
 area weighted mean is computed for numerical variables, or if all
 attributes are \code{factor}s, the area dominant factor level (area
-mode) is returned. This will compute the \link[rgeos:rgeos-deprecated]{gIntersection}
-of \code{x} and \code{by}; see examples below.
+mode) is returned.  This computes the intersection of \code{x}
+and \code{by}; see examples below.  As this uses code from package
+rgeos, it is deprecated as package rgeos will retire.
 
 If \code{by} is missing, aggregates over all features.
 }
