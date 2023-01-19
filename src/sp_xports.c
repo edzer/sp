@@ -661,7 +661,7 @@ void SP_PREFIX(comm2comment)(char *buf, int bufsiz, int *comm, int nps) {
     bufsiz -= pr;
     for (i = 1; i < nps; i++) {
         snprintf(cbuf, 15, " %d", comm[i]);
-        if (strlen(buf) + strlen(cbuf) >= bufsiz)
+        if (strlen(cbuf) >= bufsiz)
             error("comm2comment: buffer overflow");
         strncat(buf, cbuf, bufsiz);
         bufsiz -= strlen(cbuf);
