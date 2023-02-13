@@ -46,6 +46,8 @@ setMethod("rebuild_CRS", signature(obj = "CRS"),
     if (get("evolution_status", envir=.spOptions) > 0L) doCheckCRSArgs <- FALSE
     if (get("evolution_status", envir=.spOptions) == 2L) {
         if (requireNamespace("sf", quietly = TRUE)) {
+            if ((length(grep("^[ ]*\\+", projargs)) > 0L) &&
+                !is.null(SRS_string)) projargs <- NA_character_
             if ((is.na(projargs) && !is.null(SRS_string))) {
                 res <- sf::st_crs(SRS_string)
                 res <- as(res, "CRS")
