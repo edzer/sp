@@ -80,7 +80,7 @@ setAs("SpatialMultiPoints", "data.frame", function(from) as.data.frame(from))
 row.names.SpatialMultiPoints <- function(x) {
     ret = names(slot(x, "coords"))
 	if (is.null(ret))
-		ret = seq_len(slot(x, "coords"))
+		ret = seq_len(length(slot(x, "coords")))
 	ret
 }
 names.SpatialMultiPoints <- row.names.SpatialMultiPoints 
