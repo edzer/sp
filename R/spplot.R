@@ -573,8 +573,8 @@ spplot.key = function(sp.layout, rows = 1, cols = 1) {
 #}
 
 longlat.scales = function(obj, scales, xlim, ylim) {
-	isp = is.projected(obj)
-	if (!is.null(scales$draw) && scales$draw && !is.na(isp) && !isp) {
+	if (!is.null(scales$draw) && scales$draw &&
+            !is.na(isp <- is.projected(obj)) && !isp) {
 		# long lat -- x:
 		if (is.null(scales$x))
 			scales$x = list()
