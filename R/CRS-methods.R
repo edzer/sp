@@ -37,7 +37,10 @@ setMethod("rebuild_CRS", signature(obj = "CRS"),
     stopifnot(is.character(projargs))
 #    CRS_CACHE <- get("CRS_CACHE", envir=.sp_CRS_cache)
     input_projargs <- projargs
-    if (!is.na(input_projargs) && use_cache) {
+    if (is.na(projargs)) { # fast track for trivial CRS()
+        if (is.null(SRS_string))
+            return(new("CRS", projargs = NA_character_))
+    } else if (use_cache) {
         res <- .sp_CRS_cache[[input_projargs]]
         if (!is.null(res)) {
             return(res)
