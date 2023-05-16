@@ -277,6 +277,10 @@ exportMethods(
         rebuild_CRS
 )
 
+exportMethods(
+ elide # usmap https://github.com/pdil/usmap/issues/57
+)
+
 S3method(as.array, SpatialGridDataFrame)
 
 S3method(as.character, DMS)
