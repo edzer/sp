@@ -1,5 +1,15 @@
 \name{NEWS} 
 \title{News for Package 'sp'}
+\section{Changes in version 1.6-1 (2023-05-16)}{
+\itemize{
+	\item add evolution vignette, drop over vignette, add startup message
+}
+}
+\section{Changes in version 1.6-0 (2023-01-19)}{
+\itemize{
+	\item add get_evolution_status() and set_evolution_status()
+}
+}
 \section{Changes in version 1.5-0 (2022-06-03)}{
 \itemize{
 	\item merge the evolution branch from rsbivand/sp@evolution

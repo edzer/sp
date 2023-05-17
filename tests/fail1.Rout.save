@@ -1,6 +1,6 @@
 
-R version 4.0.4 (2021-02-15) -- "Lost Library Book"
-Copyright (C) 2021 The R Foundation for Statistical Computing
+R version 4.3.0 (2023-04-21) -- "Already Tomorrow"
+Copyright (C) 2023 The R Foundation for Statistical Computing
 Platform: x86_64-pc-linux-gnu (64-bit)
 
 R is free software and comes with ABSOLUTELY NO WARRANTY.
@@ -17,6 +17,10 @@ Type 'q()' to quit R.
 
 > options("rgdal_show_exportToProj4_warnings"="none")
 > library(sp)
+The legacy packages maptools, rgdal, and rgeos, underpinning this package
+will retire shortly. Please refer to R-spatial evolution reports on
+https://r-spatial.org/r/2023/05/15/evolution4.html for details.
+This package is now running under evolution status 0 
 > data(meuse)
 > x = meuse
 > 
@@ -25,7 +29,7 @@ Type 'q()' to quit R.
 Error in (function (classes, fdef, mtable)  : 
   unable to find an inherited method for function 'proj4string<-' for signature '"SpatialPointsDataFrame", "numeric"'
 > try(coordinates(a) <- cbind(1:10, 10:1))
-Error in coordinates(a) <- cbind(1:10, 10:1) : object 'a' not found
+Error : object 'a' not found
 > # fails because a is not found; passes if a assigned NULL, see pass1.R
 > 
 > x = meuse
@@ -239,4 +243,4 @@ In CRS("+proj=lonlat +ellps=WGS84") :
 > 
 > proc.time()
    user  system elapsed 
-  0.500   0.042   0.536 
+  0.547   0.073   0.612 

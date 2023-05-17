@@ -212,11 +212,17 @@ The reason for choosing to replace `rgdal` by `sf` for these three methods has b
 
 It would be possible to create an empty `"SpatVector"` object and assign a coordinate reference system, coerce to `sp`, and extract the `"CRS"` object:
 
-```{r}
+```{r, echo=FALSE}
+run <- requireNamespace("terra", quietly=TRUE)
+run <- run && require("raster", quietly=TRUE)
+```
+
+
+```{r, eval=run}
 v <- terra::vect(matrix(c(0, 0), nrow=1), crs="OGC:CRS84")
 ```
 
-```{r}
+```{r, eval=run}
 library(raster)
 slot(as(v, "Spatial"), "proj4string")
 ```
