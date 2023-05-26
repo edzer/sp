@@ -20,7 +20,7 @@ Type 'q()' to quit R.
 The legacy packages maptools, rgdal, and rgeos, underpinning this package
 will retire shortly. Please refer to R-spatial evolution reports on
 https://r-spatial.org/r/2023/05/15/evolution4.html for details.
-This package is now running under evolution status 0 
+This package is now running under evolution status 2 
 > data(meuse)
 > x = meuse
 > 
@@ -214,8 +214,26 @@ x          5.721109 0.0005312853        84
 y         50.955770 0.0003318105       112
 > 
 > try(CRS("+proj=latlon +ellps=WGS84"))
-Error in CRS("+proj=latlon +ellps=WGS84") : 
-  northings must follow eastings: +proj=latlon +ellps=WGS84
+Coordinate Reference System:
+Deprecated Proj.4 representation: +proj=longlat +ellps=WGS84 +no_defs 
+WKT2 2019 representation:
+GEOGCRS["unknown",
+    DATUM["Unknown based on WGS84 ellipsoid",
+        ELLIPSOID["WGS 84",6378137,298.257223563,
+            LENGTHUNIT["metre",1],
+            ID["EPSG",7030]]],
+    PRIMEM["Greenwich",0,
+        ANGLEUNIT["degree",0.0174532925199433],
+        ID["EPSG",8901]],
+    CS[ellipsoidal,2],
+        AXIS["longitude",east,
+            ORDER[1],
+            ANGLEUNIT["degree",0.0174532925199433,
+                ID["EPSG",9122]]],
+        AXIS["latitude",north,
+            ORDER[2],
+            ANGLEUNIT["degree",0.0174532925199433,
+                ID["EPSG",9122]]]] 
 > try(CRS("+proj=lonlat +ellps=WGS84"))
 Coordinate Reference System:
 Deprecated Proj.4 representation: +proj=longlat +ellps=WGS84 +no_defs 
@@ -237,10 +255,7 @@ GEOGCRS["unknown",
             ORDER[2],
             ANGLEUNIT["degree",0.0174532925199433,
                 ID["EPSG",9122]]]] 
-Warning message:
-In CRS("+proj=lonlat +ellps=WGS84") :
-  'lonlat' changed to 'longlat': +proj=longlat +ellps=WGS84
 > 
 > proc.time()
    user  system elapsed 
-  0.547   0.073   0.612 
+  0.695   0.071   0.757 

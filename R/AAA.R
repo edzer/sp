@@ -10,7 +10,7 @@ assign("PolypathRule", "winding", envir = .spOptions)
 assign("col.regions", bpy.colors(), envir = .spOptions)
 assign("thin_PROJ6_warnings", FALSE, envir=.spOptions)
 assign("PROJ6_warnings_count", 0L, envir=.spOptions)
-assign("evolution_status", 0L, envir=.spOptions)
+assign("evolution_status", 2L, envir=.spOptions) # default changed 2.0-0
 
 #.sp_CRS_cache <- new.env(FALSE, globalenv())
 #assign("CRS_CACHE", list(), envir=.sp_CRS_cache)

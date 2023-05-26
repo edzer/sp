@@ -20,7 +20,7 @@ Type 'q()' to quit R.
 The legacy packages maptools, rgdal, and rgeos, underpinning this package
 will retire shortly. Please refer to R-spatial evolution reports on
 https://r-spatial.org/r/2023/05/15/evolution4.html for details.
-This package is now running under evolution status 0 
+This package is now running under evolution status 2 
 > data(meuse)
 > x = meuse
 > coordinates(x) = cbind(rnorm(155), rnorm(155))
@@ -289,6 +289,9 @@ Data attributes:
 > 
 > # test behaviour on zero-length objects:
 > demo(meuse, ask = FALSE, echo = FALSE)
+Warning message:
+In CPL_crs_from_input(x) :
+  GDAL Message 1: +init=epsg:XXXX syntax is deprecated. It might return a CRS with a non-EPSG compliant axis order.
 > p = as(meuse, "SpatialPoints")
 > 
 > p[0]
@@ -602,4 +605,4 @@ Error in SpatialPointsDataFrame(pts, df, match.ID = TRUE) :
 > 
 > proc.time()
    user  system elapsed 
-  0.595   0.087   0.673 
+  0.810   0.086   0.889 

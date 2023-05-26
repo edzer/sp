@@ -20,7 +20,7 @@ Type 'q()' to quit R.
 The legacy packages maptools, rgdal, and rgeos, underpinning this package
 will retire shortly. Please refer to R-spatial evolution reports on
 https://r-spatial.org/r/2023/05/15/evolution4.html for details.
-This package is now running under evolution status 0 
+This package is now running under evolution status 2 
 > 
 > # open polygon:
 > print(point.in.polygon(1:10,1:10,c(3,5,5,3),c(3,3,5,5)))
@@ -31,4 +31,4 @@ This package is now running under evolution status 0
 > 
 > proc.time()
    user  system elapsed 
-  0.191   0.042   0.223 
+  0.195   0.041   0.226 
