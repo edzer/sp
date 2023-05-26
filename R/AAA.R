@@ -54,6 +54,8 @@ load_stuff <- function() {
       assign("evolution_status", unname(evolution_status), envir=.spOptions)
     }
   }
+  Smess <- paste("The legacy packages maptools, rgdal, and rgeos, underpinning this package\nwill retire shortly. Please refer to R-spatial evolution reports on\nhttps://r-spatial.org/r/2023/05/15/evolution4.html for details.\nThis package is now running under evolution status", get_evolution_status(), "\n")
+  packageStartupMessage(Smess, appendLF = FALSE)
 }
 
 .onUnload <- function(libpath)

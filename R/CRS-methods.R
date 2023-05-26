@@ -1,4 +1,4 @@
-# Copyright (c) 2003-21 by Barry Rowlingson and Roger Bivand
+# Copyright (c) 2003-23 by Barry Rowlingson and Roger Bivand
 
 if (!is.R()) {
   strsplit <- function(a,b) {
@@ -252,7 +252,7 @@ identicalCRS1 = function(x, y) {
   args_y <- strsplit(y@projargs, " +")[[1]]
   setequal(args_x, args_y)
 }
-
+#https://github.com/inlabru-org/inlabru/issues/178
 is.na.CRS = function(x) {
 	is.na(x@projargs) && is.null(comment(x))
 }
