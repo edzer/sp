@@ -54,10 +54,11 @@ This package is now running under evolution status 0
 + #  aggregate(p, sq, mean, minDimension = 2)[[1]],
 + #  aggregate(p, sq, mean, areaWeighted=TRUE)[[1]]))
 + }
-rgeos version: 0.6-2, (SVN revision 693)
- GEOS runtime version: 3.11.3dev-CAPI-1.17.3 
- Please note that rgeos will be retired during 2023,
-plan transition to sf functions using GEOS at your earliest convenience.
+rgeos version: 0.6-3, (SVN revision 696)
+ GEOS runtime version: 3.11.1-CAPI-1.17.1 
+ Please note that rgeos will be retired during October 2023,
+plan transition to sf or terra functions using GEOS at your earliest convenience.
+See https://r-spatial.org/r/2023/05/15/evolution4.html for details.
  GEOS using OverlayNG
  Linking to sp version: 1.6-0 
  Polygon checking: TRUE 
@@ -65,4 +66,4 @@ plan transition to sf functions using GEOS at your earliest convenience.
 > 
 > proc.time()
    user  system elapsed 
-  0.326   0.042   0.358 
+  0.652   0.055   0.701 
