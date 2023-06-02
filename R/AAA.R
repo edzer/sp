@@ -11,6 +11,7 @@ assign("col.regions", bpy.colors(), envir = .spOptions)
 assign("thin_PROJ6_warnings", FALSE, envir=.spOptions)
 assign("PROJ6_warnings_count", 0L, envir=.spOptions)
 assign("evolution_status", 2L, envir=.spOptions) # default changed 2.0-0
+assign("startup_message", "load", envir=.spOptions) 
 
 #.sp_CRS_cache <- new.env(FALSE, globalenv())
 #assign("CRS_CACHE", list(), envir=.sp_CRS_cache)
@@ -18,7 +19,15 @@ assign("evolution_status", 2L, envir=.spOptions) # default changed 2.0-0
 
 .onLoad <- function(lib, pkg) {
   load_stuff()
+  if (get("startup_message", envir=.spOptions) == "load")
+    smess_func()
 }
+
+.onAttach <- function(lib, pkg) {
+  if (get("startup_message", envir=.spOptions) == "attach")
+    smess_func()
+}
+
 
 load_stuff <- function() {
   rgdal_show_exportToProj4_warnings <- options("rgdal_show_exportToProj4_warnings")
@@ -54,7 +63,26 @@ load_stuff <- function() {
       assign("evolution_status", unname(evolution_status), envir=.spOptions)
     }
   }
-  Smess <- paste("The legacy packages maptools, rgdal, and rgeos, underpinning this package\nwill retire shortly. Please refer to R-spatial evolution reports on\nhttps://r-spatial.org/r/2023/05/15/evolution4.html for details.\nThis package is now running under evolution status", get_evolution_status(), "\n")
+  startup_message <- unlist(options("sp_startup_message"))
+  if (!is.null(startup_message)) {
+    startup_message <- as.character(startup_message)
+    stopifnot(is.character(startup_message))
+    stopifnot(isTRUE(startup_message %in% c("attach", "load", "none")))
+    assign("startup_message", unname(startup_message), envir=.spOptions)
+  } else {
+    startup_message <- Sys.getenv("_SP_STARTUP_MESSAGE_")
+    if (nchar(startup_message) > 0L) {
+      startup_message <- as.character(startup_message)
+      stopifnot(is.character(startup_message))
+      stopifnot(isTRUE(startup_message %in% c("attach", "load", "none")))
+      assign("startup_message", unname(startup_message), envir=.spOptions)
+    }
+  }
+}
+
+smess_func <- function() {
+  where <- get("startup_message", envir=.spOptions)
+  Smess <- paste("The legacy packages maptools, rgdal, and rgeos, underpinning the sp package,\nwhich was just ", where, "ed, will retire in October 2023.\nPlease refer to R-spatial evolution reports for details, especially\nhttps://r-spatial.org/r/2023/05/15/evolution4.html.\nThe sp package is now running under evolution status ", get_evolution_status(), "\n", ifelse(get_evolution_status() == 2L, "     (status 2 uses the sf package in place of rgdal)\n", ""), sep="")
   packageStartupMessage(Smess, appendLF = FALSE)
 }
 

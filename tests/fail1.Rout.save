@@ -17,10 +17,12 @@ Type 'q()' to quit R.
 
 > options("rgdal_show_exportToProj4_warnings"="none")
 > library(sp)
-The legacy packages maptools, rgdal, and rgeos, underpinning this package
-will retire shortly. Please refer to R-spatial evolution reports on
-https://r-spatial.org/r/2023/05/15/evolution4.html for details.
-This package is now running under evolution status 2 
+The legacy packages maptools, rgdal, and rgeos, underpinning the sp package,
+which was just loaded, will retire in October 2023.
+Please refer to R-spatial evolution reports for details, especially
+https://r-spatial.org/r/2023/05/15/evolution4.html.
+The sp package is now running under evolution status 2
+     (status 2 uses the sf package in place of rgdal)
 > data(meuse)
 > x = meuse
 > 
@@ -218,7 +220,7 @@ Coordinate Reference System:
 Deprecated Proj.4 representation: +proj=longlat +ellps=WGS84 +no_defs 
 WKT2 2019 representation:
 GEOGCRS["unknown",
-    DATUM["Unknown based on WGS84 ellipsoid",
+    DATUM["Unknown based on WGS 84 ellipsoid",
         ELLIPSOID["WGS 84",6378137,298.257223563,
             LENGTHUNIT["metre",1],
             ID["EPSG",7030]]],
@@ -239,7 +241,7 @@ Coordinate Reference System:
 Deprecated Proj.4 representation: +proj=longlat +ellps=WGS84 +no_defs 
 WKT2 2019 representation:
 GEOGCRS["unknown",
-    DATUM["Unknown based on WGS84 ellipsoid",
+    DATUM["Unknown based on WGS 84 ellipsoid",
         ELLIPSOID["WGS 84",6378137,298.257223563,
             LENGTHUNIT["metre",1],
             ID["EPSG",7030]]],
@@ -258,4 +260,4 @@ GEOGCRS["unknown",
 > 
 > proc.time()
    user  system elapsed 
-  0.695   0.071   0.757 
+  0.721   0.065   0.778 

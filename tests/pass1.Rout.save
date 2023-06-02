@@ -17,10 +17,12 @@ Type 'q()' to quit R.
 
 > options("rgdal_show_exportToProj4_warnings"="none")
 > library(sp)
-The legacy packages maptools, rgdal, and rgeos, underpinning this package
-will retire shortly. Please refer to R-spatial evolution reports on
-https://r-spatial.org/r/2023/05/15/evolution4.html for details.
-This package is now running under evolution status 2 
+The legacy packages maptools, rgdal, and rgeos, underpinning the sp package,
+which was just loaded, will retire in October 2023.
+Please refer to R-spatial evolution reports for details, especially
+https://r-spatial.org/r/2023/05/15/evolution4.html.
+The sp package is now running under evolution status 2
+     (status 2 uses the sf package in place of rgdal)
 > data(meuse)
 > x = meuse
 > coordinates(x) = cbind(rnorm(155), rnorm(155))
@@ -605,4 +607,4 @@ Error in SpatialPointsDataFrame(pts, df, match.ID = TRUE) :
 > 
 > proc.time()
    user  system elapsed 
-  0.810   0.086   0.889 
+  0.816   0.081   0.890 
