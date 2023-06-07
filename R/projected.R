@@ -115,14 +115,16 @@ is.projectedCRS <- function(obj) {
 	if (is.null(wkt2) && is.na(p4str))
 		as.logical(NA)
 	else if (get("evolution_status", envir=.spOptions) == 2L) {
-		if (!requireNamespace("sf", quietly = TRUE))
-			stop("sf required for evolution_status==2L")
-		o <- try(sf::st_is_longlat(obj), silent=TRUE)
+		if (requireNamespace("sf", quietly = TRUE)) {
+		    o <- try(sf::st_is_longlat(obj), silent=TRUE)
 # rbgm workaround for +proj=utm +zone=18 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs +# +a=6378137.0 +es=0.006694380022900787 +lon_0=-75d00 +lat_0=0d00 +x_0=500000.0 +y_0=0.0 +k=0.9996 in bgmfiles Final_CAM_Boxes_8.bgm
-                if (inherits(o, "try-error"))
-                    length(grep("longlat", p4str, fixed = TRUE)) == 0L
-                else
-                    !o
+                    if (inherits(o, "try-error"))
+                        length(grep("longlat", p4str, fixed = TRUE)) == 0L
+                    else
+                        !o
+                } else {
+                    warning("Package sf not available")
+                }
 	} else if (get("evolution_status", envir=.spOptions) == 0L && 
 			requireNamespace("rgdal", quietly = TRUE) &&
 			packageVersion("rgdal") >= "1.5.17" && rgdal::new_proj_and_gdal())
