@@ -124,6 +124,12 @@ is.projectedCRS <- function(obj) {
                         !o
                 } else {
                     warning("Package sf not available")
+                    if (!is.null(wkt2)) # and old rgdal version
+		        substring(wkt2, 1, 3) != "GEO"
+	            else if (is.na(p4str) || !nzchar(p4str))
+		        as.logical(NA)
+	            else
+		        length(grep("longlat", p4str, fixed = TRUE)) == 0L
                 }
 	} else if (get("evolution_status", envir=.spOptions) == 0L && 
 			requireNamespace("rgdal", quietly = TRUE) &&

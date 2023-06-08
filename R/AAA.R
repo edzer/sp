@@ -82,7 +82,7 @@ load_stuff <- function() {
 
 smess_func <- function() {
   where <- get("startup_message", envir=.spOptions)
-  Smess <- paste("The legacy packages maptools, rgdal, and rgeos, underpinning the sp package,\nwhich was just ", where, "ed, will retire in October 2023.\nPlease refer to R-spatial evolution reports for details, especially\nhttps://r-spatial.org/r/2023/05/15/evolution4.html.\nThe sp package is now running under evolution status ", get_evolution_status(), "\n", ifelse(get_evolution_status() == 2L, "     (status 2 uses the sf package in place of rgdal)\n", ""), sep="")
+  Smess <- paste("The legacy packages maptools, rgdal, and rgeos, underpinning the sp package,\nwhich was just ", where, "ed, will retire in October 2023.\nPlease refer to R-spatial evolution reports for details, especially\nhttps://r-spatial.org/r/2023/05/15/evolution4.html.\nIt may be desirable to make the sf package available;\npackage maintainers should consider adding sf to Suggests:.\nThe sp package is now running under evolution status ", get_evolution_status(), "\n", ifelse(get_evolution_status() == 2L, "     (status 2 uses the sf package in place of rgdal)\n", ""), sep="")
   packageStartupMessage(Smess, appendLF = FALSE)
 }
 
