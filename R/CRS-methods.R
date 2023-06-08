@@ -67,7 +67,8 @@ setMethod("rebuild_CRS", signature(obj = "CRS"),
             }
             return(res)
         } else {
-            warning("sf required for evolution_status==2L")
+            if (get("startup_message", envir=.spOptions) != "none")
+                warning("sf required for evolution_status==2L")
         }
     }
     if ((is.na(projargs) && !is.null(SRS_string)) && 

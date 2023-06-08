@@ -123,7 +123,8 @@ is.projectedCRS <- function(obj) {
                     else
                         !o
                 } else {
-                    warning("Package sf not available")
+                    if (get("startup_message", envir=.spOptions) != "none")
+                        warning("Package sf not available")
                     if (!is.null(wkt2)) # and old rgdal version
 		        substring(wkt2, 1, 3) != "GEO"
 	            else if (is.na(p4str) || !nzchar(p4str))
