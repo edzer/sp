@@ -367,7 +367,7 @@ length.SpatialGridDataFrame = function(x) { .NumberOfCells(x@grid) }
 #used in the corresponding image plot. The "axis.pos" argument
 #defines the side of the axis. The "add.axis" argument defines
 #whether the axis is added (default: TRUE)or not (FALSE).
-image.scale <- function(z, zlim, col = heat.colors(12), breaks, axis.pos=1, add.axis = TRUE, 
+image_scale <- function(z, zlim, col = heat.colors(12), breaks, axis.pos=1, add.axis = TRUE, 
 		at = NULL, shrink = 0, ...) {
 	stopifnot(!is.factor(z))
 	if (!missing(breaks) && length(breaks) != (length(col) + 1))
@@ -413,7 +413,7 @@ image.scale <- function(z, zlim, col = heat.colors(12), breaks, axis.pos=1, add.
 		axis(axis.pos, at)
 }
 
-image.scale.factor <- function(z, col = heat.colors(nlevels(z)), axis.pos = 1, scale.frac = 0.3, 
+image_scale_factor <- function(z, col = heat.colors(nlevels(z)), axis.pos = 1, scale.frac = 0.3, 
 		scale.n = 15, ...) {
 	stopifnot(is.factor(z))
 	stopifnot(axis.pos %in% c(1,4))
@@ -489,10 +489,10 @@ plot.SpatialGridDataFrame = function(x, ..., attr = 1, col, breaks,
 			mar[2] = 3
 		par(mar = mar)
 		if (is.factor(x[[1]]))
-			image.scale.factor(x[[1]], col = col, axis.pos = axis.pos, scale.frac = scale.frac, 
+			image_scale_factor(x[[1]], col = col, axis.pos = axis.pos, scale.frac = scale.frac, 
 				scale.n = scale.n)
 		else
-			image.scale(x[[1]], zlim = zlim, col = col, breaks = breaks, axis.pos = axis.pos,
+			image_scale(x[[1]], zlim = zlim, col = col, breaks = breaks, axis.pos = axis.pos,
 				add.axis = add.axis, at = at, shrink = scale.shrink)
 		# axis(axis.pos)
 	}
