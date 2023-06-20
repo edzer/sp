@@ -49,6 +49,7 @@ aggregate.data.frame.SP <- function (x, by, FUN, ..., dissolve = TRUE) {
 		if (!gridded(geom) && is(geom, "SpatialPoints"))
 			geom = split(geom, factor(grp)) # creates SpatialMultiPoints
 		else {
+                        warning("No rgeos support in sp from October 2023;\nsee https://r-spatial.org/r/2023/05/15/evolution4.html")
 			.Deprecated("sf::agregate")
 			if (!requireNamespace("rgeos", quietly = TRUE))
 				stop("rgeos required")
@@ -86,6 +87,7 @@ aggregate.Spatial = function(x, by = list(ID = rep(1, length(x))), FUN, ...,
 }
 
 aggregatePolyWeighted = function(x, by) {
+        warning("No rgeos support in sp from October 2023;\nsee https://r-spatial.org/r/2023/05/15/evolution4.html")
 	if (!requireNamespace("rgeos", quietly = TRUE))
 		stop("rgeos required")
 	i = rgeos::gIntersection(x, by, byid = TRUE, drop_lower_td = TRUE)

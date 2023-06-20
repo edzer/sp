@@ -205,6 +205,7 @@ setMethod("over", signature("SpatialPoints", "SpatialPixelsDataFrame"),
 
 setMethod("over", signature("Spatial", "Spatial"),  # catch remaining:
 	function(x, y, returnList = FALSE, fn = NULL, ...) {
+        warning("No rgeos support in sp from October 2023;\nsee https://r-spatial.org/r/2023/05/15/evolution4.html")
 		.Deprecated("sf::st_intersects or sf::aggregate")
     	if (!requireNamespace("rgeos", quietly = TRUE))
 			stop("package rgeos is required for additional over methods")

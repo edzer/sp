@@ -194,13 +194,18 @@ colnames(slot(meuse, "coords"))
 ```{r}
 str(meuse$x)
 ```
-So far so good, but round-tripping changes the column names of the matrix of points:
+So far so good, but round-tripping if `sf` is available changes the column names of the matrix of points:
 
 ```{r}
+run <- requireNamespace("sf", quietly = TRUE)
+```
+
+
+```{r, eval=run}
 meuse_rt <- as(sf::st_as_sf(meuse), "Spatial")
 names(meuse_rt)
 ```
-```{r}
+```{r, eval=run}
 colnames(slot(meuse_rt, "coords"))
 ```
 

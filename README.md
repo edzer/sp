@@ -6,7 +6,11 @@
 
 R Classes and Methods for Spatial Data.
 
-*Before* **sp** is loaded, `options("sp_evolution_status")` may be set to `0L` for legacy behaviour, `1L` for setting `CRS(, doCheckCRSArgs=FALSE, )` and other minor steps to block calls out to **rgdal** etc., and `2L` to use **sf** internally (not completed yet). If this option is not set, the environment variable `_SP_EVOLUTION_STATUS_` can be used, again *before* **sp** is loaded, set to `"0"`, `"1"` or `"2"`; this is used for running revdep checks under different evolution scenarios, anticipating [retirement of maptools, rgdal and rgeos](https://r-spatial.org/r/2022/04/12/evolution.html).
+From version 2.0.0, `sp` evolution status is changed to `2L` to use **sf** internally in place of `rgdal`, from default `0L` until now. See [this report](https://r-spatial.org/r/2023/05/15/evolution4.html) for adaptation details, and [this report](https://r-spatial.org/r/2023/04/10/evolution3.html) for progress on retiring `maptools`, `rgdal` and `rgeos`.
+
+*Before* **sp** is loaded, `options("sp_evolution_status")` may be set to `0L` for legacy behaviour, `1L` for setting `CRS(, doCheckCRSArgs=FALSE, )` and other minor steps to block calls out to **rgdal** etc., and `2L` to use **sf** internally. If this option is not set, the environment variable `_SP_EVOLUTION_STATUS_` can be used, again *before* **sp** is loaded, set to `"0"`, `"1"` or `"2"`; this is used for running revdep checks under different evolution scenarios, anticipating [retirement of maptools, rgdal and rgeos](https://r-spatial.org/r/2022/04/12/evolution.html).
+
+From `sp 1.6.0` published on CRAN 2023-01-19, these status settings may also be changed when `sp` is loaded, using `sp::get_evolution_status()` returning the current value, and `sp::set_evolution_status(value)`, where value can take the integer values `0L`, `1L` and `2L`. `sp 1.6.1` published on CRAN 2023-05-25 added start-up messages to alert users to imminent changes.
 
 See:
 

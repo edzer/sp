@@ -17,10 +17,14 @@ Type 'q()' to quit R.
 
 > options("rgdal_show_exportToProj4_warnings"="none")
 > library(sp)
-The legacy packages maptools, rgdal, and rgeos, underpinning this package
-will retire shortly. Please refer to R-spatial evolution reports on
-https://r-spatial.org/r/2023/05/15/evolution4.html for details.
-This package is now running under evolution status 0 
+The legacy packages maptools, rgdal, and rgeos, underpinning the sp package,
+which was just loaded, will retire in October 2023.
+Please refer to R-spatial evolution reports for details, especially
+https://r-spatial.org/r/2023/05/15/evolution4.html.
+It may be desirable to make the sf package available;
+package maintainers should consider adding sf to Suggests:.
+The sp package is now running under evolution status 2
+     (status 2 uses the sf package in place of rgdal)
 > data(meuse)
 > x = meuse
 > coordinates(x) = cbind(rnorm(155), rnorm(155))
@@ -289,6 +293,9 @@ Data attributes:
 > 
 > # test behaviour on zero-length objects:
 > demo(meuse, ask = FALSE, echo = FALSE)
+Warning message:
+In CPL_crs_from_input(x) :
+  GDAL Message 1: +init=epsg:XXXX syntax is deprecated. It might return a CRS with a non-EPSG compliant axis order.
 > p = as(meuse, "SpatialPoints")
 > 
 > p[0]
@@ -602,4 +609,4 @@ Error in SpatialPointsDataFrame(pts, df, match.ID = TRUE) :
 > 
 > proc.time()
    user  system elapsed 
-  0.595   0.087   0.673 
+  0.959   0.060   1.023 
