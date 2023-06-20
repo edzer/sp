@@ -1,11 +1,12 @@
 \name{NEWS} 
 \title{News for Package 'sp'}
-\section{Changes in version 1.6-2 (2023-MM-DD)}{
+\section{Changes in version 2.0-0 (2023-06-20)}{
 \itemize{
+	\item \code{get_evolution_status()} defaults to 2, meaning sp will no longer call rgdal or rgeos; \code{spTransform} will work using \code{sf::st_transform}.
 	\item increase R version required from 3.0.0 to 3.2.0, which was de facto already required (PR from Sebastian Meyer)
 }
 }
-\section{Changes in version 1.6-1 (2023-05-16)}{
+\section{Changes in version 1.6-1 (2023-05-31)}{
 \itemize{
 	\item add evolution vignette, drop over vignette, add startup message
 }
