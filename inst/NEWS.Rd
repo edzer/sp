@@ -1,5 +1,10 @@
 \name{NEWS} 
 \title{News for Package 'sp'}
+\section{Changes in version 1.6-2 (2023-MM-DD)}{
+\itemize{
+	\item increase R version required from 3.0.0 to 3.2.0, which was de facto already required (PR from Sebastian Meyer)
+}
+}
 \section{Changes in version 1.6-1 (2023-05-16)}{
 \itemize{
 	\item add evolution vignette, drop over vignette, add startup message
