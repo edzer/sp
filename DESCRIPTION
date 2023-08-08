@@ -14,7 +14,7 @@ Authors@R: c(person("Edzer", "Pebesma", role = c("aut", "cre"),
                         person("Finn", "Lindgren", role = "ctb"),
 			person("Josh", "O'Brien", role = "ctb"),
 			person("Joseph", "O'Rourke", role = "ctb"))
-Depends: R (>= 3.2.0), methods
+Depends: R (>= 3.5.0), methods
 Imports: utils, stats, graphics, grDevices, lattice, grid
 Suggests: RColorBrewer, gstat, deldir, knitr, rmarkdown, sf, terra, raster
 Description: Classes and methods for spatial

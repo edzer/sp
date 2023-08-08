@@ -68,16 +68,6 @@ get_col_regions <- function() {
 	    get("col.regions", envir = .spOptions)
 }
 
-set_evolution_status <- function(value) {
-        stopifnot(is.integer(value))
-        stopifnot(length(value) == 1)
-	    assign("evolution_status", value, envir = .spOptions)
-                get_evolution_status()
-}
-
-get_evolution_status  <- function() {
-	    get("evolution_status", envir = .spOptions)
-}
 
 
 

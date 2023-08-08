@@ -13,14 +13,6 @@
 }
 
 \examples{
-\dontrun{
-library(rgdal)
-logo <- system.file("pictures/Rlogo.jpg", package="rgdal")[1]
-x <- GDAL.open(logo)
-gt = .Call('RGDAL_GetGeoTransform', x, PACKAGE="rgdal")
-data <- getRasterData(x)
-GDAL.close(x)
-}
 data(Rlogo)
 d = dim(Rlogo)
 cellsize = abs(c(gt[2],gt[6]))

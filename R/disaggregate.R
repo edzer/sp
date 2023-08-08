@@ -8,7 +8,7 @@ if (!isGeneric("disaggregate")) {
 # Robert Hijmans:
 explodePolygons <- function(x, ignoreholes=FALSE, ...) {
   warning("No rgeos support in sp from October 2023;\nsee https://r-spatial.org/r/2023/05/15/evolution4.html")
-  if (!requireNamespace("rgeos", quietly = TRUE))
+#  if (!requireNamespace("rgeos", quietly = TRUE))
     stop('use sf or terra functions')
   npols <- length(x@polygons)
   crs <- x@proj4string

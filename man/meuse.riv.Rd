@@ -20,8 +20,7 @@ example below how it can be created from \link{meuse.grid}.
 }
 \details{
 \code{x} and \code{y} are in RDM, the Dutch topographical map
-coordinate system. See examples of \code{spTransform} in the
-rgdal package for projection parameters.
+coordinate system. See examples of \code{spTransform} for projection parameters.
 }
 \references{
 See the \link{meuse} documentation
@@ -47,11 +46,6 @@ spplot(meuse, "zinc", col.regions=bpy.colors(),  main = "zinc, ppm",
   sp.layout= list("sp.polygons", meuse.sr, fill = "lightblue")
 )
 
-# creating meuse.area from meuse.grid:
-if (require(rgeos)) {
-    meuse.area = gUnaryUnion(as(meuse.grid, "SpatialPolygons"))
-	plot(meuse.area)
-}
 
 }
 \keyword{datasets}
