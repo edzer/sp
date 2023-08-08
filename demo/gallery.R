@@ -256,7 +256,7 @@ arrow = list("SpatialPolygonsRescale", layout.north.arrow(),
 #text2 = list("sp.text", c(-76.5,34.15), "1 degree", which = 2)
 # create a fake lines data set:
 library(sf)
-ncl <- readShapeLines(system.file("shape/nc.shp", package="sf")
+ncl <- as(st_read(system.file("shape/nc.shp", package="sf")), "Spatial")
 ## multi-panel plot with coloured lines: North Carolina SIDS
 spplot(ncl, c("SID74","SID79"), names.attr = c("1974","1979"),
     colorkey=list(space="bottom"),
