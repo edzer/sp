@@ -208,7 +208,7 @@ setMethod("over", signature("Spatial", "Spatial"),  # catch remaining:
         warning("No rgeos support in sp from October 2023;\nsee https://r-spatial.org/r/2023/05/15/evolution4.html")
 		.Deprecated("sf::st_intersects or sf::aggregate")
     	if (!requireNamespace("rgeos", quietly = TRUE))
-			stop("package rgeos is required for additional over methods")
+			stop("use sf or terra functions")
 		if (is(x, "SpatialMultiPoints") || is(y, "SpatialMultiPoints"))
 			overMultiPoints(x, y, returnList = returnList, fn = fn, ...)
 		else
@@ -231,7 +231,7 @@ overMultiPoints = function(x, y, returnList, fn, ...) {
 		dimnames(y@coords)[[1]] = attr(y@coords, "groupIndex") # rgeos abuse
 	}
    	if (!requireNamespace("rgeos", quietly = TRUE))
-		stop("package rgeos is required for additional over methods")
+		stop("use sf or terra functions")
 	if ("data" %in% slotNames(y))
 		rgeos::overGeomGeomDF(x, y, returnList = returnList, fn = fn, ...)
 	else
