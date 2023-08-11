@@ -8,6 +8,7 @@ assign("ReplCRS_warn", TRUE, envir = .spOptions)
 assign("Polypath", TRUE, envir = .spOptions)
 assign("PolypathRule", "winding", envir = .spOptions)
 assign("col.regions", bpy.colors(), envir = .spOptions)
+assign("evolution_status", 2L, envir=.spOptions) # fixed changed 2.1-0
 assign("startup_message", "load", envir=.spOptions) 
 
 #.sp_CRS_cache <- new.env(FALSE, globalenv())
