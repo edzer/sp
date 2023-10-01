@@ -51,15 +51,15 @@ aggregate.data.frame.SP <- function (x, by, FUN, ..., dissolve = TRUE) {
 		else {
                         warning("No rgeos support in sp from October 2023;\nsee https://r-spatial.org/r/2023/05/15/evolution4.html")
 			.Deprecated("sf::agregate")
-			if (!requireNamespace("rgeos", quietly = TRUE))
-				stop("rgeos required")
-			if (is(geom, "SpatialLines"))
-				geom = rgeos::gLineMerge(geom, grp)
-			else {
-				if (gridded(geom))
-					geom = as(geom, "SpatialPolygons")
-				geom = rgeos::gUnaryUnion(geom, grp)
-			}
+#			if (!requireNamespace("rgeos", quietly = TRUE))
+				stop("use sf::aggregate or terra::aggregate")
+#			if (is(geom, "SpatialLines"))
+#				geom = rgeos::gLineMerge(geom, grp)
+#			else {
+#				if (gridded(geom))
+#					geom = as(geom, "SpatialPolygons")
+#				geom = rgeos::gUnaryUnion(geom, grp)
+#			}
 		}
 	} else
 		y = y[as.integer(factor(grp)),,drop=FALSE] # repeat
@@ -88,9 +88,10 @@ aggregate.Spatial = function(x, by = list(ID = rep(1, length(x))), FUN, ...,
 
 aggregatePolyWeighted = function(x, by) {
         warning("No rgeos support in sp from October 2023;\nsee https://r-spatial.org/r/2023/05/15/evolution4.html")
-	if (!requireNamespace("rgeos", quietly = TRUE))
-		stop("rgeos required")
-	i = rgeos::gIntersection(x, by, byid = TRUE, drop_lower_td = TRUE)
+#	if (!requireNamespace("rgeos", quietly = TRUE))
+		stop("use sf or terra functions")
+#	i = rgeos::gIntersection(x, by, byid = TRUE, drop_lower_td = TRUE)
+        i = NULL
 	area =  sapply(i@polygons, function(x) slot(x, name = "area"))
 	ids.i = sapply(i@polygons, function(x) slot(x, name = "ID"))
 	IDs = strsplit(ids.i, " ") # IDs, as list

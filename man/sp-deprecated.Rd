@@ -31,11 +31,21 @@
 \alias{getLinesIDSlot}
 \alias{getSLlinesSlot}
 \alias{getSLLinesIDSlots}
+\alias{get_evolution_status}
+\alias{set_evolution_status}
 
 \title{ Deprecated functions in sp }
 \description{
 Deprecated functions is sp: getSpP*, getPolygon*, getLines* getSL*
 }
+\usage{
+set_evolution_status(value)
+get_evolution_status()
+}
+\arguments{
+\item{value}{evolution status: only 2L to use sf functions in place of rgdal}
+}
+
 \note{ For \code{overlay} the new implementation is found in the \link{over} 
 method; this works slightly different and more consistent. }
 \keyword{manip}

@@ -28,17 +28,16 @@
 
 \author{Roger Bivand}
 
-\seealso{\code{\link[maptools]{spCbind-methods}}, \code{\link[maptools]{spRbind-methods}}}
 
 \examples{
 \dontrun{
-require(maptools)
-xx <- readShapePoly(system.file("shapes/sids.shp", package="maptools")[1], 
-  IDvar="FIPSNO", proj4string=CRS("+proj=longlat +ellps=clrk66"))
+if(require(sf)) {
+xx <- as(st_read(system.file("shape/nc.shp", package="sf")[1]), "Spatial")
+row.names(xx) <- as.character(xx$"FIPSNO")
 row.names(as(xx, "data.frame"))
 xx1 <- spChFIDs(xx, as.character(xx$CNTY_ID))
 row.names(as(xx1, "data.frame"))
-}
+}}
 }
 \keyword{methods}
 \keyword{spatial}

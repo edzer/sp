@@ -58,13 +58,11 @@ on its coordinates, and takes care of attributes \code{pos}, \code{labels},
   of Roger Bivand.
 }
 
-\seealso{ \link[rgdal:spTransform-methods]{spTransform}; llgridlines in \code{rgdal} (recent versions) for plotting long-lat grid over projected data }
+\seealso{ \link{spTransform}}
 \examples{
 
 run <- FALSE
-ES <- get("evolution_status", envir=sp:::.spOptions)
-if (ES == 2L && requireNamespace("sf", quietly=TRUE)) run <- TRUE
-if (ES == 0L && requireNamespace("rgdal", quietly=TRUE)) run <- TRUE
+if (requireNamespace("sf", quietly=TRUE)) run <- TRUE
 
 data(meuse)
 coordinates(meuse) = ~x+y
