@@ -69,13 +69,15 @@ get_col_regions <- function() {
 }
 
 set_evolution_status <- function(value) {
+        .Deprecated(NULL, msg="Evolution status fixed to 2L")
         stopifnot(is.integer(value))
         stopifnot(length(value) == 1)
-	    assign("evolution_status", value, envir = .spOptions)
+#	    assign("evolution_status", value, envir = .spOptions)
                 get_evolution_status()
 }
 
 get_evolution_status  <- function() {
+        .Deprecated(NULL, msg="Evolution status fixed to 2L")
 	    get("evolution_status", envir = .spOptions)
 }
 

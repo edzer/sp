@@ -46,9 +46,7 @@ setMethod("rebuild_CRS", signature(obj = "CRS"),
             return(res)
         }
     }
-    if (get("evolution_status", envir=.spOptions) > 0L) doCheckCRSArgs <- FALSE
-    if (get("evolution_status", envir=.spOptions) == 2L) {
-        if (requireNamespace("sf", quietly = TRUE)) {
+    if (requireNamespace("sf", quietly = TRUE)) {
             if ((length(grep("^[ ]*\\+", projargs)) > 0L) &&
                 !is.null(SRS_string)) projargs <- NA_character_
             if ((is.na(projargs) && !is.null(SRS_string))) {
@@ -65,48 +63,12 @@ setMethod("rebuild_CRS", signature(obj = "CRS"),
                     res <- res1
                 }
             }
+            if (!is.na(slot(res, "projargs")))
+                .sp_CRS_cache[[input_projargs]] <- res
             return(res)
-        } else {
+    } else {
             if (get("startup_message", envir=.spOptions) != "none")
-                warning("sf required for evolution_status==2L")
-        }
-    }
-    if ((is.na(projargs) && !is.null(SRS_string)) && 
-       doCheckCRSArgs && requireNamespace("rgdal", quietly = TRUE)) {
-       if (packageVersion("rgdal") >= "1.5.1" && !rgdal::new_proj_and_gdal()) {
-           if (is.na(projargs) && !is.null(SRS_string)) {
-               if (substring(SRS_string, 1, 4) == "EPSG") {
-                   pa0 <- strsplit(SRS_string, ":")[[1]]
-                   projargs <- paste0("+init=epsg:", pa0[2])
-               }
-           }
-        }
-    }
-    if (!is.na(projargs)) {
-        if (length(grep("^[ ]*\\+", projargs)) == 0) {
-            if (is.null(SRS_string)) {
-                if (doCheckCRSArgs && 
-                    requireNamespace("rgdal", quietly = TRUE)) {
-                    if (packageVersion("rgdal") >= "1.5.1") { 
-                        if (rgdal::new_proj_and_gdal()) {
-                            SRS_string <- projargs
-                            projargs <- NA_character_
-                        } else {
-                            if (substring(projargs, 1, 4) == "EPSG") {
-                                pa0 <- strsplit(projargs, ":")[[1]]
-                                projargs <- paste0("+init=epsg:", pa0[2])
-                            } else {
-                                stop("Cannot revert", projargs,
-                                    "to +init=epsg:")
-                            }
-                        }
-                    }
-                }
-            } else {
-                stop(paste("PROJ4 argument-value pairs must begin with +:", 
-	            projargs))
-            }
-        }
+                warning("sf required")
     }
     if (!is.na(projargs)) {
         if (length(grep("latlon", projargs)) != 0)
@@ -128,44 +90,10 @@ setMethod("rebuild_CRS", signature(obj = "CRS"),
 	    stop(paste("PROJ4 argument-value pairs must begin with +:", 
 	        uprojargs))
     }
-#    if (length(grep("rgdal", search()) > 0) &&
-#      (sessionInfo()$otherPkgs$rgdal$Version > "0.4-2")) {
-# sessionInfo()/read.dcf() problem in loop 080307
     comm <- NULL
-    if (!is.na(uprojargs) || (!is.null(SRS_string) && nzchar(SRS_string))) {
-        if (doCheckCRSArgs && requireNamespace("rgdal", quietly = TRUE)) {
-            if (packageVersion("rgdal") < "1.5.1") {
-                res <- rgdal::checkCRSArgs(uprojargs)
-                if (!res[[1]]) stop(res[[2]])
-                uprojargs <- res[[2]]
-            } else if (packageVersion("rgdal") >= "1.5.1") {
-                if (rgdal::new_proj_and_gdal()) {
-                    if (packageVersion("rgdal") >= "1.5.17") {
-                        res <- rgdal::checkCRSArgs_ng(uprojargs=uprojargs,
-                            SRS_string=SRS_string,
-                            get_source_if_boundcrs=get_source_if_boundcrs)
-                    } else {
-                        res <- rgdal::checkCRSArgs_ng(uprojargs=uprojargs,
-                            SRS_string=SRS_string)
-                    }
-                    if (!res[[1]]) stop(res[[2]])
-                    uprojargs <- res[[2]]
-                    comm <- res[[3]]
-                } else { #stop("rgdal version mismatch")
-                    if (!is.na(uprojargs)) {
-                        res <- rgdal::checkCRSArgs(uprojargs)
-                        if (!res[[1]]) stop(res[[2]])
-                        uprojargs <- res[[2]]
-                    }
-                }
-            } else stop("rgdal version mismatch")
-        }
-    }
     res <- new("CRS", projargs=uprojargs)
     if (!is.null(comm)) comment(res) <- comm
     if (!is.na(slot(res, "projargs"))) .sp_CRS_cache[[input_projargs]] <- res
-#    CRS_CACHE[[input_projargs]] <- res
-#    assign("CRS_CACHE", CRS_CACHE, envir=.sp_CRS_cache)
 
     res
 }
@@ -176,22 +104,6 @@ if (!isGeneric("wkt"))
 setMethod("wkt", signature(obj = "CRS"),
 	function(obj) {
                 comm <- comment(obj)
-                if (is.null(comm)) {
-                  if (get("rgdal_show_exportToProj4_warnings",
-                    envir=.spOptions)) {
-                    if (!get("thin_PROJ6_warnings", envir=.spOptions)) {
-                      warning("CRS object has no comment")
-                    } else {
-                      if (get("PROJ6_warnings_count",
-                        envir=.spOptions) == 0L) {
-                        warning("CRS object has no comment\n repeated warnings suppressed")
-                      }
-                      assign("PROJ6_warnings_count",
-                        get("PROJ6_warnings_count",
-                        envir=.spOptions) + 1L, envir=.spOptions)
-                   }
-                 }
-                }
 		comm
         }
 )

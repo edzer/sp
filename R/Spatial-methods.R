@@ -94,17 +94,10 @@ if (!isGeneric("spTransform"))
 		standardGeneric("spTransform"))
 setMethod("spTransform", signature("Spatial", "CRS"), 
 	function(x, CRSobj, ...) {
-        if (get("evolution_status", envir=.spOptions) == 0L) {
-    	    if (!requireNamespace("rgdal", quietly = TRUE))
-		stop("package rgdal is required for spTransform methods")
-	    spTransform(x, CRSobj, ...) # calls the rgdal methods
-	} else if (get("evolution_status", envir=.spOptions) == 1L) {
-            stop("sp::spTransform() not available")
-        } else if (get("evolution_status", envir=.spOptions) == 2L) {
             if (!requireNamespace("sf", quietly = TRUE))
-                stop("sf required for evolution_status==2L")
+                stop("sf required")
 	    as(sf::st_transform(sf::st_as_sf(x), sf::st_crs(CRSobj)), "Spatial")
-	}
+	
 })
 setMethod("spTransform", signature("Spatial", "character"), 
 	function(x, CRSobj, ...) spTransform(x, CRS(CRSobj), ...)
