@@ -9,7 +9,7 @@ assign("Polypath", TRUE, envir = .spOptions)
 assign("PolypathRule", "winding", envir = .spOptions)
 assign("col.regions", bpy.colors(), envir = .spOptions)
 assign("evolution_status", 2L, envir=.spOptions) # fixed changed 2.1-0
-assign("startup_message", "load", envir=.spOptions) 
+assign("startup_message", "none", envir=.spOptions) # https://github.com/serafinialessio/mapping/issues/3
 
 #.sp_CRS_cache <- new.env(FALSE, globalenv())
 #assign("CRS_CACHE", list(), envir=.sp_CRS_cache)
