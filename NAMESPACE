@@ -208,7 +208,8 @@ export(
 	spDistsN1,
 	spDists,
 
-	write.asciigrid
+	write.asciigrid,
+        sp2Mondrian
 )
 
 exportClasses(

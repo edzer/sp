@@ -17,12 +17,6 @@ Type 'q()' to quit R.
 
 > options("rgdal_show_exportToProj4_warnings"="none")
 > library(sp)
-The legacy packages maptools, rgdal, and rgeos, underpinning the sp package,
-which was just  load ed, were retired in October 2023.
-Please refer to R-spatial evolution reports for details, especially
-https://r-spatial.org/r/2023/05/15/evolution4.html.
-It may be desirable to make the sf package available;
-package maintainers should consider adding sf to Suggests:.
 > xy = expand.grid(x = 1:4, y = 1:4)
 > xy.sp = SpatialPoints(xy)
 > gridded(xy.sp) = T
@@ -52,4 +46,4 @@ Coordinate Reference System (CRS) arguments: NA
 > 
 > proc.time()
    user  system elapsed 
-  0.654   0.046   0.696 
+  0.700   0.034   0.729 
