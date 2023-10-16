@@ -48,7 +48,7 @@ load_stuff <- function() {
 smess_func <- function() {
   where <- get("startup_message", envir=.spOptions)
   Smess <- paste0("The legacy packages maptools, rgdal, and rgeos, underpinning the sp package,\nwhich was just ", where, "ed, were retired in October 2023.\nPlease refer to R-spatial evolution reports for details, especially\nhttps://r-spatial.org/r/2023/05/15/evolution4.html.\nIt may be desirable to make the sf package available;\npackage maintainers should consider adding sf to Suggests:.\n")
-  packageStartupMessage(Smess, appendLF = FALSE)
+  # packageStartupMessage(Smess, appendLF = FALSE)
 }
 
 .onUnload <- function(libpath)
