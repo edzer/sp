@@ -17,12 +17,6 @@ Type 'q()' to quit R.
 
 > options("rgdal_show_exportToProj4_warnings"="none")
 > library(sp)
-The legacy packages maptools, rgdal, and rgeos, underpinning the sp package,
-which was just  load ed, were retired in October 2023.
-Please refer to R-spatial evolution reports for details, especially
-https://r-spatial.org/r/2023/05/15/evolution4.html.
-It may be desirable to make the sf package available;
-package maintainers should consider adding sf to Suggests:.
 > x = c(0.5, 1.5, 0.5, 1.5, 1.6)
 > y = c(1.5, 1.5, 0.5, 0.5, 0.5)
 > xy = cbind(x,y)
@@ -207,4 +201,4 @@ e 2 c
 > 
 > proc.time()
    user  system elapsed 
-  0.633   0.065   0.691 
+  0.752   0.094   0.831 
