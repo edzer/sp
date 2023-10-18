@@ -1,5 +1,10 @@
 \name{NEWS} 
 \title{News for Package 'sp'}
+\section{Changes in version 2.0-1 (2023-10-16)}{
+\itemize{
+		\item remove startup message
+}
+}
 \section{Changes in version 2.0-0 (2023-06-20)}{
 \itemize{
 	\item \code{get_evolution_status()} defaults to 2, meaning sp will no longer call rgdal or rgeos; \code{spTransform} will work using \code{sf::st_transform}.
