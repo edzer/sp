@@ -1,3 +1,1539 @@
+2023-10-16  edzer <edzer.pebesma@uni-muenster.de>
+
+	* : commit 15346cc02e9cc30e7d7a8dc3f9d63af977658e56 Author: Roger
+	<roger.bivand@gmail.com> Date:   Tue Oct 3 16:26:26 2023 +0200
+
+2023-10-01  edzer <edzer.pebesma@uni-muenster.de>
+
+	* inst/ChangeLog: update ChangeLog
+
+2023-10-01  edzer <edzer.pebesma@uni-muenster.de>
+
+	* R/AAA.R: tidy
+
+2023-10-01  edzer <edzer.pebesma@uni-muenster.de>
+
+	* : commit ef2d84038262e39ce0f628f86d75cba4ed10e99e Merge: c433b77
+	39926d1 Author: edzer <edzer.pebesma@uni-muenster.de> Date:   Sun
+	Oct 1 20:16:28 2023 +0200
+
+2023-10-01  edzer <edzer.pebesma@uni-muenster.de>
+
+	* vignettes/csdacm.Rnw: remove vignette
+
+2023-08-18  Roger Bivand <Roger.Bivand@gmail.com>
+
+	* : update GridsDatums
+
+2023-08-11  Roger Bivand <Roger.Bivand@gmail.com>
+
+	* NAMESPACE, R/AAA.R, R/spOptions.R, man/sp-deprecated.Rd: re-export
+	noop evolution status options for inlabru
+
+2023-08-08  Roger Bivand <Roger.Bivand@gmail.com>
+
+	* DESCRIPTION, NAMESPACE, R/AAA.R, R/CRS-methods.R,
+	R/Spatial-methods.R, R/aggregate.R, R/disaggregate.R, R/over.R,
+	R/projected.R, R/spOptions.R, inst/include/sp.h, man/CRS-class.Rd,
+	man/GridsDatums.Rd, man/Rlogo.Rd, man/SpatialPolygons-class.Rd,
+	man/SpatialPolygons.Rd, man/aggregate.Rd, man/disaggregate.Rd,
+	man/gridlines.Rd, man/meuse.riv.Rd, man/over.Rd,
+	man/spTransform.Rd, src/sp.h, tests/agg.Rout.save,
+	tests/base.Rout.save, tests/fail1.Rout.save, tests/grid.Rout.save,
+	tests/over2.Rout.save, tests/pass1.Rout.save,
+	tests/point.in.polygon.Rout.save, tests/sel.Rout.save,
+	tests/sp1.Rout.save, tests/spDists.Rout.save,
+	tests/spplot.Rout.save, tests/zerodist.Rout.save,
+	vignettes/CRS_warnings.Rmd, vignettes/csdacm.Rnw,
+	vignettes/retiring_rgdal_geos_1.Rmd: move to 210, drop retiring
+	packages
+
+2023-08-08  Roger Bivand <Roger.Bivand@gmail.com>
+
+	* demo/gallery.R: fix demo/gallery.R
+
+2023-08-08  Roger <roger.bivand@gmail.com>
+
+	* DESCRIPTION, R/AAA.R, R/aggregate.R, R/disaggregate.R, R/over.R,
+	README.md, demo/gallery.R, demo/polar.R, man/Polygons-class.Rd,
+	man/as.SpatialPolygons.PolygonsList.Rd, man/spChFIDs-methods.Rd: 
+	drop ret-pkgs from DESCRIPTION
+
+2023-06-20  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* tests/spDists.R, tests/spDists.Rout.save: use all.equal
+
+2023-06-20  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* inst/NEWS.Rd: add NEWS entry
+
+2023-06-20  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* : commit 26cc60c9f6f325234172a64227d37d2486b9f132 Author: Edzer
+	Pebesma <edzer.pebesma@uni-muenster.de> Date:   Tue Jun 20 19:15:56
+	2023 +0200
+
+2023-06-20  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* : Merge pull request #135 from rsbivand/sp200 sp_2.0-0 draft changing to status `2L`
+
+2023-06-14  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* : Merge pull request #136 from bastistician/patch-1 update minimum R version
+
+2023-06-08  Roger <roger.bivand@gmail.com>
+
+	* R/CRS-methods.R, R/projected.R: warn on missing sf if
+	_SP_STARTUP_MESSAGE_="none"
+
+2023-06-08  Roger <roger.bivand@gmail.com>
+
+	* R/AAA.R, R/projected.R, tests/agg.Rout.save,
+	tests/base.Rout.save, tests/fail1.Rout.save, tests/grid.Rout.save,
+	tests/over2.Rout.save, tests/pass1.Rout.save,
+	tests/point.in.polygon.Rout.save, tests/sel.Rout.save,
+	tests/sp1.Rout.save, tests/spDists.Rout.save,
+	tests/spplot.Rout.save, tests/zerodist.Rout.save,
+	vignettes/retiring_rgdal_geos_1.Rmd: tidy up
+	_R_CHECK_SUGGESTS_ONLY_=true for sp
+
+2023-06-07  Roger Bivand <Roger.Bivand@gmail.com>
+
+	* R/projected.R: permit workaround when sf not present for
+	is.projected
+
+2023-06-06  Roger Bivand <Roger.Bivand@gmail.com>
+
+	* R/aggregate.R, R/disaggregate.R, R/over.R, tests/agg.R,
+	tests/agg.Rout.save, tests/over2.R, tests/over2.Rout.save: stronger
+	rgeos warnings
+
+2023-06-02  Roger Bivand <Roger.Bivand@gmail.com>
+
+	* R/AAA.R, inst/include/sp.h, src/sp.h, tests/agg.Rout.save,
+	tests/base.Rout.save, tests/fail1.Rout.save, tests/grid.Rout.save,
+	tests/over2.Rout.save, tests/pass1.Rout.save,
+	tests/point.in.polygon.Rout.save, tests/sel.Rout.save,
+	tests/sp1.Rout.save, tests/spDists.Rout.save,
+	tests/spplot.Rout.save, tests/zerodist.Rout.save: add options for
+	message
+
+2023-05-26  Roger Bivand <Roger.Bivand@gmail.com>
+
+	* DESCRIPTION, R/AAA.R, README.md, tests/agg.Rout.save,
+	tests/base.Rout.save, tests/fail1.Rout.save, tests/grid.Rout.save,
+	tests/over2.Rout.save, tests/pass1.Rout.save,
+	tests/point.in.polygon.Rout.save, tests/sel.Rout.save,
+	tests/sp1.Rout.save, tests/spDists.Rout.save,
+	tests/spplot.Rout.save, tests/zerodist.Rout.save: switch to 2L
+
+2023-05-26  edzer <edzer.pebesma@uni-muenster.de>
+
+	* : commit 02595c6efde6ae0d31da62ad61097580413f7b23 Author: edzer
+	<edzer.pebesma@uni-muenster.de> Date:   Fri May 26 12:49:52 2023
+	+0200
+
+2023-05-26  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* : Merge pull request #134 from rsbivand/sp161 Sp161
+
+2023-05-16  Roger Bivand <Roger.Bivand@gmail.com>
+
+	* DESCRIPTION, vignettes/retiring_rgdal_geos_1.Rmd: add evolution
+	vignette
+
+2023-05-16  Roger Bivand <Roger.Bivand@gmail.com>
+
+	* : inlabru #178
+
+2023-05-16  Roger Bivand <Roger.Bivand@gmail.com>
+
+	* R/CRS-methods.R: inlabru #178
+
+2023-03-29  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* : Merge pull request #132 from bastistician/trivialCRS Trivial crs
+
+2023-03-29  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* : Merge pull request #128 from finnlindgren/main Correct how is.na.CRS looks for the wkt comment
+
+2023-03-13  Sebastian Meyer <seb.meyer@fau.de>
+
+	* R/spplot.R: call is.projected() lazily
+
+2023-03-13  Sebastian Meyer <seb.meyer@fau.de>
+
+	* R/CRS-methods.R: fast processing of trivial CRS()
+
+2023-03-09  Roger <roger.bivand@gmail.com>
+
+	* : commit aed57736210edb39d6564b772a0f38a478947da1 Author: Roger
+	<roger.bivand@gmail.com> Date:   Thu Mar 9 22:00:39 2023 +0100
+
+2023-02-13  Roger Bivand <Roger.Bivand@gmail.com>
+
+	* R/SpatialMultiPoints-methods.R: fix SpatialMultiPoints row.names
+	method
+
+2023-02-13  Roger Bivand <Roger.Bivand@gmail.com>
+
+	* R/CRS-methods.R: add check in CRS for evolution status 2 when both
+	projargs and SRS_string given, prefer SRS_string
+
+2023-02-05  Roger Bivand <Roger.Bivand@gmail.com>
+
+	* DESCRIPTION, NAMESPACE, R/elide.R, man/elide-methods.Rd: add elide
+	from maptools, see https://github.com/pdil/usmap/issues/57
+
+2023-01-26  Finn Lindgren <Finn.Lindgren@gmail.com>
+
+	* R/CRS-methods.R: Correct how is.na.CRS looks for the wkt comment
+
+2023-01-19  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* inst/include/sp_xports.c, src/sp_xports.c: fix buffer overflow
+	checking (rgeos revdep error)
+
+2023-01-19  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* DESCRIPTION, inst/include/sp.h, src/sp.h: bump version to 1.6-0
+
+2023-01-14  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* man/aggregate.Rd: remove dead link in docs
+
+2023-01-12  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* R/aggregate.R, R/disaggregate.R, R/over.R, man/aggregate.Rd,
+	tests/agg.R, tests/agg.Rout.save: deprecate functions that call to
+	rgeos
+
+2023-01-12  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* inst/include/sp_xports.c, tests/agg.Rout.save,
+	tests/over2.Rout.save: clean test output
+
+2023-01-12  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* inst/ChangeLog: update ChangeLog
+
+2023-01-12  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* src/sp_xports.c: format; #126
+
+2023-01-12  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* build-release.sh, inst/include/sp_xports.c, src/sp_xports.c,
+	tests/spDists.Rout.save: fix snprintf()'s, use strncat for strcat;
+	#126
+
+2023-01-12  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* inst/ChangeLog: update ChangeLog
+
+2023-01-12  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* : Merge pull request #126 from rsbivand/internalise_status Internalise status
+
+2023-01-12  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* : Merge pull request #124 from rsbivand/sprintf Sprintf
+
+2023-01-10  Roger Bivand <Roger.Bivand@gmail.com>
+
+	* DESCRIPTION, NAMESPACE, R/CRS-methods.R, R/spOptions.R,
+	man/CRS-class.Rd, man/spTransform.Rd: add internalised status
+
+2023-01-10  Roger Bivand <Roger.Bivand@gmail.com>
+
+	* : Merge remote-tracking branch 'upstream/main'
+
+2022-12-13  Roger Bivand <Roger.Bivand@gmail.com>
+
+	* man/aggregate.Rd: update link in help file to rgeos-deprecated
+
+2022-12-12  Roger Bivand <Roger.Bivand@gmail.com>
+
+	* DESCRIPTION, inst/include/sp.h, inst/include/sp_xports.c,
+	src/sp.h, src/sp_xports.c: address CRAN sprintf warning
+
+2022-12-10  Roger Bivand <Roger.Bivand@gmail.com>
+
+	* : Merge remote-tracking branch 'upstream/main'
+
+2022-11-28  Roger Bivand <Roger.Bivand@gmail.com>
+
+	* : Merge remote-tracking branch 'upstream/main'
+
+2022-10-14  Roger Bivand <Roger.Bivand@gmail.com>
+
+	* R/AAA.R: re-do _SP_EVOLUTION_STATUS_ parsing
+
+2022-10-14  Roger Bivand <Roger.Bivand@gmail.com>
+
+	* R/AAA.R: re-do _SP_EVOLUTION_STATUS_ parsing
+
+2022-10-10  Roger <roger.bivand@gmail.com>
+
+	* man/gridlines.Rd: fix logic error in status and package absence
+
+2022-10-08  Roger Bivand <Roger.Bivand@gmail.com>
+
+	* inst/include/sp.h, src/sp.h, src/sp.h.in: fix -Wstrict-prototypes
+	warning
+
+2022-07-06  Roger <roger.bivand@gmail.com>
+
+	* : commit 102cdd6f0ce3c0386ea01d8612de46af393b8d2e Author: Roger
+	<roger.bivand@gmail.com> Date:   Wed Jul 6 16:02:24 2022 +0200
+
+2022-06-15  Roger Bivand <Roger.Bivand@gmail.com>
+
+	* : commit 1f34d0dcb0e691bd45c0f4afa1ec053b66dc75fa Merge: d51fb91
+	5ca423d Author: Roger Bivand <Roger.Bivand@gmail.com> Date:   Wed
+	Jun 15 22:15:43 2022 +0200
+
+2022-06-15  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* man/gridlines.Rd: ES use in #117
+
+2022-06-15  Roger <roger.bivand@gmail.com>
+
+	* man/gridlines.Rd: evolution status 2; no rgdal/rgeos/maptools
+
+2022-06-15  Roger Bivand <Roger.Bivand@gmail.com>
+
+	* R/AAA.R, man/gridlines.Rd: break man page lines; change proj4 spec
+	loss default warning
+
+2022-06-15  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* man/gridlines.Rd: break long lines; #117
+
+2022-06-15  Roger Bivand <Roger.Bivand@gmail.com>
+
+	* : resolve merge conflicts
+
+2022-06-15  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* man/gridlines.Rd: modify gridlines example; #117 * also passes if _R_CHECK_DEPENDS_ONLY_=true;
+
+2022-06-14  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* R/projected.R: merge RSB's fix and clean up is.projectedCRS
+
+2022-06-14  Roger Bivand <Roger.Bivand@gmail.com>
+
+	* man/gridlines.Rd: correct gridlines example for evolution
+
+2022-06-14  Roger Bivand <Roger.Bivand@gmail.com>
+
+	* R/projected.R: refix is.projected()
+
+2022-06-14  Roger Bivand <Roger.Bivand@gmail.com>
+
+	* : commit aac5e239ebbd50e437e4784b84d4032f622a3d2e Merge: cfe9cdb
+	b0fe80a Author: Roger Bivand <Roger.Bivand@gmail.com> Date:   Tue
+	Jun 14 10:13:10 2022 +0200
+
+2022-06-14  Roger Bivand <Roger.Bivand@gmail.com>
+
+	* DESCRIPTION, inst/include/sp.h, src/sp.h: increment version
+
+2022-06-03  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* DESCRIPTION, R/merge.R, inst/include/sp.h, src/sp.h: tidy for CRAN
+	release
+
+2022-06-03  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* DESCRIPTION, README.md, inst/NEWS.Rd: version; update news
+
+2022-06-03  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* : Merge pull request #116 from rsbivand/evolution Evolution 1
+
+2022-03-26  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* : Merge pull request #115 from rsbivand/S-compatibility remove S-compatibility DBL defs
+
+2022-03-26  Roger Bivand <roger.bivand@gmail.com>
+
+	* inst/include/sp.h, inst/include/sp_xports.c, src/gcdist.c,
+	src/sp.h, src/sp_xports.c: remove S-compatibility DBL defs
+
+2022-03-11  Roger Bivand <Roger.Bivand@gmail.com>
+
+	* R/AAA.R: unname evolution status
+
+2022-03-11  Roger Bivand <Roger.Bivand@gmail.com>
+
+	* README.md: clarify README: set evolution status before loading
+	package
+
+2022-02-17  Roger Bivand <Roger.Bivand@gmail.com>
+
+	* R/projected.R: test wkt2 as well as NA projargs in
+	is.projectedCRS() - inlabru revdep
+
+2022-02-04  Roger Bivand <Roger.Bivand@gmail.com>
+
+	* R/Spatial-methods.R: support for evolution_status environment
+	variable, see README.md
+
+2022-02-04  Roger Bivand <Roger.Bivand@gmail.com>
+
+	* R/AAA.R, README.md: support for evolution_status environment
+	variable, see README.md
+
+2022-02-03  Roger Bivand <Roger.Bivand@gmail.com>
+
+	* DESCRIPTION, R/AAA.R, R/CRS-methods.R, R/projected.R: add global
+	sp_evolution_status option
+
+2021-11-14  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* DESCRIPTION: bump version
+
+2021-11-13  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* : commit 074be52d744882cac97d34ff34144e8edd08f85c Author: Edzer
+	Pebesma <edzer.pebesma@uni-muenster.de> Date:   Sat Nov 13 16:40:46
+	2021 +0100
+
+2021-11-07  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* : Merge pull request #108 from rsbivand/master preserve SF comment in "[" for SpatialPolygons*
+
+2021-08-27  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* : Merge pull request #103 from rsbivand/master CRS cache and updated CRS print method
+
+2021-08-12  Roger Bivand <Roger.Bivand@gmail.com>
+
+	* vignettes/CRS_warnings.Rmd: typo in vignette
+
+2021-08-10  Roger Bivand <Roger.Bivand@gmail.com>
+
+	* DESCRIPTION, R/projected.R, inst/NEWS.Rd,
+	man/SpatialGridDataFrame-class.Rd, vignettes/CRS_warnings.Rmd: add
+	vignette and link from proj4string() warnings
+
+2021-06-17  Roger Bivand <Roger.Bivand@gmail.com>
+
+	* R/CRS-methods.R, man/CRS-class.Rd: Revert "exploring upstream
+	#107" This reverts commit fbe5b883cde864861ac7202bad3122aec824b03e.
+
+2021-06-15  Roger Bivand <Roger.Bivand@gmail.com>
+
+	* R/CRS-methods.R, man/CRS-class.Rd: exploring upstream #107
+
+2021-06-11  Roger Bivand <Roger.Bivand@gmail.com>
+
+	* R/CRS-methods.R, man/CRS-class.Rd: cover corner cases for PROJ < 6
+	and SRS_string used
+
+2021-03-28  Roger Bivand <Roger.Bivand@gmail.com>
+
+	* R/CRS-methods.R, man/CRS-class.Rd, tests/fail1.Rout.save: update
+	CRS print method
+
+2021-03-16  Sebastian Meyer <seb.meyer@fau.de>
+
+	* R/bpy.colors.R, R/spplot.R: fix partially matched argument names
+
+2021-02-24  Roger Bivand <roger.bivand@nhh.no>
+
+	* R/AAA.R, R/CRS-methods.R: change list() to new.env(hash=TRUE); add
+	PROJ < 6 work-around for EPSG:xxxx
+
+2021-02-23  Roger Bivand <roger.bivand@nhh.no>
+
+	* DESCRIPTION, inst/include/sp.h, src/sp.h: tidy
+
+2021-02-23  Roger Bivand <roger.bivand@nhh.no>
+
+	* : Merge remote-tracking branch 'upstream/master'
+
+2021-01-26  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* : after --resave-data
+
+2021-01-26  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* .github/workflows/tic.yml: update
+
+2021-01-26  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* .github/workflows/tic.yml: update
+
+2021-01-26  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* README.md: new badge
+
+2021-01-26  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* .Rbuildignore, .github/workflows/tic.yml, tic.R: add tic
+
+2021-01-10  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* R/point.in.polygon.R, build-release.sh, inst/include/sp.h,
+	src/sp.h: version bump; simplify2array consistency issue addresses request from Kurt / CRAN, to not assume a list is returned
+	in this case.
+
+2020-11-27  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* DESCRIPTION: bump version
+
+2020-11-27  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* : Merge pull request #93 from bastistician/fix92 fix #92
+
+2020-11-04  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* R/point.in.polygon.R: avoid warning when warnPartialMatchArgs=TRUE
+
+2020-10-26  Sebastian Meyer <seb.meyer@fau.de>
+
+	* R/SpatialLines-methods.R: fix #92 `spp` is "SpatialPoints", so the proj4string argument is ignored
+	anyway (and produces a warning since
+	9101ce27f552a33f1cffa04ddf13a5a820e90fb0)
+
+2020-10-05  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* inst/ChangeLog: update ChangeLog
+
+2020-09-15  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* : Merge pull request #90 from rsbivand/master CRS(SRS_string="") now works
+
+2020-09-03  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* : Merge pull request #89 from rsbivand/master fix URLs
+
+2020-09-03  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* : Merge pull request #87 from rsbivand/master Add example for ESRI:
+
+2020-08-26  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* : new object with comment on CRS
+
+2020-08-18  Roger Bivand <roger.bivand@nhh.no>
+
+	* R/SpatialMultiPointsDataFrame-methods.R: futher fixes from Finn
+	Lindgren, re-write of head method
+
+2020-08-18  Roger Bivand <roger.bivand@nhh.no>
+
+	* DESCRIPTION, R/Spatial-methods.R,
+	R/SpatialPointsDataFrame-methods.R, R/projected.R: futher fixes from
+	Finn Lindgren, re-write of head method
+
+2020-08-17  Roger Bivand <roger.bivand@nhh.no>
+
+	* R/projected.R: fix issues in rgdal
+
+2020-08-17  Roger Bivand <roger.bivand@nhh.no>
+
+	* R/CRS-methods.R: fix is.na.CRS() for presence of non-null WKT
+
+2020-08-17  Roger Bivand <roger.bivand@nhh.no>
+
+	* R/projected.R, man/gridlines.Rd, tests/spDists.Rout.save,
+	vignettes/csdacm.Rnw: fix fallout from is.projected fix for legacy
+	vignette
+
+2020-08-17  Roger Bivand <roger.bivand@nhh.no>
+
+	* R/projected.R, man/is.projected.Rd, tests/agg.R,
+	tests/agg.Rout.save, tests/base.R, tests/base.Rout.save,
+	tests/fail1.R, tests/fail1.Rout.save, tests/grid.R,
+	tests/grid.Rout.save, tests/over2.R, tests/over2.Rout.save,
+	tests/pass1.R, tests/pass1.Rout.save, tests/point.in.polygon.R,
+	tests/point.in.polygon.Rout.save, tests/sel.R, tests/sel.Rout.save,
+	tests/sp1.R, tests/sp1.Rout.save, tests/spDists.R,
+	tests/spDists.Rout.save, tests/spplot.R, tests/spplot.Rout.save,
+	tests/zerodist.R, tests/zerodist.Rout.save: fix to Finn Lindgrens
+	issue: Proj4 string of +proj=geocent +units=km fails
+
+2020-08-09  Roger Bivand <roger.bivand@nhh.no>
+
+	* inst/include/sp.h, src/sp.h: bump version numbers
+
+2020-08-08  Roger Bivand <roger.bivand@nhh.no>
+
+	* R/CRS-methods.R, man/CRS-class.Rd: handle BOUNDCRS by default
+
+2020-07-25  Roger Bivand <roger.bivand@nhh.no>
+
+	* DESCRIPTION, R/CRS-methods.R, man/CRS-class.Rd: move CRS projargs
+	arg to SRS_string if first non-blank character not +
+
+2020-07-13  Roger Bivand <roger.bivand@nhh.no>
+
+	* man/CRS-class.Rd: add example with ESRI:
+
+2020-07-13  Roger Bivand <roger.bivand@nhh.no>
+
+	* man/CRS-class.Rd: add example with ESRI:
+
+2020-07-13  Roger Bivand <roger.bivand@nhh.no>
+
+	* : Merge remote-tracking branch 'upstream/master'
+
+2020-06-29  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* src/gcdist.c: fixes #85
+
+2020-06-22  Roger Bivand <rsbivand@users.noreply.github.com>
+
+	* docs/_config.yml: Set theme jekyll-theme-minimal
+
+2020-06-22  Roger Bivand <roger.bivand@nhh.no>
+
+	* .Rbuildignore, docs/404.html, docs/authors.html,
+	docs/bootstrap-toc.css, docs/bootstrap-toc.js, docs/docsearch.css,
+	docs/docsearch.js, docs/index.html, docs/link.svg,
+	docs/pkgdown.css, docs/pkgdown.js, docs/pkgdown.yml,
+	docs/reference/00sp.html, docs/reference/CRS-class.html,
+	docs/reference/DMS-class.html,
+	docs/reference/GridTopology-class.html,
+	docs/reference/Line-class.html, docs/reference/Line.html,
+	docs/reference/Lines-class.html, docs/reference/Polygon-class.html,
+	docs/reference/Polygons-class.html, docs/reference/Rlogo.html,
+	docs/reference/Spatial-class.html,
+	docs/reference/SpatialGrid-class.html,
+	docs/reference/SpatialGrid.html,
+	docs/reference/SpatialGridDataFrame-class.html,
+	docs/reference/SpatialGridDataFrame.html,
+	docs/reference/SpatialLines-class.html,
+	docs/reference/SpatialLines.html,
+	docs/reference/SpatialLinesDataFrame-class.html,
+	docs/reference/SpatialMultiPoints-class.html,
+	docs/reference/SpatialMultiPoints.html,
+	docs/reference/SpatialMultiPointsDataFrame-class.html,
+	docs/reference/SpatialPixels-class.html,
+	docs/reference/SpatialPixelsDataFrame-class.html,
+	docs/reference/SpatialPoints-class.html,
+	docs/reference/SpatialPoints.html,
+	docs/reference/SpatialPointsDataFrame-class.html,
+	docs/reference/SpatialPolygons-class.html,
+	docs/reference/SpatialPolygons.html,
+	docs/reference/SpatialPolygonsDataFrame-class.html,
+	docs/reference/addattr.html, docs/reference/aggregate.html,
+	docs/reference/as.SpatialPolygons.GridTopology.html,
+	docs/reference/as.SpatialPolygons.PolygonsList.html,
+	docs/reference/asciigrid.html, docs/reference/bbox.html,
+	docs/reference/bpy.colors.html, docs/reference/bubble.html,
+	docs/reference/char2dms.html, docs/reference/compassRose.html,
+	docs/reference/coordinates-methods.html,
+	docs/reference/coordinates.html,
+	docs/reference/coordnames-methods.html,
+	docs/reference/degaxis.html, docs/reference/dimensions.html,
+	docs/reference/disaggregate.html, docs/reference/flip.html,
+	docs/reference/geometry-methods.html,
+	docs/reference/gridded-methods.html,
+	docs/reference/gridindex2nb.html, docs/reference/gridlines.html,
+	docs/reference/image.html, docs/reference/index.html,
+	docs/reference/is.projected.html, docs/reference/loadmeuse.html,
+	docs/reference/mapasp.html, docs/reference/merge.html,
+	docs/reference/meuse.grid.html, docs/reference/meuse.grid_ll.html,
+	docs/reference/meuse.html, docs/reference/meuse.riv.html,
+	docs/reference/over.html, docs/reference/panel.html,
+	docs/reference/point.in.polygon.html,
+	docs/reference/polygons-methods.html, docs/reference/polygons.html,
+	docs/reference/recenter-methods.html,
+	docs/reference/select.spatial.html,
+	docs/reference/sp-deprecated.html,
+	docs/reference/spChFIDs-methods.html,
+	docs/reference/spDistsN1.html, docs/reference/spTransform.html,
+	docs/reference/spplot.html, docs/reference/spsample.html,
+	docs/reference/stack.html, docs/reference/surfaceArea.html,
+	docs/reference/zerodist.html: add pkgdown
+
+2020-06-17  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* : commit 3b5fc4750578f9cf577f980bbd2c3fdad73ae92a Merge: fbb89c0
+	c974fe5 Author: Edzer Pebesma <edzer.pebesma@uni-muenster.de> Date:
+	Wed Jun 17 13:54:10 2020 +0200
+
+2020-06-15  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* man/over.Rd, man/spplot.Rd: r-devel docs fixes
+
+2020-06-15  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* man/CRS-class.Rd, man/SpatialPolygons-class.Rd,
+	man/SpatialPolygons.Rd, man/aggregate.Rd, man/gridlines.Rd,
+	man/over.Rd, man/spTransform.Rd, man/spplot.Rd,
+	tests/grid.Rout.save: docs fixes for r-devel
+
+2020-06-13  Roger Bivand <roger.bivand@nhh.no>
+
+	* R/CRS-methods.R, R/projected.R: add options -
+	rgdal_show_exportToProj4_warnings - all/thin/none to sp
+
+2020-06-13  Roger Bivand <roger.bivand@nhh.no>
+
+	* DESCRIPTION, R/AAA.R, R/CRS-methods.R, R/projected.R: add options
+	- rgdal_show_exportToProj4_warnings - all/thin/none to sp
+
+2020-05-21  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* inst/NEWS.Rd: update NEWS; #79
+
+2020-05-18  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* : Merge pull request #76 from rsbivand/master Adding a wkt() method (WIP) and muting internal warnings
+
+2020-05-18  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* DESCRIPTION, inst/NEWS.Rd, inst/include/sp.h, src/sp.h: bump
+	version; #79
+
+2020-04-27  Roger Bivand <Roger.Bivand@nhh.no>
+
+	* inst/ChangeLog: update ChangeLog
+
+2020-04-27  Roger Bivand <roger.bivand@nhh.no>
+
+	* inst/include/sp.h, src/sp.h: bump version in headers
+
+2020-04-21  Roger Bivand <roger.bivand@nhh.no>
+
+	* R/CRS-methods.R: adapting identicalCRS() for degraded inheritance
+	of proj4string()
+
+2020-04-18  Roger Bivand <roger.bivand@nhh.no>
+
+	* R/CRS-methods.R: add spacetime workaround to indenticalCRS
+
+2020-04-14  Roger Bivand <roger.bivand@nhh.no>
+
+	* R/CRS-methods.R, R/Spatial-methods.R, R/SpatialGrid-methods.R,
+	R/SpatialGridDataFrame-methods.R, R/SpatialLines-methods.R,
+	R/SpatialPolygons-methods.R, R/projected.R, R/rbind.R,
+	man/CRS-class.Rd, tests/fail1.Rout.save, tests/pass1.Rout.save,
+	tests/point.in.polygon.Rout.save, tests/spDists.Rout.save,
+	tests/spplot.Rout.save: tidying up rebuild_CRS()
+
+2020-04-07  Roger Bivand <roger.bivand@nhh.no>
+
+	* NAMESPACE, R/CRS-methods.R, R/Spatial-methods.R,
+	R/SpatialGrid-methods.R, R/SpatialGridDataFrame-methods.R,
+	R/SpatialLines-methods.R, R/SpatialPoints-methods.R,
+	R/SpatialPolygons-methods.R, R/gridlines.R, R/mapasp.R,
+	R/projected.R, R/rbind.R, R/recenter.R, R/spsample.R,
+	man/CRS-class.Rd, man/Spatial-class.Rd: remove proj4string()
+	warnings within sp about losing WKT comments
+
+2020-02-29  Roger Bivand <roger.bivand@nhh.no>
+
+	* : Merge remote-tracking branch 'upstream/master'
+
+2020-02-28  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* inst/ChangeLog: update ChangeLog
+
+2020-02-27  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* inst/ChangeLog: update ChangeLog
+
+2020-02-25  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* inst/NEWS.Rd: update news
+
+2020-02-25  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* : Merge pull request #74 from rsbivand/master trap NULL projargs
+
+2020-02-25  Roger Bivand <Roger.Bivand@nhh.no>
+
+	* R/CRS-methods.R: trap NULL projargs
+
+2020-02-24  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* : Merge pull request #72 from rsbivand/master See email from CRAN
+
+2020-02-24  Roger Bivand <roger.bivand@nhh.no>
+
+	* DESCRIPTION, R/CRS-methods.R: correcting if nesting in CRS()
+
+2020-02-24  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* inst/NEWS.Rd: fix #71
+
+2020-02-20  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* DESCRIPTION, inst/include/sp.h, src/sp.h: bump version
+
+2020-02-20  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* inst/ChangeLog: update ChangeLog
+
+2020-02-20  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* : Merge pull request #69 from rsbivand/master fix error for old PROJ/GDAL
+
+2019-12-20  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* : Merge pull request #67 from rsbivand/master Add ASDAR page refs for comment
+
+2019-12-01  Roger Bivand <roger.bivand@nhh.no>
+
+	* man/as.SpatialPolygons.GridTopology.Rd, man/gridlines.Rd: dontrun
+	errors found when searching for maptools issues
+
+2019-11-12  Roger Bivand <roger.bivand@nhh.no>
+
+	* DESCRIPTION: tidy
+
+2019-11-12  Roger Bivand <roger.bivand@nhh.no>
+
+	* inst/include/sp.h: tidy
+
+2019-11-11  Roger Bivand <Roger.Bivand@nhh.no>
+
+	* R/CRS-methods.R, man/CRS-class.Rd: beware: CRS adaptations
+
+2019-11-11  Roger Bivand <Roger.Bivand@nhh.no>
+
+	* inst/CITATION, man/SpatialPolygons-class.Rd,
+	man/SpatialPolygons.Rd: add ASDAR page references for use of comment
+
+2019-11-11  Roger Bivand <roger.bivand@nhh.no>
+
+	* DESCRIPTION: version number
+
+2019-11-07  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* .travis.yml, inst/NEWS.Rd, inst/include/sp.h, src/sp.h: prepare
+	for CRAN submission
+
+2019-05-14  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* DESCRIPTION, tests/pass1.Rout.save, tests/zerodist.Rout.save: 
+	adapt test output to R 3.6.0's new sample
+
+2019-03-21  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* inst/ChangeLog: update ChangeLog
+
+2019-03-20  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* NAMESPACE, R/CRS-methods.R: add is.na method for CRS objects addresses https://github.com/r-spatial/sf/issues/1012
+
+2018-10-15  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* README.md: add badge
+
+2018-09-19  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* man/panel.Rd, man/spplot.Rd: links
+
+2018-09-19  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* R/SpatialPointsDataFrame-methods.R,
+	R/SpatialPolygonsDataFrame-methods.R: fix #54
+
+2018-06-05  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* inst/ChangeLog: update ChangeLog
+
+2018-06-05  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* inst/ChangeLog: update ChangeLog
+
+2018-06-05  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* : commit baed36cc769a4109b6c50d3565b0f42f93a0f506 Author: Edzer
+	Pebesma <edzer.pebesma@uni-muenster.de> Date:   Tue Jun 5 11:53:13
+	2018 +0200
+
+2018-06-02  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* : Merge pull request #52 from rsbivand/master run build-prep
+
+2018-06-02  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* : Merge pull request #51 from rsbivand/master rchk MAKE_CLASS vulnerability
+
+2018-06-02  Roger Bivand <roger.bivand@nhh.no>
+
+	* DESCRIPTION, inst/include/sp_xports.c, src/sp_xports.c: rchk fix:
+	PROTECT MAKE_CLASS in src/sp_xports.c
+
+2018-02-02  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* inst/include/sp.h, src/sp.h: header files
+
+2018-02-02  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* R/SpatialPolygons-methods.R, R/SpatialPolygonsDataFrame-methods.R: 
+	wrong comment field returned from adehabitatAR::CharHull fixes https://github.com/r-spatial/sf/issues/636 fixes
+	https://github.com/edzer/sp/issues/49
+
+2018-01-25  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* DESCRIPTION, R/image.R, man/image.Rd: bump version; fix #48
+
+2018-01-25  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* DESCRIPTION, R/image.R, man/image.Rd: CRAN release 1.2-7
+
+2018-01-18  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* inst/ChangeLog: update ChangeLog
+
+2018-01-18  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* inst/ChangeLog: update ChangeLog
+
+2018-01-18  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* inst/ChangeLog: update ChangeLog
+
+2018-01-18  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* tests/pass1.Rout.save: cran release
+
+2018-01-18  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* inst/ChangeLog: update ChangeLog
+
+2018-01-18  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* inst/ChangeLog: update ChangeLog
+
+2018-01-16  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* : commit 97600d8dbbd4a6ad9921c223cd788367aa296703 Merge: 09085ff
+	7f72e86 Author: Edzer Pebesma <edzer.pebesma@uni-muenster.de> Date:
+	Tue Jan 16 19:10:27 2018 +0100
+
+2018-01-16  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* DESCRIPTION, inst/include/sp.h, src/sp.h: version bump
+
+2018-01-16  Sebastian Meyer <seb.meyer@fau.de>
+
+	* R/CRS-methods.R: restore CRS()-based comparison of proj4string()s
+	[fixes #46]
+
+2018-01-15  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* : Merge pull request #45 from jameslamb/master Fix minor typos in documentation
+
+2018-01-05  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* inst/ChangeLog: update ChangeLog
+
+2017-12-21  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* inst/ChangeLog: update ChangeLog
+
+2017-09-03  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* : Merge pull request #39 from jameslamb/misc/docs Fix minor typos in documentation
+
+2017-09-01  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* inst/include/sp_xports.c, src/pip.c, src/pip2.c, src/sp_xports.c: 
+	rename NAMED to MAYBE_REFERENCED see
+	https://stat.ethz.ch/pipermail/r-devel/2017-September/074860.html
+
+2017-08-19  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* : Merge pull request #38 from BenGraeler/master does not shrink bbox on conversion from SpatialGrid toSpatialPixels
+
+2017-07-16  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* : Merge pull request #31 from hughjonesd/master make identicalCRS return TRUE when same arguments are in different
+	order
+
+2017-06-16  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* R/spplot.R, inst/NEWS.Rd, tests/fail1.Rout.save: address error
+	caused by NA's in cex
+
+2017-05-03  David Hugh-Jones <davidhughjones@gmail.com>
+
+	* R/CRS-methods.R: make identicalCRS return TRUE when arguments are
+	same but in different order
+
+2017-05-01  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* : Merge pull request #29 from rsbivand/master renewed fix Polygons comments bug in disaggregate
+
+2017-04-29  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* DESCRIPTION: set version to (back) 1.2-5 there's little point in increasing version on gh, they only count
+	for CRAN, afaics.
+
+2017-04-29  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* inst/include/sp.h, src/sp.h: update
+
+2017-04-29  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* : Merge pull request #28 from rsbivand/master fix Polygons comments bug in disaggregate
+
+2017-04-05  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* DESCRIPTION, R/SpatialPolygons-methods.R, inst/CITATION,
+	inst/NEWS.Rd, inst/include/sp_xports.c, man/spDistsN1.Rd,
+	src/sp_xports.c, vignettes/over.Rnw: address Tomas Kalibera's static
+	code check warning
+
+2016-12-21  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* inst/ChangeLog: update ChangeLog
+
+2016-12-21  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* : Merge pull request #16 from samuel-rosa/patch-1 Update argument offset in spsample.Rd. Re: your remark triangular
+	vs. hexagonal: does that depend on whether we see the points as grid
+	cell centers or grid cell corners? I see them as grid cell centers.
+
+2016-12-11  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* inst/include/sp.h, inst/include/sp_xports.c, src/pip.c,
+	src/pip2.c, src/sp.h, src/sp_xports.c: only PROTECT when duplicate
+
+2016-12-11  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* inst/ChangeLog: update ChangeLog
+
+2016-12-09  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* inst/ChangeLog: update ChangeLog
+
+2016-12-08  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* src/gcdist.c: fix gcdist, following geosphere::distMeeuws and
+	http://www.abecedarical.com/javascript/script_greatcircle.html
+
+2016-11-20  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* man/SpatialGrid.Rd: update docs, see
+	https://github.com/edzer/sp/issues/18
+
+2016-11-20  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* man/GridTopology-class.Rd: fix
+	https://github.com/edzer/sp/issues/18
+
+2016-10-08  Alessandro Samuel-Rosa <samuel-rosa@users.noreply.github.com>
+
+	* man/spsample.Rd: Update spsample.Rd `type = "hexagonal"`also uses the values passed to argument
+	`offset`.
+
+2016-10-07  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* .travis.yml: set back
+
+2016-10-07  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* .travis.yml: try without sudo
+
+2016-09-06  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* : Merge pull request #14 from Robinlovelace/master Plot meuse, fix #13 - print still crazy tho
+
+2016-07-22  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* R/rbind.R: fix rbind issue
+
+2016-06-20  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* inst/include/sp_xports.c, src/pip.c, src/pip2.c, src/sp_xports.c: 
+	avoid duplicate(x) when x is not NAMED()
+
+2016-06-20  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* DESCRIPTION: version bump
+
+2016-05-29  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* : commit 61196594f1e07fb4db31e33b6b7dc45484375c51 Author: Edzer
+	Pebesma <edzer.pebesma@uni-muenster.de> Date:   Sun May 29 22:34:59
+	2016 +0200
+
+2016-04-15  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* : Merge pull request #7 from Robinlovelace/master Be more explicit about returnList and touching points being counted
+
+2016-04-15  Robin Lovelace <rob00x@gmail.com>
+
+	* vignettes/over.Rnw: Make explicit the output with/without
+	returnList
+
+2016-04-14  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* inst/ChangeLog: update ChangeLog
+
+2016-04-14  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* .Rbuildignore, NAMESPACE, README.md: tidy
+
+2016-04-14  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* inst/ChangeLog: update ChangeLog
+
+2016-04-14  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* inst/ChangeLog: update ChangeLog
+
+2016-04-14  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* inst/NEWS.Rd: update NEWS
+
+2016-04-14  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* inst/ChangeLog: update ChangeLog
+
+2016-04-14  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* inst/NEWS.Rd, vignettes/over.Rnw: add touch examples to over
+	vignette
+
+2016-04-14  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* : Merge pull request #6 from Robinlovelace/master Add another over example, mention DE-9IM
+
+2016-04-08  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* inst/ChangeLog: update ChangeLog
+
+2016-04-08  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* DESCRIPTION: move methods from Imports: to Depends:
+
+2016-04-07  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* .travis.yml: remove caching
+
+2016-04-07  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* .travis.yml: remove caching
+
+2016-04-07  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* .travis.yml: add hdf
+
+2016-04-07  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* .travis.yml: add hdf
+
+2016-04-07  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* .travis.yml: add hdf
+
+2016-04-07  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* .travis.yml: try new config
+
+2016-04-06  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* .travis.yml: put back old travis file in place
+
+2016-04-06  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* .travis.yml: correct typo
+
+2016-04-06  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* .travis.yml: test
+
+2016-04-06  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* .travis.yml: test
+
+2016-04-06  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* .travis.yml: test
+
+2016-04-06  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* .travis.yml: test
+
+2016-04-06  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* .travis.yml: test new travis
+
+2016-04-06  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* inst/NEWS.Rd, inst/include/sp_xports.c: updates for sp 1.2-3
+
+2016-04-06  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* .travis.yml: try out new config
+
+2016-04-06  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* inst/ChangeLog: update ChangeLog
+
+2016-04-06  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* inst/ChangeLog: update ChangeLog
+
+2016-03-30  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* src/sp_xports.c: fix Mike's report on
+	https://stat.ethz.ch/pipermail/r-sig-geo/2016-March/024214.html
+
+2016-03-28  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* R/aggregate.R: substitute lenghts for r-oldrel build
+
+2016-03-28  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* R/aggregate.R, man/aggregate.Rd, tests/agg.Rout.save,
+	vignettes/over.Rnw: remove default aggregation function; reduce
+	duplication from aggregate.data.frame
+
+2016-03-23  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* NAMESPACE, man/coordnames-methods.Rd: tidy
+
+2016-03-20  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* R/GridTopology-methods.R, inst/NEWS.Rd: drop rownames, add
+	colnames from grid@cellcentre.offset
+
+2016-03-20  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* R/SpatialPolygons-methods.R, man/coordnames-methods.Rd: correct
+	coordnames<- error for SpatialPolygons
+
+2016-03-19  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* R/SpatialPolygons-methods.R: optimize coordnames<- by avoiding
+	method dispatch
+
+2016-03-19  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* R/GridTopology-methods.R: propagate names(cellcentre.offset) too
+	coordnames in coercion to SpatialPolygons
+
+2016-03-16  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* R/SpatialGridDataFrame-methods.R, man/spsample.Rd: update offset
+	docs; add r/g/b/ to plot/image
+
+2016-03-08  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* R/SpatialGridDataFrame-methods.R,
+	man/SpatialPixelsDataFrame-class.Rd, tests/grid.Rout.save: improve
+	as.matrix and as.array methods for gridded data
+
+2016-03-08  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* man/SpatialGridDataFrame-class.Rd,
+	man/SpatialPixelsDataFrame-class.Rd: add ref to blog, add cross ref
+
+2016-03-08  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* R/SpatialGridDataFrame-methods.R, inst/include/sp.h,
+	man/SpatialGridDataFrame-class.Rd, man/image.Rd, src/sp.h: add scale
+	to default plot method for gridded data
+
+2016-02-08  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* README.md: add gallery link
+
+2016-02-08  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* DESCRIPTION: add URL to new maps gallery
+
+2016-02-08  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* DESCRIPTION: bump version
+
+2016-02-07  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* R/SpatialLines-methods.R, R/gridlines.R, demo/polar.R,
+	man/gridlines.Rd: rework the graticule labels() logic, adjust
+	examples.
+
+2016-02-06  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* .Rbuildignore, inst/NEWS.Rd: add ChangeLog to .Rbuildingore
+
+2016-02-05  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* inst/ChangeLog: update ChangeLog
+
+2016-02-05  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* R/rbind.R: keep row.names but make them unique, in case first
+	object has them.
+
+2016-02-03  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* R/gridlines.R, demo/polar.R, man/gridlines.Rd: change default
+	ndiscr; tidy docs & demo
+
+2016-02-03  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* demo/00Index, man/Spatial-class.Rd, man/gridlines.Rd: tidy,
+	complete, extend docs
+
+2016-02-03  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* R/SpatialPointsDataFrame-methods.R: support adjx and adjy fields
+	in text method
+
+2016-02-03  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* R/gridlines.R: add default for gridlines()
+
+2016-02-03  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* demo/polar.R: add polar projection plot, showing antarctic and
+	labels
+
+2016-02-03  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* R/SpatialLines-methods.R: improve labels method, add support for
+	all plot sides
+
+2016-02-03  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* R/Spatial-methods.R: add expandBB argument, to expand the bbox of
+	object plotted
+
+2016-02-03  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* inst/ChangeLog: update ChangeLog
+
+2016-02-01  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* inst/NEWS.Rd, man/gridlines.Rd: improve readability example
+
+2016-02-01  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* NAMESPACE, R/SpatialLines-methods.R,
+	R/SpatialPointsDataFrame-methods.R, man/gridlines.Rd: add
+	labels.SpatialLines method, improve text.SpatialPointsDataFrame; add
+	example
+
+2016-01-31  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* DESCRIPTION, R/rbind.R, inst/include/sp.h, src/sp.h, src/sp.h.in: 
+	rbind method for SpatialPoints now strips all row.names.
+
+2016-01-29  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* inst/ChangeLog: update ChangeLog
+
+2016-01-29  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* inst/ChangeLog: update ChangeLog
+
+2016-01-29  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* build-release.sh, inst/NEWS.Rd: update to release
+
+2016-01-29  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* inst/ChangeLog: update ChangeLog
+
+2016-01-29  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* inst/ChangeLog: update ChangeLog
+
+2016-01-29  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* inst/ChangeLog: update ChangeLog
+
+2016-01-29  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* inst/ChangeLog: update ChangeLog
+
+2016-01-28  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* .travis.yml: add oldrel back
+
+2016-01-28  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* src/pip.c, src/zerodist.c: remove old S-Plus compatibility code
+	(e.g., S.h)
+
+2016-01-26  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* .travis.yml: remove oldrel
+
+2016-01-26  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* R/SpatialPoints-methods.R: tidy
+
+2016-01-22  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* NAMESPACE, R/rbind.R, man/Spatial-class.Rd: add cbind.Spatial
+	method
+
+2016-01-20  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* .travis.yml: change back to earlier attempt
+
+2016-01-20  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* .travis.yml: use modified script for vignette creation
+
+2016-01-20  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* .travis.yml: try travis prefix
+
+2016-01-20  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* .travis.yml: try new travis config
+
+2016-01-19  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* .travis.yml: update gdal and proj versions
+
+2016-01-19  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* .travis.yml: update gdal and proj versions
+
+2016-01-19  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* DESCRIPTION, R/sp_spat1.R, man/SpatialLines-class.Rd,
+	man/SpatialPolygons-class.Rd: add coercion from deldir to
+	SpatialLines and SpatialPolygons
+
+2016-01-02  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* README.md: typo
+
+2015-12-22  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* DESCRIPTION: update URL
+
+2015-12-22  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* : Merge pull request #1 from Robinlovelace/master Add e.g. with multiple variables to aggregate.Rd
+
+2015-12-21  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* README.md: cosmetic
+
+2015-12-21  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* ChangeLog, build-release.sh: update ChangeLog from svn on r-forge,
+	build script
+
+2015-12-21  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* inst/ChangeLog: update ChangeLog
+
+2015-12-21  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* vignettes/intro_sp.Rnw: update
+
+2015-12-20  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* vignettes/intro_sp.Rnw: correct address
+
+2015-12-19  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* DESCRIPTION, man/image.Rd: address 2 NOTEs in travis
+
+2015-12-19  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* .Rbuildignore: add file
+
+2015-12-19  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* README.md: trigger travis
+
+2015-12-19  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* .travis.yml: add travis file
+
+2015-12-19  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* README.md: add badges
+
+2015-12-19  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* CHANGES, ChangeLog, DESCRIPTION, NAMESPACE, R/AAA.R,
+	R/CRS-methods.R, R/Class-CRS.R, R/Class-GridTopology.R,
+	R/Class-Spatial.R, R/Class-SpatialGrid.R,
+	R/Class-SpatialGridDataFrame.R, R/Class-SpatialLines.R,
+	R/Class-SpatialLinesDataFrame.R, R/Class-SpatialMultiPoints.R,
+	R/Class-SpatialMultiPointsDataFrame.R, R/Class-SpatialPoints.R,
+	R/Class-SpatialPointsDataFrame.R, R/Class-SpatialPolygons.R,
+	R/Class-SpatialPolygonsDataFrame.R, R/GridTopology-methods.R,
+	R/Spatial-methods.R, R/SpatialGrid-methods.R,
+	R/SpatialGridDataFrame-methods.R, R/SpatialLines-methods.R,
+	R/SpatialLinesDataFrame-methods.R, R/SpatialMultiPoints-methods.R,
+	R/SpatialMultiPointsDataFrame-methods.R, R/SpatialPoints-methods.R,
+	R/SpatialPointsDataFrame-methods.R,
+	R/SpatialPolygons-displayMethods.R, R/SpatialPolygons-internals.R,
+	R/SpatialPolygons-methods.R, R/SpatialPolygonsDataFrame-methods.R,
+	R/aggregate.R, R/asciigrid.R, R/bpy.colors.R, R/bubble.R,
+	R/chfids.R, R/compassRose.R, R/disaggregate.R, R/dms.R,
+	R/flipSGDF.R, R/gridded.R, R/gridlines.R, R/image.R, R/loadmeuse.R,
+	R/mapasp.R, R/merge.R, R/over.R, R/point.in.polygon.R,
+	R/projected.R, R/rbind.R, R/recenter.R, R/select.spatial.R,
+	R/spOptions.R, R/sp_spat1.R, R/spdists.R, R/spplot.R, R/spsample.R,
+	R/stack.R, R/subset.R, R/surfaceArea.R, R/zerodist.R,
+	build-prep.sh, build-release.sh, demo/00Index, demo/depend.R,
+	demo/fib.R, demo/gallery.R, demo/meuse.R, demo/mp.R, demo/webmap.R,
+	inst/CITATION, inst/ChangeLog, inst/NEWS.Rd,
+	inst/external/seamap105_mod.csv, inst/external/simple.ag,
+	inst/external/test.ag, inst/include/sp.h, inst/include/sp_xports.c,
+	man/00sp.Rd, man/CRS-class.Rd, man/DMS-class.Rd,
+	man/GridTopology-class.Rd, man/Line-class.Rd, man/Line.Rd,
+	man/Lines-class.Rd, man/Polygon-class.Rd, man/Polygons-class.Rd,
+	man/Rlogo.Rd, man/Spatial-class.Rd, man/SpatialGrid-class.Rd,
+	man/SpatialGrid.Rd, man/SpatialGridDataFrame-class.Rd,
+	man/SpatialGridDataFrame.Rd, man/SpatialLines-class.Rd,
+	man/SpatialLines.Rd, man/SpatialLinesDataFrame-class.Rd,
+	man/SpatialMultiPoints-class.Rd, man/SpatialMultiPoints.Rd,
+	man/SpatialMultiPointsDataFrame-class.Rd,
+	man/SpatialPixels-class.Rd, man/SpatialPixelsDataFrame-class.Rd,
+	man/SpatialPoints-class.Rd, man/SpatialPoints.Rd,
+	man/SpatialPointsDataFrame-class.Rd, man/SpatialPolygons-class.Rd,
+	man/SpatialPolygons.Rd, man/SpatialPolygonsDataFrame-class.Rd,
+	man/addattr.Rd, man/aggregate.Rd,
+	man/as.SpatialPolygons.GridTopology.Rd,
+	man/as.SpatialPolygons.PolygonsList.Rd, man/asciigrid.Rd,
+	man/bbox.Rd, man/bpy.colors.Rd, man/bubble.Rd, man/char2dms.Rd,
+	man/compassRose.Rd, man/coordinates-methods.Rd, man/coordinates.Rd,
+	man/coordnames-methods.Rd, man/degaxis.Rd, man/dimensions.Rd,
+	man/disaggregate.Rd, man/flip.Rd, man/geometry-methods.Rd,
+	man/gridded-methods.Rd, man/gridindex2nb.Rd, man/gridlines.Rd,
+	man/image.Rd, man/is.projected.Rd, man/loadmeuse.Rd, man/mapasp.Rd,
+	man/merge.Rd, man/meuse.Rd, man/meuse.grid.Rd,
+	man/meuse.grid_ll.Rd, man/meuse.riv.Rd, man/over.Rd, man/panel.Rd,
+	man/point.in.polygon.Rd, man/polygons-methods.Rd, man/polygons.Rd,
+	man/recenter-methods.Rd, man/select.spatial.Rd,
+	man/sp-deprecated.Rd, man/spChFIDs-methods.Rd, man/spDistsN1.Rd,
+	man/spTransform.Rd, man/spplot.Rd, man/spsample.Rd, man/stack.Rd,
+	man/surfaceArea.Rd, man/zerodist.Rd, oChangeLog, src/Rcentroid.c,
+	src/gcdist.c, src/init.c, src/pip.c, src/pip2.c, src/sp.h,
+	src/sp.h.in, src/sp_xports.c, src/surfaceArea.c, src/zerodist.c,
+	tests/agg.R, tests/agg.Rout.save, tests/base.R,
+	tests/base.Rout.save, tests/fail1.R, tests/fail1.Rout.save,
+	tests/grid.R, tests/grid.Rout.save, tests/mp.Rout.save,
+	tests/nc.Rout.save, tests/over.Rout.save, tests/over2.R,
+	tests/over2.Rout.save, tests/pass1.R, tests/pass1.Rout.save,
+	tests/point.in.polygon.R, tests/point.in.polygon.Rout.save,
+	tests/sel.R, tests/sel.Rout.save, tests/sp1.R, tests/sp1.Rout.save,
+	tests/spDists.R, tests/spDists.Rout.save, tests/spplot.R,
+	tests/spplot.Rout.save, tests/zerodist.R, tests/zerodist.Rout.save,
+	vignettes/csdacm.Rnw, vignettes/intro_sp.Rnw, vignettes/over.Rnw: 
+	initial upload from r-forge svn, rev 1727
+
+2015-12-19  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* Initial commit
+
 2015-12-18 23:07  edzer
 
 	* R/SpatialLinesDataFrame-methods.R,
