@@ -1,5 +1,5 @@
 require(sp)
-crs = CRS("+init=epsg:28992")
+crs = CRS("EPSG:28992")
 data("meuse")
 coordinates(meuse) <- ~x+y
 proj4string(meuse) <- crs
