@@ -39,8 +39,8 @@ SEXP sp_zerodist(SEXP pp, SEXP pncol, SEXP zero, SEXP lonlat, SEXP mcmp) {
 	zerodist2 = NUMERIC_POINTER(zero)[0] * NUMERIC_POINTER(zero)[0];
 	x = (double **) malloc((size_t) nrow * sizeof(double *));
 	if (x == NULL)
-		error("could not allocate vector of %u bytes in zerodist",
-			nrow * sizeof(double *));
+		error("could not allocate vector of %lu bytes in zerodist",
+			(long unsigned int) (nrow * sizeof(double *)));
 	for (i = 0; i < nrow; i++)
 		x[i] = &(NUMERIC_POINTER(pp)[i*ncol]);
 
@@ -82,8 +82,8 @@ SEXP sp_duplicates(SEXP pp, SEXP pncol, SEXP zero, SEXP lonlat, SEXP mcmp) {
 	zerodist2 = NUMERIC_POINTER(zero)[0] * NUMERIC_POINTER(zero)[0];
 	x = (double **) malloc((size_t) nrow * sizeof(double *));
 	if (x == NULL)
-		error("could not allocate vector of %u bytes in zerodist",
-			nrow * sizeof(double *));
+		error("could not allocate vector of %lu bytes in zerodist",
+			(long unsigned int) (nrow * sizeof(double *)));
 	for (i = 0; i < nrow; i++)
 		x[i] = &(NUMERIC_POINTER(pp)[i*ncol]);
 
