@@ -1,3 +1,19 @@
+2023-11-25  edzer <edzer.pebesma@uni-muenster.de>
+
+	* src/zerodist.c: type cast long unsigned int
+
+2023-11-25  edzer <edzer.pebesma@uni-muenster.de>
+
+	* demo/meuse.R: prevent +init warning
+
+2023-10-18  edzer <edzer.pebesma@uni-muenster.de>
+
+	* inst/NEWS.Rd, inst/include/sp.h, src/sp.h: update news
+
+2023-10-18  edzer <edzer.pebesma@uni-muenster.de>
+
+	* inst/ChangeLog: update ChangeLog
+
 2023-10-16  edzer <edzer.pebesma@uni-muenster.de>
 
 	* : commit 15346cc02e9cc30e7d7a8dc3f9d63af977658e56 Author: Roger
