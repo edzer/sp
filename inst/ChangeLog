@@ -1,3 +1,7 @@
+2023-11-26  edzer <edzer.pebesma@uni-muenster.de>
+
+	* inst/ChangeLog: update ChangeLog
+
 2023-11-25  edzer <edzer.pebesma@uni-muenster.de>
 
 	* src/zerodist.c: type cast long unsigned int
