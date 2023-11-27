@@ -137,9 +137,11 @@ SEXP SP_PREFIX(Polygon_c)(const SEXP coords, const SEXP n, const SEXP ihole) {
 
     if (! isLogical(valid)) {
         UNPROTECT(pc);
+		/*
         if (isString(valid)) 
 			error(CHAR(STRING_ELT(valid, 0)));
         else 
+		*/
 			error("invalid Polygon object");
     }
 
@@ -264,9 +266,11 @@ SEXP SP_PREFIX(Polygons_c)(const SEXP pls, const SEXP ID) {
     PROTECT(valid = SP_PREFIX(Polygons_validate_c)(ans)); pc++;
     if (!isLogical(valid)) {
         UNPROTECT(pc);
+		/*
         if (isString(valid)) 
 			error(CHAR(STRING_ELT(valid, 0)));
         else
+		*/
 			error("invalid Polygons object");
     }
 
