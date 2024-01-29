@@ -1,13 +1,5 @@
 # Copyright (c) 2003-23 by Barry Rowlingson and Roger Bivand
 
-if (!is.R()) {
-  strsplit <- function(a,b) {
-    if (a == as.character(NA))
-        return(as.character(NA))
-    else list(unlist(unpaste(a, b)))
-  }
-}
-
 if (!isGeneric("rebuild_CRS"))
 	setGeneric("rebuild_CRS", function(obj)
 		standardGeneric("rebuild_CRS"))

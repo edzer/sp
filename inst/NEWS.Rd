@@ -1,5 +1,9 @@
 \name{NEWS} 
 \title{News for Package 'sp'}
+\section{Changes in version 2.1-3 (2024-01-29)}{
+\itemize{
+		\item remove use of deprecated is.R()
+}
 \section{Changes in version 2.0-1 (2023-10-16)}{
 \itemize{
 		\item remove startup message
