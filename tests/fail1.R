@@ -4,7 +4,7 @@ data(meuse)
 x = meuse
 
 coordinates(x) <- c("x", "y")
-try(proj4string(x) <- 1.5)
+inherits(try(proj4string(x) <- 1.5, silent = TRUE), "try-error")
 try(coordinates(a) <- cbind(1:10, 10:1))
 # fails because a is not found; passes if a assigned NULL, see pass1.R
 

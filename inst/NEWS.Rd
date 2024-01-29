@@ -4,6 +4,7 @@
 \itemize{
 		\item remove use of deprecated is.R()
 }
+}
 \section{Changes in version 2.0-1 (2023-10-16)}{
 \itemize{
 		\item remove startup message

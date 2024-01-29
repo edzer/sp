@@ -1,5 +1,5 @@
 
-R version 4.3.1 (2023-06-16) -- "Beagle Scouts"
+R version 4.3.2 (2023-10-31) -- "Eye Holes"
 Copyright (C) 2023 The R Foundation for Statistical Computing
 Platform: x86_64-pc-linux-gnu (64-bit)
 
@@ -285,9 +285,6 @@ Data attributes:
 > 
 > # test behaviour on zero-length objects:
 > demo(meuse, ask = FALSE, echo = FALSE)
-Warning message:
-In CPL_crs_from_input(x) :
-  GDAL Message 1: +init=epsg:XXXX syntax is deprecated. It might return a CRS with a non-EPSG compliant axis order.
 > p = as(meuse, "SpatialPoints")
 > 
 > p[0]
@@ -601,4 +598,4 @@ Error in SpatialPointsDataFrame(pts, df, match.ID = TRUE) :
 > 
 > proc.time()
    user  system elapsed 
-  0.944   0.055   0.995 
+  1.033   1.316   0.843 
