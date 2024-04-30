@@ -80,6 +80,8 @@ setMethod("is.projected", signature(obj = "Spatial"), is.projectedSpatial)
 is.projectedCRS <- function(obj) {
 	p4str <- slot(obj, "projargs")
 	wkt2 <- comment(obj)
+	if (is.null(wkt2) && is.na(p4str)) # fast track for default objects
+	    return(NA)
 	if (requireNamespace("sf", quietly = TRUE)) {
 		    o <- try(sf::st_is_longlat(obj), silent=TRUE)
 # rbgm workaround for +proj=utm +zone=18 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs +# +a=6378137.0 +es=0.006694380022900787 +lon_0=-75d00 +lat_0=0d00 +x_0=500000.0 +y_0=0.0 +k=0.9996 in bgmfiles Final_CAM_Boxes_8.bgm
@@ -92,8 +94,6 @@ is.projectedCRS <- function(obj) {
                         warning("Package sf not available")
                     if (!is.null(wkt2)) # and old rgdal version
 		        substring(wkt2, 1, 3) != "GEO"
-	            else if (is.na(p4str) || !nzchar(p4str))
-		        as.logical(NA)
 	            else
 		        length(grep("longlat", p4str, fixed = TRUE)) == 0L
         } 
