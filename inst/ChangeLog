@@ -1,3 +1,35 @@
+2024-04-30  edzer <edzer.pebesma@uni-muenster.de>
+
+	* DESCRIPTION, inst/NEWS.Rd: version bump; NEWS update
+
+2024-04-30  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* : Merge pull request #144 from bastistician/refix125 re-fix #125
+
+2024-01-29  edzer <edzer.pebesma@uni-muenster.de>
+
+	* inst/NEWS.Rd, tests/fail1.R, tests/pass1.Rout.save: silence test
+	after BDR's advice
+
+2024-01-29  edzer <edzer.pebesma@uni-muenster.de>
+
+	* DESCRIPTION, R/CRS-methods.R, R/mapasp.R, inst/NEWS.Rd,
+	inst/include/sp.h, src/sp.h: remove deprecated is.R()
+
+2023-11-27  edzer <edzer.pebesma@uni-muenster.de>
+
+	* : commit da55f8340e8cf85cb126825c4824593fa7080081 Author: edzer
+	<edzer.pebesma@uni-muenster.de> Date:   Mon Nov 27 12:15:48 2023
+	+0100
+
+2023-11-27  Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+
+	* : Merge pull request #142 from rsbivand/main incr version in repo
+
+2023-11-26  edzer <edzer.pebesma@uni-muenster.de>
+
+	* inst/ChangeLog: update ChangeLog
+
 2023-11-26  edzer <edzer.pebesma@uni-muenster.de>
 
 	* inst/ChangeLog: update ChangeLog
