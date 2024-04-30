@@ -1,5 +1,10 @@
 \name{NEWS} 
 \title{News for Package 'sp'}
+\section{Changes in version 2.1-4 (2024-04-30)}{
+\itemize{
+		\item if CRS is NA, do not require (and depend on) presence of package sf; #144
+}
+}
 \section{Changes in version 2.1-3 (2024-01-29)}{
 \itemize{
 		\item remove use of deprecated is.R()
