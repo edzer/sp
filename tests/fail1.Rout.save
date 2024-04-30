@@ -1,7 +1,7 @@
 
-R version 4.3.1 (2023-06-16) -- "Beagle Scouts"
-Copyright (C) 2023 The R Foundation for Statistical Computing
-Platform: x86_64-pc-linux-gnu (64-bit)
+R version 4.4.0 (2024-04-24) -- "Puppy Cup"
+Copyright (C) 2024 The R Foundation for Statistical Computing
+Platform: x86_64-pc-linux-gnu
 
 R is free software and comes with ABSOLUTELY NO WARRANTY.
 You are welcome to redistribute it under certain conditions.
@@ -21,9 +21,8 @@ Type 'q()' to quit R.
 > x = meuse
 > 
 > coordinates(x) <- c("x", "y")
-> try(proj4string(x) <- 1.5)
-Error in (function (classes, fdef, mtable)  : 
-  unable to find an inherited method for function 'proj4string<-' for signature '"SpatialPointsDataFrame", "numeric"'
+> inherits(try(proj4string(x) <- 1.5, silent = TRUE), "try-error")
+[1] TRUE
 > try(coordinates(a) <- cbind(1:10, 10:1))
 Error : object 'a' not found
 > # fails because a is not found; passes if a assigned NULL, see pass1.R
@@ -254,4 +253,4 @@ GEOGCRS["unknown",
 > 
 > proc.time()
    user  system elapsed 
-  0.815   0.052   0.898 
+  0.926   1.288   0.705 
