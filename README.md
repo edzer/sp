@@ -4,9 +4,9 @@
 [![cran checks](https://badges.cranchecks.info/worst/sp.svg)](https://cran.r-project.org/web/checks/check_results_sp.html)
 [![Downloads](http://cranlogs.r-pkg.org/badges/sp?color=brightgreen)](http://www.r-pkg.org/pkg/sp)
 
-R Classes and Methods for Spatial Data.
+R Classes and Methods for Spatial Data. Note that this is package will (slowly) be deprecated, in favor of package `sf`. It is in maintenance mode, and currently requires `sf` for coordinate reference system validation and coordinate transformation, conversion and (re)projection.
 
-From version 2.1-0, `sp` loses `maptools`, `rgdal` and `rgeos` as suggested packages.
+From version 2.1-0, `sp` has dropped `maptools`, `rgdal` and `rgeos` as suggested packages.
 
 From version 2.0-0, `sp` evolution status is changed to `2L` to use **sf** internally in place of `rgdal`, from default `0L` until now. See [this report](https://r-spatial.org/r/2023/05/15/evolution4.html) for adaptation details, and [this report](https://r-spatial.org/r/2023/04/10/evolution3.html) for progress on retiring `maptools`, `rgdal` and `rgeos`.
 
