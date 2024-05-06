@@ -33,7 +33,7 @@ is available from package `sf`, and is loaded by
 
 ```{r}
 library(sf)
-nc <- as(read_sf(system.file("gpkg/nc.gpkg", package="sf")), "Spatial")
+nc <- as(st_read(system.file("gpkg/nc.gpkg", package="sf")), "Spatial")
 ```
 
 ## Using base plot
