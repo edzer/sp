@@ -898,7 +898,7 @@ spplot.stgdf <- function(obj, zcol = 1, ..., format = NULL) {
 	if (is.null(format)) format <- "%Y-%m-%d %H:%M:%S"
 	cc <- coordinates(obj)
 	df <- unstack(data.frame(obj[[zcol]], cc[,3]))
-	ns <- as.character(coordinatevalues(getGridTopology(obj))[[3]] + ISOdate(1970,1,1,0,0,0), format = format)
+	ns <- format(coordinatevalues(getGridTopology(obj))[[3]] + ISOdate(1970,1,1,0,0,0), format = format)
 	cc2d <- cc[cc[,3] == min(cc[,3]), 1:2]
 	obj <- SpatialPixelsDataFrame(cc2d, df)
 	spplot(obj, names.attr = ns,...)
@@ -913,7 +913,8 @@ setMethod("spplot", "SpatialTimeGridDataFrame", spplot.stgdf)
 .iwidth <- 6
 .iheight <- 4
 <<afig>>
-print(spplot(x, format = "%H:%M:%S", as.table=TRUE))
+#print(spplot(x, format = "%H:%M:%S", as.table=TRUE))
+print(spplot(x, as.table=TRUE))
 <<zfig>>
 <<figreset>>
 @
