@@ -17,7 +17,7 @@ Authors@R: c(person("Edzer", "Pebesma", role = c("aut", "cre"),
                         person("Patrick", "Hausmann", role = "ctb"))
 Depends: R (>= 3.5.0), methods
 Imports: utils, stats, graphics, grDevices, lattice, grid
-Suggests: RColorBrewer, gstat, deldir, knitr, rmarkdown, sf, terra, raster
+Suggests: RColorBrewer, gstat, deldir, knitr, maps, rmarkdown, sf, terra, raster
 Description: Classes and methods for spatial
   data; the classes document where the spatial location information
   resides, for 2D or 3D data. Utility functions are provided, e.g. for
