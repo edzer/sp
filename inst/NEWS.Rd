@@ -1,5 +1,11 @@
 \name{NEWS} 
 \title{News for Package 'sp'}
+\section{Changes in version 2.1-5 (2024-xx-yy)}{
+\itemize{
+		\item add pkgdown site
+		\item update sp map gallery and move to vignettes
+}
+}
 \section{Changes in version 2.1-4 (2024-04-30)}{
 \itemize{
 		\item if CRS is NA, do not require (and depend on) presence of package sf; #144
