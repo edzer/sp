@@ -11,22 +11,22 @@ SEXP R_point_in_polygon_sp(const SEXP px, const SEXP py, const SEXP polx,
 	SEXP ret, px1, py1, polx1, poly1;
 
 	if (MAYBE_REFERENCED(px)) {
-		PROTECT(px1 = duplicate(px));
+		PROTECT(px1 = Rf_duplicate(px));
 		pc++;
 	} else
 		px1 = px;
 	if (MAYBE_REFERENCED(py)) {
-		PROTECT(py1 = duplicate(py));
+		PROTECT(py1 = Rf_duplicate(py));
 		pc++;
 	} else
 		py1 = py;
 	if (MAYBE_REFERENCED(polx)) {
-		PROTECT(polx1 = duplicate(polx));
+		PROTECT(polx1 = Rf_duplicate(polx));
 		pc++;
 	} else
 		polx1 = polx;
 	if (MAYBE_REFERENCED(poly)) {
-		PROTECT(poly1 = duplicate(poly));
+		PROTECT(poly1 = Rf_duplicate(poly));
 		pc++;
 	} else
 		poly1 = poly;
