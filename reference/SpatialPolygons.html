@@ -4,7 +4,7 @@ lists of Polygons objects and data.frames"><!-- mathjax --><script src="https://
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]--></head><body data-spy="scroll" data-target="#toc">
-    
+
 
     <div class="container template-reference-topic">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -29,7 +29,7 @@ lists of Polygons objects and data.frames"><!-- mathjax --><script src="https://
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
-     
+
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu"><li>
@@ -45,20 +45,20 @@ lists of Polygons objects and data.frames"><!-- mathjax --><script src="https://
       </ul><ul class="nav navbar-nav navbar-right"><li>
   <a href="https://github.com/edzer/sp/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
-     
+
   </a>
 </li>
       </ul></div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
 
-      
+
 
       </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>create objects of class SpatialPolygons or SpatialPolygonsDataFrame</h1>
-    
+
     <div class="hidden name"><code>SpatialPolygons.Rd</code></div>
     </div>
 
@@ -77,41 +77,43 @@ lists of <code>Polygons</code> objects and <code>data.frame</code>s</p>
 
     <div id="arguments">
     <h2>Arguments</h2>
-    <dl><dt>coords</dt>
+
+
+<dl><dt id="arg-coords">coords<a class="anchor" aria-label="anchor" href="#arg-coords"></a></dt>
 <dd><p>2-column numeric matrix with coordinates; first point (row) should
 equal last coordinates (row); if the hole argument is not given, the status of the polygon as a hole or an island will be taken from the ring direction, with clockwise meaning island, and counter-clockwise meaning hole</p></dd>
 
-<dt>hole</dt>
+<dt id="arg-hole">hole<a class="anchor" aria-label="anchor" href="#arg-hole"></a></dt>
 <dd><p>logical value for setting polygon as hole or not; if the hole argument is not given, the status of the polygon as a hole or an island will be taken from the ring direction, with clockwise meaning island, and counter-clockwise meaning hole</p></dd>
 
-<dt>proj4string</dt>
+<dt id="arg-proj-string">proj4string<a class="anchor" aria-label="anchor" href="#arg-proj-string"></a></dt>
 <dd><p>projection string of class <a href="CRS-class.html">CRS-class</a></p></dd>
 
-<dt>srl</dt>
+<dt id="arg-srl">srl<a class="anchor" aria-label="anchor" href="#arg-srl"></a></dt>
 <dd><p>list with <a href="Polygon-class.html">Polygon-class</a> objects</p></dd>
 
-<dt>ID</dt>
+<dt id="arg-id">ID<a class="anchor" aria-label="anchor" href="#arg-id"></a></dt>
 <dd><p>character vector of length one with identifier</p></dd>
 
-<dt>Srl</dt>
+<dt id="arg-srl">Srl<a class="anchor" aria-label="anchor" href="#arg-srl"></a></dt>
 <dd><p>list with objects of class <a href="Polygons-class.html">Polygons-class</a></p></dd>
 
-<dt>pO</dt>
+<dt id="arg-po">pO<a class="anchor" aria-label="anchor" href="#arg-po"></a></dt>
 <dd><p>integer vector; plotting order; if missing in reverse order of Polygons area</p></dd>
 
-<dt>Sr</dt>
+<dt id="arg-sr">Sr<a class="anchor" aria-label="anchor" href="#arg-sr"></a></dt>
 <dd><p>object of class <a href="SpatialPolygons-class.html">SpatialPolygons-class</a></p></dd>
 
-<dt>data</dt>
+<dt id="arg-data">data<a class="anchor" aria-label="anchor" href="#arg-data"></a></dt>
 <dd><p>object of class <code>data.frame</code>; the number of rows in <code>data</code> should equal the number of <a href="Polygons-class.html">Polygons-class</a> objects in <code>Sr</code></p></dd>
 
-<dt>match.ID</dt>
+<dt id="arg-match-id">match.ID<a class="anchor" aria-label="anchor" href="#arg-match-id"></a></dt>
 <dd><p>logical: (default TRUE): match SpatialPolygons
 member Polygons ID slot values with data frame row names, and
 re-order the data frame rows if necessary. If character: indicates
 the column in <code>data</code> with Polygons IDs to match</p></dd>
 
-<dt>SP</dt>
+<dt id="arg-sp">SP<a class="anchor" aria-label="anchor" href="#arg-sp"></a></dt>
 <dd><p>object of class <a href="SpatialPolygons-class.html">SpatialPolygons-class</a></p></dd>
 
 </dl></div>
@@ -119,12 +121,12 @@ the column in <code>data</code> with Polygons IDs to match</p></dd>
     <h2>Details</h2>
     <p>In <code>Polygon</code>, if the hole argument is not given, the status of the polygon as a hole or an island will be taken from the ring direction, with clockwise meaning island, and counter-clockwise meaning hole. In <code>Polygons</code>, if all of the member Polygon objects are holes, the largest by area will be converted to island status. Until 2010-04-17, version 0.9-61, the area of this converted object was erroneously left at its hole value of zero. Thanks to Patrick Giraudoux for spotting the bug.</p>
 <p>The class definitions used for polygons in <span class="pkg">sp</span> do not accord with those of
-the simple features specification of the Open Geospatial Consortium. The <span class="pkg">rgeos</span> package, an interface to Geometry Engine -- Open Source (GEOS), uses this
+the simple features specification of the Open Geospatial Consortium. The <span class="pkg">rgeos</span> package, an interface to Geometry Engine – Open Source (GEOS), uses this
 specification, in which each hole (interior ring) must be associated with
 its containing exterior ring. In order to avoid introducing incompatible
 changes into the class definition of Polygons objects, a comment has been
 added as a single character string to each such object. Here we can trust
-the data source to assign the hole status correctly, and use round-trip coercion to <code>sf</code> to add such comments to each Polygons member of  
+the data source to assign the hole status correctly, and use round-trip coercion to <code>sf</code> to add such comments to each Polygons member of
 the polygons slot of this SpatialPolygons object. Exterior rings are coded
 zero, while interior rings are coded with the 1-based index of the
 exterior ring to which they belong. SpatialPolygons objects created by reading using <code>sf</code> have the comments set on input, as OGR also uses SFS.</p>
@@ -132,15 +134,11 @@ exterior ring to which they belong. SpatialPolygons objects created by reading u
     </div>
     <div id="value">
     <h2>Value</h2>
-    
-
-<p><code>Polygon</code> returns an object of class <code>Polygon</code>;
+    <p><code>Polygon</code> returns an object of class <code>Polygon</code>;
 <code>Polygons</code> returns an object of class <code>Polygons</code>;
 <code>SpatialPolygons</code> returns object of class <code>SpatialPolygons</code>;
-<code>SpatialPolygonsDataFrame</code> returns object of class <code>SpatialPolygonsDataFrame</code></p>
-
-
-<p><code>getSpatialPolygonsLabelPoints</code> returns an object of class
+<code>SpatialPolygonsDataFrame</code> returns object of class <code>SpatialPolygonsDataFrame</code>
+<code>getSpatialPolygonsLabelPoints</code> returns an object of class
 <code>SpatialPoints</code> with label points.</p>
     </div>
     <div id="see-also">
@@ -164,15 +162,15 @@ exterior ring to which they belong. SpatialPolygons objects created by reading u
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.9.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.0.</p>
 </div>
 
       </footer></div>
 
-  
 
 
-  
+
+
 
   </body></html>
 
