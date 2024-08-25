@@ -43,7 +43,7 @@ is TRUE }
 \item{...}{ arguments, passed to \code{xyplot}, or \code{plot} if 
 identification is required. }
 \item{key.space}{location of the key}
-\item{scales}{scales argument as passed to \link{xyplot}}
+\item{scales}{scales argument as passed to \link[lattice]{xyplot}}
 \item{xlab}{x-axis label}
 \item{ylab}{y-axis label}
 \item{panel}{panel function used}
@@ -57,7 +57,7 @@ the indexes (row numbers) of identified points.
 }
 %\references{ }
 \author{ Edzer Pebesma }
-\seealso{\link{xyplot}, \link{mapasp}, \link{identify}}
+\seealso{\link[lattice]{xyplot}, \link{mapasp}, \link{identify}}
 \examples{
 data(meuse)
 coordinates(meuse) <- c("x", "y") # promote to SpatialPointsDataFrame

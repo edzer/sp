@@ -30,6 +30,6 @@ degreeLabelsNS(x)
 	for other data, mapasp returns "iso".
 }
 \note{the values for \code{x} are typically obtained from \link{axTicks}}
-\seealso{ \link{levelplot} in package \code{lattice}}
+\seealso{ \link[lattice]{levelplot} in package \code{lattice}}
 
 \keyword{dplot}

@@ -64,9 +64,9 @@ get_col_regions()
 \item{zcol}{ character; attribute name(s) or column number(s) in attribute table }
 \item{names.attr}{ names to use in panel, if different from zcol names }
 \item{scales}{ scales argument to be passed to Lattice plots; use
-\code{list(draw = TRUE)} to draw axes scales; see \link{xyplot} for full options }
-\item{...}{ other arguments passed to \link{levelplot} (grids, polygons) or 
-\link{xyplot} (points) }
+\code{list(draw = TRUE)} to draw axes scales; see \link[lattice]{xyplot} for full options }
+\item{...}{ other arguments passed to \link[lattice]{levelplot} (grids, polygons) or 
+\link[lattice]{xyplot} (points) }
 \item{xlab}{label for x-axis }
 \item{ylab}{label for y-axis }
 \item{aspect}{aspect ratio for spatial axes; defaults to "iso" (one unit
@@ -145,14 +145,14 @@ of lower-left}
 \item{\code{page}}{to add marks to each plotted page}
 }
 
-for useful values see the appropriate documentation of \link{xyplot}
-(in case of points), and \link{levelplot} (otherwise).
+for useful values see the appropriate documentation of \link[lattice]{xyplot}
+(in case of points), and \link[lattice]{levelplot} (otherwise).
 
 If \code{obj} is of SpatialPointsDataFrame, the following options are
 useful to pass:
 \describe{
 \item{\code{key.space}}{ character: "bottom", "right", "left" or "right" to denote
-key location, or list: see argument key in the help for \link{xyplot} what
+key location, or list: see argument key in the help for \link[lattice]{xyplot} what
 the options are}
 \item{\code{legendEntries}}{ character; array with key legend (text) entries; 
 suitable defaults obtained from data }

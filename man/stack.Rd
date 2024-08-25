@@ -38,7 +38,7 @@ of \code{data} stacked }
 column \code{ind} that indicates the variable stacked; it also
 replicates the coordinates. }
 
-\seealso{ \link{spplot}, \link{levelplot} in package \code{lattice}, and \link{stack}}
+\seealso{ \link{spplot}, \link[lattice]{levelplot}, and \link{stack}}
 \examples{
 library(lattice)
 data(meuse.grid) # data frame
