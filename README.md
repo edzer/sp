@@ -20,4 +20,4 @@ See:
 [R News 5 (2)](https://cran.r-project.org/doc/Rnews/Rnews_2005-2.pdf).
 * Roger S. Bivand, Edzer Pebesma, Virgilio Gómez-Rubio, 2013. Applied Spatial Data 
 Analysis with R, [Second edition](https://www.asdar-book.org/). Springer, NY.  
-* an sp [maps gallery](https://edzer.github.io/sp).
+* an sp [maps gallery](https://edzer.github.io/sp/articles/sp_gallery.html).
