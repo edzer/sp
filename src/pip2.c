@@ -14,17 +14,17 @@ SEXP tList(const SEXP nl, const SEXP m);
 
 
 SEXP tList(const SEXP nl, const SEXP m0) {
-    int n=length(nl), m=INTEGER_POINTER(m0)[0], i, ii, j, jj, *k, pc=0;
+    int n=Rf_length(nl), m=INTEGER_POINTER(m0)[0], i, ii, j, jj, *k, pc=0;
     SEXP res;
     PROTECT(res = NEW_LIST(m)); pc++;
     k = (int *) R_alloc((size_t) m, sizeof(int));
     for (j=0; j<m; j++) k[j] = 0;
     for (i=0; i<n; i++) {
-        ii = length(VECTOR_ELT(nl, i));
+        ii = Rf_length(VECTOR_ELT(nl, i));
         if (ii > 0) {
             for (j=0; j<ii; j++) {
                 jj = INTEGER_POINTER(VECTOR_ELT(nl, i))[j] - ROFFSET;
-                if (jj < 0 || jj >= m) error("invalid indices");
+                if (jj < 0 || jj >= m) Rf_error("invalid indices");
                 k[jj]++;
             }
         }
@@ -32,7 +32,7 @@ SEXP tList(const SEXP nl, const SEXP m0) {
     for (j=0; j<m; j++) SET_VECTOR_ELT(res, j, NEW_INTEGER(k[j]));
     for (j=0; j<m; j++) k[j] = 0;
     for (i=0; i<n; i++) {
-        ii = length(VECTOR_ELT(nl, i));
+        ii = Rf_length(VECTOR_ELT(nl, i));
         if (ii > 0) {
             for (j=0; j<ii; j++) {
                 jj = INTEGER_POINTER(VECTOR_ELT(nl, i))[j] - ROFFSET;
@@ -46,27 +46,27 @@ SEXP tList(const SEXP nl, const SEXP m0) {
 }
 
 SEXP pointsInBox(const SEXP lb, const SEXP px, const SEXP py) {
-    int n=length(px), m=length(lb), i, j, jj, *k, sk, pc=0;
+    int n=Rf_length(px), m=Rf_length(lb), i, j, jj, *k, sk, pc=0;
     double *x, ppx, ppy;
     SEXP res, px1, py1, lb1;
 
 	/*
-    PROTECT(px1 = MAYBE_REFERENCED(px) ? duplicate(px) : px); pc++;
-    PROTECT(py1 = MAYBE_REFERENCED(py) ? duplicate(py) : py); pc++;
-    PROTECT(lb1 = MAYBE_REFERENCED(lb) ? duplicate(lb) : lb); pc++;
+    PROTECT(px1 = MAYBE_REFERENCED(px) ? Rf_duplicate(px) : px); pc++;
+    PROTECT(py1 = MAYBE_REFERENCED(py) ? Rf_duplicate(py) : py); pc++;
+    PROTECT(lb1 = MAYBE_REFERENCED(lb) ? Rf_duplicate(lb) : lb); pc++;
 	*/
 	if (MAYBE_REFERENCED(px)) {
-		PROTECT(px1 = duplicate(px));
+		PROTECT(px1 = Rf_duplicate(px));
 		pc++;
 	} else
 		px1 = px;
 	if (MAYBE_REFERENCED(py)) {
-		PROTECT(py1 = duplicate(py));
+		PROTECT(py1 = Rf_duplicate(py));
 		pc++;
 	} else
 		py1 = py;
 	if (MAYBE_REFERENCED(lb)) {
-		PROTECT(lb1 = duplicate(lb));
+		PROTECT(lb1 = Rf_duplicate(lb));
 		pc++;
 	} else
 		lb1 = lb;

@@ -34,12 +34,12 @@ SEXP sp_zerodist(SEXP pp, SEXP pncol, SEXP zero, SEXP lonlat, SEXP mcmp) {
 	ll = INTEGER_POINTER(lonlat)[0];
 	cmp = INTEGER_POINTER(mcmp)[0];
 	if (ll && ncol != 2)
-		error("for longlat data, coordinates should be two-dimensional");
+		Rf_error("for longlat data, coordinates should be two-dimensional");
 	nrow = LENGTH(pp)/ncol;
 	zerodist2 = NUMERIC_POINTER(zero)[0] * NUMERIC_POINTER(zero)[0];
 	x = (double **) malloc((size_t) nrow * sizeof(double *));
 	if (x == NULL)
-		error("could not allocate vector of %lu bytes in zerodist",
+		Rf_error("could not allocate vector of %lu bytes in zerodist",
 			(long unsigned int) (nrow * sizeof(double *)));
 	for (i = 0; i < nrow; i++)
 		x[i] = &(NUMERIC_POINTER(pp)[i*ncol]);
@@ -49,7 +49,7 @@ SEXP sp_zerodist(SEXP pp, SEXP pncol, SEXP zero, SEXP lonlat, SEXP mcmp) {
 			if (is_zero(x[i], x[j], ncol, ll, zerodist2, cmp)) {
 				which = (unsigned int *) realloc(which, (size_t) (nzero+2) * sizeof(unsigned int));
 				if (which == NULL)
-					error("could not allocate vector of %u bytes in zerodist",
+					Rf_error("could not allocate vector of %u bytes in zerodist",
 						nzero + 2);
 				which[nzero] = j; /* lowest */
 				which[nzero + 1] = i;
@@ -77,12 +77,12 @@ SEXP sp_duplicates(SEXP pp, SEXP pncol, SEXP zero, SEXP lonlat, SEXP mcmp) {
 	ll = INTEGER_POINTER(lonlat)[0];
 	cmp = INTEGER_POINTER(mcmp)[0];
 	if (ll && ncol != 2)
-		error("for longlat data, coordinates should be two-dimensional");
+		Rf_error("for longlat data, coordinates should be two-dimensional");
 	nrow = LENGTH(pp)/ncol;
 	zerodist2 = NUMERIC_POINTER(zero)[0] * NUMERIC_POINTER(zero)[0];
 	x = (double **) malloc((size_t) nrow * sizeof(double *));
 	if (x == NULL)
-		error("could not allocate vector of %lu bytes in zerodist",
+		Rf_error("could not allocate vector of %lu bytes in zerodist",
 			(long unsigned int) (nrow * sizeof(double *)));
 	for (i = 0; i < nrow; i++)
 		x[i] = &(NUMERIC_POINTER(pp)[i*ncol]);
