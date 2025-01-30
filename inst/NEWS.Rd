@@ -1,5 +1,10 @@
 \name{NEWS} 
 \title{News for Package 'sp'}
+\section{Changes in version 2.2-0 (2024-xx-yy)}{
+\itemize{
+		\item remove exporting C symbols previously used by rgdal and rgeos
+}
+}
 \section{Changes in version 2.1-5 (2024-xx-yy)}{
 \itemize{
 		\item add pkgdown site

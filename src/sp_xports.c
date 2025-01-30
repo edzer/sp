@@ -3,16 +3,16 @@
 #include "sp.h"
 /* remember to touch local_stubs.c */
 
-SEXP SP_PREFIX(sp_linkingTo_version)(void) {
+/* SEXP sp_linkingTo_version(void) {
     SEXP ans;
     PROTECT(ans = NEW_CHARACTER(1));
     SET_STRING_ELT(ans, 0,
-           COPY_TO_USER_STRING(SP_VERSION));
+           Rf_mkChar(SP_VERSION));
     UNPROTECT(1);
     return(ans);
-}
+} */
 
-SEXP SP_PREFIX(Polygon_c)(const SEXP coords, const SEXP n, const SEXP ihole) {
+SEXP Polygon_c(const SEXP coords, const SEXP n, const SEXP ihole) {
 
     SEXP SPans, labpt, Area, ringDir, hole, cls;
     double area, xc, yc;
@@ -55,8 +55,8 @@ SEXP SP_PREFIX(Polygon_c)(const SEXP coords, const SEXP n, const SEXP ihole) {
 
 	/* from here one, ccopy is closed, and can be modified */
 
-    /* SP_PREFIX(spRFindCG_c)(n, ccopy, &xc, &yc, &area); */
-    SP_PREFIX(spRFindCG_c)(Rf_getAttrib(ccopy, R_DimSymbol), ccopy, &xc, &yc, &area);
+    /* spRFindCG_c(n, ccopy, &xc, &yc, &area); */
+    spRFindCG_c(Rf_getAttrib(ccopy, R_DimSymbol), ccopy, &xc, &yc, &area);
     if (fabs(area) < DBL_EPSILON) {
         if (!R_FINITE(xc) || !R_FINITE(yc)) {
             if (nn == 1) {
@@ -133,7 +133,7 @@ SEXP SP_PREFIX(Polygon_c)(const SEXP coords, const SEXP n, const SEXP ihole) {
     SET_SLOT(SPans, Rf_install("hole"), hole);
     SET_SLOT(SPans, Rf_install("ringDir"), ringDir);
 
-    PROTECT(valid = SP_PREFIX(Polygon_validate_c)(SPans)); pc++;
+    PROTECT(valid = Polygon_validate_c(SPans)); pc++;
 
     if (! Rf_isLogical(valid)) {
         UNPROTECT(pc);
@@ -149,7 +149,7 @@ SEXP SP_PREFIX(Polygon_c)(const SEXP coords, const SEXP n, const SEXP ihole) {
     return(SPans);
 }
 
-SEXP SP_PREFIX(Polygon_validate_c)(const SEXP obj) {
+SEXP Polygon_validate_c(const SEXP obj) {
 
     int pc=0;
     int n;
@@ -161,7 +161,7 @@ SEXP SP_PREFIX(Polygon_validate_c)(const SEXP obj) {
         || NUMERIC_POINTER(coords)[n] != NUMERIC_POINTER(coords)[(2*n)-1]) {
        PROTECT(ans = NEW_CHARACTER(1)); pc++;
        SET_STRING_ELT(ans, 0,
-           COPY_TO_USER_STRING("ring not closed"));
+           Rf_mkChar("ring not closed"));
        UNPROTECT(pc);
        return(ans);
     }
@@ -170,7 +170,7 @@ SEXP SP_PREFIX(Polygon_validate_c)(const SEXP obj) {
         !R_FINITE(NUMERIC_POINTER(labpt)[1])) {
         PROTECT(ans = NEW_CHARACTER(1)); pc++;
         SET_STRING_ELT(ans, 0,
-           COPY_TO_USER_STRING("infinite label point"));
+           Rf_mkChar("infinite label point"));
        UNPROTECT(pc);
        return(ans);
     }
@@ -180,7 +180,7 @@ SEXP SP_PREFIX(Polygon_validate_c)(const SEXP obj) {
     return(ans);
 }
 
-SEXP SP_PREFIX(Polygons_c)(const SEXP pls, const SEXP ID) {
+SEXP Polygons_c(const SEXP pls, const SEXP ID) {
 
     SEXP ans, labpt, Area, plotOrder, crds, pl, n, hole, pls1, ID1, cls;
     int nps, i, pc=0, sumholes;
@@ -193,13 +193,13 @@ SEXP SP_PREFIX(Polygons_c)(const SEXP pls, const SEXP ID) {
 		pc++;
 	} else 
 		pls1 = pls; 
-    // PROTECT(pls1 = MAYBE_REFERENCED(pls) ? duplicate(pls) : pls); pc++;
+    // PROTECT(pls1 = MAYBE_REFERENCED(pls) ? Rf_duplicate(pls) : pls); pc++;
 	if (MAYBE_REFERENCED(ID)) {
 		PROTECT(ID1 = Rf_duplicate(ID)); 
 		pc++;
 	} else 
 		ID1 = ID; 
-    // PROTECT(ID1 = MAYBE_REFERENCED(ID) ? duplicate(ID) : ID); pc++;
+    // PROTECT(ID1 = MAYBE_REFERENCED(ID) ? Rf_duplicate(ID) : ID); pc++;
 
     nps = Rf_length(pls1);
     fuzz = R_pow(DBL_EPSILON, (2.0/3.0));
@@ -231,7 +231,7 @@ SEXP SP_PREFIX(Polygons_c)(const SEXP pls, const SEXP ID) {
             R_DimSymbol))[0];
         PROTECT(hole = NEW_LOGICAL(1)); pc++;
         LOGICAL_POINTER(hole)[0] = FALSE;
-        pl = SP_PREFIX(Polygon_c)(crds, n, hole);
+        pl = Polygon_c(crds, n, hole);
 /* bug 100417 Patrick Giraudoux */
         holes[po[0] - R_OFFSET] = LOGICAL_POINTER(hole)[0];
         SET_VECTOR_ELT(pls1, (po[0] - R_OFFSET), pl);
@@ -263,8 +263,8 @@ SEXP SP_PREFIX(Polygons_c)(const SEXP pls, const SEXP ID) {
         (po[0]-1)), Rf_install("labpt")))[1];
     SET_SLOT(ans, Rf_install("labpt"), labpt);
 
-    PROTECT(valid = SP_PREFIX(Polygons_validate_c)(ans)); pc++;
-    if (! Rf_isLogical(valid)) {
+    PROTECT(valid = Polygons_validate_c(ans)); pc++;
+    if (!Rf_isLogical(valid)) {
         UNPROTECT(pc);
 		/*
         if (isString(valid)) 
@@ -278,7 +278,7 @@ SEXP SP_PREFIX(Polygons_c)(const SEXP pls, const SEXP ID) {
     return(ans);
 }
 
-SEXP SP_PREFIX(Polygons_validate_c)(const SEXP obj) {
+SEXP Polygons_validate_c(const SEXP obj) {
 
     int pc=0;
     int i, n;
@@ -292,7 +292,7 @@ SEXP SP_PREFIX(Polygons_validate_c)(const SEXP obj) {
            R_ClassSymbol), 0)), cls) != 0) {
               PROTECT(ans = NEW_CHARACTER(1)); pc++;
               SET_STRING_ELT(ans, 0,
-              COPY_TO_USER_STRING("Polygons slot contains non-Polygon object"));
+              Rf_mkChar("Polygons slot contains non-Polygon object"));
               UNPROTECT(pc);
               return(ans);
         }
@@ -301,7 +301,7 @@ SEXP SP_PREFIX(Polygons_validate_c)(const SEXP obj) {
     if (n != Rf_length(GET_SLOT(obj, Rf_install("plotOrder")))) {
         PROTECT(ans = NEW_CHARACTER(1)); pc++;
         SET_STRING_ELT(ans, 0,
-           COPY_TO_USER_STRING("plotOrder and Polygons differ in length"));
+           Rf_mkChar("plotOrder and Polygons differ in length"));
         UNPROTECT(pc);
         return(ans);
     }
@@ -311,7 +311,7 @@ SEXP SP_PREFIX(Polygons_validate_c)(const SEXP obj) {
       !R_FINITE(NUMERIC_POINTER(labpt)[1])) {
       PROTECT(ans = NEW_CHARACTER(1)); pc++;
       SET_STRING_ELT(ans, 0,
-         COPY_TO_USER_STRING("infinite label point"));
+         Rf_mkChar("infinite label point"));
       UNPROTECT(pc);
       return(ans);
     }
@@ -322,7 +322,7 @@ SEXP SP_PREFIX(Polygons_validate_c)(const SEXP obj) {
 
 }
 
-SEXP SP_PREFIX(SpatialPolygons_c)(const SEXP pls, const SEXP pO, 
+SEXP SpatialPolygons_c(const SEXP pls, const SEXP pO, 
 		const SEXP p4s) {
 
     SEXP ans, bbox, ppO, cls;
@@ -331,20 +331,20 @@ SEXP SP_PREFIX(SpatialPolygons_c)(const SEXP pls, const SEXP pO,
 // rchk MAKE_CLASS allocates RSB 180602
     PROTECT(cls = MAKE_CLASS("SpatialPolygons")); pc++;
     PROTECT(ans = NEW_OBJECT(cls)); pc++;
-    // SET_SLOT(ans, Rf_install("polygons"), MAYBE_REFERENCED(pls) ? duplicate(pls) : pls);
+    // SET_SLOT(ans, Rf_install("polygons"), MAYBE_REFERENCED(pls) ? Rf_duplicate(pls) : pls);
     SET_SLOT(ans, Rf_install("polygons"), pls);
-    // SET_SLOT(ans, Rf_install("proj4string"), MAYBE_REFERENCED(p4s) ? duplicate(p4s) : p4s);
+    // SET_SLOT(ans, Rf_install("proj4string"), MAYBE_REFERENCED(p4s) ? Rf_duplicate(p4s) : p4s);
     SET_SLOT(ans, Rf_install("proj4string"), p4s);
 
     if (pO == R_NilValue) {
-		PROTECT(ppO = SP_PREFIX(SpatialPolygons_plotOrder_c)(pls));
+		PROTECT(ppO = SpatialPolygons_plotOrder_c(pls));
 		pc++;
     } else
 		ppO = pO;
-    // SET_SLOT(ans, Rf_install("plotOrder"), MAYBE_REFERENCED(pO) ? duplicate(pO) : pO);
+    // SET_SLOT(ans, Rf_install("plotOrder"), MAYBE_REFERENCED(pO) ? Rf_duplicate(pO) : pO);
     SET_SLOT(ans, Rf_install("plotOrder"), ppO);
 
-    PROTECT(bbox = SP_PREFIX(bboxCalcR_c(pls))); pc++;
+    PROTECT(bbox = bboxCalcR_c(pls)); pc++;
     SET_SLOT(ans, Rf_install("bbox"), bbox);
 
     UNPROTECT(pc);
@@ -352,14 +352,14 @@ SEXP SP_PREFIX(SpatialPolygons_c)(const SEXP pls, const SEXP pO,
 
 }
 
-SEXP SP_PREFIX(SpatialPolygons_plotOrder_c)(const SEXP pls) {
+SEXP SpatialPolygons_plotOrder_c(const SEXP pls) {
 
     SEXP plotOrder, pls1;
     int pc=0, ng, i;
     int *po;
     double *areas;
 
-    // PROTECT(pls1 = MAYBE_REFERENCED(pls) ? duplicate(pls) : pls); pc++;
+    // PROTECT(pls1 = MAYBE_REFERENCED(pls) ? Rf_duplicate(pls) : pls); pc++;
 	if (MAYBE_REFERENCED(pls)) {
 		PROTECT(pls1 = Rf_duplicate(pls));
 		pc++;
@@ -384,7 +384,7 @@ SEXP SP_PREFIX(SpatialPolygons_plotOrder_c)(const SEXP pls) {
 
 }
 
-SEXP SP_PREFIX(SpatialPolygons_validate_c)(const SEXP obj) {
+SEXP SpatialPolygons_validate_c(const SEXP obj) {
 
     int pc=0;
     int i, n;
@@ -398,7 +398,7 @@ SEXP SP_PREFIX(SpatialPolygons_validate_c)(const SEXP obj) {
            R_ClassSymbol), 0)), cls) != 0) {
              PROTECT(ans = NEW_CHARACTER(1)); pc++;
              SET_STRING_ELT(ans, 0,
-             COPY_TO_USER_STRING("polygons slot contains non-Polygons object"));
+             Rf_mkChar("polygons slot contains non-Polygons object"));
              UNPROTECT(pc);
              return(ans);
         }
@@ -407,7 +407,7 @@ SEXP SP_PREFIX(SpatialPolygons_validate_c)(const SEXP obj) {
     if (n != Rf_length(GET_SLOT(obj, Rf_install("plotOrder")))) {
         PROTECT(ans = NEW_CHARACTER(1)); pc++;
         SET_STRING_ELT(ans, 0,
-           COPY_TO_USER_STRING("plotOrder and polygons differ in length"));
+           Rf_mkChar("plotOrder and polygons differ in length"));
         UNPROTECT(pc);
         return(ans);
     }
@@ -419,13 +419,13 @@ SEXP SP_PREFIX(SpatialPolygons_validate_c)(const SEXP obj) {
 
 }
 
-SEXP SP_PREFIX(SpatialPolygons_getIDs_c)(const SEXP obj) {
+SEXP SpatialPolygons_getIDs_c(const SEXP obj) {
 
     int pc=0;
     int i, n;
     SEXP pls, IDs, obj1;
 
-    // PROTECT(obj1 = MAYBE_REFERENCED(obj) ? duplicate(obj) : obj); pc++;
+    // PROTECT(obj1 = MAYBE_REFERENCED(obj) ? Rf_duplicate(obj) : obj); pc++;
 	if (MAYBE_REFERENCED(obj)) {
 		PROTECT(obj1 = Rf_duplicate(obj));
 		pc++;
@@ -444,14 +444,14 @@ SEXP SP_PREFIX(SpatialPolygons_getIDs_c)(const SEXP obj) {
 
 }
 
-SEXP SP_PREFIX(bboxCalcR_c)(const SEXP pls) {
+SEXP bboxCalcR_c(const SEXP pls) {
 
     SEXP ans, dim, dimnames, Pl, crds, pls1;
     double UX=-DBL_MAX, LX=DBL_MAX, UY=-DBL_MAX, LY=DBL_MAX;
     int i, j, k, n, npls, npl, pc=0;
     double x, y;
 
-    // PROTECT(pls1 = MAYBE_REFERENCED(pls) ? duplicate(pls) : pls); pc++;
+    // PROTECT(pls1 = MAYBE_REFERENCED(pls) ? Rf_duplicate(pls) : pls); pc++;
 	if (MAYBE_REFERENCED(pls)) {
 		PROTECT(pls1 = Rf_duplicate(pls));
 		pc++;
@@ -490,18 +490,18 @@ SEXP SP_PREFIX(bboxCalcR_c)(const SEXP pls) {
     Rf_setAttrib(ans, R_DimSymbol, dim);
     PROTECT(dimnames = NEW_LIST(2)); pc++;
     SET_VECTOR_ELT(dimnames, 0, NEW_CHARACTER(2));
-    SET_STRING_ELT(VECTOR_ELT(dimnames, 0), 0, COPY_TO_USER_STRING("x"));
-    SET_STRING_ELT(VECTOR_ELT(dimnames, 0), 1, COPY_TO_USER_STRING("y"));
+    SET_STRING_ELT(VECTOR_ELT(dimnames, 0), 0, Rf_mkChar("x"));
+    SET_STRING_ELT(VECTOR_ELT(dimnames, 0), 1, Rf_mkChar("y"));
     SET_VECTOR_ELT(dimnames, 1, NEW_CHARACTER(2));
-    SET_STRING_ELT(VECTOR_ELT(dimnames, 1), 0, COPY_TO_USER_STRING("min"));
-    SET_STRING_ELT(VECTOR_ELT(dimnames, 1), 1, COPY_TO_USER_STRING("max"));
+    SET_STRING_ELT(VECTOR_ELT(dimnames, 1), 0, Rf_mkChar("min"));
+    SET_STRING_ELT(VECTOR_ELT(dimnames, 1), 1, Rf_mkChar("max"));
     Rf_setAttrib(ans, R_DimNamesSymbol, dimnames);
     UNPROTECT(pc);
     return(ans);
 
 }
 
-void SP_PREFIX(spRFindCG_c)(const SEXP n, const SEXP coords, 
+void spRFindCG_c(const SEXP n, const SEXP coords, 
 		double *xc, double *yc, double *area ) {
 
 	int i, nn;
@@ -515,14 +515,14 @@ void SP_PREFIX(spRFindCG_c)(const SEXP n, const SEXP coords,
 		P[i][0] = NUMERIC_POINTER(coords)[i];
 		P[i][1] = NUMERIC_POINTER(coords)[i+nn];
 	}
-	SP_PREFIX(FindCG)(nn, P, CG, &Areasum2);
+	FindCG(nn, P, CG, &Areasum2);
 	xc[0] = CG[0];
 	yc[0] = CG[1];
 	area[0] = Areasum2/2;
 	return;
 }
 
-void SP_PREFIX(FindCG)( int n, tPointd *P, tPointd CG, double *Areasum2) {
+void FindCG( int n, tPointd *P, tPointd CG, double *Areasum2) {
 	int     i;
 	double  A2;        /* Partial area sum */    
 	tPointd Cent3;
@@ -531,8 +531,8 @@ void SP_PREFIX(FindCG)( int n, tPointd *P, tPointd CG, double *Areasum2) {
 	CG[1] = 0;
 	Areasum2[0] = 0;
 	for (i = 1; i < n-1; i++) {
-		SP_PREFIX(Centroid3)( P[0], P[i], P[i+1], Cent3 );
-		A2 =  SP_PREFIX(Area2)( P[0], P[i], P[i+1]);
+		Centroid3( P[0], P[i], P[i+1], Cent3 );
+		A2 =  Area2( P[0], P[i], P[i+1]);
 		CG[0] += A2 * Cent3[0];
 		CG[1] += A2 * Cent3[1];
 		Areasum2[0] += A2;
@@ -545,7 +545,7 @@ void SP_PREFIX(FindCG)( int n, tPointd *P, tPointd CG, double *Areasum2) {
 	Returns three times the centroid.  The factor of 3 is
 	left in to permit division to be avoided until later.
 */
-void SP_PREFIX(Centroid3)(const tPointd p1, const tPointd p2, const tPointd p3, 
+void Centroid3(const tPointd p1, const tPointd p2, const tPointd p3, 
 	tPointd c) {
         c[0] = p1[0] + p2[0] + p3[0];
         c[1] = p1[1] + p2[1] + p3[1];
@@ -555,20 +555,20 @@ void SP_PREFIX(Centroid3)(const tPointd p1, const tPointd p2, const tPointd p3,
         Returns twice the signed area of the triangle determined by a,b,c,
         positive if a,b,c are oriented ccw, and negative if cw.
 */
-double SP_PREFIX(Area2)(const tPointd a, const tPointd b, const tPointd c) {
+double Area2(const tPointd a, const tPointd b, const tPointd c) {
 	double area;
 	area = (b[0] - a[0]) * (c[1] - a[1]) - (c[0] - a[0]) * (b[1] - a[1]);
 	return(area);
 }
 
 
-SEXP SP_PREFIX(comment2comm)(const SEXP obj) {
+SEXP comment2comm(const SEXP obj) {
     SEXP ans, comment, obj1;
     int pc=0, ns, i, j, jj, k, nc;
     char s[15], *buf;
     int *c, *nss, *co, *coo;
 
-    // PROTECT(obj1 = MAYBE_REFERENCED(obj) ? duplicate(obj) : obj); pc++;
+    // PROTECT(obj1 = MAYBE_REFERENCED(obj) ? Rf_duplicate(obj) : obj); pc++;
 	if (MAYBE_REFERENCED(obj)) {
 		PROTECT(obj1 = Rf_duplicate(obj));
 		pc++;
@@ -653,7 +653,7 @@ SEXP SP_PREFIX(comment2comm)(const SEXP obj) {
     return(ans);
 }
 
-void SP_PREFIX(comm2comment)(char *buf, int bufsiz, int *comm, int nps) {
+void comm2comment(char *buf, int bufsiz, int *comm, int nps) {
     char cbuf[15];
     int i, nc, nc1, pr;
 
@@ -674,4 +674,4 @@ void SP_PREFIX(comm2comment)(char *buf, int bufsiz, int *comm, int nps) {
     return;
 }
 
-/* remember to touch local_stubs.c */
+

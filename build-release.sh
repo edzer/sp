@@ -1,4 +1,3 @@
-sh ./build-prep.sh
 git2cl > xx
 cat xx ChangeLog > inst/ChangeLog
 rm xx

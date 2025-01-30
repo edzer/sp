@@ -13,8 +13,8 @@
     \item{\code{ISO}}{ISO code for country}
   }
 }
-\details{The journal \emph{Photogrammetric Engineering & Remote Sensing}, run by the American Society for Photogrammetry and Remote Sensing (ASPRS), began publishing a more-or-less monthly column on the spatial reference systems used in different countries, including their datums. The column first appeared in September 1997, and continued until March 2016; subsequent columns are updated reprints of previous ones. Some also cover other topics, such as world and Martian spatial reference systems. They are written by Clifford J. Mugnier, Louisiana State University, Fellow Emeritus ASPRS. To access the columns, visit \url{https://www.asprs.org/asprs-publications/grids-and-datums}.}
-\source{\url{https://www.asprs.org/asprs-publications/grids-and-datums}}
+\details{The journal \emph{Photogrammetric Engineering & Remote Sensing}, run by the American Society for Photogrammetry and Remote Sensing (ASPRS), began publishing a more-or-less monthly column on the spatial reference systems used in different countries, including their datums. The column first appeared in September 1997, and continued until March 2016; subsequent columns are updated reprints of previous ones. Some also cover other topics, such as world and Martian spatial reference systems. They are written by Clifford J. Mugnier, Louisiana State University, Fellow Emeritus ASPRS. To access the columns, visit \code{https:\/\/www.asprs.org/asprs-publications/grids-and-datums}.}
+\source{\code{https:\/\/www.asprs.org/asprs-publications/grids-and-datums}}
 \examples{
 data(GridsDatums)
 GridsDatums[grep("Norway", GridsDatums$country),]

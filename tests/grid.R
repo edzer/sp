@@ -9,13 +9,13 @@ image(x["dist"])
 
 fullgrid(x) = TRUE
 fullgrid(x)
-summary(x)
+# summary(x)
 gridparameters(x)
 class(as(x, "matrix"))
 
 fullgrid(x) = FALSE
 fullgrid(x)
-summary(x)
+# summary(x)
 class(as(x, "matrix"))
 gridparameters(x)
 
@@ -41,7 +41,7 @@ class(g)
 fullgrid(g) <- FALSE
 class(g)
 
-print(summary(df))
+# summary(df)
 image(df["z"])
 as.image.SpatialGridDataFrame(df)
 as.image.SpatialGridDataFrame(df["z"])

@@ -1,7 +1,7 @@
 
-R version 4.3.1 (2023-06-16) -- "Beagle Scouts"
-Copyright (C) 2023 The R Foundation for Statistical Computing
-Platform: x86_64-pc-linux-gnu (64-bit)
+R version 4.4.2 (2024-10-31) -- "Pile of Leaves"
+Copyright (C) 2024 The R Foundation for Statistical Computing
+Platform: x86_64-pc-linux-gnu
 
 R is free software and comes with ABSOLUTELY NO WARRANTY.
 You are welcome to redistribute it under certain conditions.
@@ -28,27 +28,7 @@ Type 'q()' to quit R.
 > fullgrid(x) = TRUE
 > fullgrid(x)
 [1] TRUE
-> summary(x)
-Object of class SpatialGridDataFrame
-Coordinates:
-     min    max
-x 178440 181560
-y 329600 333760
-Is projected: NA 
-proj4string : [NA]
-Grid attributes:
-  cellcentre.offset cellsize cells.dim
-x            178460       40        78
-y            329620       40       104
-Data attributes:
-     part.a          part.b           dist         soil       ffreq     
- Min.   :0.000   Min.   :0.000   Min.   :0.000   1   :1665   1   : 779  
- 1st Qu.:0.000   1st Qu.:0.000   1st Qu.:0.119   2   :1084   2   :1335  
- Median :0.000   Median :1.000   Median :0.272   3   : 354   3   : 989  
- Mean   :0.399   Mean   :0.601   Mean   :0.297   NA's:5009   NA's:5009  
- 3rd Qu.:1.000   3rd Qu.:1.000   3rd Qu.:0.440                          
- Max.   :1.000   Max.   :1.000   Max.   :0.993                          
- NA's   :5009    NA's   :5009    NA's   :5009                           
+> # summary(x)
 > gridparameters(x)
   cellcentre.offset cellsize cells.dim
 x            178460       40        78
@@ -63,27 +43,7 @@ In as.matrix.SpatialGridDataFrame(from) :
 > fullgrid(x) = FALSE
 > fullgrid(x)
 [1] FALSE
-> summary(x)
-Object of class SpatialPixelsDataFrame
-Coordinates:
-     min    max
-x 178440 181560
-y 329600 333760
-Is projected: NA 
-proj4string : [NA]
-Number of points: 3103
-Grid attributes:
-  cellcentre.offset cellsize cells.dim
-x            178460       40        78
-y            329620       40       104
-Data attributes:
-     part.a           part.b            dist        soil     ffreq   
- Min.   :0.0000   Min.   :0.0000   Min.   :0.0000   1:1665   1: 779  
- 1st Qu.:0.0000   1st Qu.:0.0000   1st Qu.:0.1193   2:1084   2:1335  
- Median :0.0000   Median :1.0000   Median :0.2715   3: 354   3: 989  
- Mean   :0.3986   Mean   :0.6014   Mean   :0.2971                    
- 3rd Qu.:1.0000   3rd Qu.:1.0000   3rd Qu.:0.4402                    
- Max.   :1.0000   Max.   :1.0000   Max.   :0.9926                    
+> # summary(x)
 > class(as(x, "matrix"))
 [1] "matrix" "array" 
 Warning message:
@@ -136,28 +96,7 @@ attr(,"package")
 attr(,"package")
 [1] "sp"
 > 
-> print(summary(df))
-Object of class SpatialPixelsDataFrame
-Coordinates:
-     min  max
-xc  0.50 3.50
-yc -0.75 3.75
-Is projected: NA 
-proj4string : [NA]
-Number of points: 9
-Grid attributes:
-   cellcentre.offset cellsize cells.dim
-xc                 1      1.0         3
-yc                 0      1.5         3
-Data attributes:
-       z       
- Min.   :1.00  
- 1st Qu.:2.75  
- Median :4.50  
- Mean   :4.75  
- 3rd Qu.:6.50  
- Max.   :9.00  
- NA's   :1     
+> # summary(df)
 > image(df["z"])
 > as.image.SpatialGridDataFrame(df)
 $x
@@ -276,4 +215,4 @@ Coordinate Reference System (CRS) arguments: NA
 > 
 > proc.time()
    user  system elapsed 
-  0.740   0.047   0.782 
+  0.566   1.398   0.459 
