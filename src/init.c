@@ -39,7 +39,7 @@ static R_CallMethodDef CallEntries[] = {
     {"SpatialPolygons_getIDs_c", (DL_FUNC) &SpatialPolygons_getIDs_c, 1},
     {"SpatialPolygons_plotOrder_c", (DL_FUNC) &SpatialPolygons_plotOrder_c, 1},
     {"comment2comm", (DL_FUNC) &comment2comm, 1},
-    {"sp_linkingTo_version", (DL_FUNC) &sp_linkingTo_version, 0},
+/*    {"sp_linkingTo_version", (DL_FUNC) &sp_linkingTo_version, 0}, */
     {NULL, NULL, 0}
 };
 

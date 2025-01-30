@@ -46,7 +46,7 @@ void sp_dists_NN(double *u1, double *v1, double *u2, double *v2,
 void sp_lengths(double *u, double *v, int *n, double *lengths, int *lonlat) {
 	int N = *n, j;
 	double gc[1];
-        if (N < 2) error("N less than 2");
+        if (N < 2) Rf_error("N less than 2");
 		
 	if (lonlat[0] == 0)
 		for (j=0; j < N-1; j++) 

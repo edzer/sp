@@ -220,7 +220,7 @@ plot(geometry(meuse.grid), add = TRUE, col = grey(.8))
 ```
 
 Read
-[this](http://r-spatial.org/r/2016/03/08/plotting-spatial-grids.html)
+[this](https://r-spatial.org/r/2016/03/08/plotting-spatial-grids.html)
 blog post to find out more about the options available (and
 limitations) for plotting gridded data with base plot methods in sp.
 
