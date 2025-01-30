@@ -4,4 +4,3 @@ depend		script that runs check on all R packages depending on sp
 meuse		script that loads the meuse data set, converts the objects into sp classes, and sets coordinate reference system
 mp			demonstrate use of SpatialMultiPoints and SpatialMultiPointsDataFrame
 polar		polar plot showing gridlines and gridline labels in epsg 3031
-webmap		OpenStreetMap or google map backgrounds in sp::plot and sp::spplot, using ggmap or RgoogleMaps maps
