@@ -164,7 +164,7 @@ distances.</p>
 <span class="r-in"><span><span class="fu"><a href="coordinates.html">coordinates</a></span><span class="op">(</span><span class="va">meusedup</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"x"</span>, <span class="st">"y"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">zd</span> <span class="op">&lt;-</span> <span class="fu">zerodist</span><span class="op">(</span><span class="va">meusedup</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html" class="external-link">abs</a></span><span class="op">(</span><span class="va">zd</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="va">n</span>,<span class="fl">1</span><span class="op">]</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/sort.html" class="external-link">sort</a></span><span class="op">(</span><span class="va">ran10</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="co"># 0!</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 489</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 484</span>
 <span class="r-in"><span><span class="co"># remove the duplicate rows:</span></span></span>
 <span class="r-in"><span><span class="va">meusedup2</span> <span class="op">&lt;-</span> <span class="va">meusedup</span><span class="op">[</span><span class="op">-</span><span class="va">zd</span><span class="op">[</span>,<span class="fl">2</span><span class="op">]</span>, <span class="op">]</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">meusedup2</span><span class="op">)</span></span></span>
@@ -279,7 +279,7 @@ distances.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.</p>
 </div>
 
       </footer></div>

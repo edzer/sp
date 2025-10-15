@@ -144,52 +144,52 @@ Class <code>"Spatial"</code>, by class <code>"SpatialMultiPoints"</code>.</p>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">mpdf</span> <span class="op">=</span> <span class="fu"><a href="SpatialMultiPoints.html">SpatialMultiPointsDataFrame</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="va">cl1</span>, <span class="va">cl2</span>, <span class="va">cl3</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>a <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">mpdf</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                coordinates a</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1     (9.561015, 10.40916) 1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1.1    (9.27168, 9.775527) 1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1.2   (11.16353, 10.06249) 1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2   (6.999186, -0.5318854) 2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2.1  (9.114098, 0.9131392) 2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2.2  (9.244407, 0.4187773) 2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2.3 (11.63942, 0.04003302) 2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2.4    (9.73929, 2.470472) 2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3     (2.084812, 9.650787) 3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3.1  (0.7406445, 10.24091) 3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3.2 (-0.4293515, 10.51667) 3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3.3  (0.1892378, 11.10769) 3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3.4 (-0.5419215, 9.132698) 3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3.5   (-2.11942, 10.00115) 3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3.6 (-0.1641934, 10.40547) 3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                 coordinates a</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1      (6.999186, 11.63942) 1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1.1     (9.114098, 9.73929) 1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1.2    (9.244407, 9.468115) 1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2     (10.91314, 0.7406445) 2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2.1  (10.41878, -0.4293515) 2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2.2   (10.04003, 0.1892378) 2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2.3  (12.47047, -0.5419215) 2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2.4    (12.08481, -2.11942) 2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3    (-0.1641934, 10.40547) 3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3.1  (-0.3492128, 9.604582) 3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3.2   (0.2409091, 8.875999) 3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3.3   (0.5166673, 9.515874) 3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3.4    (1.107692, 9.558087) 3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3.5  (-0.8673017, 9.815958) 3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3.6 (0.001145948, 9.319365) 3</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">mpdf</span>, col <span class="op">=</span> <span class="va">mpdf</span><span class="op">$</span><span class="va">a</span>, cex <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="SpatialMultiPointsDataFrame-class-1.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/methods/as.html" class="external-link">as</a></span><span class="op">(</span><span class="va">mpdf</span>, <span class="st">"data.frame"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>              X1          X2 index a</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> X1    9.5610153 10.40915822     1 1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> X1.1  9.2716802  9.77552745     1 1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> X1.2 11.1635273 10.06248677     1 1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> X2    6.9991860 -0.53188536     2 2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> X2.1  9.1140978  0.91313918     2 2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> X2.2  9.2444070  0.41877727     2 2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> X2.3 11.6394230  0.04003302     2 2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> X2.4  9.7392898  2.47047235     2 2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> X3    2.0848116  9.65078723     3 3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> X3.1  0.7406445 10.24090914     3 3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> X3.2 -0.4293515 10.51666727     3 3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> X3.3  0.1892378 11.10769222     3 3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> X3.4 -0.5419215  9.13269831     3 3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> X3.5 -2.1194197 10.00114595     3 3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> X3.6 -0.1641934 10.40547209     3 3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                X1         X2 index a</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> X1    6.999186017 11.6394230     1 1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> X1.1  9.114097753  9.7392898     1 1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> X1.2  9.244406967  9.4681146     1 1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> X2   10.913139182  0.7406445     2 2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> X2.1 10.418777268 -0.4293515     2 2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> X2.2 10.040033023  0.1892378     2 2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> X2.3 12.470472345 -0.5419215     2 2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> X2.4 12.084811553 -2.1194197     2 2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> X3   -0.164193423 10.4054721     3 3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> X3.1 -0.349212773  9.6045823     3 3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> X3.2  0.240909140  8.8759995     3 3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> X3.3  0.516667272  9.5158739     3 3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> X3.4  1.107692224  9.5580871     3 3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> X3.5 -0.867301692  9.8159578     3 3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> X3.6  0.001145948  9.3193653     3 3</span>
 <span class="r-in"><span><span class="va">mpdf</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span>,<span class="op">]</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                coordinates a</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1     (9.561015, 10.40916) 1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1.1    (9.27168, 9.775527) 1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1.2   (11.16353, 10.06249) 1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2   (6.999186, -0.5318854) 2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2.1  (9.114098, 0.9131392) 2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2.2  (9.244407, 0.4187773) 2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2.3 (11.63942, 0.04003302) 2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2.4    (9.73929, 2.470472) 2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1     (6.999186, 11.63942) 1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1.1    (9.114098, 9.73929) 1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1.2   (9.244407, 9.468115) 1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2    (10.91314, 0.7406445) 2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2.1 (10.41878, -0.4293515) 2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2.2  (10.04003, 0.1892378) 2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2.3 (12.47047, -0.5419215) 2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2.4   (12.08481, -2.11942) 2</span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
@@ -205,7 +205,7 @@ Class <code>"Spatial"</code>, by class <code>"SpatialMultiPoints"</code>.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.</p>
 </div>
 
       </footer></div>
