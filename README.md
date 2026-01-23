@@ -4,7 +4,7 @@
 [![cran checks](https://badges.cranchecks.info/worst/sp.svg)](https://cran.r-project.org/web/checks/check_results_sp.html)
 [![Downloads](http://cranlogs.r-pkg.org/badges/sp?color=brightgreen)](http://www.r-pkg.org/pkg/sp)
 
-R Classes and Methods for Spatial Data. Note that this is package will (slowly) be deprecated, in favor of package `sf`. It is in maintenance mode, and currently requires `sf` for coordinate reference system validation and coordinate transformation, conversion and (re)projection.
+R Classes and Methods for Spatial Data. Note that this package will (slowly) be deprecated, in favor of package `sf`. It is in maintenance mode, and currently requires `sf` for coordinate reference system validation and coordinate transformation, conversion and (re)projection.
 
 From version 2.2-0, `sp` has dropped the export of a compiled C API formerly used by `rgdal` and `rgeos`
 
