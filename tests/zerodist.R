@@ -1,4 +1,6 @@
 options("rgdal_show_exportToProj4_warnings"="none")
+source("utils/print.R")
+
 library(sp)
 data(meuse)
 # pick 10 rows

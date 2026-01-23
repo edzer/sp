@@ -1,7 +1,7 @@
 
-R version 4.3.2 (2023-10-31) -- "Eye Holes"
-Copyright (C) 2023 The R Foundation for Statistical Computing
-Platform: x86_64-pc-linux-gnu (64-bit)
+R version 4.5.2 (2025-10-31) -- "[Not] Part in a Rumble"
+Copyright (C) 2025 The R Foundation for Statistical Computing
+Platform: x86_64-pc-linux-gnu
 
 R is free software and comes with ABSOLUTELY NO WARRANTY.
 You are welcome to redistribute it under certain conditions.
@@ -16,6 +16,8 @@ Type 'demo()' for some demos, 'help()' for on-line help, or
 Type 'q()' to quit R.
 
 > options("rgdal_show_exportToProj4_warnings"="none")
+> source("utils/print.R")
+> 
 > library(sp)
 > data(meuse)
 > x = meuse
@@ -70,7 +72,7 @@ Data attributes:
          Mean   : 7.478   Fw     :10          Mean   : 469.7  
          3rd Qu.: 9.000   Ab     : 8          3rd Qu.: 674.5  
          Max.   :17.000   (Other):25          Max.   :1839.0  
-         NA's   :2        NA's   : 1                          
+         NAs    :2        NAs    : 1                          
       dist             copper          cadmium       soil       dist.m      
  Min.   :0.00000   Min.   : 14.00   Min.   : 0.200   1:97   Min.   :  10.0  
  1st Qu.:0.07569   1st Qu.: 23.00   1st Qu.: 0.800   2:46   1st Qu.:  80.0  
@@ -215,7 +217,7 @@ Data attributes:
                     Max.   :2.000                      Max.   :2.000  
 > 
 > meuse[["xxx"]] = log(meuse$zinc)
-> summary(meuse)
+> print(summary(meuse))
        x                y             cadmium           copper      
  Min.   :178605   Min.   :329714   Min.   : 0.200   Min.   : 14.00  
  1st Qu.:179371   1st Qu.:330762   1st Qu.: 0.800   1st Qu.: 23.00  
@@ -239,7 +241,7 @@ Data attributes:
  Mean   : 7.478                         Fw     :10   Mean   : 290.3  
  3rd Qu.: 9.000                         Ab     : 8   3rd Qu.: 450.0  
  Max.   :17.000                         (Other):25   Max.   :1000.0  
- NA's   :2                              NA's   : 1                   
+ NAs    :2                              NAs    : 1                   
       xxx       
  Min.   :4.727  
  1st Qu.:5.288  
@@ -249,7 +251,7 @@ Data attributes:
  Max.   :7.517  
                 
 > meuse$xxy = log(meuse[["zinc"]])
-> summary(meuse)
+> print(summary(meuse))
        x                y             cadmium           copper      
  Min.   :178605   Min.   :329714   Min.   : 0.200   Min.   : 14.00  
  1st Qu.:179371   1st Qu.:330762   1st Qu.: 0.800   1st Qu.: 23.00  
@@ -273,7 +275,7 @@ Data attributes:
  Mean   : 7.478                         Fw     :10   Mean   : 290.3  
  3rd Qu.: 9.000                         Ab     : 8   3rd Qu.: 450.0  
  Max.   :17.000                         (Other):25   Max.   :1000.0  
- NA's   :2                              NA's   : 1                   
+ NAs    :2                              NAs    : 1                   
       xxx             xxy       
  Min.   :4.727   Min.   :4.727  
  1st Qu.:5.288   1st Qu.:5.288  
@@ -315,7 +317,7 @@ NULL
 > fullgrid(meuse.grid) = TRUE
 > dim(meuse.grid[0,])
 [1] 8112    5
-> summary(meuse.grid[0,])
+> print(summary(meuse.grid[0,]))
 Object of class SpatialGridDataFrame
 Coordinates:
      min    max
@@ -332,10 +334,10 @@ y            329620       40       104
 Data attributes:
   part.a         part.b          dist           soil          ffreq        
  Mode:logical   Mode:logical   Mode:logical   Mode:logical   Mode:logical  
- NA's:8112      NA's:8112      NA's:8112      NA's:8112      NA's:8112     
+ NAs :8112      NAs :8112      NAs :8112      NAs :8112      NAs :8112     
 > dim(meuse.grid[,0])
 [1] 8112    5
-> summary(meuse.grid[,0])
+> print(summary(meuse.grid[,0]))
 Object of class SpatialGridDataFrame
 Coordinates:
      min    max
@@ -352,10 +354,10 @@ y            329620       40       104
 Data attributes:
   part.a         part.b          dist           soil          ffreq        
  Mode:logical   Mode:logical   Mode:logical   Mode:logical   Mode:logical  
- NA's:8112      NA's:8112      NA's:8112      NA's:8112      NA's:8112     
+ NAs :8112      NAs :8112      NAs :8112      NAs :8112      NAs :8112     
 > dim(meuse.grid[0,,0])
 [1] 8112    0
-> summary(meuse.grid[0,,0])
+> print(summary(meuse.grid[0,,0]))
 Object of class SpatialGridDataFrame
 Coordinates:
      min    max
@@ -369,6 +371,8 @@ Grid attributes:
   cellcentre.offset cellsize cells.dim
 x            178460       40        78
 y            329620       40       104
+Data attributes:
+character(0)
 > 
 > # SpatialPolygons:
 > L = as(meuse.riv, "SpatialPolygons")
@@ -598,4 +602,4 @@ Error in SpatialPointsDataFrame(pts, df, match.ID = TRUE) :
 > 
 > proc.time()
    user  system elapsed 
-  1.033   1.316   0.843 
+  0.783   0.067   0.842 
