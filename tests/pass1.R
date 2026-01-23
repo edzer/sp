@@ -1,4 +1,6 @@
 options("rgdal_show_exportToProj4_warnings"="none")
+source("utils/print.R")
+
 library(sp)
 data(meuse)
 x = meuse
@@ -61,9 +63,9 @@ SlDf = SpatialLinesDataFrame(Sl, data.frame(xx = c("foo", "bar")), match.ID = FA
 summary(as(SlDf, "SpatialPointsDataFrame"))
 
 meuse[["xxx"]] = log(meuse$zinc)
-summary(meuse)
+print(summary(meuse))
 meuse$xxy = log(meuse[["zinc"]])
-summary(meuse)
+print(summary(meuse))
 
 # test behaviour on zero-length objects:
 demo(meuse, ask = FALSE, echo = FALSE)
@@ -81,11 +83,11 @@ dim(subset(meuse, F, 0))
 dim(meuse.grid[0,])
 fullgrid(meuse.grid) = TRUE
 dim(meuse.grid[0,])
-summary(meuse.grid[0,])
+print(summary(meuse.grid[0,]))
 dim(meuse.grid[,0])
-summary(meuse.grid[,0])
+print(summary(meuse.grid[,0]))
 dim(meuse.grid[0,,0])
-summary(meuse.grid[0,,0])
+print(summary(meuse.grid[0,,0]))
 
 # SpatialPolygons:
 L = as(meuse.riv, "SpatialPolygons")

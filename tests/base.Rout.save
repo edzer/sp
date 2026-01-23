@@ -1,7 +1,7 @@
 
-R version 4.3.1 (2023-06-16) -- "Beagle Scouts"
-Copyright (C) 2023 The R Foundation for Statistical Computing
-Platform: x86_64-pc-linux-gnu (64-bit)
+R version 4.5.2 (2025-10-31) -- "[Not] Part in a Rumble"
+Copyright (C) 2025 The R Foundation for Statistical Computing
+Platform: x86_64-pc-linux-gnu
 
 R is free software and comes with ABSOLUTELY NO WARRANTY.
 You are welcome to redistribute it under certain conditions.
@@ -16,6 +16,8 @@ Type 'demo()' for some demos, 'help()' for on-line help, or
 Type 'q()' to quit R.
 
 > options("rgdal_show_exportToProj4_warnings"="none")
+> source("utils/print.R")
+> 
 > library(sp)
 > data(meuse)
 > x = meuse[1:10, ] # limit the output
@@ -191,7 +193,7 @@ Data attributes:
  Ga     :2   Mean   :174.5  
  Ag     :1   3rd Qu.:277.5  
  (Other):1   Max.   :470.0  
- NA's   :1                  
+ NAs    :1                  
 > 
 > x[1:10] # first 10 columns
         coordinates cadmium copper lead zinc  elev       dist   om ffreq soil
@@ -460,4 +462,4 @@ Data attributes:
 > 
 > proc.time()
    user  system elapsed 
-  0.691   0.045   0.730 
+  0.322   0.052   0.365 
