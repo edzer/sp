@@ -59,7 +59,7 @@ Sl = SpatialLines(list(S1,S2))
 summary(as(polys, "SpatialLines"))
 summary(as(Sl, "SpatialPoints"))
 summary(as(Sl, "SpatialPointsDataFrame"))
-SlDf = SpatialLinesDataFrame(Sl, data.frame(xx = c("foo", "bar")), match.ID = FALSE)
+SlDf = SpatialLinesDataFrame(Sl, data.frame(xx = factor(c("foo", "bar"))), match.ID = FALSE)
 summary(as(SlDf, "SpatialPointsDataFrame"))
 
 meuse[["xxx"]] = log(meuse$zinc)
@@ -96,7 +96,7 @@ length(L[0])
 summary(L[0])
 
 # SpatialPolygonsDataFrame:
-L$something = "bla"
+L$something = factor("bla")
 class(L)
 length(L[1])
 summary(L[1])
@@ -110,7 +110,7 @@ length(L[0])
 summary(L[0])
 
 # SpatialLinesDataFrame
-L$something = "bla"
+L$something = factor("bla")
 class(L)
 length(L[1])
 summary(L[1])
