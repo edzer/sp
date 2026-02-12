@@ -190,14 +190,14 @@ Is projected: NA
 proj4string : [NA]
 Number of points: 9
 Data attributes:
-    Lines.NR          Lines.ID    Line.NR     
- Min.   :1.000   Length   :9   Min.   :1.000  
- 1st Qu.:1.000   N.unique :2   1st Qu.:1.000  
- Median :1.000   N.blank  :0   Median :1.000  
- Mean   :1.333   Min.nchar:1   Mean   :1.333  
- 3rd Qu.:2.000   Max.nchar:1   3rd Qu.:2.000  
- Max.   :2.000                 Max.   :2.000  
-> SlDf = SpatialLinesDataFrame(Sl, data.frame(xx = c("foo", "bar")), match.ID = FALSE)
+    Lines.NR     Lines.ID    Line.NR     
+ Min.   :1.000   a:6      Min.   :1.000  
+ 1st Qu.:1.000   b:3      1st Qu.:1.000  
+ Median :1.000            Median :1.000  
+ Mean   :1.333            Mean   :1.333  
+ 3rd Qu.:2.000            3rd Qu.:2.000  
+ Max.   :2.000            Max.   :2.000  
+> SlDf = SpatialLinesDataFrame(Sl, data.frame(xx = factor(c("foo", "bar"))), match.ID = FALSE)
 > summary(as(SlDf, "SpatialPointsDataFrame"))
 Object of class SpatialPointsDataFrame
 Coordinates:
@@ -208,13 +208,13 @@ Is projected: NA
 proj4string : [NA]
 Number of points: 9
 Data attributes:
-         xx       Lines.NR          Lines.ID    Line.NR     
- Length   :9   Min.   :1.000   Length   :9   Min.   :1.000  
- N.unique :2   1st Qu.:1.000   N.unique :2   1st Qu.:1.000  
- N.blank  :0   Median :1.000   N.blank  :0   Median :1.000  
- Min.nchar:3   Mean   :1.333   Min.nchar:1   Mean   :1.333  
- Max.nchar:3   3rd Qu.:2.000   Max.nchar:1   3rd Qu.:2.000  
-               Max.   :2.000                 Max.   :2.000  
+   xx       Lines.NR     Lines.ID    Line.NR     
+ bar:3   Min.   :1.000   a:6      Min.   :1.000  
+ foo:6   1st Qu.:1.000   b:3      1st Qu.:1.000  
+         Median :1.000            Median :1.000  
+         Mean   :1.333            Mean   :1.333  
+         3rd Qu.:2.000            3rd Qu.:2.000  
+         Max.   :2.000            Max.   :2.000  
 > 
 > meuse[["xxx"]] = log(meuse$zinc)
 > print(summary(meuse))
@@ -390,7 +390,7 @@ proj4string :
 +k=0.9999079 +x_0=155000 +y_0=463000 +ellps=bessel +units=m +no_defs]
 > 
 > # SpatialPolygonsDataFrame:
-> L$something = "bla"
+> L$something = factor("bla")
 > class(L)
 [1] "SpatialPolygonsDataFrame"
 attr(,"package")
@@ -408,12 +408,8 @@ proj4string :
 [+proj=sterea +lat_0=52.1561605555556 +lon_0=5.38763888888889
 +k=0.9999079 +x_0=155000 +y_0=463000 +ellps=bessel +units=m +no_defs]
 Data attributes:
-     something
- Length   :1  
- N.unique :1  
- N.blank  :0  
- Min.nchar:3  
- Max.nchar:3  
+ something
+ bla:1    
 > length(L[0])
 [1] 1
 > summary(L[0])
@@ -445,7 +441,7 @@ proj4string :
 +k=0.9999079 +x_0=155000 +y_0=463000 +ellps=bessel +units=m +no_defs]
 > 
 > # SpatialLinesDataFrame
-> L$something = "bla"
+> L$something = factor("bla")
 > class(L)
 [1] "SpatialLinesDataFrame"
 attr(,"package")
@@ -463,12 +459,8 @@ proj4string :
 [+proj=sterea +lat_0=52.1561605555556 +lon_0=5.38763888888889
 +k=0.9999079 +x_0=155000 +y_0=463000 +ellps=bessel +units=m +no_defs]
 Data attributes:
-     something
- Length   :1  
- N.unique :1  
- N.blank  :0  
- Min.nchar:3  
- Max.nchar:3  
+ something
+ bla:1    
 > length(L[0])
 [1] 1
 > summary(L[0])
@@ -604,4 +596,4 @@ Error in SpatialPointsDataFrame(pts, df, match.ID = TRUE) :
 > 
 > proc.time()
    user  system elapsed 
-   1.84    0.21    2.01 
+   1.70    0.25    1.92 
