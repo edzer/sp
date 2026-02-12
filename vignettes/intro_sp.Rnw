@@ -41,9 +41,7 @@ Breiviksveien 40, N-5045 Bergen, Norway; \code{Roger.Bivand@nhh.no}}}
 The \pkg{sp} package provides classes and methods for dealing
 with spatial data in \proglang{R}\footnote{
 The motivation to write this package was born on a
-\href{http://spatial.nhh.no/meetings/vienna/index.html}{pre-conference
-spatial data workshop} during
-\href{http://www.ci.tuwien.ac.at/Conferences/DSC-2003/}{DSC 2003}.
+pre-conference spatial data workshop during DSC 2003.
 At that time, the advantage of having multiple R packages for spatial
 statistics seemed to be hindered by a lack of a uniform interface for
 handling spatial data. Each package had its own conventions on how

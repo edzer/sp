@@ -26,9 +26,6 @@ a grid with 40 m x 40 m spacing that covers the Meuse study area (see \link{meus
 coordinate system. Roger Bivand projected this to UTM in the
 R-Grass interface package.
 }
-\source{
-\url{http://www.gstat.org/}
-}
 \references{
 See the \link{meuse} documentation
 }

@@ -51,8 +51,6 @@ M G J Rikken and R P G Van Rijn, 1993. Soil pollution with heavy metals - an inq
 P.A. Burrough, R.A. McDonnell, 1998. Principles of Geographical Information Systems. Oxford University Press.
 
 Stichting voor Bodemkartering (STIBOKA), 1970. Bodemkaart van Nederland : Blad 59 Peer, Blad 60 West en 60 Oost Sittard: schaal 1 : 50 000. Wageningen, STIBOKA.
-
-\url{http://www.gstat.org/}
 }
 \keyword{datasets}
 
