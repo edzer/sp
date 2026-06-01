@@ -1,5 +1,6 @@
 \name{bbox-methods}
 \docType{methods}
+\alias{bbox-methods}
 \alias{bbox,Spatial-method}
 \alias{bbox,ANY-method}
 \alias{bbox,Line-method}

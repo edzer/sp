@@ -1,13 +1,12 @@
 \name{Line-class}
 \docType{class}
 \alias{Line-class}
-% \alias{coordinates,Line-method}
+% \alias{coordinates,Line-method} % -> in methods?coordinates
 
-\title{Class "Line" }
+\title{Class \code{"Line"}}
 \description{ class for line objects }
 \section{Objects from the Class}{
-Objects can be created by calls of the form \code{new("Line", ...)},
-or (preferred) by calls to the function \link{Line}
+Objects can be created by calls to the function \code{\link{Line}}.
 }
 \section{Slots}{
   \describe{
@@ -16,15 +15,18 @@ or (preferred) by calls to the function \link{Line}
   }
 }
 \section{Methods}{
-  \describe{
-    \item{coordinates}{\code{signature(obj = "Line")}: retrieve coordinates
-	from line }
-    \item{lines}{\code{signature(x = "Line")}: add lines to a plot }
-  }
+  There are methods for
+  \code{\link[=bbox-methods]{bbox}},
+  \code{\link[=coordinates-methods]{coordinates}},
+  \code{\link[=coordnames-methods]{coordnames}}, and
+  \code{\link[=spsample-methods]{spsample}}.
+
+  There is also a \code{\link{lines}} method to add lines to a plot.
 }
 \author{ Roger Bivand, Edzer Pebesma }
 
 \seealso{
-  \link{Lines-class}, \link{SpatialLines-class}
+  The generator function \code{\link{Line}}, and the related classes
+  \code{"\linkS4class{Lines}"} and \code{"\linkS4class{SpatialLines}"}.
 }
 \keyword{classes}
