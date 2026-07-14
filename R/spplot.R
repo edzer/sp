@@ -210,8 +210,9 @@ spplot.grid = function(obj, zcol = names(obj), ..., names.attr,
 		#		nlevels(obj@data[[zcol[1]]]) != length(args$col.regions))
 		#	stop("length of col.regions should match number of factor levels")
 		args$data[[zcol2]] = as.numeric(args$data[[zcol2]])
+		ck <- args$colorkey
 		if (is.null(args$colorkey) || (is.logical(args$colorkey) && args$colorkey)
-				|| (is.list(args$colorkey) && is.null(args$colorkey$at) && 
+				|| (is.list(args$colorkey) && is.null(args$colorkey$at) &&
 					is.null(args$colorkey$labels))) {
 			if (!is.list(args$colorkey))
 				args$colorkey = list()
@@ -275,9 +276,10 @@ spplot.polygons = function(obj, zcol = names(obj), ..., names.attr,
 		#		nlevels(obj@data[[zcol[1]]]) != length(args$col.regions))
 		#	stop("length of col.regions should match number of factor levels")
 		args$data[[zcol2]] = as.numeric(args$data[[zcol2]])
-		if (is.null(args$colorkey) 
+		ck <- args$colorkey
+		if (is.null(args$colorkey)
 				|| (is.logical(args$colorkey) && args$colorkey)
-				|| (is.list(args$colorkey) && is.null(args$colorkey$at) && 
+				|| (is.list(args$colorkey) && is.null(args$colorkey$at) &&
 					is.null(args$colorkey$labels))) {
 			if (!is.list(args$colorkey))
 				args$colorkey = list()
