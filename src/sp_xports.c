@@ -151,11 +151,11 @@ SEXP Polygon_c(const SEXP coords, const SEXP n, const SEXP ihole) {
 
 SEXP Polygon_validate_c(const SEXP obj) {
 
-    int pc=0;
+    int pc = 0;
     int n;
     SEXP coords, labpt, ans;
 
-    coords = GET_SLOT(obj, Rf_install("coords"));
+    coords = PROTECT(GET_SLOT(obj, Rf_install("coords"))); pc++;
     n = INTEGER_POINTER(Rf_getAttrib(coords, R_DimSymbol))[0];
     if (NUMERIC_POINTER(coords)[0] != NUMERIC_POINTER(coords)[n-1]
         || NUMERIC_POINTER(coords)[n] != NUMERIC_POINTER(coords)[(2*n)-1]) {
@@ -224,8 +224,8 @@ SEXP Polygons_c(const SEXP pls, const SEXP ID) {
         po[0] = 1;
 
     if (sumholes == nps) {
-        crds = GET_SLOT(VECTOR_ELT(pls1, (po[0] - R_OFFSET)),
-            Rf_install("coords"));
+        crds = PROTECT(GET_SLOT(VECTOR_ELT(pls1, (po[0] - R_OFFSET)),
+            Rf_install("coords"))); pc++;
         PROTECT(n = NEW_INTEGER(1)); pc++;
         INTEGER_POINTER(n)[0] = INTEGER_POINTER(Rf_getAttrib(crds,
             R_DimSymbol))[0];
@@ -466,7 +466,7 @@ SEXP bboxCalcR_c(const SEXP pls) {
         Pl = GET_SLOT(VECTOR_ELT(pls1, i), Rf_install("Polygons"));
         npl = Rf_length(Pl);
         for (j=0; j<npl; j++) {
-            crds = GET_SLOT(VECTOR_ELT(Pl, j), Rf_install("coords"));
+            crds = PROTECT(GET_SLOT(VECTOR_ELT(Pl, j), Rf_install("coords"))); pc++;
             n = INTEGER_POINTER(Rf_getAttrib(crds, R_DimSymbol))[0];
             for (k=0; k<n; k++) {
                x = NUMERIC_POINTER(crds)[k];
