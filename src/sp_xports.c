@@ -476,6 +476,7 @@ SEXP bboxCalcR_c(const SEXP pls) {
                if (x < LX) LX = x;
                if (y < LY) LY = y;
             }
+            UNPROTECT(1); pc--;
         }
     }
 
