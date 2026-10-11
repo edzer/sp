@@ -1,5 +1,10 @@
 \name{NEWS} 
 \title{News for Package 'sp'}
+\section{Changes in version 2.2-4 (2026-10-11)}{
+\itemize{
+		\item prevent protect call stack overflow; #160
+}
+}
 \section{Changes in version 2.2-0 (2024-xx-yy)}{
 \itemize{
 		\item remove exporting C symbols previously used by rgdal and rgeos
